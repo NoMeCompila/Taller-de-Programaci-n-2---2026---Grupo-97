@@ -23,11 +23,13 @@ Año Lectivo: 2026
 ---
 
 ---
-## 📚 Documentación
+## 📄 Documentación
 
-En esta sección se encuentran los documentos del proyecto:
-
-* 📑 [Especificación de Requerimientos de Software (ERS)] (./Documentacion/Grupo 97 - Especificación de Requerimientos de Software (ERS).pdf)
+| Documento | Descripción | Enlace |
+|-----------|-------------|--------|
+| 📋 ERS | Especificación de Requisitos de Software (IEEE 830) | [Ver PDF](Documentacion/Grupo 97 - Especificación de Requerimientos de Software (ERS).pdf) |
+| 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | [Proximamente...]|
+| ⚙️ Guía de Instalación | Instrucciones para configurar el entorno local | [Proximamente...] |
 ---
 
 ---
