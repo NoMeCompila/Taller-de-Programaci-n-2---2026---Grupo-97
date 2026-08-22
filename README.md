@@ -22,7 +22,13 @@ Año Lectivo: 2026
 
 ---
 
+---
+## 📚 Documentación
 
+En esta sección se encuentran los documentos del proyecto:
+
+* 📑 [Especificación de Requerimientos de Software (ERS)] (./Documentacion/Grupo 97 - Especificación de Requerimientos de Software (ERS).pdf)
+---
 
 ---
 
