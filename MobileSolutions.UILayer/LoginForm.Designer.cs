@@ -48,7 +48,7 @@ namespace MobileSolutions.UILayer
             materialTextBox1.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialTextBox1.Hint = "Usuario";
             materialTextBox1.LeadingIcon = null;
-            materialTextBox1.Location = new Point(378, 323);
+            materialTextBox1.Location = new Point(387, 323);
             materialTextBox1.MaxLength = 50;
             materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox1.Multiline = false;
@@ -66,7 +66,7 @@ namespace MobileSolutions.UILayer
             materialTextBox2.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialTextBox2.Hint = "Contraseña";
             materialTextBox2.LeadingIcon = null;
-            materialTextBox2.Location = new Point(378, 399);
+            materialTextBox2.Location = new Point(387, 399);
             materialTextBox2.MaxLength = 50;
             materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox2.Multiline = false;
@@ -84,7 +84,7 @@ namespace MobileSolutions.UILayer
             materialButton1.Depth = 0;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(510, 479);
+            materialButton1.Location = new Point(518, 479);
             materialButton1.Margin = new Padding(4, 6, 4, 6);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -102,7 +102,7 @@ namespace MobileSolutions.UILayer
             pictureBox1.BackgroundImage = Properties.Resources.logo_mobile_solutions_dark;
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(221, 101);
+            pictureBox1.Location = new Point(241, 101);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(618, 168);
             pictureBox1.TabIndex = 5;
@@ -110,10 +110,9 @@ namespace MobileSolutions.UILayer
             // 
             // pictureBox2
             // 
-            pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(445, 538);
+            pictureBox2.Location = new Point(451, 538);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(199, 184);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -124,7 +123,7 @@ namespace MobileSolutions.UILayer
             // 
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox3.Dock = DockStyle.Fill;
-            pictureBox3.Image = Properties.Resources.loginBG;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(3, 64);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(1094, 683);
