@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="MobileSolutions/MobileSolutions.csproj" />
+  <Project Path="MobileSolutions.DataLayer/MobileSolutions.DataLayer.csproj" />
+  <Project Path="MobileSolutions.BusinessLayer/MobileSolutions.BusinessLayer.csproj" />
+  <Project Path="MobileSolutions.UILayer/MobileSolutions.UILayer.csproj" />
 </Solution>
