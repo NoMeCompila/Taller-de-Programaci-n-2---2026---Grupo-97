@@ -48,3 +48,31 @@ CREATE TABLE Customer (
     CONSTRAINT CHK_Customer_Email CHECK (email LIKE '%_@_%.%') 
 );
 
+-- 5. Tabla de Usuarios (Empleados/Vendedores)
+CREATE TABLE [User] (
+    user_id INT IDENTITY(1,1) NOT NULL,
+    profile_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    lastname VARCHAR(100) NOT NULL,
+    dni VARCHAR(8) NOT NULL,
+    sex VARCHAR(10) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL, 
+    phone VARCHAR(15) NULL,
+    address VARCHAR(100) NULL,
+    birth DATE NOT NULL,
+    nationality VARCHAR(100) NOT NULL,
+    locality VARCHAR(100) NOT NULL,
+    register_date DATETIME2(7) NOT NULL DEFAULT GETDATE(),
+    status BIT NOT NULL DEFAULT 1,
+    CONSTRAINT PK_User PRIMARY KEY (user_id), 
+    CONSTRAINT FK_User_Profile FOREIGN KEY (profile_id) REFERENCES Profile(profile_id), 
+    CONSTRAINT UQ_User_DNI UNIQUE (dni), 
+    CONSTRAINT UQ_User_Username UNIQUE (username), 
+    CONSTRAINT UQ_User_Email UNIQUE (email), 
+    CONSTRAINT CHK_User_Sex CHECK (sex IN ('Masculino', 'Femenino', 'Otro')), 
+    CONSTRAINT CHK_User_Birth CHECK (birth < CAST(GETDATE() AS DATE)),
+    CONSTRAINT CHK_User_Email CHECK (email LIKE '%_@_%.%') 
+);
+
