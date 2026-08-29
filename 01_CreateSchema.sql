@@ -94,3 +94,22 @@ CREATE TABLE Product (
     CONSTRAINT CHK_Product_PurchasePrice CHECK (purchase_price >= 0), 
     CONSTRAINT CHK_Product_SalePrice CHECK (sale_price >= purchase_price)
 );
+
+-- 7. Tabla Cabecera de Venta
+CREATE TABLE SaleHeader (
+    sale_id INT IDENTITY(1,1) NOT NULL,
+    payment_type_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    user_id INT NOT NULL,
+    sale_number VARCHAR(100) NOT NULL,
+    sale_date DATETIME2(7) NOT NULL DEFAULT GETDATE(),
+    total_sale DECIMAL(18, 2) NOT NULL,
+    status BIT NOT NULL DEFAULT 1,
+    CONSTRAINT PK_SaleHeader PRIMARY KEY (sale_id),
+ CONSTRAINT FK_SaleHeader_PaymentType FOREIGN KEY (payment_type_id) REFERENCES PaymentType(payment_type_id),
+ CONSTRAINT FK_SaleHeader_Customer FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    CONSTRAINT FK_SaleHeader_User FOREIGN KEY (user_id) REFERENCES [User](user_id),
+   CONSTRAINT UQ_SaleHeader_SaleNumber UNIQUE (sale_number), 
+   CONSTRAINT CHK_SaleHeader_TotalSale CHECK (total_sale >= 0) 
+);
+
