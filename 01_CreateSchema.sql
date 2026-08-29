@@ -76,3 +76,21 @@ CREATE TABLE [User] (
     CONSTRAINT CHK_User_Email CHECK (email LIKE '%_@_%.%') 
 );
 
+-- 6. Tabla de Productos
+CREATE TABLE Product (
+    product_id INT IDENTITY(1,1) NOT NULL,
+    brand_id INT NOT NULL,
+    product_code VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    stock INT NOT NULL, 
+    purchase_price DECIMAL(18, 2) NOT NULL,
+    sale_price DECIMAL(18, 2) NOT NULL,
+    status BIT NOT NULL DEFAULT 1,
+    image VARCHAR(255) NULL,
+    CONSTRAINT PK_Product PRIMARY KEY (product_id),
+    CONSTRAINT FK_Product_Brand FOREIGN KEY (brand_id) REFERENCES Brand(brand_id),
+    CONSTRAINT UQ_Product_Code UNIQUE (product_code), 
+    CONSTRAINT  CHK_Product_Stock CHECK (stock >= 0),
+    CONSTRAINT CHK_Product_PurchasePrice CHECK (purchase_price >= 0), 
+    CONSTRAINT CHK_Product_SalePrice CHECK (sale_price >= purchase_price)
+);
