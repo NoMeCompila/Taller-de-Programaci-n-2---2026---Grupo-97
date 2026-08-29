@@ -10,7 +10,7 @@ namespace MobileSolutions.BusinessLayer
             }
 
             // Mockup credential validation
-            return username == "fer" && password == "123";
+            return username == "fer" && password == "123" || username == "nico" && password == "123";
         }
     }
 }
