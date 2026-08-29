@@ -113,3 +113,18 @@ CREATE TABLE SaleHeader (
    CONSTRAINT CHK_SaleHeader_TotalSale CHECK (total_sale >= 0) 
 );
 
+-- 8. Tabla Detalle de Venta
+CREATE TABLE SaleDetail (
+    sale_detail_id INT IDENTITY(1,1) NOT NULL,
+    sale_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(18, 2) NOT NULL,
+    CONSTRAINT PK_SaleDetail PRIMARY KEY (sale_detail_id),
+    CONSTRAINT FK_SaleDetail_SaleHeader FOREIGN KEY (sale_id) REFERENCES SaleHeader(sale_id),
+    CONSTRAINT FK_SaleDetail_Product FOREIGN KEY (product_id) REFERENCES Product(product_id),
+    CONSTRAINT CHK_SaleDetail_Quantity CHECK (quantity > 0), 
+    CONSTRAINT CHK_SaleDetail_Price CHECK (price >= 0), 
+    CONSTRAINT UQ_SaleDetail_Sale_Product UNIQUE (sale_id, product_id) 
+);
+
