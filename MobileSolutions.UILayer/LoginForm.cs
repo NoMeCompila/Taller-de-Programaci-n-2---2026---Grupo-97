@@ -36,7 +36,7 @@ namespace MobileSolutions.UILayer
             picLogo.Location = picBG.PointToClient(this.PointToScreen(p2));
             picLogo.BackColor = Color.Transparent;
 
-
+            // Set the color scheme for the MaterialSkin theme
             SkinManager.ColorScheme = new ColorScheme(
                 Primary.Blue800, 
                 Primary.Blue900, 
@@ -45,8 +45,8 @@ namespace MobileSolutions.UILayer
                 TextShade.WHITE);
         }
 
-        
 
+        // Method to center controls horizontally on the form
         private void CenterControlsHorizontally()
         {
             int formWidth = this.ClientSize.Width;
