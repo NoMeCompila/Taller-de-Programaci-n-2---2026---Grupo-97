@@ -28,6 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
@@ -45,6 +46,7 @@ namespace MobileSolutions.UILayer
             materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             tabPage8 = new TabPage();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            imageList1 = new ImageList(components);
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -254,6 +256,12 @@ namespace MobileSolutions.UILayer
             materialLabel8.TabIndex = 3;
             materialLabel8.Text = "Reportes";
             // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -305,6 +313,7 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
+        private ImageList imageList1;
     }
 }
 
