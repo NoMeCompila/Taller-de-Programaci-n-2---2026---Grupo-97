@@ -107,6 +107,7 @@
             txtName.TextAlign = HorizontalAlignment.Left;
             txtName.TrailingIcon = null;
             txtName.UseSystemPasswordChar = false;
+            txtName.KeyPress += txtName_KeyPress;
             // 
             // txtLastname
             // 
@@ -135,6 +136,7 @@
             txtLastname.TextAlign = HorizontalAlignment.Left;
             txtLastname.TrailingIcon = null;
             txtLastname.UseSystemPasswordChar = false;
+            txtLastname.KeyPress += txtLastname_KeyPress;
             // 
             // txtDNI
             // 
@@ -163,6 +165,7 @@
             txtDNI.TextAlign = HorizontalAlignment.Left;
             txtDNI.TrailingIcon = null;
             txtDNI.UseSystemPasswordChar = false;
+            txtDNI.KeyPress += txtDNI_KeyPress;
             // 
             // txtUsername
             // 
@@ -517,7 +520,7 @@
             // 
             radOther.AutoSize = true;
             radOther.Depth = 0;
-            radOther.Location = new Point(1123, 42);
+            radOther.Location = new Point(1123, 38);
             radOther.Margin = new Padding(0);
             radOther.MouseLocation = new Point(-1, -1);
             radOther.MouseState = MaterialSkin.MouseState.HOVER;
@@ -589,6 +592,7 @@
             chkAdmin.TabIndex = 27;
             chkAdmin.Text = "Administrador";
             chkAdmin.UseVisualStyleBackColor = true;
+            chkAdmin.CheckedChanged += chkAdmin_CheckedChanged_1;
             // 
             // chkManager
             // 
@@ -605,6 +609,7 @@
             chkManager.TabIndex = 28;
             chkManager.Text = "Gerente";
             chkManager.UseVisualStyleBackColor = true;
+            chkManager.CheckedChanged += chkManager_CheckedChanged;
             // 
             // chkSeller
             // 
@@ -621,6 +626,7 @@
             chkSeller.TabIndex = 29;
             chkSeller.Text = "Vendedor";
             chkSeller.UseVisualStyleBackColor = true;
+            chkSeller.CheckedChanged += chkSeller_CheckedChanged;
             // 
             // btnSave
             // 
@@ -640,6 +646,7 @@
             btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnSave.UseAccentColor = false;
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClear
             // 
@@ -659,6 +666,7 @@
             btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnClear.UseAccentColor = false;
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // dtgUsers
             // 
