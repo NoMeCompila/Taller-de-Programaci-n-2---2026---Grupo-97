@@ -3,6 +3,7 @@ CREATE TABLE Profile (
     profile_id INT IDENTITY(1,1) NOT NULL,
     description VARCHAR(100) NOT NULL,
     status BIT NOT NULL DEFAULT 1,
+
     CONSTRAINT PK_Profile PRIMARY KEY (profile_id),
     CONSTRAINT UQ_Profile_Description UNIQUE (description) 
 );
@@ -12,6 +13,7 @@ CREATE TABLE PaymentType (
     payment_type_id INT IDENTITY(1,1) NOT NULL,
     description VARCHAR(100) NOT NULL,
     status BIT NOT NULL DEFAULT 1,
+
     CONSTRAINT PK_PaymentType PRIMARY KEY (payment_type_id),
     CONSTRAINT UQ_PaymentType_Description UNIQUE (description) 
 );
@@ -21,6 +23,7 @@ CREATE TABLE Brand (
     brand_id INT IDENTITY(1,1) NOT NULL,
     name VARCHAR(100) NOT NULL,
     status BIT NOT NULL DEFAULT 1,
+
     CONSTRAINT PK_Brand PRIMARY KEY (brand_id),
     CONSTRAINT UQ_Brand_Name UNIQUE (name) 
 );
@@ -40,6 +43,7 @@ CREATE TABLE Customer (
     locality VARCHAR(100) NOT NULL,
     register_date DATETIME2(7) NOT NULL DEFAULT GETDATE(),
     status BIT NOT NULL DEFAULT 1,
+
     CONSTRAINT PK_Customer PRIMARY KEY (customer_id),
     CONSTRAINT UQ_Customer_DNI UNIQUE (dni), 
     CONSTRAINT UQ_Customer_Email UNIQUE (email), 
@@ -66,6 +70,7 @@ CREATE TABLE [User] (
     locality VARCHAR(100) NOT NULL,
     register_date DATETIME2(7) NOT NULL DEFAULT GETDATE(),
     status BIT NOT NULL DEFAULT 1,
+
     CONSTRAINT PK_User PRIMARY KEY (user_id), 
     CONSTRAINT FK_User_Profile FOREIGN KEY (profile_id) REFERENCES Profile(profile_id), 
     CONSTRAINT UQ_User_DNI UNIQUE (dni), 
@@ -87,6 +92,7 @@ CREATE TABLE Product (
     sale_price DECIMAL(18, 2) NOT NULL,
     status BIT NOT NULL DEFAULT 1,
     image VARCHAR(255) NULL,
+
     CONSTRAINT PK_Product PRIMARY KEY (product_id),
     CONSTRAINT FK_Product_Brand FOREIGN KEY (brand_id) REFERENCES Brand(brand_id),
     CONSTRAINT UQ_Product_Code UNIQUE (product_code), 
@@ -105,12 +111,13 @@ CREATE TABLE SaleHeader (
     sale_date DATETIME2(7) NOT NULL DEFAULT GETDATE(),
     total_sale DECIMAL(18, 2) NOT NULL,
     status BIT NOT NULL DEFAULT 1,
+
     CONSTRAINT PK_SaleHeader PRIMARY KEY (sale_id),
- CONSTRAINT FK_SaleHeader_PaymentType FOREIGN KEY (payment_type_id) REFERENCES PaymentType(payment_type_id),
- CONSTRAINT FK_SaleHeader_Customer FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    CONSTRAINT FK_SaleHeader_PaymentType FOREIGN KEY (payment_type_id) REFERENCES PaymentType(payment_type_id),
+    CONSTRAINT FK_SaleHeader_Customer FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
     CONSTRAINT FK_SaleHeader_User FOREIGN KEY (user_id) REFERENCES [User](user_id),
-   CONSTRAINT UQ_SaleHeader_SaleNumber UNIQUE (sale_number), 
-   CONSTRAINT CHK_SaleHeader_TotalSale CHECK (total_sale >= 0) 
+    CONSTRAINT UQ_SaleHeader_SaleNumber UNIQUE (sale_number), 
+    CONSTRAINT CHK_SaleHeader_TotalSale CHECK (total_sale >= 0) 
 );
 
 -- 8. Tabla Detalle de Venta
@@ -120,6 +127,7 @@ CREATE TABLE SaleDetail (
     product_id INT NOT NULL,
     quantity INT NOT NULL,
     price DECIMAL(18, 2) NOT NULL,
+
     CONSTRAINT PK_SaleDetail PRIMARY KEY (sale_detail_id),
     CONSTRAINT FK_SaleDetail_SaleHeader FOREIGN KEY (sale_id) REFERENCES SaleHeader(sale_id),
     CONSTRAINT FK_SaleDetail_Product FOREIGN KEY (product_id) REFERENCES Product(product_id),

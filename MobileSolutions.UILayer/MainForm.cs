@@ -77,6 +77,11 @@ namespace MobileSolutions.UILayer
             // Immediate, deadlock-free process termination for all forms and background threads
             //Environment.Exit(0);
         }
+
+        private void userView1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
