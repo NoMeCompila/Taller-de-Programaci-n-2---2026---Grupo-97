@@ -38,16 +38,6 @@
             txtAddress = new MaterialSkin.Controls.MaterialTextBox2();
             txtNationality = new MaterialSkin.Controls.MaterialTextBox2();
             txtLocality = new MaterialSkin.Controls.MaterialTextBox2();
-            lblName = new MaterialSkin.Controls.MaterialLabel();
-            lblLastname = new MaterialSkin.Controls.MaterialLabel();
-            lblDNI = new MaterialSkin.Controls.MaterialLabel();
-            lblUsername = new MaterialSkin.Controls.MaterialLabel();
-            lblPassword = new MaterialSkin.Controls.MaterialLabel();
-            lblEmail = new MaterialSkin.Controls.MaterialLabel();
-            lblPhone = new MaterialSkin.Controls.MaterialLabel();
-            lblAddress = new MaterialSkin.Controls.MaterialLabel();
-            lblNationality = new MaterialSkin.Controls.MaterialLabel();
-            lblLocality = new MaterialSkin.Controls.MaterialLabel();
             radMale = new MaterialSkin.Controls.MaterialRadioButton();
             radFemale = new MaterialSkin.Controls.MaterialRadioButton();
             radOther = new MaterialSkin.Controls.MaterialRadioButton();
@@ -55,11 +45,15 @@
             lblBirth = new MaterialSkin.Controls.MaterialLabel();
             dtpBirth = new DateTimePicker();
             lblProfile = new MaterialSkin.Controls.MaterialLabel();
-            chkAdmin = new MaterialSkin.Controls.MaterialCheckbox();
-            chkManager = new MaterialSkin.Controls.MaterialCheckbox();
-            chkSeller = new MaterialSkin.Controls.MaterialCheckbox();
             btnSave = new MaterialSkin.Controls.MaterialButton();
             btnClear = new MaterialSkin.Controls.MaterialButton();
+            materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            swtActive = new MaterialSkin.Controls.MaterialSwitch();
+            panel1 = new Panel();
+            panel2 = new Panel();
             dtgUsers = new DataGridView();
             ColumnId = new DataGridViewLinkColumn();
             ColumnProfile = new DataGridViewLinkColumn();
@@ -74,22 +68,30 @@
             ColumnAddress = new DataGridViewLinkColumn();
             ColumnNationality = new DataGridViewLinkColumn();
             ColumnLocality = new DataGridViewLinkColumn();
-            btnActive = new MaterialSkin.Controls.MaterialButton();
-            btnInactive = new MaterialSkin.Controls.MaterialButton();
-            materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
+            panel3 = new Panel();
+            materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
+            materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
+            materialRadioButton2 = new MaterialSkin.Controls.MaterialRadioButton();
+            materialRadioButton3 = new MaterialSkin.Controls.MaterialRadioButton();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgUsers).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // txtName
             // 
+            txtName.Anchor = AnchorStyles.Right;
             txtName.AnimateReadOnly = false;
             txtName.BackgroundImageLayout = ImageLayout.None;
             txtName.CharacterCasing = CharacterCasing.Normal;
             txtName.Depth = 0;
             txtName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtName.HideSelection = true;
+            txtName.Hint = "Nombre";
             txtName.LeadingIcon = null;
-            txtName.Location = new Point(172, 31);
+            txtName.Location = new Point(48, 63);
+            txtName.Margin = new Padding(3, 2, 3, 2);
             txtName.MaxLength = 32767;
             txtName.MouseState = MaterialSkin.MouseState.OUT;
             txtName.Name = "txtName";
@@ -101,7 +103,7 @@
             txtName.SelectionLength = 0;
             txtName.SelectionStart = 0;
             txtName.ShortcutsEnabled = true;
-            txtName.Size = new Size(239, 48);
+            txtName.Size = new Size(209, 48);
             txtName.TabIndex = 0;
             txtName.TabStop = false;
             txtName.TextAlign = HorizontalAlignment.Left;
@@ -111,14 +113,17 @@
             // 
             // txtLastname
             // 
+            txtLastname.Anchor = AnchorStyles.Right;
             txtLastname.AnimateReadOnly = false;
             txtLastname.BackgroundImageLayout = ImageLayout.None;
             txtLastname.CharacterCasing = CharacterCasing.Normal;
             txtLastname.Depth = 0;
             txtLastname.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtLastname.HideSelection = true;
+            txtLastname.Hint = "Apellido";
             txtLastname.LeadingIcon = null;
-            txtLastname.Location = new Point(174, 114);
+            txtLastname.Location = new Point(50, 138);
+            txtLastname.Margin = new Padding(3, 2, 3, 2);
             txtLastname.MaxLength = 32767;
             txtLastname.MouseState = MaterialSkin.MouseState.OUT;
             txtLastname.Name = "txtLastname";
@@ -130,7 +135,7 @@
             txtLastname.SelectionLength = 0;
             txtLastname.SelectionStart = 0;
             txtLastname.ShortcutsEnabled = true;
-            txtLastname.Size = new Size(240, 48);
+            txtLastname.Size = new Size(210, 48);
             txtLastname.TabIndex = 1;
             txtLastname.TabStop = false;
             txtLastname.TextAlign = HorizontalAlignment.Left;
@@ -140,14 +145,17 @@
             // 
             // txtDNI
             // 
+            txtDNI.Anchor = AnchorStyles.Right;
             txtDNI.AnimateReadOnly = false;
             txtDNI.BackgroundImageLayout = ImageLayout.None;
             txtDNI.CharacterCasing = CharacterCasing.Normal;
             txtDNI.Depth = 0;
             txtDNI.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDNI.HideSelection = true;
+            txtDNI.Hint = "DNI";
             txtDNI.LeadingIcon = null;
-            txtDNI.Location = new Point(172, 195);
+            txtDNI.Location = new Point(50, 218);
+            txtDNI.Margin = new Padding(3, 2, 3, 2);
             txtDNI.MaxLength = 32767;
             txtDNI.MouseState = MaterialSkin.MouseState.OUT;
             txtDNI.Name = "txtDNI";
@@ -159,7 +167,7 @@
             txtDNI.SelectionLength = 0;
             txtDNI.SelectionStart = 0;
             txtDNI.ShortcutsEnabled = true;
-            txtDNI.Size = new Size(242, 48);
+            txtDNI.Size = new Size(212, 48);
             txtDNI.TabIndex = 2;
             txtDNI.TabStop = false;
             txtDNI.TextAlign = HorizontalAlignment.Left;
@@ -169,14 +177,17 @@
             // 
             // txtUsername
             // 
+            txtUsername.Anchor = AnchorStyles.Right;
             txtUsername.AnimateReadOnly = false;
             txtUsername.BackgroundImageLayout = ImageLayout.None;
             txtUsername.CharacterCasing = CharacterCasing.Normal;
             txtUsername.Depth = 0;
             txtUsername.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsername.HideSelection = true;
+            txtUsername.Hint = "Usuario";
             txtUsername.LeadingIcon = null;
-            txtUsername.Location = new Point(172, 276);
+            txtUsername.Location = new Point(48, 294);
+            txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.MaxLength = 32767;
             txtUsername.MouseState = MaterialSkin.MouseState.OUT;
             txtUsername.Name = "txtUsername";
@@ -188,7 +199,7 @@
             txtUsername.SelectionLength = 0;
             txtUsername.SelectionStart = 0;
             txtUsername.ShortcutsEnabled = true;
-            txtUsername.Size = new Size(242, 48);
+            txtUsername.Size = new Size(212, 48);
             txtUsername.TabIndex = 3;
             txtUsername.TabStop = false;
             txtUsername.TextAlign = HorizontalAlignment.Left;
@@ -197,14 +208,17 @@
             // 
             // txtPassword
             // 
+            txtPassword.Anchor = AnchorStyles.Right;
             txtPassword.AnimateReadOnly = false;
             txtPassword.BackgroundImageLayout = ImageLayout.None;
             txtPassword.CharacterCasing = CharacterCasing.Normal;
             txtPassword.Depth = 0;
             txtPassword.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.HideSelection = true;
+            txtPassword.Hint = "Contraseña";
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(172, 357);
+            txtPassword.Location = new Point(48, 365);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.MaxLength = 32767;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtPassword.Name = "txtPassword";
@@ -216,7 +230,7 @@
             txtPassword.SelectionLength = 0;
             txtPassword.SelectionStart = 0;
             txtPassword.ShortcutsEnabled = true;
-            txtPassword.Size = new Size(242, 48);
+            txtPassword.Size = new Size(212, 48);
             txtPassword.TabIndex = 4;
             txtPassword.TabStop = false;
             txtPassword.TextAlign = HorizontalAlignment.Left;
@@ -225,14 +239,17 @@
             // 
             // txtEmail
             // 
+            txtEmail.Anchor = AnchorStyles.Right;
             txtEmail.AnimateReadOnly = false;
             txtEmail.BackgroundImageLayout = ImageLayout.None;
             txtEmail.CharacterCasing = CharacterCasing.Normal;
             txtEmail.Depth = 0;
             txtEmail.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtEmail.HideSelection = true;
+            txtEmail.Hint = "Email";
             txtEmail.LeadingIcon = null;
-            txtEmail.Location = new Point(549, 31);
+            txtEmail.Location = new Point(347, 63);
+            txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.MaxLength = 32767;
             txtEmail.MouseState = MaterialSkin.MouseState.OUT;
             txtEmail.Name = "txtEmail";
@@ -244,7 +261,7 @@
             txtEmail.SelectionLength = 0;
             txtEmail.SelectionStart = 0;
             txtEmail.ShortcutsEnabled = true;
-            txtEmail.Size = new Size(238, 48);
+            txtEmail.Size = new Size(208, 48);
             txtEmail.TabIndex = 5;
             txtEmail.TabStop = false;
             txtEmail.TextAlign = HorizontalAlignment.Left;
@@ -253,14 +270,17 @@
             // 
             // txtPhone
             // 
+            txtPhone.Anchor = AnchorStyles.Right;
             txtPhone.AnimateReadOnly = false;
             txtPhone.BackgroundImageLayout = ImageLayout.None;
             txtPhone.CharacterCasing = CharacterCasing.Normal;
             txtPhone.Depth = 0;
             txtPhone.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPhone.HideSelection = true;
+            txtPhone.Hint = "Teléfono";
             txtPhone.LeadingIcon = null;
-            txtPhone.Location = new Point(549, 114);
+            txtPhone.Location = new Point(347, 138);
+            txtPhone.Margin = new Padding(3, 2, 3, 2);
             txtPhone.MaxLength = 32767;
             txtPhone.MouseState = MaterialSkin.MouseState.OUT;
             txtPhone.Name = "txtPhone";
@@ -272,7 +292,7 @@
             txtPhone.SelectionLength = 0;
             txtPhone.SelectionStart = 0;
             txtPhone.ShortcutsEnabled = true;
-            txtPhone.Size = new Size(240, 48);
+            txtPhone.Size = new Size(210, 48);
             txtPhone.TabIndex = 6;
             txtPhone.TabStop = false;
             txtPhone.TextAlign = HorizontalAlignment.Left;
@@ -281,14 +301,17 @@
             // 
             // txtAddress
             // 
+            txtAddress.Anchor = AnchorStyles.Right;
             txtAddress.AnimateReadOnly = false;
             txtAddress.BackgroundImageLayout = ImageLayout.None;
             txtAddress.CharacterCasing = CharacterCasing.Normal;
             txtAddress.Depth = 0;
             txtAddress.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtAddress.HideSelection = true;
+            txtAddress.Hint = "Dirección";
             txtAddress.LeadingIcon = null;
-            txtAddress.Location = new Point(551, 195);
+            txtAddress.Location = new Point(347, 218);
+            txtAddress.Margin = new Padding(3, 2, 3, 2);
             txtAddress.MaxLength = 32767;
             txtAddress.MouseState = MaterialSkin.MouseState.OUT;
             txtAddress.Name = "txtAddress";
@@ -300,7 +323,7 @@
             txtAddress.SelectionLength = 0;
             txtAddress.SelectionStart = 0;
             txtAddress.ShortcutsEnabled = true;
-            txtAddress.Size = new Size(238, 48);
+            txtAddress.Size = new Size(208, 48);
             txtAddress.TabIndex = 7;
             txtAddress.TabStop = false;
             txtAddress.TextAlign = HorizontalAlignment.Left;
@@ -309,14 +332,17 @@
             // 
             // txtNationality
             // 
+            txtNationality.Anchor = AnchorStyles.Right;
             txtNationality.AnimateReadOnly = false;
             txtNationality.BackgroundImageLayout = ImageLayout.None;
             txtNationality.CharacterCasing = CharacterCasing.Normal;
             txtNationality.Depth = 0;
             txtNationality.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNationality.HideSelection = true;
+            txtNationality.Hint = "Nacionalidad";
             txtNationality.LeadingIcon = null;
-            txtNationality.Location = new Point(551, 276);
+            txtNationality.Location = new Point(349, 294);
+            txtNationality.Margin = new Padding(3, 2, 3, 2);
             txtNationality.MaxLength = 32767;
             txtNationality.MouseState = MaterialSkin.MouseState.OUT;
             txtNationality.Name = "txtNationality";
@@ -328,7 +354,7 @@
             txtNationality.SelectionLength = 0;
             txtNationality.SelectionStart = 0;
             txtNationality.ShortcutsEnabled = true;
-            txtNationality.Size = new Size(238, 48);
+            txtNationality.Size = new Size(208, 48);
             txtNationality.TabIndex = 8;
             txtNationality.TabStop = false;
             txtNationality.TextAlign = HorizontalAlignment.Left;
@@ -337,14 +363,17 @@
             // 
             // txtLocality
             // 
+            txtLocality.Anchor = AnchorStyles.Right;
             txtLocality.AnimateReadOnly = false;
             txtLocality.BackgroundImageLayout = ImageLayout.None;
             txtLocality.CharacterCasing = CharacterCasing.Normal;
             txtLocality.Depth = 0;
             txtLocality.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtLocality.HideSelection = true;
+            txtLocality.Hint = "Localidad";
             txtLocality.LeadingIcon = null;
-            txtLocality.Location = new Point(551, 357);
+            txtLocality.Location = new Point(347, 365);
+            txtLocality.Margin = new Padding(3, 2, 3, 2);
             txtLocality.MaxLength = 32767;
             txtLocality.MouseState = MaterialSkin.MouseState.OUT;
             txtLocality.Name = "txtLocality";
@@ -356,139 +385,19 @@
             txtLocality.SelectionLength = 0;
             txtLocality.SelectionStart = 0;
             txtLocality.ShortcutsEnabled = true;
-            txtLocality.Size = new Size(238, 48);
+            txtLocality.Size = new Size(208, 48);
             txtLocality.TabIndex = 9;
             txtLocality.TabStop = false;
             txtLocality.TextAlign = HorizontalAlignment.Left;
             txtLocality.TrailingIcon = null;
             txtLocality.UseSystemPasswordChar = false;
             // 
-            // lblName
-            // 
-            lblName.AutoSize = true;
-            lblName.Depth = 0;
-            lblName.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblName.Location = new Point(70, 60);
-            lblName.MouseState = MaterialSkin.MouseState.HOVER;
-            lblName.Name = "lblName";
-            lblName.Size = new Size(61, 19);
-            lblName.TabIndex = 10;
-            lblName.Text = "Nombre:";
-            // 
-            // lblLastname
-            // 
-            lblLastname.AutoSize = true;
-            lblLastname.Depth = 0;
-            lblLastname.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblLastname.Location = new Point(70, 143);
-            lblLastname.MouseState = MaterialSkin.MouseState.HOVER;
-            lblLastname.Name = "lblLastname";
-            lblLastname.Size = new Size(62, 19);
-            lblLastname.TabIndex = 11;
-            lblLastname.Text = "Apellido:";
-            // 
-            // lblDNI
-            // 
-            lblDNI.AutoSize = true;
-            lblDNI.Depth = 0;
-            lblDNI.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblDNI.Location = new Point(70, 224);
-            lblDNI.MouseState = MaterialSkin.MouseState.HOVER;
-            lblDNI.Name = "lblDNI";
-            lblDNI.Size = new Size(31, 19);
-            lblDNI.TabIndex = 12;
-            lblDNI.Text = "DNI:";
-            // 
-            // lblUsername
-            // 
-            lblUsername.AutoSize = true;
-            lblUsername.Depth = 0;
-            lblUsername.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsername.Location = new Point(70, 305);
-            lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(59, 19);
-            lblUsername.TabIndex = 13;
-            lblUsername.Text = "Usuario:";
-            // 
-            // lblPassword
-            // 
-            lblPassword.AutoSize = true;
-            lblPassword.Depth = 0;
-            lblPassword.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblPassword.Location = new Point(70, 386);
-            lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(86, 19);
-            lblPassword.TabIndex = 14;
-            lblPassword.Text = "Contraseña:";
-            lblPassword.Click += lblPassword_Click;
-            // 
-            // lblEmail
-            // 
-            lblEmail.AutoSize = true;
-            lblEmail.Depth = 0;
-            lblEmail.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblEmail.Location = new Point(450, 56);
-            lblEmail.MouseState = MaterialSkin.MouseState.HOVER;
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(45, 19);
-            lblEmail.TabIndex = 15;
-            lblEmail.Text = "Email:";
-            // 
-            // lblPhone
-            // 
-            lblPhone.AutoSize = true;
-            lblPhone.Depth = 0;
-            lblPhone.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblPhone.Location = new Point(450, 143);
-            lblPhone.MouseState = MaterialSkin.MouseState.HOVER;
-            lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(68, 19);
-            lblPhone.TabIndex = 16;
-            lblPhone.Text = "Telefono:";
-            // 
-            // lblAddress
-            // 
-            lblAddress.AutoSize = true;
-            lblAddress.Depth = 0;
-            lblAddress.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblAddress.Location = new Point(450, 224);
-            lblAddress.MouseState = MaterialSkin.MouseState.HOVER;
-            lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(71, 19);
-            lblAddress.TabIndex = 17;
-            lblAddress.Text = "Direccion:";
-            // 
-            // lblNationality
-            // 
-            lblNationality.AutoSize = true;
-            lblNationality.Depth = 0;
-            lblNationality.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblNationality.Location = new Point(450, 305);
-            lblNationality.MouseState = MaterialSkin.MouseState.HOVER;
-            lblNationality.Name = "lblNationality";
-            lblNationality.Size = new Size(99, 19);
-            lblNationality.TabIndex = 18;
-            lblNationality.Text = "Nacionalidad:";
-            // 
-            // lblLocality
-            // 
-            lblLocality.AutoSize = true;
-            lblLocality.Depth = 0;
-            lblLocality.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblLocality.Location = new Point(450, 386);
-            lblLocality.MouseState = MaterialSkin.MouseState.HOVER;
-            lblLocality.Name = "lblLocality";
-            lblLocality.Size = new Size(75, 19);
-            lblLocality.TabIndex = 19;
-            lblLocality.Text = "Localidad:";
-            // 
             // radMale
             // 
+            radMale.Anchor = AnchorStyles.Left;
             radMale.AutoSize = true;
             radMale.Depth = 0;
-            radMale.Location = new Point(887, 38);
+            radMale.Location = new Point(173, 229);
             radMale.Margin = new Padding(0);
             radMale.MouseLocation = new Point(-1, -1);
             radMale.MouseState = MaterialSkin.MouseState.HOVER;
@@ -502,9 +411,10 @@
             // 
             // radFemale
             // 
+            radFemale.Anchor = AnchorStyles.Left;
             radFemale.AutoSize = true;
             radFemale.Depth = 0;
-            radFemale.Location = new Point(1012, 38);
+            radFemale.Location = new Point(45, 229);
             radFemale.Margin = new Padding(0);
             radFemale.MouseLocation = new Point(-1, -1);
             radFemale.MouseState = MaterialSkin.MouseState.HOVER;
@@ -518,9 +428,10 @@
             // 
             // radOther
             // 
+            radOther.Anchor = AnchorStyles.Left;
             radOther.AutoSize = true;
             radOther.Depth = 0;
-            radOther.Location = new Point(1123, 38);
+            radOther.Location = new Point(310, 229);
             radOther.Margin = new Padding(0);
             radOther.MouseLocation = new Point(-1, -1);
             radOther.MouseState = MaterialSkin.MouseState.HOVER;
@@ -534,10 +445,11 @@
             // 
             // lblSex
             // 
+            lblSex.Anchor = AnchorStyles.Left;
             lblSex.AutoSize = true;
             lblSex.Depth = 0;
             lblSex.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblSex.Location = new Point(823, 49);
+            lblSex.Location = new Point(206, 193);
             lblSex.MouseState = MaterialSkin.MouseState.HOVER;
             lblSex.Name = "lblSex";
             lblSex.Size = new Size(40, 19);
@@ -546,97 +458,56 @@
             // 
             // lblBirth
             // 
+            lblBirth.Anchor = AnchorStyles.Left;
             lblBirth.AutoSize = true;
             lblBirth.Depth = 0;
             lblBirth.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblBirth.Location = new Point(823, 114);
+            lblBirth.Location = new Point(152, 92);
             lblBirth.MouseState = MaterialSkin.MouseState.HOVER;
             lblBirth.Name = "lblBirth";
-            lblBirth.Size = new Size(105, 19);
+            lblBirth.Size = new Size(150, 19);
             lblBirth.TabIndex = 24;
-            lblBirth.Text = "Fecha de Nac.:";
+            lblBirth.Text = "Fecha de Nacimiento";
             // 
             // dtpBirth
             // 
+            dtpBirth.Anchor = AnchorStyles.Left;
+            dtpBirth.CalendarFont = new Font("Segoe UI Emoji", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirth.CalendarMonthBackground = SystemColors.HighlightText;
+            dtpBirth.Cursor = Cursors.Hand;
+            dtpBirth.Font = new Font("Segoe UI Emoji", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirth.Format = DateTimePickerFormat.Short;
-            dtpBirth.Location = new Point(945, 114);
+            dtpBirth.ImeMode = ImeMode.NoControl;
+            dtpBirth.Location = new Point(149, 121);
+            dtpBirth.Margin = new Padding(3, 2, 3, 2);
             dtpBirth.Name = "dtpBirth";
-            dtpBirth.Size = new Size(109, 27);
+            dtpBirth.Size = new Size(153, 33);
             dtpBirth.TabIndex = 25;
             // 
             // lblProfile
             // 
+            lblProfile.Anchor = AnchorStyles.Left;
             lblProfile.AutoSize = true;
             lblProfile.Depth = 0;
             lblProfile.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblProfile.Location = new Point(823, 190);
+            lblProfile.Location = new Point(184, 338);
             lblProfile.MouseState = MaterialSkin.MouseState.HOVER;
             lblProfile.Name = "lblProfile";
             lblProfile.Size = new Size(80, 19);
             lblProfile.TabIndex = 26;
             lblProfile.Text = "Perfil / Rol:";
-            // 
-            // chkAdmin
-            // 
-            chkAdmin.AutoSize = true;
-            chkAdmin.Depth = 0;
-            chkAdmin.Location = new Point(931, 180);
-            chkAdmin.Margin = new Padding(0);
-            chkAdmin.MouseLocation = new Point(-1, -1);
-            chkAdmin.MouseState = MaterialSkin.MouseState.HOVER;
-            chkAdmin.Name = "chkAdmin";
-            chkAdmin.ReadOnly = false;
-            chkAdmin.Ripple = true;
-            chkAdmin.Size = new Size(135, 37);
-            chkAdmin.TabIndex = 27;
-            chkAdmin.Text = "Administrador";
-            chkAdmin.UseVisualStyleBackColor = true;
-            chkAdmin.CheckedChanged += chkAdmin_CheckedChanged_1;
-            // 
-            // chkManager
-            // 
-            chkManager.AutoSize = true;
-            chkManager.Depth = 0;
-            chkManager.Location = new Point(931, 224);
-            chkManager.Margin = new Padding(0);
-            chkManager.MouseLocation = new Point(-1, -1);
-            chkManager.MouseState = MaterialSkin.MouseState.HOVER;
-            chkManager.Name = "chkManager";
-            chkManager.ReadOnly = false;
-            chkManager.Ripple = true;
-            chkManager.Size = new Size(89, 37);
-            chkManager.TabIndex = 28;
-            chkManager.Text = "Gerente";
-            chkManager.UseVisualStyleBackColor = true;
-            chkManager.CheckedChanged += chkManager_CheckedChanged;
-            // 
-            // chkSeller
-            // 
-            chkSeller.AutoSize = true;
-            chkSeller.Depth = 0;
-            chkSeller.Location = new Point(931, 276);
-            chkSeller.Margin = new Padding(0);
-            chkSeller.MouseLocation = new Point(-1, -1);
-            chkSeller.MouseState = MaterialSkin.MouseState.HOVER;
-            chkSeller.Name = "chkSeller";
-            chkSeller.ReadOnly = false;
-            chkSeller.Ripple = true;
-            chkSeller.Size = new Size(102, 37);
-            chkSeller.TabIndex = 29;
-            chkSeller.Text = "Vendedor";
-            chkSeller.UseVisualStyleBackColor = true;
-            chkSeller.CheckedChanged += chkSeller_CheckedChanged;
+            lblProfile.Click += lblProfile_Click;
             // 
             // btnSave
             // 
+            btnSave.Anchor = AnchorStyles.Right;
             btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnSave.Depth = 0;
             btnSave.HighEmphasis = true;
             btnSave.Icon = null;
-            btnSave.Location = new Point(887, 357);
-            btnSave.Margin = new Padding(4, 6, 4, 6);
+            btnSave.Location = new Point(554, 138);
+            btnSave.Margin = new Padding(4);
             btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
             btnSave.NoAccentTextColor = Color.Empty;
@@ -650,13 +521,14 @@
             // 
             // btnClear
             // 
+            btnClear.Anchor = AnchorStyles.Right;
             btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
-            btnClear.Location = new Point(1057, 357);
-            btnClear.Margin = new Padding(4, 6, 4, 6);
+            btnClear.Location = new Point(554, 204);
+            btnClear.Margin = new Padding(4);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
             btnClear.NoAccentTextColor = Color.Empty;
@@ -667,149 +539,6 @@
             btnClear.UseAccentColor = false;
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
-            // 
-            // dtgUsers
-            // 
-            dtgUsers.AllowUserToOrderColumns = true;
-            dtgUsers.BackgroundColor = Color.MidnightBlue;
-            dtgUsers.BorderStyle = BorderStyle.None;
-            dtgUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgUsers.Columns.AddRange(new DataGridViewColumn[] { ColumnId, ColumnProfile, ColumnName, ColumnLastname, ColumnUsername, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
-            dtgUsers.GridColor = SystemColors.InactiveCaptionText;
-            dtgUsers.Location = new Point(32, 584);
-            dtgUsers.Name = "dtgUsers";
-            dtgUsers.RowHeadersWidth = 51;
-            dtgUsers.Size = new Size(1156, 249);
-            dtgUsers.TabIndex = 32;
-            // 
-            // ColumnId
-            // 
-            ColumnId.HeaderText = "IdUsuario";
-            ColumnId.MinimumWidth = 6;
-            ColumnId.Name = "ColumnId";
-            ColumnId.Width = 125;
-            // 
-            // ColumnProfile
-            // 
-            ColumnProfile.HeaderText = "idPerfil";
-            ColumnProfile.MinimumWidth = 6;
-            ColumnProfile.Name = "ColumnProfile";
-            ColumnProfile.Width = 125;
-            // 
-            // ColumnName
-            // 
-            ColumnName.HeaderText = "Nombre";
-            ColumnName.MinimumWidth = 6;
-            ColumnName.Name = "ColumnName";
-            ColumnName.Width = 125;
-            // 
-            // ColumnLastname
-            // 
-            ColumnLastname.HeaderText = "Apellido";
-            ColumnLastname.MinimumWidth = 6;
-            ColumnLastname.Name = "ColumnLastname";
-            ColumnLastname.Width = 125;
-            // 
-            // ColumnUsername
-            // 
-            ColumnUsername.HeaderText = "Usuario";
-            ColumnUsername.MinimumWidth = 6;
-            ColumnUsername.Name = "ColumnUsername";
-            ColumnUsername.Width = 125;
-            // 
-            // ColumnDNI
-            // 
-            ColumnDNI.HeaderText = "DNI";
-            ColumnDNI.MinimumWidth = 6;
-            ColumnDNI.Name = "ColumnDNI";
-            ColumnDNI.Width = 125;
-            // 
-            // ColumnSex
-            // 
-            ColumnSex.HeaderText = "Sexo";
-            ColumnSex.MinimumWidth = 6;
-            ColumnSex.Name = "ColumnSex";
-            ColumnSex.Width = 125;
-            // 
-            // ColumnBirth
-            // 
-            ColumnBirth.HeaderText = "Fecha de Nac.";
-            ColumnBirth.MinimumWidth = 6;
-            ColumnBirth.Name = "ColumnBirth";
-            ColumnBirth.Width = 125;
-            // 
-            // ColumnEmail
-            // 
-            ColumnEmail.HeaderText = "Email";
-            ColumnEmail.MinimumWidth = 6;
-            ColumnEmail.Name = "ColumnEmail";
-            ColumnEmail.Width = 125;
-            // 
-            // ColumnPhone
-            // 
-            ColumnPhone.HeaderText = "Telefono";
-            ColumnPhone.MinimumWidth = 6;
-            ColumnPhone.Name = "ColumnPhone";
-            ColumnPhone.Width = 125;
-            // 
-            // ColumnAddress
-            // 
-            ColumnAddress.HeaderText = "Direccion";
-            ColumnAddress.MinimumWidth = 6;
-            ColumnAddress.Name = "ColumnAddress";
-            ColumnAddress.Width = 125;
-            // 
-            // ColumnNationality
-            // 
-            ColumnNationality.HeaderText = "Nacionalidad";
-            ColumnNationality.MinimumWidth = 6;
-            ColumnNationality.Name = "ColumnNationality";
-            ColumnNationality.Width = 125;
-            // 
-            // ColumnLocality
-            // 
-            ColumnLocality.HeaderText = "Localidad";
-            ColumnLocality.MinimumWidth = 6;
-            ColumnLocality.Name = "ColumnLocality";
-            ColumnLocality.Width = 125;
-            // 
-            // btnActive
-            // 
-            btnActive.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnActive.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnActive.Depth = 0;
-            btnActive.HighEmphasis = true;
-            btnActive.Icon = null;
-            btnActive.Location = new Point(85, 525);
-            btnActive.Margin = new Padding(4, 6, 4, 6);
-            btnActive.MouseState = MaterialSkin.MouseState.HOVER;
-            btnActive.Name = "btnActive";
-            btnActive.NoAccentTextColor = Color.Empty;
-            btnActive.Size = new Size(82, 36);
-            btnActive.TabIndex = 33;
-            btnActive.Text = "Activos";
-            btnActive.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnActive.UseAccentColor = false;
-            btnActive.UseVisualStyleBackColor = true;
-            // 
-            // btnInactive
-            // 
-            btnInactive.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnInactive.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnInactive.Depth = 0;
-            btnInactive.HighEmphasis = true;
-            btnInactive.Icon = null;
-            btnInactive.Location = new Point(237, 525);
-            btnInactive.Margin = new Padding(4, 6, 4, 6);
-            btnInactive.MouseState = MaterialSkin.MouseState.HOVER;
-            btnInactive.Name = "btnInactive";
-            btnInactive.NoAccentTextColor = Color.Empty;
-            btnInactive.Size = new Size(97, 36);
-            btnInactive.TabIndex = 34;
-            btnInactive.Text = "Inactivos";
-            btnInactive.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnInactive.UseAccentColor = false;
-            btnInactive.UseVisualStyleBackColor = true;
             // 
             // materialCheckbox1
             // 
@@ -827,48 +556,309 @@
             materialCheckbox1.Text = "materialCheckbox1";
             materialCheckbox1.UseVisualStyleBackColor = true;
             // 
+            // materialLabel1
+            // 
+            materialLabel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(621, 48);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(125, 19);
+            materialLabel1.TabIndex = 35;
+            materialLabel1.Text = "Datos Personales";
+            // 
+            // materialButton1
+            // 
+            materialButton1.Anchor = AnchorStyles.Right;
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(554, 262);
+            materialButton1.Margin = new Padding(4);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(88, 36);
+            materialButton1.TabIndex = 37;
+            materialButton1.Text = "Eliminar";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            // 
+            // materialButton2
+            // 
+            materialButton2.Anchor = AnchorStyles.Right;
+            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton2.Depth = 0;
+            materialButton2.HighEmphasis = true;
+            materialButton2.Icon = null;
+            materialButton2.Location = new Point(554, 338);
+            materialButton2.Margin = new Padding(4);
+            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton2.Name = "materialButton2";
+            materialButton2.NoAccentTextColor = Color.Empty;
+            materialButton2.Size = new Size(99, 36);
+            materialButton2.TabIndex = 36;
+            materialButton2.Text = "Modificar";
+            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton2.UseAccentColor = false;
+            materialButton2.UseVisualStyleBackColor = true;
+            // 
+            // swtActive
+            // 
+            swtActive.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            swtActive.AutoSize = true;
+            swtActive.Checked = true;
+            swtActive.CheckState = CheckState.Checked;
+            swtActive.Depth = 0;
+            swtActive.Location = new Point(48, 491);
+            swtActive.Margin = new Padding(0);
+            swtActive.MouseLocation = new Point(-1, -1);
+            swtActive.MouseState = MaterialSkin.MouseState.HOVER;
+            swtActive.Name = "swtActive";
+            swtActive.Ripple = true;
+            swtActive.Size = new Size(173, 37);
+            swtActive.TabIndex = 38;
+            swtActive.Text = "materialSwitch1";
+            swtActive.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Left;
+            panel1.Controls.Add(txtEmail);
+            panel1.Controls.Add(txtName);
+            panel1.Controls.Add(swtActive);
+            panel1.Controls.Add(txtLastname);
+            panel1.Controls.Add(txtDNI);
+            panel1.Controls.Add(txtUsername);
+            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(txtPhone);
+            panel1.Controls.Add(txtAddress);
+            panel1.Controls.Add(txtNationality);
+            panel1.Controls.Add(txtLocality);
+            panel1.Location = new Point(10, 112);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(605, 532);
+            panel1.TabIndex = 39;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.Controls.Add(dtgUsers);
+            panel2.Location = new Point(0, 643);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1304, 205);
+            panel2.TabIndex = 40;
+            // 
+            // dtgUsers
+            // 
+            dtgUsers.AllowUserToOrderColumns = true;
+            dtgUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgUsers.BackgroundColor = Color.MidnightBlue;
+            dtgUsers.BorderStyle = BorderStyle.None;
+            dtgUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgUsers.Columns.AddRange(new DataGridViewColumn[] { ColumnId, ColumnProfile, ColumnName, ColumnLastname, ColumnUsername, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
+            dtgUsers.Dock = DockStyle.Fill;
+            dtgUsers.GridColor = SystemColors.InactiveCaptionText;
+            dtgUsers.Location = new Point(0, 0);
+            dtgUsers.Margin = new Padding(3, 2, 3, 2);
+            dtgUsers.Name = "dtgUsers";
+            dtgUsers.RowHeadersWidth = 51;
+            dtgUsers.Size = new Size(1304, 205);
+            dtgUsers.TabIndex = 33;
+            // 
+            // ColumnId
+            // 
+            ColumnId.HeaderText = "IdUsuario";
+            ColumnId.MinimumWidth = 6;
+            ColumnId.Name = "ColumnId";
+            // 
+            // ColumnProfile
+            // 
+            ColumnProfile.HeaderText = "idPerfil";
+            ColumnProfile.MinimumWidth = 6;
+            ColumnProfile.Name = "ColumnProfile";
+            // 
+            // ColumnName
+            // 
+            ColumnName.HeaderText = "Nombre";
+            ColumnName.MinimumWidth = 6;
+            ColumnName.Name = "ColumnName";
+            // 
+            // ColumnLastname
+            // 
+            ColumnLastname.HeaderText = "Apellido";
+            ColumnLastname.MinimumWidth = 6;
+            ColumnLastname.Name = "ColumnLastname";
+            // 
+            // ColumnUsername
+            // 
+            ColumnUsername.HeaderText = "Usuario";
+            ColumnUsername.MinimumWidth = 6;
+            ColumnUsername.Name = "ColumnUsername";
+            // 
+            // ColumnDNI
+            // 
+            ColumnDNI.HeaderText = "DNI";
+            ColumnDNI.MinimumWidth = 6;
+            ColumnDNI.Name = "ColumnDNI";
+            // 
+            // ColumnSex
+            // 
+            ColumnSex.HeaderText = "Sexo";
+            ColumnSex.MinimumWidth = 6;
+            ColumnSex.Name = "ColumnSex";
+            // 
+            // ColumnBirth
+            // 
+            ColumnBirth.HeaderText = "Fecha de Nac.";
+            ColumnBirth.MinimumWidth = 6;
+            ColumnBirth.Name = "ColumnBirth";
+            // 
+            // ColumnEmail
+            // 
+            ColumnEmail.HeaderText = "Email";
+            ColumnEmail.MinimumWidth = 6;
+            ColumnEmail.Name = "ColumnEmail";
+            // 
+            // ColumnPhone
+            // 
+            ColumnPhone.HeaderText = "Telefono";
+            ColumnPhone.MinimumWidth = 6;
+            ColumnPhone.Name = "ColumnPhone";
+            // 
+            // ColumnAddress
+            // 
+            ColumnAddress.HeaderText = "Direccion";
+            ColumnAddress.MinimumWidth = 6;
+            ColumnAddress.Name = "ColumnAddress";
+            // 
+            // ColumnNationality
+            // 
+            ColumnNationality.HeaderText = "Nacionalidad";
+            ColumnNationality.MinimumWidth = 6;
+            ColumnNationality.Name = "ColumnNationality";
+            // 
+            // ColumnLocality
+            // 
+            ColumnLocality.HeaderText = "Localidad";
+            ColumnLocality.MinimumWidth = 6;
+            ColumnLocality.Name = "ColumnLocality";
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Left;
+            panel3.Controls.Add(materialRadioButton1);
+            panel3.Controls.Add(materialSwitch1);
+            panel3.Controls.Add(radMale);
+            panel3.Controls.Add(materialRadioButton2);
+            panel3.Controls.Add(radFemale);
+            panel3.Controls.Add(materialButton1);
+            panel3.Controls.Add(materialRadioButton3);
+            panel3.Controls.Add(radOther);
+            panel3.Controls.Add(materialButton2);
+            panel3.Controls.Add(btnClear);
+            panel3.Controls.Add(lblProfile);
+            panel3.Controls.Add(lblSex);
+            panel3.Controls.Add(lblBirth);
+            panel3.Controls.Add(dtpBirth);
+            panel3.Controls.Add(btnSave);
+            panel3.Location = new Point(621, 112);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(683, 532);
+            panel3.TabIndex = 41;
+            // 
+            // materialRadioButton1
+            // 
+            materialRadioButton1.Anchor = AnchorStyles.Left;
+            materialRadioButton1.AutoSize = true;
+            materialRadioButton1.Depth = 0;
+            materialRadioButton1.Location = new Point(33, 376);
+            materialRadioButton1.Margin = new Padding(0);
+            materialRadioButton1.MouseLocation = new Point(-1, -1);
+            materialRadioButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialRadioButton1.Name = "materialRadioButton1";
+            materialRadioButton1.Ripple = true;
+            materialRadioButton1.Size = new Size(135, 37);
+            materialRadioButton1.TabIndex = 39;
+            materialRadioButton1.TabStop = true;
+            materialRadioButton1.Text = "Administrador";
+            materialRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // materialSwitch1
+            // 
+            materialSwitch1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            materialSwitch1.AutoSize = true;
+            materialSwitch1.Checked = true;
+            materialSwitch1.CheckState = CheckState.Checked;
+            materialSwitch1.Depth = 0;
+            materialSwitch1.Location = new Point(48, 923);
+            materialSwitch1.Margin = new Padding(0);
+            materialSwitch1.MouseLocation = new Point(-1, -1);
+            materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialSwitch1.Name = "materialSwitch1";
+            materialSwitch1.Ripple = true;
+            materialSwitch1.Size = new Size(173, 37);
+            materialSwitch1.TabIndex = 38;
+            materialSwitch1.Text = "materialSwitch1";
+            materialSwitch1.UseVisualStyleBackColor = true;
+            // 
+            // materialRadioButton2
+            // 
+            materialRadioButton2.Anchor = AnchorStyles.Left;
+            materialRadioButton2.AutoSize = true;
+            materialRadioButton2.Depth = 0;
+            materialRadioButton2.Location = new Point(193, 376);
+            materialRadioButton2.Margin = new Padding(0);
+            materialRadioButton2.MouseLocation = new Point(-1, -1);
+            materialRadioButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialRadioButton2.Name = "materialRadioButton2";
+            materialRadioButton2.Ripple = true;
+            materialRadioButton2.Size = new Size(89, 37);
+            materialRadioButton2.TabIndex = 40;
+            materialRadioButton2.TabStop = true;
+            materialRadioButton2.Text = "Gerente";
+            materialRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // materialRadioButton3
+            // 
+            materialRadioButton3.Anchor = AnchorStyles.Left;
+            materialRadioButton3.AutoSize = true;
+            materialRadioButton3.Depth = 0;
+            materialRadioButton3.Location = new Point(310, 376);
+            materialRadioButton3.Margin = new Padding(0);
+            materialRadioButton3.MouseLocation = new Point(-1, -1);
+            materialRadioButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialRadioButton3.Name = "materialRadioButton3";
+            materialRadioButton3.Ripple = true;
+            materialRadioButton3.Size = new Size(102, 37);
+            materialRadioButton3.TabIndex = 41;
+            materialRadioButton3.TabStop = true;
+            materialRadioButton3.Text = "Vendedor";
+            materialRadioButton3.UseVisualStyleBackColor = true;
+            // 
             // UserView
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnInactive);
-            Controls.Add(btnActive);
-            Controls.Add(dtgUsers);
-            Controls.Add(btnClear);
-            Controls.Add(btnSave);
-            Controls.Add(chkSeller);
-            Controls.Add(chkManager);
-            Controls.Add(chkAdmin);
-            Controls.Add(lblProfile);
-            Controls.Add(dtpBirth);
-            Controls.Add(lblBirth);
-            Controls.Add(lblSex);
-            Controls.Add(radOther);
-            Controls.Add(radFemale);
-            Controls.Add(radMale);
-            Controls.Add(lblLocality);
-            Controls.Add(lblNationality);
-            Controls.Add(lblAddress);
-            Controls.Add(lblPhone);
-            Controls.Add(lblEmail);
-            Controls.Add(lblPassword);
-            Controls.Add(lblUsername);
-            Controls.Add(lblDNI);
-            Controls.Add(lblLastname);
-            Controls.Add(lblName);
-            Controls.Add(txtLocality);
-            Controls.Add(txtNationality);
-            Controls.Add(txtAddress);
-            Controls.Add(txtPhone);
-            Controls.Add(txtEmail);
-            Controls.Add(txtPassword);
-            Controls.Add(txtUsername);
-            Controls.Add(txtDNI);
-            Controls.Add(txtLastname);
-            Controls.Add(txtName);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(materialLabel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "UserView";
-            Size = new Size(1219, 882);
+            Size = new Size(1304, 848);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgUsers).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -885,16 +875,6 @@
         private MaterialSkin.Controls.MaterialTextBox2 txtAddress;
         private MaterialSkin.Controls.MaterialTextBox2 txtNationality;
         private MaterialSkin.Controls.MaterialTextBox2 txtLocality;
-        private MaterialSkin.Controls.MaterialLabel lblName;
-        private MaterialSkin.Controls.MaterialLabel lblLastname;
-        private MaterialSkin.Controls.MaterialLabel lblDNI;
-        private MaterialSkin.Controls.MaterialLabel lblUsername;
-        private MaterialSkin.Controls.MaterialLabel lblPassword;
-        private MaterialSkin.Controls.MaterialLabel lblEmail;
-        private MaterialSkin.Controls.MaterialLabel lblPhone;
-        private MaterialSkin.Controls.MaterialLabel lblAddress;
-        private MaterialSkin.Controls.MaterialLabel lblNationality;
-        private MaterialSkin.Controls.MaterialLabel lblLocality;
         private MaterialSkin.Controls.MaterialRadioButton radMale;
         private MaterialSkin.Controls.MaterialRadioButton radFemale;
         private MaterialSkin.Controls.MaterialRadioButton radOther;
@@ -902,11 +882,15 @@
         private MaterialSkin.Controls.MaterialLabel lblBirth;
         private DateTimePicker dtpBirth;
         private MaterialSkin.Controls.MaterialLabel lblProfile;
-        private MaterialSkin.Controls.MaterialCheckbox chkAdmin;
-        private MaterialSkin.Controls.MaterialCheckbox chkManager;
-        private MaterialSkin.Controls.MaterialCheckbox chkSeller;
         private MaterialSkin.Controls.MaterialButton btnSave;
         private MaterialSkin.Controls.MaterialButton btnClear;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton materialButton2;
+        private MaterialSkin.Controls.MaterialSwitch swtActive;
+        private Panel panel1;
+        private Panel panel2;
         private DataGridView dtgUsers;
         private DataGridViewLinkColumn ColumnId;
         private DataGridViewLinkColumn ColumnProfile;
@@ -921,8 +905,10 @@
         private DataGridViewLinkColumn ColumnAddress;
         private DataGridViewLinkColumn ColumnNationality;
         private DataGridViewLinkColumn ColumnLocality;
-        private MaterialSkin.Controls.MaterialButton btnActive;
-        private MaterialSkin.Controls.MaterialButton btnInactive;
-        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
+        private Panel panel3;
+        private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton2;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton3;
     }
 }

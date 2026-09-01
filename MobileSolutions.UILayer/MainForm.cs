@@ -21,6 +21,9 @@ namespace MobileSolutions.UILayer
                Primary.Blue500,
                Accent.LightBlue200,
                TextShade.WHITE);
+
+            UserView userView = new UserView();
+            userView.Dock = DockStyle.Fill; // Garantiza que UserView llene todo el área 
         }
 
         private void ConfigurarIconosMenu()

@@ -35,6 +35,7 @@ namespace MobileSolutions.UILayer
             picBanner = new PictureBox();
             picLogo = new PictureBox();
             picBG = new PictureBox();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)picBanner).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBG).BeginInit();
@@ -84,7 +85,7 @@ namespace MobileSolutions.UILayer
             btnLogin.Depth = 0;
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = null;
-            btnLogin.Location = new Point(518, 479);
+            btnLogin.Location = new Point(520, 475);
             btnLogin.Margin = new Padding(4, 6, 4, 6);
             btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogin.Name = "btnLogin";
@@ -110,9 +111,10 @@ namespace MobileSolutions.UILayer
             // 
             // picLogo
             // 
+            picLogo.BackColor = Color.Transparent;
             picLogo.BackgroundImage = (Image)resources.GetObject("picLogo.BackgroundImage");
             picLogo.BackgroundImageLayout = ImageLayout.Zoom;
-            picLogo.Location = new Point(451, 538);
+            picLogo.Location = new Point(467, 530);
             picLogo.Name = "picLogo";
             picLogo.Size = new Size(199, 184);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
@@ -121,6 +123,7 @@ namespace MobileSolutions.UILayer
             // 
             // picBG
             // 
+            picBG.BackColor = Color.Transparent;
             picBG.BackgroundImageLayout = ImageLayout.Stretch;
             picBG.Dock = DockStyle.Fill;
             picBG.Image = (Image)resources.GetObject("picBG.Image");
@@ -131,6 +134,18 @@ namespace MobileSolutions.UILayer
             picBG.TabIndex = 7;
             picBG.TabStop = false;
             // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(479, 284);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(137, 19);
+            materialLabel1.TabIndex = 8;
+            materialLabel1.Text = "Ingresar al Sistema";
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -138,6 +153,7 @@ namespace MobileSolutions.UILayer
             BackColor = SystemColors.ActiveCaptionText;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1100, 750);
+            Controls.Add(materialLabel1);
             Controls.Add(picLogo);
             Controls.Add(picBanner);
             Controls.Add(btnLogin);
@@ -145,6 +161,7 @@ namespace MobileSolutions.UILayer
             Controls.Add(txtUser);
             Controls.Add(picBG);
             ForeColor = SystemColors.Window;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoginForm";
             Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
@@ -165,6 +182,7 @@ namespace MobileSolutions.UILayer
         private PictureBox picBanner;
         private PictureBox picLogo;
         private PictureBox picBG;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
     }
 }
 

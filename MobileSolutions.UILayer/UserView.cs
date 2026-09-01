@@ -29,8 +29,8 @@ namespace MobileSolutions.UILayer
             // Generar iconos blancos de 24x24 px y asignarlos a los botones
             btnSave.Icon = IconChar.Save.ToBitmap(Color.White, 24);
             btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White, 24);
-            btnActive.Icon = IconChar.ToggleOn.ToBitmap(Color.White, 24);
-            btnInactive.Icon = IconChar.ToggleOff.ToBitmap(Color.White, 24);
+            //btnActive.Icon = IconChar.ToggleOn.ToBitmap(Color.White, 24);
+            //btnInactive.Icon = IconChar.ToggleOff.ToBitmap(Color.White, 24);
 
             ConfigBasicsRestrictions();
         }
@@ -92,7 +92,6 @@ namespace MobileSolutions.UILayer
                 || string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text)
                 || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtNationality.Text)
                 || string.IsNullOrWhiteSpace(txtLocality.Text) || string.IsNullOrWhiteSpace(txtLastname.Text)
-                || (chkAdmin.Checked == false && chkManager.Checked == false && chkSeller.Checked == false)
                 || (radMale.Checked == false && radFemale.Checked == false && radOther.Checked == false)
                 || dtpBirth.Value == DateTime.Now.Date)
             {
@@ -129,40 +128,14 @@ namespace MobileSolutions.UILayer
             radFemale.Checked = false;
             radOther.Checked = false;
 
-            // Resetear CheckBoxes (Roles)
-            chkAdmin.Checked = false;
-            chkManager.Checked = false;
-            chkSeller.Checked = false;
 
             // Resetear Fecha
             dtpBirth.Value = DateTime.Now.Date;
         }
 
-        private void chkAdmin_CheckedChanged_1(object sender, EventArgs e)
+        private void lblProfile_Click(object sender, EventArgs e)
         {
-            if (chkAdmin.Checked)
-            {
-                chkManager.Checked = false;
-                chkSeller.Checked = false;
-            }
-        }
 
-        private void chkManager_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkManager.Checked)
-            {
-                chkAdmin.Checked = false;
-                chkSeller.Checked = false;
-            }
-        }
-
-        private void chkSeller_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkSeller.Checked)
-            {
-                chkAdmin.Checked = false;
-                chkManager.Checked = false;
-            }
         }
     }
 }

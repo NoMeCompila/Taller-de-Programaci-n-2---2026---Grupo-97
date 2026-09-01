@@ -1,3 +1,4 @@
+using FontAwesome.Sharp;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using MobileSolutions.BusinessLayer;
@@ -21,7 +22,7 @@ namespace MobileSolutions.UILayer
             this.Padding = new Padding(0, 64, 0, 0);
 
             // Center all controls horizontally on the form
-            CenterControlsHorizontally();
+            //CenterControlsHorizontally();
 
             // Make logo picture boxes transparent over the background image (pictureBox3)
             Point p1 = picBanner.Location;
@@ -43,10 +44,21 @@ namespace MobileSolutions.UILayer
                 Primary.Blue500, 
                 Accent.LightBlue200, 
                 TextShade.WHITE);
+
+            picLogo.Parent = picBG;
+            picLogo.BackColor = Color.Transparent;
+
+
+
+            Bitmap loginIcon = IconChar.SignInAlt.ToBitmap(Color.White, 24);
+
+            // Asignar el icono al MaterialButton
+            btnLogin.Icon = loginIcon;
+
+            // Ajustar el tipo de botón para que muestre icono y texto correctamente (opcional)
+            //btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
         }
 
-
-        // Method to center controls horizontally on the form
         private void CenterControlsHorizontally()
         {
             int formWidth = this.ClientSize.Width;
@@ -67,7 +79,7 @@ namespace MobileSolutions.UILayer
 
             if (isAuthenticated)
             {
-                MessageBox.Show("Login Exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MaterialMessageBox.Show("Login Exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 MainForm mainForm = new MainForm();
                 mainForm.Show();
@@ -75,11 +87,11 @@ namespace MobileSolutions.UILayer
             }
             else if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Por favor ingrese los datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MaterialMessageBox.Show("Por favor ingrese las credenciales", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Usuario/Contraseña no válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MaterialMessageBox.Show("Usuario/Contraseña no válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
