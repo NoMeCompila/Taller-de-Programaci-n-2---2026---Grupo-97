@@ -868,6 +868,7 @@
             Controls.Add(txtName);
             Name = "UserView";
             Size = new Size(1219, 882);
+            Load += UserView_Load;
             ((System.ComponentModel.ISupportInitialize)dtgUsers).EndInit();
             ResumeLayout(false);
             PerformLayout();

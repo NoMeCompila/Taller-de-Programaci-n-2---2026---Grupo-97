@@ -85,7 +85,7 @@ CREATE TABLE [User] (
 CREATE TABLE Product (
     product_id INT IDENTITY(1,1) NOT NULL,
     brand_id INT NOT NULL,
-    product_code VARCHAR(100) NOT NULL,
+    product_code VARCHAR(100) NOT NULL, -- Código único para cada producto para busquedas, mostrar en el ticket y para mostrar en la pantalla debajo de la imagen del prod
     name VARCHAR(100) NOT NULL,
     stock INT NOT NULL, 
     purchase_price DECIMAL(18, 2) NOT NULL,

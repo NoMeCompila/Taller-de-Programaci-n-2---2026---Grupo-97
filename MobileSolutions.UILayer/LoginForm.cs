@@ -32,6 +32,7 @@ namespace MobileSolutions.UILayer
             picBanner.BackColor = Color.Transparent;
             picBanner.BorderStyle = BorderStyle.None;
 
+
             picLogo.Parent = picBG;
             picLogo.Location = picBG.PointToClient(this.PointToScreen(p2));
             picLogo.BackColor = Color.Transparent;
@@ -67,7 +68,7 @@ namespace MobileSolutions.UILayer
 
             if (isAuthenticated)
             {
-                MessageBox.Show("Login Exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MaterialMessageBox.Show("Login Exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 MainForm mainForm = new MainForm();
                 mainForm.Show();
@@ -85,7 +86,16 @@ namespace MobileSolutions.UILayer
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            btnExit.BringToFront();
+        }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            var result = MaterialMessageBox.Show("¿Está seguro de que desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

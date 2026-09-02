@@ -68,14 +68,17 @@ namespace MobileSolutions.UILayer
 
         private void MainForm_Load(object? sender, EventArgs e)
         {
-
+            btnHeaderExit.BringToFront();
         }
 
 
-        private void button1_Click(object? sender, EventArgs e)
+        private void btnHeaderExit_Click(object? sender, EventArgs e)
         {
-            // Immediate, deadlock-free process termination for all forms and background threads
-            //Environment.Exit(0);
+            var result = MaterialMessageBox.Show("¿Está seguro de que desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void userView1_Load(object sender, EventArgs e)

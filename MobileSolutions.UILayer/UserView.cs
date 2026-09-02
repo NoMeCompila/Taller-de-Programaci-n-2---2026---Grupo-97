@@ -164,5 +164,10 @@ namespace MobileSolutions.UILayer
                 chkManager.Checked = false;
             }
         }
+
+        private void UserView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

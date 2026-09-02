@@ -33,6 +33,7 @@ namespace MobileSolutions.UILayer
             tabPage1 = new TabPage();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             tabPage2 = new TabPage();
+            userView1 = new UserView();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             tabPage3 = new TabPage();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -47,7 +48,7 @@ namespace MobileSolutions.UILayer
             tabPage8 = new TabPage();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             imageList1 = new ImageList(components);
-            userView1 = new UserView();
+            btnHeaderExit = new FontAwesome.Sharp.IconButton();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -117,6 +118,15 @@ namespace MobileSolutions.UILayer
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // userView1
+            // 
+            userView1.Dock = DockStyle.Fill;
+            userView1.Location = new Point(3, 4);
+            userView1.Name = "userView1";
+            userView1.Size = new Size(1237, 870);
+            userView1.TabIndex = 3;
+            userView1.Load += userView1_Load;
+            // 
             // materialLabel3
             // 
             materialLabel3.AutoSize = true;
@@ -158,7 +168,7 @@ namespace MobileSolutions.UILayer
             tabPage4.Location = new Point(4, 29);
             tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1242, 878);
+            tabPage4.Size = new Size(1243, 878);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Productos";
             tabPage4.UseVisualStyleBackColor = true;
@@ -181,7 +191,7 @@ namespace MobileSolutions.UILayer
             tabPage5.Location = new Point(4, 29);
             tabPage5.Margin = new Padding(3, 4, 3, 4);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1242, 878);
+            tabPage5.Size = new Size(1243, 878);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Marcas";
             tabPage5.UseVisualStyleBackColor = true;
@@ -204,7 +214,7 @@ namespace MobileSolutions.UILayer
             tabPage6.Location = new Point(4, 29);
             tabPage6.Margin = new Padding(3, 4, 3, 4);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1242, 878);
+            tabPage6.Size = new Size(1243, 878);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Venta";
             tabPage6.UseVisualStyleBackColor = true;
@@ -227,7 +237,7 @@ namespace MobileSolutions.UILayer
             tabPage7.Location = new Point(4, 29);
             tabPage7.Margin = new Padding(3, 4, 3, 4);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1242, 878);
+            tabPage7.Size = new Size(1243, 878);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Historial De Ventas";
             tabPage7.UseVisualStyleBackColor = true;
@@ -250,7 +260,7 @@ namespace MobileSolutions.UILayer
             tabPage8.Location = new Point(4, 29);
             tabPage8.Margin = new Padding(3, 4, 3, 4);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1242, 878);
+            tabPage8.Size = new Size(1243, 878);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Reportes";
             tabPage8.UseVisualStyleBackColor = true;
@@ -273,20 +283,35 @@ namespace MobileSolutions.UILayer
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
-            // userView1
+            // btnHeaderExit
             // 
-            userView1.Dock = DockStyle.Fill;
-            userView1.Location = new Point(3, 4);
-            userView1.Name = "userView1";
-            userView1.Size = new Size(1237, 870);
-            userView1.TabIndex = 3;
-            userView1.Load += userView1_Load;
+            btnHeaderExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnHeaderExit.BackColor = Color.Transparent;
+            btnHeaderExit.FlatAppearance.BorderSize = 0;
+            btnHeaderExit.FlatAppearance.MouseDownBackColor = Color.FromArgb(100, 255, 255, 255);
+            btnHeaderExit.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 255, 255, 255);
+            btnHeaderExit.FlatStyle = FlatStyle.Flat;
+            btnHeaderExit.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
+            btnHeaderExit.ForeColor = Color.FromArgb(244, 67, 54);
+            btnHeaderExit.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            btnHeaderExit.IconColor = Color.FromArgb(244, 67, 54);
+            btnHeaderExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnHeaderExit.IconSize = 24;
+            btnHeaderExit.Location = new Point(1151, 28);
+            btnHeaderExit.Name = "btnHeaderExit";
+            btnHeaderExit.Size = new Size(100, 32);
+            btnHeaderExit.TabIndex = 4;
+            btnHeaderExit.Text = " Salir";
+            btnHeaderExit.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnHeaderExit.UseVisualStyleBackColor = false;
+            btnHeaderExit.Click += btnHeaderExit_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1257, 1000);
+            Controls.Add(btnHeaderExit);
             Controls.Add(materialTabControl1);
             DrawerTabControl = materialTabControl1;
             Margin = new Padding(3, 4, 3, 4);
@@ -337,6 +362,7 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private ImageList imageList1;
         private UserView userView1;
+        private FontAwesome.Sharp.IconButton btnHeaderExit;
     }
 }
 
