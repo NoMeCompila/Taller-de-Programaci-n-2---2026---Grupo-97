@@ -27,10 +27,26 @@ namespace MobileSolutions.UILayer
             dtpBirth.ForeColor = Color.White;
 
             // Generar iconos blancos de 24x24 px y asignarlos a los botones
-            btnSave.Icon = IconChar.Save.ToBitmap(Color.White, 24);
-            btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White, 24);
-            //btnActive.Icon = IconChar.ToggleOn.ToBitmap(Color.White, 24);
-            //btnInactive.Icon = IconChar.ToggleOff.ToBitmap(Color.White, 24);
+            btnSave.Icon = IconChar.Save.ToBitmap(Color.White);
+            btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
+            btnName.Icon = IconChar.UserEdit.ToBitmap(Color.White);
+            btnLastname.Icon = IconChar.UserEdit.ToBitmap(Color.White);
+            btnDni.Icon = IconChar.IdCard.ToBitmap(Color.White);
+            btnUser.Icon = IconChar.User.ToBitmap(Color.White);
+            btnPassword.Icon = IconChar.Key.ToBitmap(Color.White);
+            btnEmail.Icon = IconChar.Envelope.ToBitmap(Color.White);
+            btnCel.Icon = IconChar.Phone.ToBitmap(Color.White);
+            btnAddress.Icon = IconChar.MapMarker.ToBitmap(Color.White);
+            btnNat.Icon = IconChar.Flag.ToBitmap(Color.White);
+            btnLoc.Icon = IconChar.MapMarkerAlt.ToBitmap(Color.White);
+            picSex.IconChar = IconChar.VenusMars;
+            picProfile.IconChar = IconChar.UserCircle;
+            picBirth.IconChar = IconChar.Calendar;
+            picUserTitle.IconChar = IconChar.User;
+            picUserTitle.IconColor = Color.White;
+            btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
+            btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
+
 
             ConfigBasicsRestrictions();
         }
@@ -92,21 +108,11 @@ namespace MobileSolutions.UILayer
                 || string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text)
                 || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtNationality.Text)
                 || string.IsNullOrWhiteSpace(txtLocality.Text) || string.IsNullOrWhiteSpace(txtLastname.Text)
-                || (radMale.Checked == false && radFemale.Checked == false && radOther.Checked == false)
                 || dtpBirth.Value == DateTime.Now.Date)
             {
                 MessageBox.Show("Por favor, complete los campos obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // 2. Aquí llamas a la capa de negocio (UserService) pasando los datos.
-            // Ejemplo:
-            // UserService servicio = new UserService();
-            // bool exito = servicio.RegistrarUsuario(txtName.Text, txtDni.Text, ...);
-
-            // 3. Si se guardó con éxito en la BD, actualizas el DataGridView
-            // ActualizarGrilla();
-            // btnLimpiar.PerformClick();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -123,10 +129,7 @@ namespace MobileSolutions.UILayer
             txtNationality.Clear();
             txtLocality.Clear();
 
-            // Resetear RadioButtons (Sexo)
-            radMale.Checked = false;
-            radFemale.Checked = false;
-            radOther.Checked = false;
+
 
 
             // Resetear Fecha
@@ -136,6 +139,31 @@ namespace MobileSolutions.UILayer
         private void lblProfile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Cancela la pulsación de la tecla
+            }
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Cancela la pulsación de la tecla
+            }
+        }
+
+        private void txtPhone_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y teclas de control(como Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Cancela la pulsación de la tecla
+            }
         }
     }
 }

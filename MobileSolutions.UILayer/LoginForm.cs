@@ -59,6 +59,16 @@ namespace MobileSolutions.UILayer
             //btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= 0x200; // CS_NOCLOSE: deshabilita y oculta la X
+                return cp;
+            }
+        }
+
         private void CenterControlsHorizontally()
         {
             int formWidth = this.ClientSize.Width;

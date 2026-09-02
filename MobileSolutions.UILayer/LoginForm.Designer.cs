@@ -161,7 +161,10 @@ namespace MobileSolutions.UILayer
             Controls.Add(txtUser);
             Controls.Add(picBG);
             ForeColor = SystemColors.Window;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LoginForm";
             Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
