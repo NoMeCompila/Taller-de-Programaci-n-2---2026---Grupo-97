@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,11 @@ namespace MobileSolutions.UILayer
         {
             InitializeComponent();
             this.picHomeTitle.Image = IconChar.Home.ToBitmap(Color.White, 64);
+        }
 
+        public void SetCurrentUser(string username)
+        {
+            lblWelcomeBanner.Text = $"Bienvenido {username} a Mobile Solutions";
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MobileSolutions.UILayer
+namespace MobileSolutions.UILayer
 {
     partial class HomeView
     {
@@ -30,6 +30,7 @@
         {
             lblHomeTitle = new MaterialSkin.Controls.MaterialLabel();
             picHomeTitle = new PictureBox();
+            lblWelcomeBanner = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)picHomeTitle).BeginInit();
             SuspendLayout();
             // 
@@ -56,10 +57,24 @@
             picHomeTitle.TabIndex = 1;
             picHomeTitle.TabStop = false;
             // 
+            // lblWelcomeBanner
+            // 
+            lblWelcomeBanner.AutoSize = true;
+            lblWelcomeBanner.Depth = 0;
+            lblWelcomeBanner.Font = new Font("Roboto", 24F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblWelcomeBanner.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblWelcomeBanner.Location = new Point(549, 105);
+            lblWelcomeBanner.MouseState = MaterialSkin.MouseState.HOVER;
+            lblWelcomeBanner.Name = "lblWelcomeBanner";
+            lblWelcomeBanner.Size = new Size(1, 0);
+            lblWelcomeBanner.TabIndex = 2;
+            lblWelcomeBanner.Text = "Bienvenido a Mobile Solutions";
+            // 
             // HomeView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblWelcomeBanner);
             Controls.Add(picHomeTitle);
             Controls.Add(lblHomeTitle);
             Name = "HomeView";
@@ -73,5 +88,6 @@
 
         private MaterialSkin.Controls.MaterialLabel lblHomeTitle;
         private PictureBox picHomeTitle;
+        private MaterialSkin.Controls.MaterialLabel lblWelcomeBanner;
     }
 }

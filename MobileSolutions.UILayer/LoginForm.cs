@@ -82,16 +82,16 @@ namespace MobileSolutions.UILayer
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            string username = txtUser.Text;
+            string username = txtUser.Text.Trim();
             string password = txtPassword.Text;
 
-            bool isAuthenticated = _userService.AuthenticateUser(username, password);
+            var user = _userService.GetUser(username, password);
 
-            if (isAuthenticated)
+            if (user != null)
             {
                 MaterialMessageBox.Show("Login Exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MainForm mainForm = new MainForm();
+                MainForm mainForm = new MainForm(user.Username);
                 mainForm.Show();
                 this.Hide();
             }
