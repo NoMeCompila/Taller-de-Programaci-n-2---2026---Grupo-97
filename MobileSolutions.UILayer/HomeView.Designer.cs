@@ -28,10 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            lblHomeTitle = new MaterialSkin.Controls.MaterialLabel();
+            picHomeTitle = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picHomeTitle).BeginInit();
+            SuspendLayout();
+            // 
+            // lblHomeTitle
+            // 
+            lblHomeTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblHomeTitle.AutoSize = true;
+            lblHomeTitle.Depth = 0;
+            lblHomeTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblHomeTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
+            lblHomeTitle.Location = new Point(653, 22);
+            lblHomeTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblHomeTitle.Name = "lblHomeTitle";
+            lblHomeTitle.Size = new Size(170, 72);
+            lblHomeTitle.TabIndex = 0;
+            lblHomeTitle.Text = "HOME";
+            // 
+            // picHomeTitle
+            // 
+            picHomeTitle.Location = new Point(549, 22);
+            picHomeTitle.Name = "picHomeTitle";
+            picHomeTitle.Size = new Size(85, 75);
+            picHomeTitle.SizeMode = PictureBoxSizeMode.Zoom;
+            picHomeTitle.TabIndex = 1;
+            picHomeTitle.TabStop = false;
+            // 
+            // HomeView
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(picHomeTitle);
+            Controls.Add(lblHomeTitle);
+            Name = "HomeView";
+            Size = new Size(1304, 848);
+            ((System.ComponentModel.ISupportInitialize)picHomeTitle).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private MaterialSkin.Controls.MaterialLabel lblHomeTitle;
+        private PictureBox picHomeTitle;
     }
 }

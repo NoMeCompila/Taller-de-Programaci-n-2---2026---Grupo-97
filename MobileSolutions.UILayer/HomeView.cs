@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace MobileSolutions.UILayer
         public HomeView()
         {
             InitializeComponent();
+            this.picHomeTitle.Image = IconChar.Home.ToBitmap(Color.White, 64);
+
         }
     }
 }
