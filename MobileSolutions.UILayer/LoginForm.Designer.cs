@@ -129,7 +129,7 @@ namespace MobileSolutions.UILayer
             picBG.Image = (Image)resources.GetObject("picBG.Image");
             picBG.Location = new Point(3, 64);
             picBG.Name = "picBG";
-            picBG.Size = new Size(1094, 683);
+            picBG.Size = new Size(1126, 761);
             picBG.SizeMode = PictureBoxSizeMode.StretchImage;
             picBG.TabIndex = 7;
             picBG.TabStop = false;
@@ -152,7 +152,7 @@ namespace MobileSolutions.UILayer
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1100, 750);
+            ClientSize = new Size(1132, 828);
             Controls.Add(materialLabel1);
             Controls.Add(picLogo);
             Controls.Add(picBanner);
@@ -169,7 +169,6 @@ namespace MobileSolutions.UILayer
             Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
-            Load += LoginForm_Load;
             ((System.ComponentModel.ISupportInitialize)picBanner).EndInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBG).EndInit();

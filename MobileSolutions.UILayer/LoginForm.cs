@@ -14,15 +14,14 @@ namespace MobileSolutions.UILayer
             InitializeComponent();
             _userService = new UserService();
 
+
+            //********************************************** Design ************************************************
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
 
             // Remove left, right, and bottom white borders while keeping top Action Bar (64px) for window control buttons
             this.Padding = new Padding(0, 64, 0, 0);
-
-            // Center all controls horizontally on the form
-            //CenterControlsHorizontally();
 
             // Make logo picture boxes transparent over the background image (pictureBox3)
             Point p1 = picBanner.Location;
@@ -39,47 +38,22 @@ namespace MobileSolutions.UILayer
 
             // Set the color scheme for the MaterialSkin theme
             SkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue800, 
-                Primary.Blue900, 
-                Primary.Blue500, 
-                Accent.LightBlue200, 
+                Primary.Blue800,
+                Primary.Blue900,
+                Primary.Blue500,
+                Accent.LightBlue200,
                 TextShade.WHITE);
 
             picLogo.Parent = picBG;
             picLogo.BackColor = Color.Transparent;
 
-
-
             Bitmap loginIcon = IconChar.SignInAlt.ToBitmap(Color.White, 24);
-
             // Asignar el icono al MaterialButton
             btnLogin.Icon = loginIcon;
-
-            // Ajustar el tipo de botón para que muestre icono y texto correctamente (opcional)
-            //btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ClassStyle |= 0x200; // CS_NOCLOSE: deshabilita y oculta la X
-                return cp;
-            }
-        }
 
-        private void CenterControlsHorizontally()
-        {
-            int formWidth = this.ClientSize.Width;
-
-            picBanner.Left = (formWidth - picBanner.Width) / 2;
-            txtUser.Left = (formWidth - txtUser.Width) / 2;
-            txtPassword.Left = (formWidth - txtPassword.Width) / 2;
-            btnLogin.Left = (formWidth - btnLogin.Width) / 2;
-            picLogo.Left = (formWidth - picLogo.Width) / 2;
-        }
-
+        //************************************************ Functionality ************************************************
         private void materialButton1_Click(object sender, EventArgs e)
         {
             string username = txtUser.Text.Trim();
@@ -89,8 +63,6 @@ namespace MobileSolutions.UILayer
 
             if (user != null)
             {
-                MaterialMessageBox.Show("Login Exitoso!", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 MainForm mainForm = new MainForm(user.Username);
                 mainForm.Show();
                 this.Hide();
@@ -103,11 +75,6 @@ namespace MobileSolutions.UILayer
             {
                 MaterialMessageBox.Show("Usuario/Contraseña no válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
