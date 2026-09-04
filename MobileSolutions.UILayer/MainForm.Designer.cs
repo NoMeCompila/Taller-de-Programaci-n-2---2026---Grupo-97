@@ -32,7 +32,6 @@ namespace MobileSolutions.UILayer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             tabPage2 = new TabPage();
             userView1 = new UserView();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -50,6 +49,7 @@ namespace MobileSolutions.UILayer
             tabPage8 = new TabPage();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             imageList1 = new ImageList(components);
+            homeView1 = new HomeView();
             materialTabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -78,33 +78,19 @@ namespace MobileSolutions.UILayer
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1674, 863);
+            materialTabControl1.Size = new Size(1706, 941);
             materialTabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(materialLabel1);
+            tabPage1.Controls.Add(homeView1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1666, 835);
+            tabPage1.Size = new Size(1698, 913);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Home";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(490, 318);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(43, 19);
-            materialLabel1.TabIndex = 2;
-            materialLabel1.Text = "Home";
-            materialLabel1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tabPage2
             // 
@@ -113,7 +99,7 @@ namespace MobileSolutions.UILayer
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1595, 779);
+            tabPage2.Size = new Size(1682, 874);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
@@ -124,7 +110,7 @@ namespace MobileSolutions.UILayer
             userView1.Location = new Point(3, 3);
             userView1.Margin = new Padding(3, 2, 3, 2);
             userView1.Name = "userView1";
-            userView1.Size = new Size(1589, 773);
+            userView1.Size = new Size(1676, 868);
             userView1.TabIndex = 3;
             userView1.Load += userView1_Load;
             // 
@@ -146,7 +132,7 @@ namespace MobileSolutions.UILayer
             tabPage3.Controls.Add(materialLabel2);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1595, 779);
+            tabPage3.Size = new Size(1682, 874);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Clientes";
             tabPage3.UseVisualStyleBackColor = true;
@@ -157,7 +143,7 @@ namespace MobileSolutions.UILayer
             customerView1.Location = new Point(0, 0);
             customerView1.Margin = new Padding(3, 2, 3, 2);
             customerView1.Name = "customerView1";
-            customerView1.Size = new Size(1595, 779);
+            customerView1.Size = new Size(1682, 874);
             customerView1.TabIndex = 4;
             // 
             // materialLabel2
@@ -177,7 +163,7 @@ namespace MobileSolutions.UILayer
             tabPage4.Controls.Add(materialLabel4);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1595, 779);
+            tabPage4.Size = new Size(1682, 874);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Productos";
             tabPage4.UseVisualStyleBackColor = true;
@@ -199,7 +185,7 @@ namespace MobileSolutions.UILayer
             tabPage5.Controls.Add(materialLabel5);
             tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1595, 779);
+            tabPage5.Size = new Size(1682, 874);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Marcas";
             tabPage5.UseVisualStyleBackColor = true;
@@ -221,7 +207,7 @@ namespace MobileSolutions.UILayer
             tabPage6.Controls.Add(materialLabel6);
             tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1595, 779);
+            tabPage6.Size = new Size(1682, 874);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Venta";
             tabPage6.UseVisualStyleBackColor = true;
@@ -243,7 +229,7 @@ namespace MobileSolutions.UILayer
             tabPage7.Controls.Add(materialLabel7);
             tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1595, 779);
+            tabPage7.Size = new Size(1682, 874);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Historial De Ventas";
             tabPage7.UseVisualStyleBackColor = true;
@@ -265,7 +251,7 @@ namespace MobileSolutions.UILayer
             tabPage8.Controls.Add(materialLabel8);
             tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1595, 779);
+            tabPage8.Size = new Size(1682, 874);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Reportes";
             tabPage8.UseVisualStyleBackColor = true;
@@ -288,11 +274,19 @@ namespace MobileSolutions.UILayer
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
+            // homeView1
+            // 
+            homeView1.Dock = DockStyle.Fill;
+            homeView1.Location = new Point(3, 3);
+            homeView1.Name = "homeView1";
+            homeView1.Size = new Size(1692, 907);
+            homeView1.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1680, 930);
+            ClientSize = new Size(1712, 1008);
             Controls.Add(materialTabControl1);
             DrawerTabControl = materialTabControl1;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -306,7 +300,6 @@ namespace MobileSolutions.UILayer
             Load += MainForm_Load;
             materialTabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
@@ -329,7 +322,6 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private TabPage tabPage3;
         private TabPage tabPage4;
@@ -346,6 +338,7 @@ namespace MobileSolutions.UILayer
         private ImageList imageList1;
         private UserView userView1;
         private CustomerView customerView1;
+        private HomeView homeView1;
     }
 }
 
