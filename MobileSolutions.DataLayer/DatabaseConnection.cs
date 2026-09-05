@@ -9,7 +9,7 @@ namespace MobileSolutions.DataLayer
 
         public DatabaseConnection()
         {
-            _connectionString = "Server=localhost;Database=MobileSolutionsDB;Trusted_Connection=True;TrustServerCertificate=True;";
+            _connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=MobileSolutionsDB;Trusted_Connection=True;TrustServerCertificate=True;";
         }
 
         public DatabaseConnection(string connectionString)
@@ -22,17 +22,20 @@ namespace MobileSolutions.DataLayer
             return new SqlConnection(_connectionString);
         }
 
-        public bool TestConnection()
+
+        // modify TestConnection method to return a tuple with
+        // a boolean indicating if the connection was successful and a string containing the error message if it was not
+        public (bool IsConnected, string? ErrorMessage) TestConnection()
         {
             try
             {
                 using var connection = GetConnection();
                 connection.Open();
-                return connection.State == ConnectionState.Open;
+                return (connection.State == ConnectionState.Open, null);
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                return (false, ex.Message);
             }
         }
     }

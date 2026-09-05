@@ -1,3 +1,5 @@
+using MobileSolutions.DataLayer;
+
 namespace MobileSolutions.BusinessLayer
 {
     public enum UserRole
@@ -16,6 +18,12 @@ namespace MobileSolutions.BusinessLayer
 
     public class UserService
     {
+        private readonly DatabaseConnection _dbConnection = new DatabaseConnection();
+        public (bool IsConnected, string? ErrorMessage) CheckDatabaseConnection()
+        {
+            return _dbConnection.TestConnection();
+        }
+
         private static readonly List<User> _mockUsers = new()
         {
             new User { Username = "admin", Password = "123", Role = UserRole.Administrator },

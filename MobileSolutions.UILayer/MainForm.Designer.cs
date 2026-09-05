@@ -107,7 +107,7 @@ namespace MobileSolutions.UILayer
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1666, 835);
+            
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
