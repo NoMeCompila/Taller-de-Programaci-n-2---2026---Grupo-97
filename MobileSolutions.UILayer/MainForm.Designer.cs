@@ -79,11 +79,7 @@ namespace MobileSolutions.UILayer
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-<<<<<<< HEAD
-            materialTabControl1.Size = new Size(1674, 841);
-=======
             materialTabControl1.Size = new Size(1674, 863);
->>>>>>> main
             materialTabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -92,13 +88,8 @@ namespace MobileSolutions.UILayer
             tabPage1.Location = new Point(4, 29);
             tabPage1.Margin = new Padding(3, 4, 3, 4);
             tabPage1.Name = "tabPage1";
-<<<<<<< HEAD
-            tabPage1.Padding = new Padding(3, 4, 3, 4);
-            tabPage1.Size = new Size(1666, 808);
-=======
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(1666, 835);
->>>>>>> main
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Home";
             tabPage1.UseVisualStyleBackColor = true;
@@ -109,11 +100,7 @@ namespace MobileSolutions.UILayer
             homeView1.Location = new Point(3, 4);
             homeView1.Margin = new Padding(3, 5, 3, 5);
             homeView1.Name = "homeView1";
-<<<<<<< HEAD
-            homeView1.Size = new Size(1660, 800);
-=======
             homeView1.Size = new Size(1660, 829);
->>>>>>> main
             homeView1.TabIndex = 0;
             // 
             // tabPage2
@@ -123,13 +110,8 @@ namespace MobileSolutions.UILayer
             tabPage2.Location = new Point(4, 29);
             tabPage2.Margin = new Padding(3, 4, 3, 4);
             tabPage2.Name = "tabPage2";
-<<<<<<< HEAD
-            tabPage2.Padding = new Padding(3, 4, 3, 4);
-            tabPage2.Size = new Size(1978, 1326);
-=======
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1666, 835);
->>>>>>> main
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
@@ -139,11 +121,7 @@ namespace MobileSolutions.UILayer
             userView1.Dock = DockStyle.Fill;
             userView1.Location = new Point(3, 4);
             userView1.Name = "userView1";
-<<<<<<< HEAD
-            userView1.Size = new Size(1972, 1318);
-=======
             userView1.Size = new Size(1660, 829);
->>>>>>> main
             userView1.TabIndex = 3;
             // 
             // materialLabel3
@@ -165,11 +143,7 @@ namespace MobileSolutions.UILayer
             tabPage3.Location = new Point(4, 29);
             tabPage3.Margin = new Padding(3, 4, 3, 4);
             tabPage3.Name = "tabPage3";
-<<<<<<< HEAD
-            tabPage3.Size = new Size(1978, 1326);
-=======
             tabPage3.Size = new Size(1666, 835);
->>>>>>> main
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Clientes";
             tabPage3.UseVisualStyleBackColor = true;
@@ -179,11 +153,7 @@ namespace MobileSolutions.UILayer
             customerView1.Dock = DockStyle.Fill;
             customerView1.Location = new Point(0, 0);
             customerView1.Name = "customerView1";
-<<<<<<< HEAD
-            customerView1.Size = new Size(1978, 1326);
-=======
             customerView1.Size = new Size(1666, 835);
->>>>>>> main
             customerView1.TabIndex = 4;
             // 
             // materialLabel2
@@ -204,11 +174,7 @@ namespace MobileSolutions.UILayer
             tabPage4.Location = new Point(4, 29);
             tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-<<<<<<< HEAD
-            tabPage4.Size = new Size(1978, 1326);
-=======
             tabPage4.Size = new Size(1666, 835);
->>>>>>> main
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Productos";
             tabPage4.UseVisualStyleBackColor = true;
@@ -231,11 +197,7 @@ namespace MobileSolutions.UILayer
             tabPage5.Location = new Point(4, 29);
             tabPage5.Margin = new Padding(3, 4, 3, 4);
             tabPage5.Name = "tabPage5";
-<<<<<<< HEAD
-            tabPage5.Size = new Size(1978, 1326);
-=======
             tabPage5.Size = new Size(1666, 835);
->>>>>>> main
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Marcas";
             tabPage5.UseVisualStyleBackColor = true;
@@ -258,11 +220,7 @@ namespace MobileSolutions.UILayer
             tabPage6.Location = new Point(4, 29);
             tabPage6.Margin = new Padding(3, 4, 3, 4);
             tabPage6.Name = "tabPage6";
-<<<<<<< HEAD
-            tabPage6.Size = new Size(1978, 1326);
-=======
             tabPage6.Size = new Size(1666, 835);
->>>>>>> main
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Venta";
             tabPage6.UseVisualStyleBackColor = true;
@@ -285,11 +243,7 @@ namespace MobileSolutions.UILayer
             tabPage7.Location = new Point(4, 29);
             tabPage7.Margin = new Padding(3, 4, 3, 4);
             tabPage7.Name = "tabPage7";
-<<<<<<< HEAD
-            tabPage7.Size = new Size(1978, 1326);
-=======
             tabPage7.Size = new Size(1666, 835);
->>>>>>> main
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Historial De Ventas";
             tabPage7.UseVisualStyleBackColor = true;
@@ -312,11 +266,7 @@ namespace MobileSolutions.UILayer
             tabPage8.Location = new Point(4, 29);
             tabPage8.Margin = new Padding(3, 4, 3, 4);
             tabPage8.Name = "tabPage8";
-<<<<<<< HEAD
-            tabPage8.Size = new Size(1978, 1326);
-=======
             tabPage8.Size = new Size(1666, 835);
->>>>>>> main
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Reportes";
             tabPage8.UseVisualStyleBackColor = true;
@@ -352,11 +302,7 @@ namespace MobileSolutions.UILayer
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";
-<<<<<<< HEAD
-            Padding = new Padding(3, 85, 3, 4);
-=======
             Sizable = false;
->>>>>>> main
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mobile Solutions";
             materialTabControl1.ResumeLayout(false);
