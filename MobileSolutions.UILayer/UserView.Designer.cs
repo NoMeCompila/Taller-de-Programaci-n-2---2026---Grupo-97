@@ -89,7 +89,7 @@
             materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
             materialRadioButton2 = new MaterialSkin.Controls.MaterialRadioButton();
             materialRadioButton3 = new MaterialSkin.Controls.MaterialRadioButton();
-            materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
+            // materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
             picUserTitle = new FontAwesome.Sharp.IconPictureBox();
             panel1.SuspendLayout();
             materialCard2.SuspendLayout();
@@ -946,7 +946,7 @@
             panel3.Controls.Add(materialCard4);
             panel3.Controls.Add(materialCard3);
             panel3.Controls.Add(materialCard1);
-            panel3.Controls.Add(materialSwitch1);
+            // panel3.Controls.Add(materialSwitch1);
             panel3.Controls.Add(btnDelete);
             panel3.Controls.Add(btnUpdate);
             panel3.Controls.Add(btnClear);
@@ -1163,7 +1163,8 @@
             materialRadioButton3.TabStop = true;
             materialRadioButton3.Text = "Vendedor";
             materialRadioButton3.UseVisualStyleBackColor = true;
-            // 
+            
+            /* 
             // materialSwitch1
             // 
             materialSwitch1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -1181,7 +1182,9 @@
             materialSwitch1.TabIndex = 38;
             materialSwitch1.Text = "materialSwitch1";
             materialSwitch1.UseVisualStyleBackColor = true;
-            // 
+            */
+
+            //
             // picUserTitle
             // 
             picUserTitle.BackColor = Color.FromArgb(255, 255, 255);
@@ -1268,7 +1271,7 @@
         private DataGridViewLinkColumn ColumnNationality;
         private DataGridViewLinkColumn ColumnLocality;
         private Panel panel3;
-        private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
+        // private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
         private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
         private MaterialSkin.Controls.MaterialRadioButton materialRadioButton2;
         private MaterialSkin.Controls.MaterialRadioButton materialRadioButton3;
