@@ -16,6 +16,7 @@ namespace MobileSolutions.UILayer
         public MainForm(string username)
         {
             InitializeComponent();
+            this.FormClosed += MainForm_FormClosed;
             _currentUser = string.IsNullOrWhiteSpace(username) ? "admin" : username.Trim();
 
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -101,7 +102,7 @@ namespace MobileSolutions.UILayer
                 case "fer":
                     // Gerente: Only 6 tabs (Usuarios and Clientes removed)
                     allowedTabs = _originalTabPages
-                        .Where(tab => tab != tabPage2 && tab != tabPage3)
+                        .Where(tab => tab != tabPage2)
                         .ToList();
                     break;
 
@@ -136,21 +137,6 @@ namespace MobileSolutions.UILayer
         private void MainForm_FormClosed(object? sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
-        }
-
-        private void MainForm_Load(object? sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object? sender, EventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void userView1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
