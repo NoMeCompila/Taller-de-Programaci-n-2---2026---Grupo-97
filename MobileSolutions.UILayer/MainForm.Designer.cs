@@ -107,7 +107,7 @@ namespace MobileSolutions.UILayer
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1890, 1005);
+            tabPage2.Size = new Size(1666, 835);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@ namespace MobileSolutions.UILayer
             userView1.Location = new Point(3, 3);
             userView1.Margin = new Padding(3, 2, 3, 2);
             userView1.Name = "userView1";
-            userView1.Size = new Size(1884, 999);
+            userView1.Size = new Size(1660, 829);
             userView1.TabIndex = 3;
             // 
             // materialLabel3
@@ -139,7 +139,7 @@ namespace MobileSolutions.UILayer
             tabPage3.Controls.Add(materialLabel2);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1890, 1005);
+            tabPage3.Size = new Size(1666, 835);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Clientes";
             tabPage3.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@ namespace MobileSolutions.UILayer
             customerView1.Location = new Point(0, 0);
             customerView1.Margin = new Padding(3, 2, 3, 2);
             customerView1.Name = "customerView1";
-            customerView1.Size = new Size(1890, 1005);
+            customerView1.Size = new Size(1666, 835);
             customerView1.TabIndex = 4;
             // 
             // materialLabel2
@@ -170,7 +170,7 @@ namespace MobileSolutions.UILayer
             tabPage4.Controls.Add(materialLabel4);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1890, 1005);
+            tabPage4.Size = new Size(1666, 835);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Productos";
             tabPage4.UseVisualStyleBackColor = true;
@@ -192,7 +192,7 @@ namespace MobileSolutions.UILayer
             tabPage5.Controls.Add(materialLabel5);
             tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1890, 1005);
+            tabPage5.Size = new Size(1666, 835);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Marcas";
             tabPage5.UseVisualStyleBackColor = true;
@@ -214,7 +214,7 @@ namespace MobileSolutions.UILayer
             tabPage6.Controls.Add(materialLabel6);
             tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1890, 1005);
+            tabPage6.Size = new Size(1666, 835);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Venta";
             tabPage6.UseVisualStyleBackColor = true;
@@ -236,7 +236,7 @@ namespace MobileSolutions.UILayer
             tabPage7.Controls.Add(materialLabel7);
             tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1890, 1005);
+            tabPage7.Size = new Size(1666, 835);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Historial De Ventas";
             tabPage7.UseVisualStyleBackColor = true;
@@ -258,7 +258,7 @@ namespace MobileSolutions.UILayer
             tabPage8.Controls.Add(materialLabel8);
             tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1890, 1005);
+            tabPage8.Size = new Size(1666, 835);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Reportes";
             tabPage8.UseVisualStyleBackColor = true;
@@ -293,6 +293,7 @@ namespace MobileSolutions.UILayer
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";
+            Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mobile Solutions";
             materialTabControl1.ResumeLayout(false);
