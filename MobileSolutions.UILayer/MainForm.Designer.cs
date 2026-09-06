@@ -111,7 +111,7 @@ namespace MobileSolutions.UILayer
             tabPage2.Margin = new Padding(3, 4, 3, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1666, 835);
+            
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;

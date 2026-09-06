@@ -56,6 +56,26 @@ namespace MobileSolutions.UILayer
         //************************************************ Functionality ************************************************
         private void materialButton1_Click(object sender, EventArgs e)
         {
+
+            // 1. Probar conectividad con SQL Server
+            var (isConnected, errorMessage) = _userService.CheckDatabaseConnection();
+            if (!isConnected)
+            {
+                MaterialMessageBox.Show(
+                    $"No se pudo conectar a la base de datos SQL Server.\n\nDetalle: {errorMessage}",
+                    "Error de Conexión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            // Opcional para confirmar visualmente que conectó:
+            MaterialMessageBox.Show(
+                "Conexión exitosa a SQL Server (MobileSolutionsDB).",
+                "Conectado",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+
             string username = txtUser.Text.Trim();
             string password = txtPassword.Text;
 
