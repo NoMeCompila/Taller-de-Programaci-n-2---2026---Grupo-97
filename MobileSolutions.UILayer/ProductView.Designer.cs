@@ -28,6 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtImageURL = new MaterialSkin.Controls.MaterialTextBox2();
             btnSave = new MaterialSkin.Controls.MaterialButton();
             btnClear = new MaterialSkin.Controls.MaterialButton();
@@ -37,7 +38,6 @@ namespace MobileSolutions.UILayer
             btnImageURL = new MaterialSkin.Controls.MaterialButton();
             panel2 = new Panel();
             dtgProducts = new DataGridView();
-            ColumnId = new DataGridViewLinkColumn();
             ColumnBrand = new DataGridViewLinkColumn();
             ColumnCode = new DataGridViewLinkColumn();
             ColumnName = new DataGridViewLinkColumn();
@@ -51,18 +51,18 @@ namespace MobileSolutions.UILayer
             panel3 = new Panel();
             swtActive = new MaterialSkin.Controls.MaterialSwitch();
             materialCard2 = new MaterialSkin.Controls.MaterialCard();
-            txtSalePrice = new MaterialSkin.Controls.MaterialTextBox2();
-            txtPurchasePrice = new MaterialSkin.Controls.MaterialTextBox2();
-            txtStock = new MaterialSkin.Controls.MaterialTextBox2();
-            txtName = new MaterialSkin.Controls.MaterialTextBox2();
-            txtProductCode = new MaterialSkin.Controls.MaterialTextBox2();
-            cmbBrand = new MaterialSkin.Controls.MaterialComboBox();
-            btnSalePrice = new MaterialSkin.Controls.MaterialButton();
-            btnPurchasePrice = new MaterialSkin.Controls.MaterialButton();
-            btnStock = new MaterialSkin.Controls.MaterialButton();
-            btnName = new MaterialSkin.Controls.MaterialButton();
-            btnProductCode = new MaterialSkin.Controls.MaterialButton();
             btnBrand = new MaterialSkin.Controls.MaterialButton();
+            btnProductCode = new MaterialSkin.Controls.MaterialButton();
+            btnName = new MaterialSkin.Controls.MaterialButton();
+            btnStock = new MaterialSkin.Controls.MaterialButton();
+            btnPurchasePrice = new MaterialSkin.Controls.MaterialButton();
+            btnSalePrice = new MaterialSkin.Controls.MaterialButton();
+            cmbBrand = new MaterialSkin.Controls.MaterialComboBox();
+            txtProductCode = new MaterialSkin.Controls.MaterialTextBox2();
+            txtName = new MaterialSkin.Controls.MaterialTextBox2();
+            txtStock = new MaterialSkin.Controls.MaterialTextBox2();
+            txtPurchasePrice = new MaterialSkin.Controls.MaterialTextBox2();
+            txtSalePrice = new MaterialSkin.Controls.MaterialTextBox2();
             panel1 = new Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgProducts).BeginInit();
@@ -239,8 +239,16 @@ namespace MobileSolutions.UILayer
             dtgProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProducts.BackgroundColor = Color.MidnightBlue;
             dtgProducts.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgProducts.Columns.AddRange(new DataGridViewColumn[] { ColumnId, ColumnBrand, ColumnCode, ColumnName, ColumnStock, ColumnPurchasePrice, ColumnSalePrice, ColumnImage });
+            dtgProducts.Columns.AddRange(new DataGridViewColumn[] { ColumnBrand, ColumnCode, ColumnName, ColumnStock, ColumnPurchasePrice, ColumnSalePrice, ColumnImage });
             dtgProducts.Dock = DockStyle.Fill;
             dtgProducts.GridColor = SystemColors.InactiveCaptionText;
             dtgProducts.Location = new Point(0, 0);
@@ -249,12 +257,6 @@ namespace MobileSolutions.UILayer
             dtgProducts.Size = new Size(1680, 273);
             dtgProducts.TabIndex = 33;
             dtgProducts.CellContentClick += dtgProducts_CellContentClick;
-            // 
-            // ColumnId
-            // 
-            ColumnId.HeaderText = "ID";
-            ColumnId.MinimumWidth = 6;
-            ColumnId.Name = "ColumnId";
             // 
             // ColumnBrand
             // 
@@ -399,67 +401,211 @@ namespace MobileSolutions.UILayer
             materialCard2.Size = new Size(641, 434);
             materialCard2.TabIndex = 43;
             // 
-            // txtSalePrice
+            // btnBrand
             // 
-            txtSalePrice.Anchor = AnchorStyles.Right;
-            txtSalePrice.AnimateReadOnly = false;
-            txtSalePrice.BackgroundImageLayout = ImageLayout.None;
-            txtSalePrice.CharacterCasing = CharacterCasing.Normal;
-            txtSalePrice.Depth = 0;
-            txtSalePrice.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtSalePrice.HideSelection = true;
-            txtSalePrice.Hint = "Precio de Venta";
-            txtSalePrice.LeadingIcon = null;
-            txtSalePrice.Location = new Point(127, 346);
-            txtSalePrice.MaxLength = 20;
-            txtSalePrice.MouseState = MaterialSkin.MouseState.OUT;
-            txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.PasswordChar = '\0';
-            txtSalePrice.PrefixSuffixText = null;
-            txtSalePrice.ReadOnly = false;
-            txtSalePrice.RightToLeft = RightToLeft.No;
-            txtSalePrice.SelectedText = "";
-            txtSalePrice.SelectionLength = 0;
-            txtSalePrice.SelectionStart = 0;
-            txtSalePrice.ShortcutsEnabled = true;
-            txtSalePrice.Size = new Size(441, 48);
-            txtSalePrice.TabIndex = 5;
-            txtSalePrice.TabStop = false;
-            txtSalePrice.TextAlign = HorizontalAlignment.Left;
-            txtSalePrice.TrailingIcon = null;
-            txtSalePrice.UseSystemPasswordChar = false;
-            txtSalePrice.KeyPress += txtDecimalPrice_KeyPress;
+            btnBrand.Anchor = AnchorStyles.Right;
+            btnBrand.AutoSize = false;
+            btnBrand.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBrand.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnBrand.Depth = 0;
+            btnBrand.HighEmphasis = true;
+            btnBrand.Icon = null;
+            btnBrand.Location = new Point(76, 38);
+            btnBrand.Margin = new Padding(5);
+            btnBrand.MouseState = MaterialSkin.MouseState.HOVER;
+            btnBrand.Name = "btnBrand";
+            btnBrand.NoAccentTextColor = Color.Empty;
+            btnBrand.Size = new Size(43, 51);
+            btnBrand.TabIndex = 44;
+            btnBrand.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnBrand.UseAccentColor = false;
+            btnBrand.UseVisualStyleBackColor = true;
+            btnBrand.Click += btnBrand_Click;
             // 
-            // txtPurchasePrice
+            // btnProductCode
             // 
-            txtPurchasePrice.Anchor = AnchorStyles.Right;
-            txtPurchasePrice.AnimateReadOnly = false;
-            txtPurchasePrice.BackgroundImageLayout = ImageLayout.None;
-            txtPurchasePrice.CharacterCasing = CharacterCasing.Normal;
-            txtPurchasePrice.Depth = 0;
-            txtPurchasePrice.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtPurchasePrice.HideSelection = true;
-            txtPurchasePrice.Hint = "Precio de Compra";
-            txtPurchasePrice.LeadingIcon = null;
-            txtPurchasePrice.Location = new Point(127, 285);
-            txtPurchasePrice.MaxLength = 20;
-            txtPurchasePrice.MouseState = MaterialSkin.MouseState.OUT;
-            txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.PasswordChar = '\0';
-            txtPurchasePrice.PrefixSuffixText = null;
-            txtPurchasePrice.ReadOnly = false;
-            txtPurchasePrice.RightToLeft = RightToLeft.No;
-            txtPurchasePrice.SelectedText = "";
-            txtPurchasePrice.SelectionLength = 0;
-            txtPurchasePrice.SelectionStart = 0;
-            txtPurchasePrice.ShortcutsEnabled = true;
-            txtPurchasePrice.Size = new Size(441, 48);
-            txtPurchasePrice.TabIndex = 4;
-            txtPurchasePrice.TabStop = false;
-            txtPurchasePrice.TextAlign = HorizontalAlignment.Left;
-            txtPurchasePrice.TrailingIcon = null;
-            txtPurchasePrice.UseSystemPasswordChar = false;
-            txtPurchasePrice.KeyPress += txtDecimalPrice_KeyPress;
+            btnProductCode.Anchor = AnchorStyles.Right;
+            btnProductCode.AutoSize = false;
+            btnProductCode.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnProductCode.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnProductCode.Depth = 0;
+            btnProductCode.HighEmphasis = true;
+            btnProductCode.Icon = null;
+            btnProductCode.Location = new Point(76, 99);
+            btnProductCode.Margin = new Padding(5);
+            btnProductCode.MouseState = MaterialSkin.MouseState.HOVER;
+            btnProductCode.Name = "btnProductCode";
+            btnProductCode.NoAccentTextColor = Color.Empty;
+            btnProductCode.Size = new Size(43, 51);
+            btnProductCode.TabIndex = 45;
+            btnProductCode.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnProductCode.UseAccentColor = false;
+            btnProductCode.UseVisualStyleBackColor = true;
+            // 
+            // btnName
+            // 
+            btnName.Anchor = AnchorStyles.Right;
+            btnName.AutoSize = false;
+            btnName.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnName.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnName.Depth = 0;
+            btnName.HighEmphasis = true;
+            btnName.Icon = null;
+            btnName.Location = new Point(76, 160);
+            btnName.Margin = new Padding(5);
+            btnName.MouseState = MaterialSkin.MouseState.HOVER;
+            btnName.Name = "btnName";
+            btnName.NoAccentTextColor = Color.Empty;
+            btnName.Size = new Size(43, 51);
+            btnName.TabIndex = 46;
+            btnName.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnName.UseAccentColor = false;
+            btnName.UseVisualStyleBackColor = true;
+            // 
+            // btnStock
+            // 
+            btnStock.Anchor = AnchorStyles.Right;
+            btnStock.AutoSize = false;
+            btnStock.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnStock.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnStock.Depth = 0;
+            btnStock.HighEmphasis = true;
+            btnStock.Icon = null;
+            btnStock.Location = new Point(76, 221);
+            btnStock.Margin = new Padding(5);
+            btnStock.MouseState = MaterialSkin.MouseState.HOVER;
+            btnStock.Name = "btnStock";
+            btnStock.NoAccentTextColor = Color.Empty;
+            btnStock.Size = new Size(43, 51);
+            btnStock.TabIndex = 47;
+            btnStock.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnStock.UseAccentColor = false;
+            btnStock.UseVisualStyleBackColor = true;
+            // 
+            // btnPurchasePrice
+            // 
+            btnPurchasePrice.Anchor = AnchorStyles.Right;
+            btnPurchasePrice.AutoSize = false;
+            btnPurchasePrice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPurchasePrice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnPurchasePrice.Depth = 0;
+            btnPurchasePrice.HighEmphasis = true;
+            btnPurchasePrice.Icon = null;
+            btnPurchasePrice.Location = new Point(76, 282);
+            btnPurchasePrice.Margin = new Padding(5);
+            btnPurchasePrice.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPurchasePrice.Name = "btnPurchasePrice";
+            btnPurchasePrice.NoAccentTextColor = Color.Empty;
+            btnPurchasePrice.Size = new Size(43, 51);
+            btnPurchasePrice.TabIndex = 48;
+            btnPurchasePrice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnPurchasePrice.UseAccentColor = false;
+            btnPurchasePrice.UseVisualStyleBackColor = true;
+            // 
+            // btnSalePrice
+            // 
+            btnSalePrice.Anchor = AnchorStyles.Right;
+            btnSalePrice.AutoSize = false;
+            btnSalePrice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSalePrice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnSalePrice.Depth = 0;
+            btnSalePrice.HighEmphasis = true;
+            btnSalePrice.Icon = null;
+            btnSalePrice.Location = new Point(76, 343);
+            btnSalePrice.Margin = new Padding(5);
+            btnSalePrice.MouseState = MaterialSkin.MouseState.HOVER;
+            btnSalePrice.Name = "btnSalePrice";
+            btnSalePrice.NoAccentTextColor = Color.Empty;
+            btnSalePrice.Size = new Size(43, 51);
+            btnSalePrice.TabIndex = 49;
+            btnSalePrice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnSalePrice.UseAccentColor = false;
+            btnSalePrice.UseVisualStyleBackColor = true;
+            btnSalePrice.Click += btnSalePrice_Click;
+            // 
+            // cmbBrand
+            // 
+            cmbBrand.Anchor = AnchorStyles.Right;
+            cmbBrand.AutoResize = false;
+            cmbBrand.BackColor = Color.FromArgb(255, 255, 255);
+            cmbBrand.Depth = 0;
+            cmbBrand.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbBrand.DropDownHeight = 174;
+            cmbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBrand.DropDownWidth = 121;
+            cmbBrand.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            cmbBrand.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbBrand.Hint = "Marca";
+            cmbBrand.IntegralHeight = false;
+            cmbBrand.ItemHeight = 43;
+            cmbBrand.Location = new Point(127, 38);
+            cmbBrand.MaxDropDownItems = 4;
+            cmbBrand.MouseState = MaterialSkin.MouseState.OUT;
+            cmbBrand.Name = "cmbBrand";
+            cmbBrand.Size = new Size(441, 49);
+            cmbBrand.StartIndex = 0;
+            cmbBrand.TabIndex = 0;
+            cmbBrand.TabStop = false;
+            // 
+            // txtProductCode
+            // 
+            txtProductCode.Anchor = AnchorStyles.Right;
+            txtProductCode.AnimateReadOnly = false;
+            txtProductCode.BackgroundImageLayout = ImageLayout.None;
+            txtProductCode.CharacterCasing = CharacterCasing.Normal;
+            txtProductCode.Depth = 0;
+            txtProductCode.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtProductCode.HideSelection = true;
+            txtProductCode.Hint = "Código de Producto";
+            txtProductCode.LeadingIcon = null;
+            txtProductCode.Location = new Point(127, 102);
+            txtProductCode.MaxLength = 100;
+            txtProductCode.MouseState = MaterialSkin.MouseState.OUT;
+            txtProductCode.Name = "txtProductCode";
+            txtProductCode.PasswordChar = '\0';
+            txtProductCode.PrefixSuffixText = null;
+            txtProductCode.ReadOnly = false;
+            txtProductCode.RightToLeft = RightToLeft.No;
+            txtProductCode.SelectedText = "";
+            txtProductCode.SelectionLength = 0;
+            txtProductCode.SelectionStart = 0;
+            txtProductCode.ShortcutsEnabled = true;
+            txtProductCode.Size = new Size(442, 48);
+            txtProductCode.TabIndex = 1;
+            txtProductCode.TabStop = false;
+            txtProductCode.TextAlign = HorizontalAlignment.Left;
+            txtProductCode.TrailingIcon = null;
+            txtProductCode.UseSystemPasswordChar = false;
+            // 
+            // txtName
+            // 
+            txtName.Anchor = AnchorStyles.Right;
+            txtName.AnimateReadOnly = false;
+            txtName.BackgroundImageLayout = ImageLayout.None;
+            txtName.CharacterCasing = CharacterCasing.Normal;
+            txtName.Depth = 0;
+            txtName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtName.HideSelection = true;
+            txtName.Hint = "Nombre";
+            txtName.LeadingIcon = null;
+            txtName.Location = new Point(127, 160);
+            txtName.MaxLength = 100;
+            txtName.MouseState = MaterialSkin.MouseState.OUT;
+            txtName.Name = "txtName";
+            txtName.PasswordChar = '\0';
+            txtName.PrefixSuffixText = null;
+            txtName.ReadOnly = false;
+            txtName.RightToLeft = RightToLeft.No;
+            txtName.SelectedText = "";
+            txtName.SelectionLength = 0;
+            txtName.SelectionStart = 0;
+            txtName.ShortcutsEnabled = true;
+            txtName.Size = new Size(441, 48);
+            txtName.TabIndex = 2;
+            txtName.TabStop = false;
+            txtName.TextAlign = HorizontalAlignment.Left;
+            txtName.TrailingIcon = null;
+            txtName.UseSystemPasswordChar = false;
             // 
             // txtStock
             // 
@@ -492,211 +638,67 @@ namespace MobileSolutions.UILayer
             txtStock.UseSystemPasswordChar = false;
             txtStock.KeyPress += txtStock_KeyPress;
             // 
-            // txtName
+            // txtPurchasePrice
             // 
-            txtName.Anchor = AnchorStyles.Right;
-            txtName.AnimateReadOnly = false;
-            txtName.BackgroundImageLayout = ImageLayout.None;
-            txtName.CharacterCasing = CharacterCasing.Normal;
-            txtName.Depth = 0;
-            txtName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtName.HideSelection = true;
-            txtName.Hint = "Nombre";
-            txtName.LeadingIcon = null;
-            txtName.Location = new Point(127, 160);
-            txtName.MaxLength = 100;
-            txtName.MouseState = MaterialSkin.MouseState.OUT;
-            txtName.Name = "txtName";
-            txtName.PasswordChar = '\0';
-            txtName.PrefixSuffixText = null;
-            txtName.ReadOnly = false;
-            txtName.RightToLeft = RightToLeft.No;
-            txtName.SelectedText = "";
-            txtName.SelectionLength = 0;
-            txtName.SelectionStart = 0;
-            txtName.ShortcutsEnabled = true;
-            txtName.Size = new Size(441, 48);
-            txtName.TabIndex = 2;
-            txtName.TabStop = false;
-            txtName.TextAlign = HorizontalAlignment.Left;
-            txtName.TrailingIcon = null;
-            txtName.UseSystemPasswordChar = false;
+            txtPurchasePrice.Anchor = AnchorStyles.Right;
+            txtPurchasePrice.AnimateReadOnly = false;
+            txtPurchasePrice.BackgroundImageLayout = ImageLayout.None;
+            txtPurchasePrice.CharacterCasing = CharacterCasing.Normal;
+            txtPurchasePrice.Depth = 0;
+            txtPurchasePrice.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPurchasePrice.HideSelection = true;
+            txtPurchasePrice.Hint = "Precio de Compra";
+            txtPurchasePrice.LeadingIcon = null;
+            txtPurchasePrice.Location = new Point(127, 285);
+            txtPurchasePrice.MaxLength = 20;
+            txtPurchasePrice.MouseState = MaterialSkin.MouseState.OUT;
+            txtPurchasePrice.Name = "txtPurchasePrice";
+            txtPurchasePrice.PasswordChar = '\0';
+            txtPurchasePrice.PrefixSuffixText = null;
+            txtPurchasePrice.ReadOnly = false;
+            txtPurchasePrice.RightToLeft = RightToLeft.No;
+            txtPurchasePrice.SelectedText = "";
+            txtPurchasePrice.SelectionLength = 0;
+            txtPurchasePrice.SelectionStart = 0;
+            txtPurchasePrice.ShortcutsEnabled = true;
+            txtPurchasePrice.Size = new Size(441, 48);
+            txtPurchasePrice.TabIndex = 4;
+            txtPurchasePrice.TabStop = false;
+            txtPurchasePrice.TextAlign = HorizontalAlignment.Left;
+            txtPurchasePrice.TrailingIcon = null;
+            txtPurchasePrice.UseSystemPasswordChar = false;
+            txtPurchasePrice.KeyPress += txtDecimalPrice_KeyPress;
             // 
-            // txtProductCode
+            // txtSalePrice
             // 
-            txtProductCode.Anchor = AnchorStyles.Right;
-            txtProductCode.AnimateReadOnly = false;
-            txtProductCode.BackgroundImageLayout = ImageLayout.None;
-            txtProductCode.CharacterCasing = CharacterCasing.Normal;
-            txtProductCode.Depth = 0;
-            txtProductCode.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtProductCode.HideSelection = true;
-            txtProductCode.Hint = "Código de Producto";
-            txtProductCode.LeadingIcon = null;
-            txtProductCode.Location = new Point(127, 102);
-            txtProductCode.MaxLength = 100;
-            txtProductCode.MouseState = MaterialSkin.MouseState.OUT;
-            txtProductCode.Name = "txtProductCode";
-            txtProductCode.PasswordChar = '\0';
-            txtProductCode.PrefixSuffixText = null;
-            txtProductCode.ReadOnly = false;
-            txtProductCode.RightToLeft = RightToLeft.No;
-            txtProductCode.SelectedText = "";
-            txtProductCode.SelectionLength = 0;
-            txtProductCode.SelectionStart = 0;
-            txtProductCode.ShortcutsEnabled = true;
-            txtProductCode.Size = new Size(442, 48);
-            txtProductCode.TabIndex = 1;
-            txtProductCode.TabStop = false;
-            txtProductCode.TextAlign = HorizontalAlignment.Left;
-            txtProductCode.TrailingIcon = null;
-            txtProductCode.UseSystemPasswordChar = false;
-            // 
-            // cmbBrand
-            // 
-            cmbBrand.Anchor = AnchorStyles.Right;
-            cmbBrand.AutoResize = false;
-            cmbBrand.BackColor = Color.FromArgb(255, 255, 255);
-            cmbBrand.Depth = 0;
-            cmbBrand.DrawMode = DrawMode.OwnerDrawVariable;
-            cmbBrand.DropDownHeight = 174;
-            cmbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbBrand.DropDownWidth = 121;
-            cmbBrand.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            cmbBrand.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbBrand.Hint = "Marca";
-            cmbBrand.IntegralHeight = false;
-            cmbBrand.ItemHeight = 43;
-            cmbBrand.Location = new Point(127, 38);
-            cmbBrand.MaxDropDownItems = 4;
-            cmbBrand.MouseState = MaterialSkin.MouseState.OUT;
-            cmbBrand.Name = "cmbBrand";
-            cmbBrand.Size = new Size(441, 49);
-            cmbBrand.StartIndex = 0;
-            cmbBrand.TabIndex = 0;
-            cmbBrand.TabStop = false;
-            // 
-            // btnSalePrice
-            // 
-            btnSalePrice.Anchor = AnchorStyles.Right;
-            btnSalePrice.AutoSize = false;
-            btnSalePrice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSalePrice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnSalePrice.Depth = 0;
-            btnSalePrice.HighEmphasis = true;
-            btnSalePrice.Icon = null;
-            btnSalePrice.Location = new Point(76, 343);
-            btnSalePrice.Margin = new Padding(5);
-            btnSalePrice.MouseState = MaterialSkin.MouseState.HOVER;
-            btnSalePrice.Name = "btnSalePrice";
-            btnSalePrice.NoAccentTextColor = Color.Empty;
-            btnSalePrice.Size = new Size(43, 51);
-            btnSalePrice.TabIndex = 49;
-            btnSalePrice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnSalePrice.UseAccentColor = false;
-            btnSalePrice.UseVisualStyleBackColor = true;
-            btnSalePrice.Click += btnSalePrice_Click;
-            // 
-            // btnPurchasePrice
-            // 
-            btnPurchasePrice.Anchor = AnchorStyles.Right;
-            btnPurchasePrice.AutoSize = false;
-            btnPurchasePrice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnPurchasePrice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnPurchasePrice.Depth = 0;
-            btnPurchasePrice.HighEmphasis = true;
-            btnPurchasePrice.Icon = null;
-            btnPurchasePrice.Location = new Point(76, 282);
-            btnPurchasePrice.Margin = new Padding(5);
-            btnPurchasePrice.MouseState = MaterialSkin.MouseState.HOVER;
-            btnPurchasePrice.Name = "btnPurchasePrice";
-            btnPurchasePrice.NoAccentTextColor = Color.Empty;
-            btnPurchasePrice.Size = new Size(43, 51);
-            btnPurchasePrice.TabIndex = 48;
-            btnPurchasePrice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnPurchasePrice.UseAccentColor = false;
-            btnPurchasePrice.UseVisualStyleBackColor = true;
-            // 
-            // btnStock
-            // 
-            btnStock.Anchor = AnchorStyles.Right;
-            btnStock.AutoSize = false;
-            btnStock.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnStock.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnStock.Depth = 0;
-            btnStock.HighEmphasis = true;
-            btnStock.Icon = null;
-            btnStock.Location = new Point(76, 221);
-            btnStock.Margin = new Padding(5);
-            btnStock.MouseState = MaterialSkin.MouseState.HOVER;
-            btnStock.Name = "btnStock";
-            btnStock.NoAccentTextColor = Color.Empty;
-            btnStock.Size = new Size(43, 51);
-            btnStock.TabIndex = 47;
-            btnStock.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnStock.UseAccentColor = false;
-            btnStock.UseVisualStyleBackColor = true;
-            // 
-            // btnName
-            // 
-            btnName.Anchor = AnchorStyles.Right;
-            btnName.AutoSize = false;
-            btnName.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnName.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnName.Depth = 0;
-            btnName.HighEmphasis = true;
-            btnName.Icon = null;
-            btnName.Location = new Point(76, 160);
-            btnName.Margin = new Padding(5);
-            btnName.MouseState = MaterialSkin.MouseState.HOVER;
-            btnName.Name = "btnName";
-            btnName.NoAccentTextColor = Color.Empty;
-            btnName.Size = new Size(43, 51);
-            btnName.TabIndex = 46;
-            btnName.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnName.UseAccentColor = false;
-            btnName.UseVisualStyleBackColor = true;
-            // 
-            // btnProductCode
-            // 
-            btnProductCode.Anchor = AnchorStyles.Right;
-            btnProductCode.AutoSize = false;
-            btnProductCode.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnProductCode.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnProductCode.Depth = 0;
-            btnProductCode.HighEmphasis = true;
-            btnProductCode.Icon = null;
-            btnProductCode.Location = new Point(76, 99);
-            btnProductCode.Margin = new Padding(5);
-            btnProductCode.MouseState = MaterialSkin.MouseState.HOVER;
-            btnProductCode.Name = "btnProductCode";
-            btnProductCode.NoAccentTextColor = Color.Empty;
-            btnProductCode.Size = new Size(43, 51);
-            btnProductCode.TabIndex = 45;
-            btnProductCode.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnProductCode.UseAccentColor = false;
-            btnProductCode.UseVisualStyleBackColor = true;
-            // 
-            // btnBrand
-            // 
-            btnBrand.Anchor = AnchorStyles.Right;
-            btnBrand.AutoSize = false;
-            btnBrand.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnBrand.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnBrand.Depth = 0;
-            btnBrand.HighEmphasis = true;
-            btnBrand.Icon = null;
-            btnBrand.Location = new Point(76, 38);
-            btnBrand.Margin = new Padding(5);
-            btnBrand.MouseState = MaterialSkin.MouseState.HOVER;
-            btnBrand.Name = "btnBrand";
-            btnBrand.NoAccentTextColor = Color.Empty;
-            btnBrand.Size = new Size(43, 51);
-            btnBrand.TabIndex = 44;
-            btnBrand.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnBrand.UseAccentColor = false;
-            btnBrand.UseVisualStyleBackColor = true;
-            btnBrand.Click += btnBrand_Click;
+            txtSalePrice.Anchor = AnchorStyles.Right;
+            txtSalePrice.AnimateReadOnly = false;
+            txtSalePrice.BackgroundImageLayout = ImageLayout.None;
+            txtSalePrice.CharacterCasing = CharacterCasing.Normal;
+            txtSalePrice.Depth = 0;
+            txtSalePrice.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtSalePrice.HideSelection = true;
+            txtSalePrice.Hint = "Precio de Venta";
+            txtSalePrice.LeadingIcon = null;
+            txtSalePrice.Location = new Point(127, 346);
+            txtSalePrice.MaxLength = 20;
+            txtSalePrice.MouseState = MaterialSkin.MouseState.OUT;
+            txtSalePrice.Name = "txtSalePrice";
+            txtSalePrice.PasswordChar = '\0';
+            txtSalePrice.PrefixSuffixText = null;
+            txtSalePrice.ReadOnly = false;
+            txtSalePrice.RightToLeft = RightToLeft.No;
+            txtSalePrice.SelectedText = "";
+            txtSalePrice.SelectionLength = 0;
+            txtSalePrice.SelectionStart = 0;
+            txtSalePrice.ShortcutsEnabled = true;
+            txtSalePrice.Size = new Size(441, 48);
+            txtSalePrice.TabIndex = 5;
+            txtSalePrice.TabStop = false;
+            txtSalePrice.TextAlign = HorizontalAlignment.Left;
+            txtSalePrice.TrailingIcon = null;
+            txtSalePrice.UseSystemPasswordChar = false;
+            txtSalePrice.KeyPress += txtDecimalPrice_KeyPress;
             // 
             // panel1
             // 
@@ -747,7 +749,6 @@ namespace MobileSolutions.UILayer
         private PictureBox                               picProductImage;
         private FontAwesome.Sharp.IconPictureBox         picProductTitle;
         private MaterialSkin.Controls.MaterialButton     btnImageURL;
-        private DataGridViewLinkColumn ColumnId;
         private DataGridViewLinkColumn ColumnBrand;
         private DataGridViewLinkColumn ColumnCode;
         private DataGridViewLinkColumn ColumnName;
