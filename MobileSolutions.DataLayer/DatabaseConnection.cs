@@ -5,21 +5,40 @@ namespace MobileSolutions.DataLayer
 {
     public class DatabaseConnection
     {
-        private readonly string _connectionString;
+        
+        private string dbName ;
+        private string dbServer;
+        private string tConnection;
+        private string tServerCert;
+        private static DatabaseConnection Con = null;
 
         public DatabaseConnection()
         {
-            _connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=MobileSolutionsDB;Trusted_Connection=True;TrustServerCertificate=True;";
+            this.dbServer = "(localdb)\\MSSQLLocalDB";
+            this.dbName = "MobileSolutionsDB";
+            this.tConnection = "True";
+            this.tServerCert = "True";
         }
 
-        public DatabaseConnection(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
 
         public SqlConnection GetConnection()
         {
-            return new SqlConnection(_connectionString);
+            SqlConnection ConnString = new SqlConnection();
+
+            try
+            {
+                ConnString.ConnectionString = $"Server={dbServer};" +
+                    $"Database={dbName};" +
+                    $"Trusted_Connection={tConnection};" +
+                    $"TrustServerCertificate={tServerCert};";
+            }
+            catch (Exception ex)
+            {
+                ConnString = null;
+                throw ex;
+            }
+
+            return ConnString;
         }
 
 
