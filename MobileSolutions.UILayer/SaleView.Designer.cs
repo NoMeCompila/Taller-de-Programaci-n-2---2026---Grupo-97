@@ -12,6 +12,7 @@ namespace MobileSolutions.UILayer
 
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             picSaleTitle = new IconPictureBox();
             lblProductTitle = new MaterialLabel();
             panel1 = new Panel();
@@ -34,7 +35,6 @@ namespace MobileSolutions.UILayer
             Cantidad = new DataGridViewTextBoxColumn();
             PrecioUnitario = new DataGridViewTextBoxColumn();
             TotalProducto = new DataGridViewTextBoxColumn();
-            Eliminar = new DataGridViewButtonColumn();
             lblTotalSale = new MaterialLabel();
             btnTotalSale = new MaterialButton();
             btnConfirmSale = new MaterialButton();
@@ -418,24 +418,35 @@ namespace MobileSolutions.UILayer
             // 
             // dgvSaleDetails
             // 
+            dgvSaleDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSaleDetails.BackgroundColor = Color.MidnightBlue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvSaleDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvSaleDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSaleDetails.Columns.AddRange(new DataGridViewColumn[] { Producto, Cantidad, PrecioUnitario, TotalProducto, Eliminar });
-            dgvSaleDetails.Location = new Point(6, 3);
+            dgvSaleDetails.Columns.AddRange(new DataGridViewColumn[] { Producto, Cantidad, PrecioUnitario, TotalProducto });
+            dgvSaleDetails.Location = new Point(0, 3);
             dgvSaleDetails.Name = "dgvSaleDetails";
             dgvSaleDetails.RowHeadersWidth = 51;
-            dgvSaleDetails.Size = new Size(679, 174);
+            dgvSaleDetails.Size = new Size(656, 174);
             dgvSaleDetails.TabIndex = 39;
             // 
             // Producto
             // 
+            Producto.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             Producto.HeaderText = "Producto";
             Producto.MinimumWidth = 6;
             Producto.Name = "Producto";
-            Producto.Width = 125;
+            Producto.Width = 127;
             // 
             // Cantidad
             // 
+            Cantidad.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             Cantidad.HeaderText = "Cantidad";
             Cantidad.MinimumWidth = 6;
             Cantidad.Name = "Cantidad";
@@ -443,24 +454,19 @@ namespace MobileSolutions.UILayer
             // 
             // PrecioUnitario
             // 
+            PrecioUnitario.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             PrecioUnitario.HeaderText = "PrecioUnitario";
             PrecioUnitario.MinimumWidth = 6;
             PrecioUnitario.Name = "PrecioUnitario";
-            PrecioUnitario.Width = 125;
+            PrecioUnitario.Width = 177;
             // 
             // TotalProducto
             // 
+            TotalProducto.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             TotalProducto.HeaderText = "TotalProducto";
             TotalProducto.MinimumWidth = 6;
             TotalProducto.Name = "TotalProducto";
-            TotalProducto.Width = 125;
-            // 
-            // Eliminar
-            // 
-            Eliminar.HeaderText = "Eliminar";
-            Eliminar.MinimumWidth = 6;
-            Eliminar.Name = "Eliminar";
-            Eliminar.Width = 125;
+            TotalProducto.Width = 174;
             // 
             // lblTotalSale
             // 
@@ -586,16 +592,15 @@ namespace MobileSolutions.UILayer
         private MaterialButton btnUnitaryPrice;
         private MaterialButton btnAddDetail;
         private DataGridView dgvSaleDetails;
-        private DataGridViewTextBoxColumn Producto;
-        private DataGridViewTextBoxColumn Cantidad;
-        private DataGridViewTextBoxColumn PrecioUnitario;
-        private DataGridViewTextBoxColumn TotalProducto;
-        private DataGridViewButtonColumn Eliminar;
         private MaterialLabel lblTotalSale;
         private MaterialButton btnTotalSale;
         private MaterialButton btnConfirmSale;
         private MaterialButton btnCancelSale;
         private Panel panel3;
+        private DataGridViewTextBoxColumn Producto;
+        private DataGridViewTextBoxColumn Cantidad;
+        private DataGridViewTextBoxColumn PrecioUnitario;
+        private DataGridViewTextBoxColumn TotalProducto;
     }
 }
     
