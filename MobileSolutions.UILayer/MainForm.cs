@@ -65,7 +65,6 @@ namespace MobileSolutions.UILayer
             tabPage2.ImageKey = "usuarios";
             tabPage3.ImageKey = "clientes";
             tabPage4.ImageKey = "productos";
-            tabPage5.ImageKey = "marcas";
             tabPage6.ImageKey = "venta";
             tabPage7.ImageKey = "historial";
             tabPage8.ImageKey = "reportes";
@@ -76,7 +75,6 @@ namespace MobileSolutions.UILayer
             _originalTabPages.Add(tabPage2); // Usuarios
             _originalTabPages.Add(tabPage3); // Clientes
             _originalTabPages.Add(tabPage4); // Productos
-            _originalTabPages.Add(tabPage5); // Marcas
             _originalTabPages.Add(tabPage6); // Venta
             _originalTabPages.Add(tabPage7); // Historial De Ventas
             _originalTabPages.Add(tabPage8); // Reportes
@@ -109,7 +107,7 @@ namespace MobileSolutions.UILayer
                 case "nico":
                     // Vendedor: Only 5 tabs (Usuarios, Productos, and Marcas removed)
                     allowedTabs = _originalTabPages
-                        .Where(tab => tab != tabPage2 && tab != tabPage4 && tab != tabPage5)
+                        .Where(tab => tab != tabPage2 && tab != tabPage4)
                         .ToList();
                     break;
 
