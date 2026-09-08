@@ -15,6 +15,7 @@ namespace MobileSolutions.UILayer
 
         public MainForm(string username)
         {
+            //********************************************** Design ************************************************
             InitializeComponent();
             this.FormClosed += MainForm_FormClosed;
             _currentUser = string.IsNullOrWhiteSpace(username) ? "admin" : username.Trim();
@@ -50,7 +51,7 @@ namespace MobileSolutions.UILayer
             Color iconColor = Color.White;
 
             imageList1.Images.Add("home", IconChar.Home.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("usuarios", IconChar.UserShield.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("usuarios", IconChar.UserGear.ToBitmap(iconColor, 24));
             imageList1.Images.Add("clientes", IconChar.Users.ToBitmap(iconColor, 24));
             imageList1.Images.Add("productos", IconChar.MobileAlt.ToBitmap(iconColor, 24));
             imageList1.Images.Add("marcas", IconChar.Tags.ToBitmap(iconColor, 24));
@@ -82,6 +83,8 @@ namespace MobileSolutions.UILayer
             this.DrawerShowIconsWhenHidden = true;
         }
 
+
+        //********************************************** Functionality ************************************************
         private void ApplyRoleBasedAccess(string username)
         {
             materialTabControl1.SuspendLayout();
@@ -93,7 +96,7 @@ namespace MobileSolutions.UILayer
             switch (normalizedUser)
             {
                 case "admin":
-                    // Administrator: All 8 tabs visible
+                    // Administrator: All 7 tabs visible
                     allowedTabs = new List<TabPage>(_originalTabPages);
                     break;
 
