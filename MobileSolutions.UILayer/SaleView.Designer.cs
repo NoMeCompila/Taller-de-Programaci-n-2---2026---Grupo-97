@@ -442,7 +442,7 @@ namespace MobileSolutions.UILayer
             Producto.HeaderText = "Producto";
             Producto.MinimumWidth = 6;
             Producto.Name = "Producto";
-            Producto.Width = 127;
+            Producto.Width = 105;
             // 
             // Cantidad
             // 
@@ -450,7 +450,7 @@ namespace MobileSolutions.UILayer
             Cantidad.HeaderText = "Cantidad";
             Cantidad.MinimumWidth = 6;
             Cantidad.Name = "Cantidad";
-            Cantidad.Width = 125;
+            Cantidad.Width = 104;
             // 
             // PrecioUnitario
             // 
@@ -458,7 +458,7 @@ namespace MobileSolutions.UILayer
             PrecioUnitario.HeaderText = "PrecioUnitario";
             PrecioUnitario.MinimumWidth = 6;
             PrecioUnitario.Name = "PrecioUnitario";
-            PrecioUnitario.Width = 177;
+            PrecioUnitario.Width = 146;
             // 
             // TotalProducto
             // 
@@ -466,7 +466,7 @@ namespace MobileSolutions.UILayer
             TotalProducto.HeaderText = "TotalProducto";
             TotalProducto.MinimumWidth = 6;
             TotalProducto.Name = "TotalProducto";
-            TotalProducto.Width = 174;
+            TotalProducto.Width = 143;
             // 
             // lblTotalSale
             // 
@@ -561,7 +561,7 @@ namespace MobileSolutions.UILayer
             Controls.Add(lblProductTitle);
             Controls.Add(picSaleTitle);
             Name = "SaleView";
-            Size = new Size(1100, 675);
+            Size = new Size(1304, 848);
             ((ISupportInitialize)picSaleTitle).EndInit();
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);

@@ -114,8 +114,8 @@ namespace MobileSolutions.UILayer
             btnSave.Depth = 0;
             btnSave.HighEmphasis = true;
             btnSave.Icon = null;
-            btnSave.Location = new Point(489, 67);
-            btnSave.Margin = new Padding(4, 4, 4, 4);
+            btnSave.Location = new Point(500, 69);
+            btnSave.Margin = new Padding(4);
             btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
             btnSave.NoAccentTextColor = Color.Empty;
@@ -135,8 +135,8 @@ namespace MobileSolutions.UILayer
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
-            btnClear.Location = new Point(498, 163);
-            btnClear.Margin = new Padding(4, 4, 4, 4);
+            btnClear.Location = new Point(509, 157);
+            btnClear.Margin = new Padding(4);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
             btnClear.NoAccentTextColor = Color.Empty;
@@ -156,8 +156,8 @@ namespace MobileSolutions.UILayer
             btnDelete.Depth = 0;
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
-            btnDelete.Location = new Point(489, 113);
-            btnDelete.Margin = new Padding(4, 4, 4, 4);
+            btnDelete.Location = new Point(500, 113);
+            btnDelete.Margin = new Padding(4);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
             btnDelete.NoAccentTextColor = Color.Empty;
@@ -177,8 +177,8 @@ namespace MobileSolutions.UILayer
             btnUpdate.Depth = 0;
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(488, 226);
-            btnUpdate.Margin = new Padding(4, 4, 4, 4);
+            btnUpdate.Location = new Point(489, 201);
+            btnUpdate.Margin = new Padding(4);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
             btnUpdate.NoAccentTextColor = Color.Empty;
@@ -214,7 +214,7 @@ namespace MobileSolutions.UILayer
             btnImageURL.HighEmphasis = true;
             btnImageURL.Icon = null;
             btnImageURL.Location = new Point(18, 284);
-            btnImageURL.Margin = new Padding(4, 4, 4, 4);
+            btnImageURL.Margin = new Padding(4);
             btnImageURL.MouseState = MaterialSkin.MouseState.HOVER;
             btnImageURL.Name = "btnImageURL";
             btnImageURL.NoAccentTextColor = Color.Empty;
@@ -311,10 +311,10 @@ namespace MobileSolutions.UILayer
             materialCardImage.Depth = 0;
             materialCardImage.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCardImage.Location = new Point(14, 14);
-            materialCardImage.Margin = new Padding(14, 14, 14, 14);
+            materialCardImage.Margin = new Padding(14);
             materialCardImage.MouseState = MaterialSkin.MouseState.HOVER;
             materialCardImage.Name = "materialCardImage";
-            materialCardImage.Padding = new Padding(14, 14, 14, 14);
+            materialCardImage.Padding = new Padding(14);
             materialCardImage.Size = new Size(439, 340);
             materialCardImage.TabIndex = 43;
             // 
@@ -394,10 +394,10 @@ namespace MobileSolutions.UILayer
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard2.Location = new Point(21, 14);
-            materialCard2.Margin = new Padding(14, 14, 14, 14);
+            materialCard2.Margin = new Padding(14);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(14, 14, 14, 14);
+            materialCard2.Padding = new Padding(14);
             materialCard2.Size = new Size(561, 326);
             materialCard2.TabIndex = 43;
             // 
@@ -411,7 +411,7 @@ namespace MobileSolutions.UILayer
             btnBrand.HighEmphasis = true;
             btnBrand.Icon = null;
             btnBrand.Location = new Point(66, 28);
-            btnBrand.Margin = new Padding(4, 4, 4, 4);
+            btnBrand.Margin = new Padding(4);
             btnBrand.MouseState = MaterialSkin.MouseState.HOVER;
             btnBrand.Name = "btnBrand";
             btnBrand.NoAccentTextColor = Color.Empty;
@@ -432,7 +432,7 @@ namespace MobileSolutions.UILayer
             btnProductCode.HighEmphasis = true;
             btnProductCode.Icon = null;
             btnProductCode.Location = new Point(66, 74);
-            btnProductCode.Margin = new Padding(4, 4, 4, 4);
+            btnProductCode.Margin = new Padding(4);
             btnProductCode.MouseState = MaterialSkin.MouseState.HOVER;
             btnProductCode.Name = "btnProductCode";
             btnProductCode.NoAccentTextColor = Color.Empty;
@@ -452,7 +452,7 @@ namespace MobileSolutions.UILayer
             btnName.HighEmphasis = true;
             btnName.Icon = null;
             btnName.Location = new Point(66, 120);
-            btnName.Margin = new Padding(4, 4, 4, 4);
+            btnName.Margin = new Padding(4);
             btnName.MouseState = MaterialSkin.MouseState.HOVER;
             btnName.Name = "btnName";
             btnName.NoAccentTextColor = Color.Empty;
@@ -472,7 +472,7 @@ namespace MobileSolutions.UILayer
             btnStock.HighEmphasis = true;
             btnStock.Icon = null;
             btnStock.Location = new Point(66, 166);
-            btnStock.Margin = new Padding(4, 4, 4, 4);
+            btnStock.Margin = new Padding(4);
             btnStock.MouseState = MaterialSkin.MouseState.HOVER;
             btnStock.Name = "btnStock";
             btnStock.NoAccentTextColor = Color.Empty;
@@ -492,7 +492,7 @@ namespace MobileSolutions.UILayer
             btnPurchasePrice.HighEmphasis = true;
             btnPurchasePrice.Icon = null;
             btnPurchasePrice.Location = new Point(66, 212);
-            btnPurchasePrice.Margin = new Padding(4, 4, 4, 4);
+            btnPurchasePrice.Margin = new Padding(4);
             btnPurchasePrice.MouseState = MaterialSkin.MouseState.HOVER;
             btnPurchasePrice.Name = "btnPurchasePrice";
             btnPurchasePrice.NoAccentTextColor = Color.Empty;
@@ -512,7 +512,7 @@ namespace MobileSolutions.UILayer
             btnSalePrice.HighEmphasis = true;
             btnSalePrice.Icon = null;
             btnSalePrice.Location = new Point(66, 257);
-            btnSalePrice.Margin = new Padding(4, 4, 4, 4);
+            btnSalePrice.Margin = new Padding(4);
             btnSalePrice.MouseState = MaterialSkin.MouseState.HOVER;
             btnSalePrice.Name = "btnSalePrice";
             btnSalePrice.NoAccentTextColor = Color.Empty;

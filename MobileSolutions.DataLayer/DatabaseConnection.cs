@@ -10,7 +10,6 @@ namespace MobileSolutions.DataLayer
         private string dbServer;
         private string tConnection;
         private string tServerCert;
-        private static DatabaseConnection Con = null;
 
         public DatabaseConnection()
         {
@@ -42,8 +41,6 @@ namespace MobileSolutions.DataLayer
         }
 
 
-        // modify TestConnection method to return a tuple with
-        // a boolean indicating if the connection was successful and a string containing the error message if it was not
         public (bool IsConnected, string? ErrorMessage) TestConnection()
         {
             try
