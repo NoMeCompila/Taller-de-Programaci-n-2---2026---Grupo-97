@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using MobileSolutions.BusinessLayer.Models;
 using MobileSolutions.DataLayer;
 
 namespace MobileSolutions.BusinessLayer
@@ -9,16 +13,22 @@ namespace MobileSolutions.BusinessLayer
         Vendedor
     }
 
-    public class User
-    {
-        public string Username { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public UserRole Role { get; set; }
-    }
-
     public class UserService
     {
-        private readonly DatabaseConnection _dbConnection = new DatabaseConnection();
+        private readonly UserDal _userDal;
+        private readonly DatabaseConnection _dbConnection;
+
+        public UserService()
+        {
+            _userDal = new UserDal();
+            _dbConnection = new DatabaseConnection();
+        }
+
+        public List<User> GetActiveUsers()
+        {
+            return _userDal.GetActiveUsers();
+        }
+
         public (bool IsConnected, string? ErrorMessage) CheckDatabaseConnection()
         {
             return _dbConnection.TestConnection();
@@ -26,9 +36,9 @@ namespace MobileSolutions.BusinessLayer
 
         private static readonly List<User> _mockUsers = new()
         {
-            new User { Username = "admin", Password = "123", Role = UserRole.Administrator },
-            new User { Username = "fer", Password = "123", Role = UserRole.Gerente },
-            new User { Username = "nico", Password = "123", Role = UserRole.Vendedor }
+            new User { Username = "admin", ProfileName = "Administrator" },
+            new User { Username = "fer", ProfileName = "Gerente" },
+            new User { Username = "nico", ProfileName = "Vendedor" }
         };
 
         public bool AuthenticateUser(string username, string password)
@@ -44,8 +54,7 @@ namespace MobileSolutions.BusinessLayer
             }
 
             return _mockUsers.FirstOrDefault(u =>
-                string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase) &&
-                u.Password == password);
+                string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase));
         }
 
         public User? GetUserByUsername(string username)

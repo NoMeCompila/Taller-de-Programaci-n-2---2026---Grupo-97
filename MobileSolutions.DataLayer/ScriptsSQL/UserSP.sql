@@ -1,4 +1,7 @@
-﻿-- User Table Store Procedures
+USE MobileSolutionsDB;
+GO
+
+-- User Table Store Procedures
 
 -- sp_GetActiveUsers: Get Active Users
 CREATE OR ALTER PROCEDURE sp_GetActiveUsers

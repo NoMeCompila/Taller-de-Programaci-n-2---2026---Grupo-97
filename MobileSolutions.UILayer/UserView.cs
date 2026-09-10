@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+using FontAwesome.Sharp;
 using MaterialSkin;
 using System;
 using System.Collections.Generic;
@@ -9,11 +9,16 @@ using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using MaterialSkin.Controls;
+using MobileSolutions.BusinessLayer;
+using MobileSolutions.BusinessLayer.Models;
+
 
 namespace MobileSolutions.UILayer
 {
     public partial class UserView : UserControl
     {
+
+        private readonly UserService _userService;
         public UserView()
         {
             InitializeComponent();
@@ -47,10 +52,77 @@ namespace MobileSolutions.UILayer
             btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
             btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
 
+            _userService = new UserService();
+
+
 
             ConfigBasicsRestrictions();
+            dtgUsersConfig();
+            fillActiveUsers();
         }
 
+        private void dtgUsersConfig()
+        {
+            // Evita que el DataGridView autogenere columnas extras a la derecha
+            dtgUsers.AutoGenerateColumns = false;
+
+            // Configuración visual: texto en negro sobre fondo blanco
+            dtgUsers.DefaultCellStyle.ForeColor = Color.Black;
+            dtgUsers.DefaultCellStyle.BackColor = Color.White;
+            dtgUsers.DefaultCellStyle.SelectionBackColor = Color.FromArgb(33, 150, 243); // Azul primario para la fila seleccionada
+            dtgUsers.DefaultCellStyle.SelectionForeColor = Color.White;
+            dtgUsers.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
+
+            // Configuración de encabezados (cabeceras legibles)
+            dtgUsers.EnableHeadersVisualStyles = false;
+            dtgUsers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(13, 71, 161); // Azul oscuro
+            dtgUsers.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dtgUsers.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dtgUsers.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Vinculamos cada columna visual con la propiedad de nuestro objeto User
+            ColumnProfile.DataPropertyName = nameof(User.ProfileName);
+            ColumnName.DataPropertyName = nameof(User.Name);
+            ColumnLastname.DataPropertyName = nameof(User.Lastname);
+            ColumnUsername.DataPropertyName = nameof(User.Username);
+            ColumnDNI.DataPropertyName = nameof(User.Dni);
+            ColumnSex.DataPropertyName = nameof(User.Sex);
+            ColumnBirth.DataPropertyName = nameof(User.Birth);
+            ColumnEmail.DataPropertyName = nameof(User.Email);
+            ColumnPhone.DataPropertyName = nameof(User.Phone);
+            ColumnAddress.DataPropertyName = nameof(User.Address);
+            ColumnNationality.DataPropertyName = nameof(User.Nationality);
+            ColumnLocality.DataPropertyName = nameof(User.Locality);
+        }
+
+
+        public void fillActiveUsers()
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                List<User> usuarios = _userService.GetActiveUsers();
+                // Enlazamos la lista fuertemente tipada
+                dtgUsers.DataSource = null; // Limpia enlace previo para forzar refresco
+                dtgUsers.DataSource = usuarios;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la lista de usuarios: {ex.Message}",
+                                "Error de Datos",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+        private void UserView_Load(object sender, EventArgs e)
+        {
+            fillActiveUsers();
+        }
+    
         private void ConfigBasicsRestrictions()
         {
             // Restringir el DateTimePicker para que la fecha máxima sea hoy.
