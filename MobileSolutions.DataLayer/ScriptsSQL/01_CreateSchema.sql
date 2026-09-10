@@ -1,4 +1,7 @@
-﻿-- 1. Tabla de Perfiles / Roles
+USE MobileSolutionsDB;
+GO
+
+-- 1. Tabla de Perfiles / Roles
 CREATE TABLE Profile (
     profile_id INT IDENTITY(1,1) NOT NULL,
     description VARCHAR(100) NOT NULL,

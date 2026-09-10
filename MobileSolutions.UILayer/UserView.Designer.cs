@@ -470,7 +470,7 @@
             btnSave.Depth = 0;
             btnSave.HighEmphasis = true;
             btnSave.Icon = null;
-            btnSave.Location = new Point(510, 138);
+            btnSave.Location = new Point(543, 206);
             btnSave.Margin = new Padding(4);
             btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
@@ -491,7 +491,7 @@
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
-            btnClear.Location = new Point(509, 193);
+            btnClear.Location = new Point(543, 250);
             btnClear.Margin = new Padding(4);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
@@ -542,7 +542,7 @@
             btnDelete.Depth = 0;
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
-            btnDelete.Location = new Point(510, 249);
+            btnDelete.Location = new Point(543, 338);
             btnDelete.Margin = new Padding(4);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
@@ -560,9 +560,10 @@
             btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
+            btnUpdate.Enabled = false;
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(510, 304);
+            btnUpdate.Location = new Point(543, 294);
             btnUpdate.Margin = new Padding(4);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
@@ -841,7 +842,7 @@
             panel2.Controls.Add(dtgUsers);
             panel2.Location = new Point(0, 643);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1304, 205);
+            panel2.Size = new Size(1412, 205);
             panel2.TabIndex = 40;
             // 
             // dtgUsers
@@ -866,7 +867,7 @@
             dtgUsers.Margin = new Padding(3, 2, 3, 2);
             dtgUsers.Name = "dtgUsers";
             dtgUsers.RowHeadersWidth = 51;
-            dtgUsers.Size = new Size(1304, 205);
+            dtgUsers.Size = new Size(1412, 205);
             dtgUsers.TabIndex = 33;
             // 
             // ColumnProfile
@@ -977,7 +978,7 @@
             panel3.Controls.Add(btnSave);
             panel3.Location = new Point(621, 112);
             panel3.Name = "panel3";
-            panel3.Size = new Size(645, 489);
+            panel3.Size = new Size(739, 489);
             panel3.TabIndex = 41;
             // 
             // materialCard4
@@ -1213,7 +1214,7 @@
             Controls.Add(lblUserTitle);
             Margin = new Padding(3, 2, 3, 2);
             Name = "UserView";
-            Size = new Size(1304, 848);
+            Size = new Size(1412, 848);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             materialCard2.ResumeLayout(false);
