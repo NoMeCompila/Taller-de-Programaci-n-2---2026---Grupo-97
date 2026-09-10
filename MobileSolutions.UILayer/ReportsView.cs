@@ -12,6 +12,8 @@ namespace MobileSolutions.UILayer
 {
     public partial class ReportsView : UserControl
     {
+
+        int perfilActual = 2; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
         public ReportsView()
         {
             InitializeComponent();
@@ -22,6 +24,37 @@ namespace MobileSolutions.UILayer
 
             picProximamente.IconChar = IconChar.ScrewdriverWrench;
             picProximamente.IconColor = Color.Yellow;
+
+            this.Load += ReportsView_Load;
+        }
+
+        private void ReportsView_Load(object sender, EventArgs e)
+        {
+            UserControl reporteAutorizado = null;
+
+            switch (perfilActual)
+            {
+                case 1:
+                    reporteAutorizado = new AdminReportControl();
+                    break;
+                case 2:
+                    reporteAutorizado = new ManagerReportControl();
+                    break;
+                case 3:
+                    reporteAutorizado = new SellerReportControl();
+                    break;
+                default:
+                    MessageBox.Show("Perfil no autorizado para ver reportes.");
+                    return;
+            }
+
+            // Inyectamos el panel correspondiente en el contenedor
+            if (reporteAutorizado != null)
+            {
+                reporteAutorizado.Dock = DockStyle.Fill;
+                pnlContainer.Controls.Clear();
+                pnlContainer.Controls.Add(reporteAutorizado);
+            }
         }
     }
 }
