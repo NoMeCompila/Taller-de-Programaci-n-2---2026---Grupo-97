@@ -89,7 +89,13 @@
             materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
             materialRadioButton2 = new MaterialSkin.Controls.MaterialRadioButton();
             materialRadioButton3 = new MaterialSkin.Controls.MaterialRadioButton();
+            iconBtn = new FontAwesome.Sharp.IconButton();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
+            iconButton2 = new FontAwesome.Sharp.IconButton();
+            iconButton3 = new FontAwesome.Sharp.IconButton();
             picUserTitle = new FontAwesome.Sharp.IconPictureBox();
+            materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
+            btnSearch = new MaterialSkin.Controls.MaterialButton();
             panel1.SuspendLayout();
             materialCard2.SuspendLayout();
             panel2.SuspendLayout();
@@ -465,17 +471,18 @@
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Right;
+            btnSave.AutoSize = false;
             btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnSave.Depth = 0;
             btnSave.HighEmphasis = true;
             btnSave.Icon = null;
-            btnSave.Location = new Point(543, 206);
+            btnSave.Location = new Point(652, 228);
             btnSave.Margin = new Padding(4);
             btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
             btnSave.NoAccentTextColor = Color.Empty;
-            btnSave.Size = new Size(88, 36);
+            btnSave.Size = new Size(125, 33);
             btnSave.TabIndex = 30;
             btnSave.Text = "Guardar";
             btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -486,19 +493,22 @@
             // btnClear
             // 
             btnClear.Anchor = AnchorStyles.Right;
+            btnClear.AutoSize = false;
             btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
-            btnClear.Location = new Point(543, 250);
+            btnClear.Location = new Point(497, 223);
             btnClear.Margin = new Padding(4);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
             btnClear.NoAccentTextColor = Color.Empty;
-            btnClear.Size = new Size(79, 36);
+            btnClear.Size = new Size(125, 33);
             btnClear.TabIndex = 31;
             btnClear.Text = "Limpiar";
+            btnClear.TextAlign = ContentAlignment.BottomCenter;
+            btnClear.TextImageRelation = TextImageRelation.ImageAboveText;
             btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnClear.UseAccentColor = false;
             btnClear.UseVisualStyleBackColor = true;
@@ -527,7 +537,7 @@
             lblUserTitle.Depth = 0;
             lblUserTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblUserTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblUserTitle.Location = new Point(553, 18);
+            lblUserTitle.Location = new Point(664, 20);
             lblUserTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblUserTitle.Name = "lblUserTitle";
             lblUserTitle.Size = new Size(283, 72);
@@ -537,17 +547,19 @@
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Right;
+            btnDelete.AutoSize = false;
             btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnDelete.Depth = 0;
+            btnDelete.Enabled = false;
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
-            btnDelete.Location = new Point(543, 338);
+            btnDelete.Location = new Point(652, 350);
             btnDelete.Margin = new Padding(4);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
             btnDelete.NoAccentTextColor = Color.Empty;
-            btnDelete.Size = new Size(88, 36);
+            btnDelete.Size = new Size(125, 33);
             btnDelete.TabIndex = 37;
             btnDelete.Text = "Eliminar";
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -557,18 +569,19 @@
             // btnUpdate
             // 
             btnUpdate.Anchor = AnchorStyles.Right;
+            btnUpdate.AutoSize = false;
             btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
             btnUpdate.Enabled = false;
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(543, 294);
+            btnUpdate.Location = new Point(497, 350);
             btnUpdate.Margin = new Padding(4);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
             btnUpdate.NoAccentTextColor = Color.Empty;
-            btnUpdate.Size = new Size(99, 36);
+            btnUpdate.Size = new Size(125, 33);
             btnUpdate.TabIndex = 36;
             btnUpdate.Text = "Modificar";
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -577,12 +590,12 @@
             // 
             // swtActive
             // 
-            swtActive.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            swtActive.Anchor = AnchorStyles.Bottom;
             swtActive.AutoSize = true;
             swtActive.Checked = true;
             swtActive.CheckState = CheckState.Checked;
             swtActive.Depth = 0;
-            swtActive.Location = new Point(14, 448);
+            swtActive.Location = new Point(902, 622);
             swtActive.Margin = new Padding(0);
             swtActive.MouseLocation = new Point(-1, -1);
             swtActive.MouseState = MaterialSkin.MouseState.HOVER;
@@ -597,10 +610,9 @@
             // 
             panel1.Anchor = AnchorStyles.Left;
             panel1.Controls.Add(materialCard2);
-            panel1.Controls.Add(swtActive);
-            panel1.Location = new Point(10, 112);
+            panel1.Location = new Point(10, 137);
             panel1.Name = "panel1";
-            panel1.Size = new Size(605, 489);
+            panel1.Size = new Size(605, 466);
             panel1.TabIndex = 39;
             // 
             // materialCard2
@@ -840,9 +852,9 @@
             // 
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.Controls.Add(dtgUsers);
-            panel2.Location = new Point(0, 643);
+            panel2.Location = new Point(0, 693);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1412, 205);
+            panel2.Size = new Size(1435, 205);
             panel2.TabIndex = 40;
             // 
             // dtgUsers
@@ -867,7 +879,7 @@
             dtgUsers.Margin = new Padding(3, 2, 3, 2);
             dtgUsers.Name = "dtgUsers";
             dtgUsers.RowHeadersWidth = 51;
-            dtgUsers.Size = new Size(1412, 205);
+            dtgUsers.Size = new Size(1435, 205);
             dtgUsers.TabIndex = 33;
             // 
             // ColumnProfile
@@ -976,9 +988,13 @@
             panel3.Controls.Add(btnUpdate);
             panel3.Controls.Add(btnClear);
             panel3.Controls.Add(btnSave);
-            panel3.Location = new Point(621, 112);
+            panel3.Controls.Add(iconBtn);
+            panel3.Controls.Add(iconButton1);
+            panel3.Controls.Add(iconButton2);
+            panel3.Controls.Add(iconButton3);
+            panel3.Location = new Point(621, 137);
             panel3.Name = "panel3";
-            panel3.Size = new Size(739, 489);
+            panel3.Size = new Size(791, 466);
             panel3.TabIndex = 41;
             // 
             // materialCard4
@@ -1189,6 +1205,78 @@
             materialRadioButton3.Text = "Vendedor";
             materialRadioButton3.UseVisualStyleBackColor = true;
             // 
+            // iconBtn
+            // 
+            iconBtn.BackColor = Color.RoyalBlue;
+            iconBtn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconBtn.ForeColor = SystemColors.Control;
+            iconBtn.IconChar = FontAwesome.Sharp.IconChar.Save;
+            iconBtn.IconColor = Color.White;
+            iconBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconBtn.IconSize = 60;
+            iconBtn.Location = new Point(641, 148);
+            iconBtn.Name = "iconBtn";
+            iconBtn.Size = new Size(150, 120);
+            iconBtn.TabIndex = 44;
+            iconBtn.Text = "BUTTON";
+            iconBtn.TextAlign = ContentAlignment.BottomCenter;
+            iconBtn.TextImageRelation = TextImageRelation.ImageAboveText;
+            iconBtn.UseVisualStyleBackColor = false;
+            // 
+            // iconButton1
+            // 
+            iconButton1.BackColor = Color.RoyalBlue;
+            iconButton1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButton1.ForeColor = SystemColors.Control;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.DeleteLeft;
+            iconButton1.IconColor = Color.White;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.IconSize = 60;
+            iconButton1.Location = new Point(485, 148);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(150, 120);
+            iconButton1.TabIndex = 45;
+            iconButton1.Text = "BUTTON";
+            iconButton1.TextAlign = ContentAlignment.BottomCenter;
+            iconButton1.TextImageRelation = TextImageRelation.ImageAboveText;
+            iconButton1.UseVisualStyleBackColor = false;
+            // 
+            // iconButton2
+            // 
+            iconButton2.BackColor = Color.RoyalBlue;
+            iconButton2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButton2.ForeColor = SystemColors.Control;
+            iconButton2.IconChar = FontAwesome.Sharp.IconChar.Pencil;
+            iconButton2.IconColor = Color.White;
+            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton2.IconSize = 60;
+            iconButton2.Location = new Point(485, 274);
+            iconButton2.Name = "iconButton2";
+            iconButton2.Size = new Size(150, 120);
+            iconButton2.TabIndex = 46;
+            iconButton2.Text = "BUTTON";
+            iconButton2.TextAlign = ContentAlignment.BottomCenter;
+            iconButton2.TextImageRelation = TextImageRelation.ImageAboveText;
+            iconButton2.UseVisualStyleBackColor = false;
+            // 
+            // iconButton3
+            // 
+            iconButton3.BackColor = Color.RoyalBlue;
+            iconButton3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButton3.ForeColor = SystemColors.Control;
+            iconButton3.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            iconButton3.IconColor = Color.White;
+            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton3.IconSize = 60;
+            iconButton3.Location = new Point(641, 274);
+            iconButton3.Name = "iconButton3";
+            iconButton3.Size = new Size(150, 120);
+            iconButton3.TabIndex = 47;
+            iconButton3.Text = "BUTTON";
+            iconButton3.TextAlign = ContentAlignment.BottomCenter;
+            iconButton3.TextImageRelation = TextImageRelation.ImageAboveText;
+            iconButton3.UseVisualStyleBackColor = false;
+            // 
             // picUserTitle
             // 
             picUserTitle.BackColor = Color.FromArgb(255, 255, 255);
@@ -1197,31 +1285,84 @@
             picUserTitle.IconColor = Color.FromArgb(222, 0, 0, 0);
             picUserTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picUserTitle.IconSize = 75;
-            picUserTitle.Location = new Point(462, 15);
+            picUserTitle.Location = new Point(573, 17);
             picUserTitle.Name = "picUserTitle";
             picUserTitle.Size = new Size(85, 75);
             picUserTitle.TabIndex = 45;
             picUserTitle.TabStop = false;
             // 
+            // materialTextBox21
+            // 
+            materialTextBox21.Anchor = AnchorStyles.Bottom;
+            materialTextBox21.AnimateReadOnly = false;
+            materialTextBox21.BackgroundImageLayout = ImageLayout.None;
+            materialTextBox21.CharacterCasing = CharacterCasing.Normal;
+            materialTextBox21.Depth = 0;
+            materialTextBox21.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTextBox21.HelperText = "Buscar por...";
+            materialTextBox21.HideSelection = true;
+            materialTextBox21.Hint = "Buscar";
+            materialTextBox21.LeadingIcon = null;
+            materialTextBox21.Location = new Point(595, 618);
+            materialTextBox21.Margin = new Padding(3, 2, 3, 2);
+            materialTextBox21.MaxLength = 32767;
+            materialTextBox21.MouseState = MaterialSkin.MouseState.OUT;
+            materialTextBox21.Name = "materialTextBox21";
+            materialTextBox21.PasswordChar = '\0';
+            materialTextBox21.PrefixSuffixText = null;
+            materialTextBox21.ReadOnly = false;
+            materialTextBox21.RightToLeft = RightToLeft.No;
+            materialTextBox21.SelectedText = "";
+            materialTextBox21.SelectionLength = 0;
+            materialTextBox21.SelectionStart = 0;
+            materialTextBox21.ShortcutsEnabled = true;
+            materialTextBox21.Size = new Size(304, 48);
+            materialTextBox21.TabIndex = 54;
+            materialTextBox21.TabStop = false;
+            materialTextBox21.TextAlign = HorizontalAlignment.Left;
+            materialTextBox21.TrailingIcon = null;
+            materialTextBox21.UseSystemPasswordChar = false;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Anchor = AnchorStyles.Bottom;
+            btnSearch.AutoSize = false;
+            btnSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSearch.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnSearch.Depth = 0;
+            btnSearch.HighEmphasis = true;
+            btnSearch.Icon = null;
+            btnSearch.Location = new Point(550, 620);
+            btnSearch.Margin = new Padding(4);
+            btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
+            btnSearch.Name = "btnSearch";
+            btnSearch.NoAccentTextColor = Color.Empty;
+            btnSearch.Size = new Size(38, 38);
+            btnSearch.TabIndex = 54;
+            btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnSearch.UseAccentColor = false;
+            btnSearch.UseVisualStyleBackColor = true;
+            // 
             // UserView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnSearch);
+            Controls.Add(materialTextBox21);
             Controls.Add(picUserTitle);
+            Controls.Add(swtActive);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(lblUserTitle);
             Margin = new Padding(3, 2, 3, 2);
             Name = "UserView";
-            Size = new Size(1412, 848);
+            Size = new Size(1435, 898);
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             materialCard2.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgUsers).EndInit();
             panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             materialCard4.ResumeLayout(false);
             materialCard4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picSex).EndInit();
@@ -1299,5 +1440,11 @@
         private DataGridViewTextBoxColumn ColumnAddress;
         private DataGridViewTextBoxColumn ColumnNationality;
         private DataGridViewTextBoxColumn ColumnLocality;
+        private FontAwesome.Sharp.IconButton iconBtn;
+        private FontAwesome.Sharp.IconButton iconButton3;
+        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
+        private MaterialSkin.Controls.MaterialButton btnSearch;
     }
 }

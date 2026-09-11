@@ -28,12 +28,10 @@ namespace MobileSolutions.UILayer
             dtpBirth.CalendarTitleBackColor = Color.FromArgb(13, 71, 161);   // Blue900
             dtpBirth.CalendarTitleForeColor = Color.White;
             dtpBirth.CalendarTrailingForeColor = Color.Gray;
-            dtpBirth.BackColor = Color.FromArgb(50, 50, 50); // Fondo oscuro general
+            dtpBirth.BackColor = Color.FromArgb(50, 50, 50); // Dark Mode Theme
             dtpBirth.ForeColor = Color.White;
 
             // Generar iconos blancos de 24x24 px y asignarlos a los botones
-            btnSave.Icon = IconChar.Save.ToBitmap(Color.White);
-            btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
             btnName.Icon = IconChar.UserEdit.ToBitmap(Color.White);
             btnLastname.Icon = IconChar.UserEdit.ToBitmap(Color.White);
             btnDni.Icon = IconChar.IdCard.ToBitmap(Color.White);
@@ -44,17 +42,17 @@ namespace MobileSolutions.UILayer
             btnAddress.Icon = IconChar.MapMarker.ToBitmap(Color.White);
             btnNat.Icon = IconChar.Flag.ToBitmap(Color.White);
             btnLoc.Icon = IconChar.MapMarkerAlt.ToBitmap(Color.White);
+            btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
             picSex.IconChar = IconChar.VenusMars;
+            picSex.IconColor = Color.White;
             picProfile.IconChar = IconChar.UserCircle;
+            picProfile.IconColor = Color.White;
             picBirth.IconChar = IconChar.Calendar;
-            picUserTitle.IconChar = IconChar.User;
+            picBirth.IconColor = Color.White;
+            picUserTitle.IconChar = IconChar.UserGear;
             picUserTitle.IconColor = Color.White;
-            btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
-            btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
 
             _userService = new UserService();
-
-
 
             ConfigBasicsRestrictions();
             dtgUsersConfig();
