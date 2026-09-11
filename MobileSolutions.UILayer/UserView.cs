@@ -56,7 +56,9 @@ namespace MobileSolutions.UILayer
 
             ConfigBasicsRestrictions();
             dtgUsersConfig();
+            dtgUsers.CellClick += dtgUsers_CellClick;
             fillActiveUsers();
+            LimpiarFormulario();
         }
 
         private void dtgUsersConfig()
@@ -185,9 +187,73 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void dtgUsers_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
-            // Vaciar TextBoxes
+            // Validación obligatoria: descarta clics en los encabezados (-1) o índices fuera de rango
+            if (e.RowIndex < 0 || e.RowIndex >= dtgUsers.Rows.Count)
+            {
+                return;
+            }
+
+            DataGridViewRow fila = dtgUsers.Rows[e.RowIndex];
+
+            // Validación contra filas nuevas o no vinculadas
+            if (fila.IsNewRow || fila.DataBoundItem == null)
+            {
+                return;
+            }
+
+            // Mapeo seguro utilizando el objeto de negocio enlazado
+            if (fila.DataBoundItem is User usuarioSeleccionado)
+            {
+                MapearUsuarioAControles(usuarioSeleccionado);
+                ActualizarEstadoBotones(modoEdicion: true);
+            }
+        }
+
+        private void MapearUsuarioAControles(User user)
+        {
+            txtName.Text = user.Name;
+            txtLastname.Text = user.Lastname;
+            txtDNI.Text = user.Dni;
+            txtUsername.Text = user.Username;
+            txtEmail.Text = user.Email;
+            txtPhone.Text = user.Phone ?? string.Empty;
+            txtAddress.Text = user.Address ?? string.Empty;
+            txtNationality.Text = user.Nationality;
+            txtLocality.Text = user.Locality;
+
+            // DateTimePicker con validación de rango permitido
+            if (user.Birth >= dtpBirth.MinDate && user.Birth <= dtpBirth.MaxDate)
+            {
+                dtpBirth.Value = user.Birth;
+            }
+            else
+            {
+                dtpBirth.Value = DateTime.Today;
+            }
+
+            // RadioButtons de Sexo
+            materialRadioButton6.Checked = string.Equals(user.Sex, "Masculino", StringComparison.OrdinalIgnoreCase);
+            materialRadioButton9.Checked = string.Equals(user.Sex, "Femenino", StringComparison.OrdinalIgnoreCase);
+            materialRadioButton7.Checked = string.Equals(user.Sex, "Otro", StringComparison.OrdinalIgnoreCase);
+
+            // RadioButtons de Perfil
+            materialRadioButton1.Checked = string.Equals(user.ProfileName, "Administrador", StringComparison.OrdinalIgnoreCase);
+            materialRadioButton2.Checked = string.Equals(user.ProfileName, "Vendedor", StringComparison.OrdinalIgnoreCase);
+            materialRadioButton3.Checked = string.Equals(user.ProfileName, "Gerente", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void ActualizarEstadoBotones(bool modoEdicion)
+        {
+            btnSave.Enabled = !modoEdicion;
+            btnUpdate.Enabled = modoEdicion;
+            btnDelete.Enabled = modoEdicion;
+            btnClear.Enabled = true;
+        }
+
+        private void LimpiarFormulario()
+        {
             txtName.Clear();
             txtLastname.Clear();
             txtDNI.Clear();
@@ -199,11 +265,19 @@ namespace MobileSolutions.UILayer
             txtNationality.Clear();
             txtLocality.Clear();
 
+            dtpBirth.Value = DateTime.Today;
 
+            // Restablecer valores por defecto de radio buttons
+            materialRadioButton6.Checked = true; // Masculino
+            materialRadioButton1.Checked = true; // Administrador
 
+            dtgUsers.ClearSelection();
+            ActualizarEstadoBotones(modoEdicion: false);
+        }
 
-            // Resetear Fecha
-            dtpBirth.Value = DateTime.Now.Date;
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
         }
 
         private void lblProfile_Click(object sender, EventArgs e)
