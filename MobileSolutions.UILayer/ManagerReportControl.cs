@@ -231,7 +231,7 @@ namespace MobileSolutions.UILayer
                     new LiveCharts.Wpf.Axis
                     {
                         Title = "Productos",
-                        Labels = new[] { "Producto 1", "Producto 2", "Producto 3", "Producto 4", "Producto 5" },
+                        Labels = new[] { "Galaxy A14", "Iphone 11", "Moto E3", "Iphone 13", "Iphone 14" },
                         Foreground = WpfBrushes.White,
                         ShowLabels = true,
                         FontFamily = new WpfFontFamily("Roboto"),
@@ -284,10 +284,10 @@ namespace MobileSolutions.UILayer
                 LegendLocation = LegendLocation.Right,
                 Series = new SeriesCollection
                 {
-                    new PieSeries { Title = "Marca A", Values = new ChartValues<double> { 0 } },
-                    new PieSeries { Title = "Marca B", Values = new ChartValues<double> { 0 } },
-                    new PieSeries { Title = "Marca C", Values = new ChartValues<double> { 0 } },
-                    new PieSeries { Title = "Marca D", Values = new ChartValues<double> { 0 } }
+                    new PieSeries { Title = "Samsung", Values = new ChartValues<double> { 20 } },
+                    new PieSeries { Title = "Huawei", Values = new ChartValues<double> { 10 } },
+                    new PieSeries { Title = "Iphone", Values = new ChartValues<double> { 50 } },
+                    new PieSeries { Title = "Motorola", Values = new ChartValues<double> { 20 } }
                 }
             };
 
