@@ -10,6 +10,8 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT 
+        Usuarios.user_id       AS user_id,
+        Usuarios.profile_id    AS profile_id,
         Perfiles.description   AS Perfil,
         Usuarios.name          AS Nombre,
         Usuarios.lastname      AS Apellido,
@@ -38,6 +40,8 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT 
+        Usuarios.user_id       AS user_id,
+        Usuarios.profile_id    AS profile_id,
         Perfiles.description   AS Perfil,
         Usuarios.name          AS Nombre,
         Usuarios.lastname      AS Apellido,
@@ -116,7 +120,7 @@ CREATE OR ALTER PROCEDURE sp_UpdateUser
     @password       VARCHAR(255) = NULL
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     UPDATE [User]
     SET 

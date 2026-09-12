@@ -19,6 +19,7 @@ namespace MobileSolutions.UILayer
     {
 
         private readonly UserService _userService;
+        private int _selectedUserId = 0;
         public UserView()
         {
             InitializeComponent();
@@ -228,13 +229,13 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        private bool ValidateFields()
+        private bool ValidateFields(bool isUpdate = false)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text)
                 || string.IsNullOrWhiteSpace(txtLastname.Text)
                 || string.IsNullOrWhiteSpace(txtDNI.Text)
                 || string.IsNullOrWhiteSpace(txtUsername.Text)
-                || string.IsNullOrWhiteSpace(txtPassword.Text)
+                || (!isUpdate && string.IsNullOrWhiteSpace(txtPassword.Text))
                 || string.IsNullOrWhiteSpace(txtEmail.Text)
                 || string.IsNullOrWhiteSpace(txtNationality.Text)
                 || string.IsNullOrWhiteSpace(txtLocality.Text))
@@ -305,6 +306,7 @@ namespace MobileSolutions.UILayer
 
             return new User
             {
+                UserId = _selectedUserId,
                 ProfileId = profileId,
                 ProfileName = profileName,
                 Name = txtName.Text.Trim(),
@@ -312,7 +314,7 @@ namespace MobileSolutions.UILayer
                 Dni = txtDNI.Text.Trim(),
                 Sex = sexo,
                 Username = txtUsername.Text.Trim(),
-                Password = txtPassword.Text,
+                Password = string.IsNullOrWhiteSpace(txtPassword.Text) ? null : txtPassword.Text,
                 Email = txtEmail.Text.Trim(),
                 Phone = string.IsNullOrWhiteSpace(txtPhone.Text) ? null : txtPhone.Text.Trim(),
                 Address = string.IsNullOrWhiteSpace(txtAddress.Text) ? null : txtAddress.Text.Trim(),
@@ -349,10 +351,13 @@ namespace MobileSolutions.UILayer
 
         private void MapearUsuarioAControles(User user)
         {
+            _selectedUserId = user.UserId;
+
             txtName.Text = user.Name;
             txtLastname.Text = user.Lastname;
             txtDNI.Text = user.Dni;
             txtUsername.Text = user.Username;
+            txtPassword.Clear();
             txtEmail.Text = user.Email;
             txtPhone.Text = user.Phone ?? string.Empty;
             txtAddress.Text = user.Address ?? string.Empty;
@@ -390,6 +395,8 @@ namespace MobileSolutions.UILayer
 
         private void LimpiarFormulario()
         {
+            _selectedUserId = 0;
+
             txtName.Clear();
             txtLastname.Clear();
             txtDNI.Clear();
@@ -409,6 +416,71 @@ namespace MobileSolutions.UILayer
 
             dtgUsers.ClearSelection();
             ActualizarEstadoBotones(modoEdicion: false);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (_selectedUserId <= 0)
+            {
+                MaterialMessageBox.Show(
+                    "Debe seleccionar un usuario de la grilla para poder modificarlo.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!ValidateFields(isUpdate: true))
+            {
+                return;
+            }
+
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                // 1. Construir entidad fuertemente tipada desde el formulario con el Id seleccionado
+                User usuarioModificado = ObtenerUsuarioDesdeFormulario();
+
+                // 2. Invocar la Capa de Negocio (BLL)
+                var (success, message) = _userService.UpdateUser(usuarioModificado);
+
+                if (success)
+                {
+                    // 3. Notificación de éxito
+                    MaterialMessageBox.Show(
+                        "Usuario actualizado correctamente",
+                        "Éxito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    // 4. Refrescar la grilla para mostrar los cambios
+                    fillActiveUsers();
+
+                    // 5. Limpiar el formulario y restablecer controles
+                    LimpiarFormulario();
+                }
+                else
+                {
+                    MaterialMessageBox.Show(
+                        message,
+                        "Advertencia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(
+                    $"Error inesperado al actualizar el usuario: {ex.Message}",
+                    "Error de Sistema",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)

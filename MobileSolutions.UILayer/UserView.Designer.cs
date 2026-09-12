@@ -1,4 +1,4 @@
-﻿namespace MobileSolutions.UILayer
+namespace MobileSolutions.UILayer
 {
     partial class UserView
     {
@@ -587,6 +587,7 @@
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // swtActive
             // 
