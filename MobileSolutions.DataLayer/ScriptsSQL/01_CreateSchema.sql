@@ -139,3 +139,8 @@ CREATE TABLE SaleDetail (
     CONSTRAINT UQ_SaleDetail_Sale_Product UNIQUE (sale_id, product_id) 
 );
 
+
+use MobileSolutionsDB;
+select * from [User];
+
+Update [User] set status = 1 where user_id = 1001;

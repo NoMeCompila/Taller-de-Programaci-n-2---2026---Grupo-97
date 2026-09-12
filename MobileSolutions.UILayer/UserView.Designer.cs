@@ -565,6 +565,7 @@ namespace MobileSolutions.UILayer
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnDelete.UseAccentColor = false;
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 

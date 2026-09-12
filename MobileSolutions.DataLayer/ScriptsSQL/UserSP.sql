@@ -150,7 +150,7 @@ CREATE OR ALTER PROCEDURE sp_DeleteUser
     @user_id INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT OFF;
 
     UPDATE [User]
     SET status = 0

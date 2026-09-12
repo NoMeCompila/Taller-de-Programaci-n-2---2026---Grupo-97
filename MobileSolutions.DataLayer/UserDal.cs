@@ -140,5 +140,21 @@ namespace MobileSolutions.DataLayer
                 return rowsAffected > 0 || rowsAffected == -1;
             }
         }
+
+        public bool SoftDeleteUser(int userId)
+        {
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_DeleteUser", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+
+                command.Parameters.Add("@user_id", SqlDbType.Int).Value = userId;
+
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0 || rowsAffected == -1;
+            }
+        }
     }
 }

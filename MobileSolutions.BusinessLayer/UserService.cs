@@ -129,6 +129,33 @@ namespace MobileSolutions.BusinessLayer
             }
         }
 
+        public (bool Success, string Message) SoftDeleteUser(int userId)
+        {
+            if (userId <= 0)
+            {
+                return (false, "Identificador de usuario no válido para la baja lógica.");
+            }
+
+            try
+            {
+                bool deleted = _userDal.SoftDeleteUser(userId);
+                if (deleted)
+                {
+                    return (true, "Usuario dado de baja correctamente.");
+                }
+
+                return (false, "No se pudo dar de baja al usuario en la base de datos.");
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado al dar de baja al usuario: {ex.Message}");
+            }
+        }
+
         public (bool IsConnected, string? ErrorMessage) CheckDatabaseConnection()
         {
             return _dbConnection.TestConnection();

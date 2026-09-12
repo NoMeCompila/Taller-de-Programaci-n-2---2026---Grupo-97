@@ -483,6 +483,74 @@ namespace MobileSolutions.UILayer
             }
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (_selectedUserId <= 0)
+            {
+                MaterialMessageBox.Show(
+                    "Debe seleccionar un usuario de la grilla para poder darlo de baja.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Confirmación explícita antes de proceder con la baja lógica
+            DialogResult confirmResult = MaterialMessageBox.Show(
+                "¿Está seguro de que desea dar de baja al usuario seleccionado?",
+                "Confirmación de Baja",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                // Invocar la Capa de Negocio (BLL)
+                var (success, message) = _userService.SoftDeleteUser(_selectedUserId);
+
+                if (success)
+                {
+                    MaterialMessageBox.Show(
+                        "Usuario dado de baja correctamente",
+                        "Éxito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    // Refrescar grilla de usuarios activos
+                    fillActiveUsers();
+
+                    // Limpiar formulario y restablecer estado de botones
+                    LimpiarFormulario();
+                }
+                else
+                {
+                    MaterialMessageBox.Show(
+                        message,
+                        "Advertencia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(
+                    $"Error inesperado al dar de baja al usuario: {ex.Message}",
+                    "Error de Sistema",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
