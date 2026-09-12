@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+ using Microsoft.Data.SqlClient;
 using MobileSolutions.BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -82,6 +82,34 @@ namespace MobileSolutions.DataLayer
                 }
             }
             return users;
+        }
+
+        public int CreateUser(User user)
+        {
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_CreateUser", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+
+                command.Parameters.Add("@profile_id", SqlDbType.Int).Value = user.ProfileId;
+                command.Parameters.Add("@name", SqlDbType.VarChar, 100).Value = user.Name;
+                command.Parameters.Add("@lastname", SqlDbType.VarChar, 100).Value = user.Lastname;
+                command.Parameters.Add("@dni", SqlDbType.VarChar, 8).Value = user.Dni;
+                command.Parameters.Add("@sex", SqlDbType.VarChar, 10).Value = user.Sex;
+                command.Parameters.Add("@username", SqlDbType.VarChar, 100).Value = user.Username;
+                command.Parameters.Add("@password", SqlDbType.VarChar, 255).Value = user.Password;
+                command.Parameters.Add("@email", SqlDbType.VarChar, 100).Value = user.Email;
+                command.Parameters.Add("@phone", SqlDbType.VarChar, 15).Value = (object?)user.Phone ?? DBNull.Value;
+                command.Parameters.Add("@address", SqlDbType.VarChar, 100).Value = (object?)user.Address ?? DBNull.Value;
+                command.Parameters.Add("@birth", SqlDbType.Date).Value = user.Birth;
+                command.Parameters.Add("@nationality", SqlDbType.VarChar, 100).Value = user.Nationality;
+                command.Parameters.Add("@locality", SqlDbType.VarChar, 100).Value = user.Locality;
+
+                connection.Open();
+                object? result = command.ExecuteScalar();
+                return result != null && result != DBNull.Value ? Convert.ToInt32(result) : 0;
+            }
         }
     }
 }

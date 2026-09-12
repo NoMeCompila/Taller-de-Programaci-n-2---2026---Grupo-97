@@ -175,16 +175,152 @@ namespace MobileSolutions.UILayer
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // 1. Validar que los campos obligatorios no estén vacíos
-            if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtDNI.Text)
-                || string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text)
-                || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtNationality.Text)
-                || string.IsNullOrWhiteSpace(txtLocality.Text) || string.IsNullOrWhiteSpace(txtLastname.Text)
-                || dtpBirth.Value == DateTime.Now.Date)
+            if (!ValidateFields())
             {
-                MessageBox.Show("Por favor, complete los campos obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                // 1. Construir entidad fuertemente tipada desde el formulario
+                User nuevoUsuario = ObtenerUsuarioDesdeFormulario();
+
+                // 2. Invocar la Capa de Negocio (BLL)
+                var (success, message) = _userService.CreateUser(nuevoUsuario);
+
+                if (success)
+                {
+                    // 3. Notificación de éxito
+                    MaterialMessageBox.Show(
+                        "Usuario agregado correctamente",
+                        "Éxito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    // 4. Refrescar la grilla para mostrar el nuevo registro
+                    fillActiveUsers();
+
+                    // 5. Limpiar el formulario y restablecer controles
+                    LimpiarFormulario();
+                }
+                else
+                {
+                    MaterialMessageBox.Show(
+                        message,
+                        "Advertencia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(
+                    $"Error inesperado al registrar el usuario: {ex.Message}",
+                    "Error de Sistema",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        private bool ValidateFields()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text)
+                || string.IsNullOrWhiteSpace(txtLastname.Text)
+                || string.IsNullOrWhiteSpace(txtDNI.Text)
+                || string.IsNullOrWhiteSpace(txtUsername.Text)
+                || string.IsNullOrWhiteSpace(txtPassword.Text)
+                || string.IsNullOrWhiteSpace(txtEmail.Text)
+                || string.IsNullOrWhiteSpace(txtNationality.Text)
+                || string.IsNullOrWhiteSpace(txtLocality.Text))
+            {
+                MaterialMessageBox.Show(
+                    "Por favor, complete todos los campos obligatorios.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtDNI.Text.Trim().Length < 7 || txtDNI.Text.Trim().Length > 8)
+            {
+                MaterialMessageBox.Show(
+                    "El DNI debe contener entre 7 y 8 dígitos numéricos.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtDNI.Focus();
+                return false;
+            }
+
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                MaterialMessageBox.Show(
+                    "Ingrese un formato de correo electrónico válido.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            if (dtpBirth.Value.Date >= DateTime.Today)
+            {
+                MaterialMessageBox.Show(
+                    "La fecha de nacimiento debe ser anterior a la fecha actual.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                dtpBirth.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private User ObtenerUsuarioDesdeFormulario()
+        {
+            // Determinar Sexo seleccionado
+            string sexo = materialRadioButton6.Checked ? "Masculino" : (materialRadioButton9.Checked ? "Femenino" : "Otro");
+
+            // Determinar Perfil seleccionado (1: Administrador, 2: Vendedor, 3: Gerente)
+            int profileId = 1;
+            string profileName = "Administrador";
+
+            if (materialRadioButton2.Checked)
+            {
+                profileId = 2;
+                profileName = "Vendedor";
+            }
+            else if (materialRadioButton3.Checked)
+            {
+                profileId = 3;
+                profileName = "Gerente";
+            }
+
+            return new User
+            {
+                ProfileId = profileId,
+                ProfileName = profileName,
+                Name = txtName.Text.Trim(),
+                Lastname = txtLastname.Text.Trim(),
+                Dni = txtDNI.Text.Trim(),
+                Sex = sexo,
+                Username = txtUsername.Text.Trim(),
+                Password = txtPassword.Text,
+                Email = txtEmail.Text.Trim(),
+                Phone = string.IsNullOrWhiteSpace(txtPhone.Text) ? null : txtPhone.Text.Trim(),
+                Address = string.IsNullOrWhiteSpace(txtAddress.Text) ? null : txtAddress.Text.Trim(),
+                Birth = dtpBirth.Value.Date,
+                Nationality = txtNationality.Text.Trim(),
+                Locality = txtLocality.Text.Trim(),
+                RegisterDate = DateTime.Now
+            };
         }
 
         private void dtgUsers_CellClick(object? sender, DataGridViewCellEventArgs e)
