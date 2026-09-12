@@ -32,8 +32,8 @@ namespace MobileSolutions.UILayer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             imageList1 = new ImageList(components);
             tabPage8 = new TabPage();
-            materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             reportsView1 = new ReportsView();
+            materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             tabPage7 = new TabPage();
             materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             tabPage6 = new TabPage();
@@ -74,10 +74,19 @@ namespace MobileSolutions.UILayer
             tabPage8.Location = new Point(4, 29);
             tabPage8.Margin = new Padding(3, 5, 3, 5);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1928, 1002);
+            tabPage8.Size = new Size(1684, 887);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Reportes";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // reportsView1
+            // 
+            reportsView1.Dock = DockStyle.Fill;
+            reportsView1.Location = new Point(0, 0);
+            reportsView1.Margin = new Padding(3, 4, 3, 4);
+            reportsView1.Name = "reportsView1";
+            reportsView1.Size = new Size(1684, 887);
+            reportsView1.TabIndex = 4;
             // 
             // materialLabel8
             // 
@@ -91,22 +100,13 @@ namespace MobileSolutions.UILayer
             materialLabel8.TabIndex = 3;
             materialLabel8.Text = "Reportes";
             // 
-            // reportsView1
-            // 
-            reportsView1.Dock = DockStyle.Fill;
-            reportsView1.Location = new Point(0, 0);
-            reportsView1.Margin = new Padding(3, 4, 3, 4);
-            reportsView1.Name = "reportsView1";
-            reportsView1.Size = new Size(1928, 1002);
-            reportsView1.TabIndex = 4;
-            // 
             // tabPage7
             // 
             tabPage7.Controls.Add(materialLabel7);
             tabPage7.Location = new Point(4, 29);
             tabPage7.Margin = new Padding(3, 5, 3, 5);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1928, 1002);
+            tabPage7.Size = new Size(1684, 887);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Historial De Ventas";
             tabPage7.UseVisualStyleBackColor = true;
@@ -130,7 +130,7 @@ namespace MobileSolutions.UILayer
             tabPage6.Location = new Point(4, 29);
             tabPage6.Margin = new Padding(3, 5, 3, 5);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1928, 1002);
+            tabPage6.Size = new Size(1684, 887);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Venta";
             tabPage6.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@ namespace MobileSolutions.UILayer
             saleView1.Dock = DockStyle.Fill;
             saleView1.Location = new Point(0, 0);
             saleView1.Name = "saleView1";
-            saleView1.Size = new Size(2048, 1336);
+            saleView1.Size = new Size(1684, 887);
             saleView1.TabIndex = 4;
             // 
             // materialLabel6
@@ -162,7 +162,7 @@ namespace MobileSolutions.UILayer
             tabPage4.Location = new Point(4, 29);
             tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1928, 1002);
+            tabPage4.Size = new Size(1684, 887);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Productos";
             tabPage4.UseVisualStyleBackColor = true;
@@ -172,7 +172,7 @@ namespace MobileSolutions.UILayer
             productView1.Dock = DockStyle.Fill;
             productView1.Location = new Point(0, 0);
             productView1.Name = "productView1";
-            productView1.Size = new Size(2048, 1336);
+            productView1.Size = new Size(1684, 887);
             productView1.TabIndex = 4;
             // 
             // materialLabel4
@@ -194,7 +194,7 @@ namespace MobileSolutions.UILayer
             tabPage3.Location = new Point(4, 29);
             tabPage3.Margin = new Padding(3, 5, 3, 5);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1928, 1002);
+            tabPage3.Size = new Size(1666, 840);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Clientes";
             tabPage3.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@ namespace MobileSolutions.UILayer
             customerView1.Dock = DockStyle.Fill;
             customerView1.Location = new Point(0, 0);
             customerView1.Name = "customerView1";
-            customerView1.Size = new Size(1941, 1240);
+            customerView1.Size = new Size(1666, 840);
             customerView1.TabIndex = 4;
             // 
             // materialLabel2
@@ -226,8 +226,8 @@ namespace MobileSolutions.UILayer
             tabPage2.Location = new Point(4, 29);
             tabPage2.Margin = new Padding(3, 5, 3, 5);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
-            tabPage2.Size = new Size(1928, 1002);
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1684, 887);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
@@ -237,7 +237,7 @@ namespace MobileSolutions.UILayer
             userView1.Dock = DockStyle.Fill;
             userView1.Location = new Point(3, 3);
             userView1.Name = "userView1";
-            userView1.Size = new Size(1934, 1235);
+            userView1.Size = new Size(1678, 881);
             userView1.TabIndex = 3;
             // 
             // materialLabel3
@@ -258,8 +258,8 @@ namespace MobileSolutions.UILayer
             tabPage1.Location = new Point(4, 29);
             tabPage1.Margin = new Padding(3, 5, 3, 5);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 3, 3, 3);
-            tabPage1.Size = new Size(1928, 1002);
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1684, 887);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Home";
             tabPage1.UseVisualStyleBackColor = true;
@@ -268,9 +268,9 @@ namespace MobileSolutions.UILayer
             // 
             homeView1.Dock = DockStyle.Fill;
             homeView1.Location = new Point(3, 3);
-            homeView1.Margin = new Padding(3, 5, 3, 5);
+            homeView1.Margin = new Padding(3, 4, 3, 4);
             homeView1.Name = "homeView1";
-            homeView1.Size = new Size(1934, 1235);
+            homeView1.Size = new Size(1678, 881);
             homeView1.TabIndex = 0;
             // 
             // materialTabControl1
@@ -290,14 +290,14 @@ namespace MobileSolutions.UILayer
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1936, 1035);
+            materialTabControl1.Size = new Size(1692, 920);
             materialTabControl1.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1942, 1102);
+            ClientSize = new Size(1698, 987);
             Controls.Add(materialTabControl1);
             DrawerTabControl = materialTabControl1;
             FormBorderStyle = FormBorderStyle.FixedSingle;

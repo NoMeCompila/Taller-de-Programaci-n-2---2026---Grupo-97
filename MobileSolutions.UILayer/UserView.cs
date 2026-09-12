@@ -123,7 +123,7 @@ namespace MobileSolutions.UILayer
         {
             fillActiveUsers();
         }
-    
+
         private void ConfigBasicsRestrictions()
         {
             // Restringir el DateTimePicker para que la fecha máxima sea hoy.
@@ -584,6 +584,16 @@ namespace MobileSolutions.UILayer
             {
                 e.Handled = true; // Cancela la pulsación de la tecla
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialCard2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
