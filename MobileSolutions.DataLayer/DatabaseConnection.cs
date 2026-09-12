@@ -5,26 +5,42 @@ namespace MobileSolutions.DataLayer
 {
     public class DatabaseConnection
     {
-        private readonly string _connectionString;
+        
+        private string dbName ;
+        private string dbServer;
+        private string tConnection;
+        private string tServerCert;
 
         public DatabaseConnection()
         {
-            _connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=MobileSolutionsDB;Trusted_Connection=True;TrustServerCertificate=True;";
+            this.dbServer = "(localdb)\\MSSQLLocalDB";
+            this.dbName = "MobileSolutionsDB";
+            this.tConnection = "True";
+            this.tServerCert = "True";
         }
 
-        public DatabaseConnection(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
 
         public SqlConnection GetConnection()
         {
-            return new SqlConnection(_connectionString);
+            SqlConnection ConnString = new SqlConnection();
+
+            try
+            {
+                ConnString.ConnectionString = $"Server={dbServer};" +
+                    $"Database={dbName};" +
+                    $"Trusted_Connection={tConnection};" +
+                    $"TrustServerCertificate={tServerCert};";
+            }
+            catch (Exception ex)
+            {
+                ConnString = null;
+                throw ex;
+            }
+
+            return ConnString;
         }
 
 
-        // modify TestConnection method to return a tuple with
-        // a boolean indicating if the connection was successful and a string containing the error message if it was not
         public (bool IsConnected, string? ErrorMessage) TestConnection()
         {
             try

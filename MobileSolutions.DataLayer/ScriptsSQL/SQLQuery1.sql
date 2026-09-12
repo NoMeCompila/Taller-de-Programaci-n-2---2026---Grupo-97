@@ -140,7 +140,39 @@ CREATE TABLE SaleDetail (
 );
 
 
-use MobileSolutionsDB;
-select * from [User];
+INSERT INTO Profile (description, status) VALUES 
+('Administrador', 1),
+('Vendedor', 1),
+('Gerente', 1);
 
-Update [User] set status = 1 where user_id = 1001;
+SELECT * FROM Profile;
+
+
+
+INSERT INTO dbo.[User] (profile_id, name, lastname, dni, sex, username, password, email, birth, nationality, locality)
+VALUES (3, 'Fernando', 'Caballero', '38444555', 'Masculino', 'fcaballe', '123', 'fcaballe@email.com', '1998-02-22', 'Argentina', 'Misiones'),
+(1, 'Juan', 'Perez', '40442525', 'Masculino', 'admin', '123', 'admin@email.com', '1990-03-11', 'Argentina', 'Corrientes'),
+(2, 'Nicolas', 'Panunzio', '39441155', 'Masculino', 'nico', '123', 'nico@email.com', '2000-10-02', 'Argentina', 'Corrientes');
+
+
+SELECT * FROM [User];
+
+
+UPDATE [User] SET phone = '3795667733' WHERE user_id = 1;
+UPDATE [User] SET address = 'Elm Street 332' WHERE user_id = 1;
+
+UPDATE [User] SET phone = '3783662746' WHERE user_id = 2;
+UPDATE [User] SET address = 'Quintana 113' WHERE user_id = 2;
+
+
+UPDATE [User] SET phone = '3794684731' WHERE user_id = 3;
+UPDATE [User] SET address = 'San Martin 5857' WHERE user_id = 3;
+
+
+SELECT 
+    SCHEMA_NAME(schema_id) AS Esquema,
+    name AS NombreProcedimiento,
+    create_date AS FechaCreacion,
+    modify_date AS UltimaModificacion
+FROM sys.procedures
+ORDER BY Esquema, NombreProcedimiento;

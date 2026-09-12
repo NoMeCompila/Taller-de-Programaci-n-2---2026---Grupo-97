@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using MobileSolutions.BusinessLayer.Models;
 using MobileSolutions.DataLayer;
 
 namespace MobileSolutions.BusinessLayer
@@ -9,16 +13,151 @@ namespace MobileSolutions.BusinessLayer
         Vendedor
     }
 
-    public class User
-    {
-        public string Username { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public UserRole Role { get; set; }
-    }
-
     public class UserService
     {
-        private readonly DatabaseConnection _dbConnection = new DatabaseConnection();
+        private readonly UserDal _userDal;
+        private readonly DatabaseConnection _dbConnection;
+
+        public UserService()
+        {
+            _userDal = new UserDal();
+            _dbConnection = new DatabaseConnection();
+        }
+
+
+        // modificar para identificar a que capa pertenece cada metodo, si es de negocio o de datos
+        public List<User> GetActiveUsers()
+        {
+            return _userDal.GetActiveUsers();
+        }
+
+        public (bool Success, string Message) CreateUser(User user)
+        {
+            if (user == null)
+                return (false, "Los campos del usuario no pueden estar vacíos.");
+            if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Lastname))
+                return (false, "El nombre y apellido son obligatorios.");
+            if (string.IsNullOrWhiteSpace(user.Dni) || user.Dni.Length < 7 || user.Dni.Length > 8)
+                return (false, "El DNI debe contener entre 7 y 8 dígitos.");
+            if (string.IsNullOrWhiteSpace(user.Username))
+                return (false, "El nombre de usuario es obligatorio.");
+            if (string.IsNullOrWhiteSpace(user.Password))
+                return (false, "La contraseña es obligatoria.");
+            if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
+                return (false, "Debe ingresar un correo electrónico válido.");
+            if (user.ProfileId <= 0)
+                return (false, "Debe seleccionar un perfil válido para el usuario.");
+
+            try
+            {
+                int newId = _userDal.CreateUser(user);
+                if (newId > 0)
+                {
+                    return (true, "Usuario agregado correctamente.");
+                }
+
+                return (false, "No se pudo registrar el usuario en la base de datos.");
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                // Manejo de errores por violación de restricciones UNIQUE (DNI, Username, Email)
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_User_DNI"))
+                        return (false, "Ya existe un usuario con ese número de DNI.");
+                    if (ex.Message.Contains("UQ_User_Username"))
+                        return (false, "El nombre de usuario ya se encuentra en uso.");
+                    if (ex.Message.Contains("UQ_User_Email"))
+                        return (false, "El correo electrónico ya está registrado en el sistema.");
+
+                    return (false, "Ya existe un registro con datos duplicados.");
+                }
+
+                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado al guardar el usuario: {ex.Message}");
+            }
+        }
+
+        public (bool Success, string Message) UpdateUser(User user)
+        {
+            if (user == null)
+                return (false, "Los datos del usuario no pueden ser nulos.");
+            if (user.UserId <= 0)
+                return (false, "Identificador de usuario no válido para la actualización.");
+            if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Lastname))
+                return (false, "El nombre y apellido son obligatorios.");
+            if (string.IsNullOrWhiteSpace(user.Dni) || user.Dni.Length < 7 || user.Dni.Length > 8)
+                return (false, "El DNI debe contener entre 7 y 8 dígitos.");
+            if (string.IsNullOrWhiteSpace(user.Username))
+                return (false, "El nombre de usuario es obligatorio.");
+            if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
+                return (false, "Debe ingresar un correo electrónico válido.");
+            if (user.ProfileId <= 0)
+                return (false, "Debe seleccionar un perfil válido para el usuario.");
+
+            try
+            {
+                bool updated = _userDal.UpdateUser(user);
+                if (updated)
+                {
+                    return (true, "Usuario actualizado correctamente.");
+                }
+
+                return (false, "No se pudo actualizar el usuario en la base de datos.");
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                // Manejo de errores por violación de restricciones UNIQUE (DNI, Username, Email)
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    if (ex.Message.Contains("UQ_User_DNI"))
+                        return (false, "Ya existe un usuario con ese número de DNI.");
+                    if (ex.Message.Contains("UQ_User_Username"))
+                        return (false, "El nombre de usuario ya se encuentra en uso.");
+                    if (ex.Message.Contains("UQ_User_Email"))
+                        return (false, "El correo electrónico ya está registrado en el sistema.");
+
+                    return (false, "Ya existe un registro con datos duplicados.");
+                }
+
+                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado al actualizar el usuario: {ex.Message}");
+            }
+        }
+
+        public (bool Success, string Message) SoftDeleteUser(int userId)
+        {
+            if (userId <= 0)
+            {
+                return (false, "Identificador de usuario no válido para la baja lógica.");
+            }
+
+            try
+            {
+                bool deleted = _userDal.SoftDeleteUser(userId);
+                if (deleted)
+                {
+                    return (true, "Usuario dado de baja correctamente.");
+                }
+
+                return (false, "No se pudo dar de baja al usuario en la base de datos.");
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado al dar de baja al usuario: {ex.Message}");
+            }
+        }
+
         public (bool IsConnected, string? ErrorMessage) CheckDatabaseConnection()
         {
             return _dbConnection.TestConnection();
@@ -26,9 +165,9 @@ namespace MobileSolutions.BusinessLayer
 
         private static readonly List<User> _mockUsers = new()
         {
-            new User { Username = "admin", Password = "123", Role = UserRole.Administrator },
-            new User { Username = "fer", Password = "123", Role = UserRole.Gerente },
-            new User { Username = "nico", Password = "123", Role = UserRole.Vendedor }
+            new User { Username = "admin", ProfileName = "Administrator" },
+            new User { Username = "fer", ProfileName = "Gerente" },
+            new User { Username = "nico", ProfileName = "Vendedor" }
         };
 
         public bool AuthenticateUser(string username, string password)
@@ -44,8 +183,7 @@ namespace MobileSolutions.BusinessLayer
             }
 
             return _mockUsers.FirstOrDefault(u =>
-                string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase) &&
-                u.Password == password);
+                string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase));
         }
 
         public User? GetUserByUsername(string username)
