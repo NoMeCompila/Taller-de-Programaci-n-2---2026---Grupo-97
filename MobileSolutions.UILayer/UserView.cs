@@ -109,7 +109,7 @@ namespace MobileSolutions.UILayer
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar la lista de usuarios: {ex.Message}",
+                MaterialMessageBox.Show($"Error al cargar la lista de usuarios: {ex.Message}",
                                 "Error de Datos",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);

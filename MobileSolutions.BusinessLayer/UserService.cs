@@ -24,6 +24,8 @@ namespace MobileSolutions.BusinessLayer
             _dbConnection = new DatabaseConnection();
         }
 
+
+        // modificar para identificar a que capa pertenece cada metodo, si es de negocio o de datos
         public List<User> GetActiveUsers()
         {
             return _userDal.GetActiveUsers();
@@ -32,7 +34,7 @@ namespace MobileSolutions.BusinessLayer
         public (bool Success, string Message) CreateUser(User user)
         {
             if (user == null)
-                return (false, "Los datos del usuario no pueden ser nulos.");
+                return (false, "Los campos del usuario no pueden estar vacíos.");
             if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Lastname))
                 return (false, "El nombre y apellido son obligatorios.");
             if (string.IsNullOrWhiteSpace(user.Dni) || user.Dni.Length < 7 || user.Dni.Length > 8)

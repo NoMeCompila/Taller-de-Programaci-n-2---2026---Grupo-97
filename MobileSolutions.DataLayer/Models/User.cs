@@ -22,7 +22,6 @@ namespace MobileSolutions.BusinessLayer.Models
         public string Nationality { get; set; } = string.Empty;
         public string Locality { get; set; } = string.Empty;
         public DateTime RegisterDate { get; set; }
-        // Propiedad calculada útil para mostrar en la grilla si se requiere
-        public string FullName => $"{Lastname}, {Name}";
+
     }
 }

@@ -7,7 +7,7 @@ GO
 CREATE OR ALTER PROCEDURE sp_GetActiveUsers
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT ON;  -- desactiva el conteo de filas afectadas para mejorar el rendimiento y evitar resultados innecesarios
 
     SELECT 
         Usuarios.user_id       AS user_id,
@@ -157,3 +157,5 @@ BEGIN
     WHERE user_id = @user_id;
 END;
 GO
+
+-- Falta agregar la Alta lógica para reactivar un usuario, si es necesario. 
