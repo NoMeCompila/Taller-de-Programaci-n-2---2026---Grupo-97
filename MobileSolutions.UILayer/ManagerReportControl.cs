@@ -218,20 +218,22 @@ namespace MobileSolutions.UILayer
                 BackColor = FondoTarjeta,
                 Background = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(60, 60, 60)),
                 LegendLocation = LegendLocation.Right,
+
                 Series = new SeriesCollection
                 {
                     new ColumnSeries
                     {
                         Title = "Unidades",
-                        Values = new ChartValues<double> { 0, 0, 0, 0, 0 }
+                        Values = new ChartValues<double> { 40, 60, 40, 20, 40 }
                     }
                 },
+
                 AxisX = new AxesCollection
                 {
                     new LiveCharts.Wpf.Axis
                     {
                         Title = "Productos",
-                        Labels = new[] { "Galaxy A14", "Iphone 11", "Moto E3", "Iphone 13", "Iphone 14" },
+                        Labels = new[] { "Galaxy A14", "Iphone 11", "Moto E3", "Huawei Nova 15", "Iphone 14" },
                         Foreground = WpfBrushes.White,
                         ShowLabels = true,
                         FontFamily = new WpfFontFamily("Roboto"),

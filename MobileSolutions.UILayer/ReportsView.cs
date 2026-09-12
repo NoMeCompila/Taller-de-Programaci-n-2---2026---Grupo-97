@@ -13,7 +13,7 @@ namespace MobileSolutions.UILayer
     public partial class ReportsView : UserControl
     {
 
-        int perfilActual = 2; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
+        int perfilActual = 3; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
         public ReportsView()
         {
             InitializeComponent();
