@@ -194,12 +194,12 @@ namespace MobileSolutions.UILayer
             lblProductTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblProductTitle.AutoSize = true;
             lblProductTitle.Depth = 0;
-            lblProductTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblProductTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblProductTitle.Location = new Point(707, 31);
+            lblProductTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblProductTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblProductTitle.Location = new Point(682, 6);
             lblProductTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblProductTitle.Name = "lblProductTitle";
-            lblProductTitle.Size = new Size(347, 72);
+            lblProductTitle.Size = new Size(277, 58);
             lblProductTitle.TabIndex = 35;
             lblProductTitle.Text = "PRODUCTOS";
             // 
@@ -336,8 +336,8 @@ namespace MobileSolutions.UILayer
             picProductTitle.IconChar = FontAwesome.Sharp.IconChar.None;
             picProductTitle.IconColor = Color.FromArgb(222, 0, 0, 0);
             picProductTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picProductTitle.IconSize = 97;
-            picProductTitle.Location = new Point(590, 20);
+            picProductTitle.IconSize = 75;
+            picProductTitle.Location = new Point(579, 3);
             picProductTitle.Margin = new Padding(3, 4, 3, 4);
             picProductTitle.Name = "picProductTitle";
             picProductTitle.Size = new Size(97, 100);

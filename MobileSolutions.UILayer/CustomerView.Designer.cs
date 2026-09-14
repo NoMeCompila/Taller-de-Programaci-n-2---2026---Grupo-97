@@ -28,7 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             txtName = new MaterialSkin.Controls.MaterialTextBox2();
             txtLastname = new MaterialSkin.Controls.MaterialTextBox2();
             txtDNI = new MaterialSkin.Controls.MaterialTextBox2();
@@ -407,12 +407,12 @@ namespace MobileSolutions.UILayer
             lblCustomerTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblCustomerTitle.AutoSize = true;
             lblCustomerTitle.Depth = 0;
-            lblCustomerTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblCustomerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblCustomerTitle.Location = new Point(631, 33);
+            lblCustomerTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCustomerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblCustomerTitle.Location = new Point(682, 6);
             lblCustomerTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblCustomerTitle.Name = "lblCustomerTitle";
-            lblCustomerTitle.Size = new Size(271, 72);
+            lblCustomerTitle.Size = new Size(216, 58);
             lblCustomerTitle.TabIndex = 35;
             lblCustomerTitle.Text = "CLIENTES";
             // 
@@ -690,14 +690,14 @@ namespace MobileSolutions.UILayer
             dtgCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCustomers.BackgroundColor = Color.MidnightBlue;
             dtgCustomers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgCustomers.Columns.AddRange(new DataGridViewColumn[] { ColumnName, ColumnLastname, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
             dtgCustomers.Dock = DockStyle.Fill;
@@ -919,8 +919,8 @@ namespace MobileSolutions.UILayer
             picCustomerTitle.IconChar = FontAwesome.Sharp.IconChar.None;
             picCustomerTitle.IconColor = Color.FromArgb(222, 0, 0, 0);
             picCustomerTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picCustomerTitle.IconSize = 97;
-            picCustomerTitle.Location = new Point(528, 20);
+            picCustomerTitle.IconSize = 75;
+            picCustomerTitle.Location = new Point(579, 3);
             picCustomerTitle.Margin = new Padding(3, 4, 3, 4);
             picCustomerTitle.Name = "picCustomerTitle";
             picCustomerTitle.Size = new Size(97, 100);

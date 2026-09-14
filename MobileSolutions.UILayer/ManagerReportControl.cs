@@ -18,8 +18,8 @@ namespace MobileSolutions.UILayer
     {
         private static readonly Color FondoPrincipal = Color.FromArgb(50, 50, 50);
         private static readonly Color FondoTarjeta = Color.FromArgb(60, 60, 60);
-        private static readonly Color FondoCabeceraTabla = Color.FromArgb(13, 71, 161); // Blue900
-        private static readonly Color ColorSeleccionTabla = Color.FromArgb(21, 101, 192); // Blue800
+        private static readonly Color FondoCabeceraTabla = Color.FromArgb(13, 71, 161);
+        private static readonly Color ColorSeleccionTabla = Color.FromArgb(21, 101, 192);
 
         private DataGridView dgvStockAlerts;
         private DataGridView dgvTopSellers;
@@ -34,52 +34,37 @@ namespace MobileSolutions.UILayer
         {
             BackColor = FondoPrincipal;
 
-            var tlpPrincipal = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 3,
-                BackColor = FondoPrincipal,
-                Margin = Padding.Empty,
-                Padding = new Padding(12, 12, 12, 12)
-            };
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.DollarSign, "Ingresos Totales", "$0.00"), 0, 0);
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.ChartLine, "Ganancia Neta", "$0.00"), 1, 0);
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Percent, "Margen Promedio", "0%"), 2, 0);
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.BoxOpen, "Unidades Vendidas", "0"), 3, 0);
 
-            tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            var chartTop5 = CrearCartesianTop5();
+            chartTop5.Dock = DockStyle.Fill;
+            chartTop5.Margin = new Padding(8);
+            pnlTopProductos.Controls.Add(chartTop5);
+            pnlTopProductos.Controls.SetChildIndex(chartTop5, 0);
 
-            tlpPrincipal.Controls.Add(CrearFilaKpis(), 0, 0);
-            tlpPrincipal.Controls.Add(CrearFilaGraficos(), 0, 1);
-            tlpPrincipal.Controls.Add(CrearFilaTablas(), 0, 2);
+            var chartMarcas = CrearPieMarcas();
+            chartMarcas.Dock = DockStyle.Fill;
+            chartMarcas.Margin = new Padding(8);
+            pnlMarcas.Controls.Add(chartMarcas);
+            pnlMarcas.Controls.SetChildIndex(chartMarcas, 0);
 
-            Controls.Add(tlpPrincipal);
+            dgvStockAlerts = CrearDgvStockAlerts();
+            dgvStockAlerts.Dock = DockStyle.Fill;
+            dgvStockAlerts.Margin = new Padding(8);
+            pnlStockAlerts.Controls.Add(dgvStockAlerts);
+            pnlStockAlerts.Controls.SetChildIndex(dgvStockAlerts, 0);
+
+            dgvTopSellers = CrearDgvTopSellers();
+            dgvTopSellers.Dock = DockStyle.Fill;
+            dgvTopSellers.Margin = new Padding(8);
+            pnlTopSellers.Controls.Add(dgvTopSellers);
+            pnlTopSellers.Controls.SetChildIndex(dgvTopSellers, 0);
         }
 
-        #region Fila 1 - KPIs
-
-        private TableLayoutPanel CrearFilaKpis()
-        {
-            var tlp = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 4,
-                RowCount = 1,
-                BackColor = FondoPrincipal,
-                Margin = Padding.Empty
-            };
-
-            for (int i = 0; i < 4; i++)
-                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.DollarSign, "Ingresos Totales", "$0.00"), 0, 0);
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.ChartLine, "Ganancia Neta", "$0.00"), 1, 0);
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.Percent, "Margen Promedio", "0%"), 2, 0);
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.BoxOpen, "Unidades Vendidas", "0"), 3, 0);
-
-            return tlp;
-        }
+        #region KPIs
 
         private Panel CrearTarjetaKpi(IconChar icono, string titulo, string valor)
         {
@@ -145,70 +130,7 @@ namespace MobileSolutions.UILayer
 
         #endregion
 
-        #region Fila 2 - Gráficos
-
-        private TableLayoutPanel CrearFilaGraficos()
-        {
-            var tlp = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 1,
-                BackColor = FondoPrincipal,
-                Margin = Padding.Empty
-            };
-
-            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-
-            tlp.Controls.Add(CrearCajaGrafico(CrearCartesianTop5(), "Top 5 Productos más vendidos"), 0, 0);
-            tlp.Controls.Add(CrearCajaGrafico(CrearPieMarcas(), "Ventas por Marca"), 1, 0);
-
-            return tlp;
-        }
-
-        private Panel CrearCajaGrafico(Control grafico, string titulo)
-        {
-            var card = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
-                Margin = new Padding(6)
-            };
-
-            var layout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 2,
-                BackColor = Color.Transparent,
-                Margin = Padding.Empty
-            };
-
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
-            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-
-            var lblTitulo = new MaterialLabel
-            {
-                Dock = DockStyle.Fill,
-                AutoSize = false,
-                Text = titulo,
-                TextAlign = ContentAlignment.MiddleLeft,
-                Padding = new Padding(8, 0, 0, 0),
-                ForeColor = Color.White,
-                Font = new Font("Roboto", 11F, FontStyle.Regular)
-            };
-
-            grafico.Dock = DockStyle.Fill;
-
-            layout.Controls.Add(lblTitulo, 0, 0);
-            layout.Controls.Add(grafico, 0, 1);
-
-            card.Controls.Add(layout);
-            return card;
-        }
+        #region Gráficos
 
         private CartesianChart CrearCartesianTop5()
         {
@@ -305,77 +227,11 @@ namespace MobileSolutions.UILayer
 
         #endregion
 
-        #region Fila 3 - Tablas
-
-        private TableLayoutPanel CrearFilaTablas()
-        {
-            var tlp = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 1,
-                BackColor = FondoPrincipal,
-                Margin = Padding.Empty
-            };
-
-            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-
-            dgvStockAlerts = CrearDgvStockAlerts();
-            dgvTopSellers = CrearDgvTopSellers();
-
-            tlp.Controls.Add(CrearCajaTabla(dgvStockAlerts, "Alertas de Stock"), 0, 0);
-            tlp.Controls.Add(CrearCajaTabla(dgvTopSellers, "Top Sellers"), 1, 0);
-
-            return tlp;
-        }
-
-        private Panel CrearCajaTabla(DataGridView dgv, string titulo)
-        {
-            var card = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
-                Margin = new Padding(6)
-            };
-
-            var layout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 2,
-                BackColor = Color.Transparent,
-                Margin = Padding.Empty
-            };
-
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
-            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-
-            var lblTitulo = new MaterialLabel
-            {
-                Dock = DockStyle.Fill,
-                AutoSize = false,
-                Text = titulo,
-                TextAlign = ContentAlignment.MiddleLeft,
-                Padding = new Padding(8, 0, 0, 0),
-                ForeColor = Color.White,
-                Font = new Font("Roboto", 11F, FontStyle.Regular)
-            };
-
-            dgv.Dock = DockStyle.Fill;
-
-            layout.Controls.Add(lblTitulo, 0, 0);
-            layout.Controls.Add(dgv, 0, 1);
-
-            card.Controls.Add(layout);
-            return card;
-        }
+        #region Tablas
 
         private DataGridView CrearDgvStockAlerts()
         {
-            var dgv = CrearDataGridView();
+            var dgv = CrearDataGridViewBase();
             AgregarColumna(dgv, "Producto", "Producto");
             AgregarColumna(dgv, "StockActual", "Stock Actual");
             AgregarColumna(dgv, "StockMinimo", "Stock Mínimo");
@@ -385,7 +241,7 @@ namespace MobileSolutions.UILayer
 
         private DataGridView CrearDgvTopSellers()
         {
-            var dgv = CrearDataGridView();
+            var dgv = CrearDataGridViewBase();
             AgregarColumna(dgv, "Producto", "Producto");
             AgregarColumna(dgv, "Marca", "Marca");
             AgregarColumna(dgv, "Unidades", "Unidades");
@@ -393,7 +249,7 @@ namespace MobileSolutions.UILayer
             return dgv;
         }
 
-        private DataGridView CrearDataGridView()
+        private DataGridView CrearDataGridViewBase()
         {
             var dgv = new DataGridView
             {

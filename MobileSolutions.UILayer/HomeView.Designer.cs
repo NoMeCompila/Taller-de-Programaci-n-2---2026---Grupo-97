@@ -75,19 +75,19 @@ namespace MobileSolutions.UILayer
             lblHomeTitle.Anchor = AnchorStyles.Top;
             lblHomeTitle.AutoSize = true;
             lblHomeTitle.Depth = 0;
-            lblHomeTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblHomeTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblHomeTitle.Location = new Point(810, 32);
+            lblHomeTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblHomeTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblHomeTitle.Location = new Point(698, 6);
             lblHomeTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblHomeTitle.Name = "lblHomeTitle";
-            lblHomeTitle.Size = new Size(170, 72);
+            lblHomeTitle.Size = new Size(137, 58);
             lblHomeTitle.TabIndex = 0;
             lblHomeTitle.Text = "HOME";
             // 
             // picHomeTitle
             // 
             picHomeTitle.Anchor = AnchorStyles.Top;
-            picHomeTitle.Location = new Point(694, 23);
+            picHomeTitle.Location = new Point(579, 3);
             picHomeTitle.Margin = new Padding(3, 4, 3, 4);
             picHomeTitle.Name = "picHomeTitle";
             picHomeTitle.Size = new Size(97, 100);

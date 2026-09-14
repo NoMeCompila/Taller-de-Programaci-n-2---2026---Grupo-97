@@ -513,13 +513,13 @@ namespace MobileSolutions.UILayer
             // 
             lblTitle.AutoSize = true;
             lblTitle.Depth = 0;
-            lblTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
+            lblTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(603, 0);
+            lblTitle.Location = new Point(682, 6);
             lblTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(621, 72);
+            lblTitle.Size = new Size(500, 58);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "HISTORIAL DE VENTAS";
             lblTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -530,8 +530,8 @@ namespace MobileSolutions.UILayer
             picHistoryTitle.IconChar = FontAwesome.Sharp.IconChar.None;
             picHistoryTitle.IconColor = Color.White;
             picHistoryTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picHistoryTitle.IconSize = 94;
-            picHistoryTitle.Location = new Point(491, 0);
+            picHistoryTitle.IconSize = 75;
+            picHistoryTitle.Location = new Point(579, 3);
             picHistoryTitle.Name = "picHistoryTitle";
             picHistoryTitle.Size = new Size(97, 94);
             picHistoryTitle.TabIndex = 7;

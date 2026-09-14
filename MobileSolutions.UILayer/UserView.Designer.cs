@@ -28,7 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtName = new MaterialSkin.Controls.MaterialTextBox2();
             txtLastname = new MaterialSkin.Controls.MaterialTextBox2();
             txtDNI = new MaterialSkin.Controls.MaterialTextBox2();
@@ -487,12 +487,12 @@ namespace MobileSolutions.UILayer
             lblUserTitle.Anchor = AnchorStyles.Top;
             lblUserTitle.AutoSize = true;
             lblUserTitle.Depth = 0;
-            lblUserTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUserTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblUserTitle.Location = new Point(701, 0);
+            lblUserTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblUserTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblUserTitle.Location = new Point(682, 6);
             lblUserTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblUserTitle.Name = "lblUserTitle";
-            lblUserTitle.Size = new Size(283, 72);
+            lblUserTitle.Size = new Size(226, 58);
             lblUserTitle.TabIndex = 35;
             lblUserTitle.Text = "USUARIOS";
             // 
@@ -541,14 +541,14 @@ namespace MobileSolutions.UILayer
             dtgUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgUsers.BackgroundColor = Color.MidnightBlue;
             dtgUsers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgUsers.Columns.AddRange(new DataGridViewColumn[] { ColumnProfile, ColumnName, ColumnLastname, ColumnUsername, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
             dtgUsers.Dock = DockStyle.Bottom;
@@ -949,8 +949,8 @@ namespace MobileSolutions.UILayer
             picUserTitle.IconChar = FontAwesome.Sharp.IconChar.None;
             picUserTitle.IconColor = Color.FromArgb(222, 0, 0, 0);
             picUserTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picUserTitle.IconSize = 97;
-            picUserTitle.Location = new Point(577, 0);
+            picUserTitle.IconSize = 75;
+            picUserTitle.Location = new Point(579, 3);
             picUserTitle.Margin = new Padding(3, 4, 3, 4);
             picUserTitle.Name = "picUserTitle";
             picUserTitle.Size = new Size(97, 100);

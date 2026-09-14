@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using LiveCharts;
@@ -31,52 +32,31 @@ namespace MobileSolutions.UILayer
         {
             BackColor = FondoPrincipal;
 
-            var tlpPrincipal = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 3,
-                BackColor = FondoPrincipal,
-                Margin = Padding.Empty,
-                Padding = new Padding(12, 12, 12, 12)
-            };
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Wallet, "Facturación Mes", "$23,680.00", "+12% vs. mes anterior"), 0, 0);
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Receipt, "Volumen de Ventas", "35 tickets"), 1, 0);
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.HandHoldingUsd, "Ticket Promedio", "$676.57"), 2, 0);
+            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Trophy, "Venta Más Alta", "$1,800.00"), 3, 0);
 
-            tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            var chartEvolucion = CrearChartEvolucionMensual();
+            chartEvolucion.Dock = DockStyle.Fill;
+            chartEvolucion.Margin = new Padding(8);
+            pnlEvolucion.Controls.Add(chartEvolucion);
+            pnlEvolucion.Controls.SetChildIndex(chartEvolucion, 0);
 
-            tlpPrincipal.Controls.Add(CrearFilaKpis(), 0, 0);
-            tlpPrincipal.Controls.Add(CrearFilaEvolucion(), 0, 1);
-            tlpPrincipal.Controls.Add(CrearFilaDistribucion(), 0, 2);
+            var chartTopProductos = CrearChartTopProductos();
+            chartTopProductos.Dock = DockStyle.Fill;
+            chartTopProductos.Margin = new Padding(8);
+            pnlTopProductos.Controls.Add(chartTopProductos);
+            pnlTopProductos.Controls.SetChildIndex(chartTopProductos, 0);
 
-            Controls.Add(tlpPrincipal);
+            var chartMarcas = CrearPieMarcas();
+            chartMarcas.Dock = DockStyle.Fill;
+            chartMarcas.Margin = new Padding(8);
+            pnlMarcas.Controls.Add(chartMarcas);
+            pnlMarcas.Controls.SetChildIndex(chartMarcas, 0);
         }
 
-        #region Fila 1 - KPIs Personales
-
-        private TableLayoutPanel CrearFilaKpis()
-        {
-            var tlp = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 4,
-                RowCount = 1,
-                BackColor = FondoPrincipal,
-                Margin = Padding.Empty
-            };
-
-            for (int i = 0; i < 4; i++)
-                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.Wallet, "Facturación Mes", "$23,680.00", "+12% vs. mes anterior"), 0, 0);
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.Receipt, "Volumen de Ventas", "35 tickets"), 1, 0);
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.HandHoldingUsd, "Ticket Promedio", "$676.57"), 2, 0);
-            tlp.Controls.Add(CrearTarjetaKpi(IconChar.Trophy, "Venta Más Alta", "$1,800.00"), 3, 0);
-
-            return tlp;
-        }
+        #region KPIs
 
         private Panel CrearTarjetaKpi(IconChar icono, string titulo, string valor, string? subtitulo = null)
         {
@@ -154,50 +134,7 @@ namespace MobileSolutions.UILayer
 
         #endregion
 
-        #region Fila 2 - Evolución Temporal
-
-        private Panel CrearFilaEvolucion()
-        {
-            var card = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
-                Margin = new Padding(6)
-            };
-
-            var layout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 2,
-                BackColor = Color.Transparent,
-                Margin = Padding.Empty
-            };
-
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
-            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-
-            var lblTitulo = new MaterialLabel
-            {
-                Dock = DockStyle.Fill,
-                AutoSize = false,
-                Text = "Evolución de Ventas Diarias",
-                TextAlign = ContentAlignment.MiddleLeft,
-                Padding = new Padding(8, 0, 0, 0),
-                ForeColor = Color.White,
-                Font = new Font("Roboto", 11F, FontStyle.Regular)
-            };
-
-            var chartEvolucionMensual = CrearChartEvolucionMensual();
-            chartEvolucionMensual.Dock = DockStyle.Fill;
-
-            layout.Controls.Add(lblTitulo, 0, 0);
-            layout.Controls.Add(chartEvolucionMensual, 0, 1);
-
-            card.Controls.Add(layout);
-            return card;
-        }
+        #region Evolución Temporal
 
         private CartesianChart CrearChartEvolucionMensual()
         {
@@ -288,70 +225,7 @@ namespace MobileSolutions.UILayer
 
         #endregion
 
-        #region Fila 3 - Distribución Analítica
-
-        private TableLayoutPanel CrearFilaDistribucion()
-        {
-            var tlp = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 1,
-                BackColor = FondoPrincipal,
-                Margin = Padding.Empty
-            };
-
-            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-
-            tlp.Controls.Add(CrearCajaGrafico(CrearChartTopProductos(), "Mis Top 5 Productos"), 0, 0);
-            tlp.Controls.Add(CrearCajaGrafico(CrearPieMarcas(), "Rendimiento por Marca"), 1, 0);
-
-            return tlp;
-        }
-
-        private Panel CrearCajaGrafico(Control grafico, string titulo)
-        {
-            var card = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
-                Margin = new Padding(6)
-            };
-
-            var layout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 2,
-                BackColor = Color.Transparent,
-                Margin = Padding.Empty
-            };
-
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
-            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-
-            var lblTitulo = new MaterialLabel
-            {
-                Dock = DockStyle.Fill,
-                AutoSize = false,
-                Text = titulo,
-                TextAlign = ContentAlignment.MiddleLeft,
-                Padding = new Padding(8, 0, 0, 0),
-                ForeColor = Color.White,
-                Font = new Font("Roboto", 11F, FontStyle.Regular)
-            };
-
-            grafico.Dock = DockStyle.Fill;
-
-            layout.Controls.Add(lblTitulo, 0, 0);
-            layout.Controls.Add(grafico, 0, 1);
-
-            card.Controls.Add(layout);
-            return card;
-        }
+        #region Distribución Analítica
 
         private CartesianChart CrearChartTopProductos()
         {
