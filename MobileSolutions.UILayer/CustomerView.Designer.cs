@@ -57,16 +57,6 @@ namespace MobileSolutions.UILayer
             btnName = new MaterialSkin.Controls.MaterialButton();
             panel2 = new Panel();
             dtgCustomers = new DataGridView();
-            panel3 = new Panel();
-            materialCard4 = new MaterialSkin.Controls.MaterialCard();
-            picSex = new FontAwesome.Sharp.IconPictureBox();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            radMasculino = new MaterialSkin.Controls.MaterialRadioButton();
-            radOtro = new MaterialSkin.Controls.MaterialRadioButton();
-            radFemenino = new MaterialSkin.Controls.MaterialRadioButton();
-            materialCard3 = new MaterialSkin.Controls.MaterialCard();
-            picBirth = new FontAwesome.Sharp.IconPictureBox();
-            picCustomerTitle = new FontAwesome.Sharp.IconPictureBox();
             ColumnName = new DataGridViewLinkColumn();
             ColumnLastname = new DataGridViewLinkColumn();
             ColumnDNI = new DataGridViewLinkColumn();
@@ -77,6 +67,16 @@ namespace MobileSolutions.UILayer
             ColumnAddress = new DataGridViewLinkColumn();
             ColumnNationality = new DataGridViewLinkColumn();
             ColumnLocality = new DataGridViewLinkColumn();
+            panel3 = new Panel();
+            materialCard4 = new MaterialSkin.Controls.MaterialCard();
+            picSex = new FontAwesome.Sharp.IconPictureBox();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            radMasculino = new MaterialSkin.Controls.MaterialRadioButton();
+            radOtro = new MaterialSkin.Controls.MaterialRadioButton();
+            radFemenino = new MaterialSkin.Controls.MaterialRadioButton();
+            materialCard3 = new MaterialSkin.Controls.MaterialCard();
+            picBirth = new FontAwesome.Sharp.IconPictureBox();
+            picCustomerTitle = new FontAwesome.Sharp.IconPictureBox();
             panel1.SuspendLayout();
             materialCard2.SuspendLayout();
             panel2.SuspendLayout();
@@ -409,7 +409,7 @@ namespace MobileSolutions.UILayer
             lblCustomerTitle.Depth = 0;
             lblCustomerTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblCustomerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblCustomerTitle.Location = new Point(632, 24);
+            lblCustomerTitle.Location = new Point(631, 33);
             lblCustomerTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblCustomerTitle.Name = "lblCustomerTitle";
             lblCustomerTitle.Size = new Size(271, 72);
@@ -708,6 +708,66 @@ namespace MobileSolutions.UILayer
             dtgCustomers.Size = new Size(1490, 273);
             dtgCustomers.TabIndex = 33;
             // 
+            // ColumnName
+            // 
+            ColumnName.HeaderText = "Nombre";
+            ColumnName.MinimumWidth = 6;
+            ColumnName.Name = "ColumnName";
+            // 
+            // ColumnLastname
+            // 
+            ColumnLastname.HeaderText = "Apellido";
+            ColumnLastname.MinimumWidth = 6;
+            ColumnLastname.Name = "ColumnLastname";
+            // 
+            // ColumnDNI
+            // 
+            ColumnDNI.HeaderText = "DNI";
+            ColumnDNI.MinimumWidth = 6;
+            ColumnDNI.Name = "ColumnDNI";
+            // 
+            // ColumnSex
+            // 
+            ColumnSex.HeaderText = "Sexo";
+            ColumnSex.MinimumWidth = 6;
+            ColumnSex.Name = "ColumnSex";
+            // 
+            // ColumnBirth
+            // 
+            ColumnBirth.HeaderText = "Fecha de Nac.";
+            ColumnBirth.MinimumWidth = 6;
+            ColumnBirth.Name = "ColumnBirth";
+            // 
+            // ColumnEmail
+            // 
+            ColumnEmail.HeaderText = "Email";
+            ColumnEmail.MinimumWidth = 6;
+            ColumnEmail.Name = "ColumnEmail";
+            // 
+            // ColumnPhone
+            // 
+            ColumnPhone.HeaderText = "Teléfono";
+            ColumnPhone.MinimumWidth = 6;
+            ColumnPhone.Name = "ColumnPhone";
+            // 
+            // ColumnAddress
+            // 
+            ColumnAddress.HeaderText = "Dirección";
+            ColumnAddress.MinimumWidth = 6;
+            ColumnAddress.Name = "ColumnAddress";
+            // 
+            // ColumnNationality
+            // 
+            ColumnNationality.HeaderText = "Nacionalidad";
+            ColumnNationality.MinimumWidth = 6;
+            ColumnNationality.Name = "ColumnNationality";
+            // 
+            // ColumnLocality
+            // 
+            ColumnLocality.HeaderText = "Localidad";
+            ColumnLocality.MinimumWidth = 6;
+            ColumnLocality.Name = "ColumnLocality";
+            // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Left;
@@ -866,66 +926,6 @@ namespace MobileSolutions.UILayer
             picCustomerTitle.Size = new Size(97, 100);
             picCustomerTitle.TabIndex = 45;
             picCustomerTitle.TabStop = false;
-            // 
-            // ColumnName
-            // 
-            ColumnName.HeaderText = "Nombre";
-            ColumnName.MinimumWidth = 6;
-            ColumnName.Name = "ColumnName";
-            // 
-            // ColumnLastname
-            // 
-            ColumnLastname.HeaderText = "Apellido";
-            ColumnLastname.MinimumWidth = 6;
-            ColumnLastname.Name = "ColumnLastname";
-            // 
-            // ColumnDNI
-            // 
-            ColumnDNI.HeaderText = "DNI";
-            ColumnDNI.MinimumWidth = 6;
-            ColumnDNI.Name = "ColumnDNI";
-            // 
-            // ColumnSex
-            // 
-            ColumnSex.HeaderText = "Sexo";
-            ColumnSex.MinimumWidth = 6;
-            ColumnSex.Name = "ColumnSex";
-            // 
-            // ColumnBirth
-            // 
-            ColumnBirth.HeaderText = "Fecha de Nac.";
-            ColumnBirth.MinimumWidth = 6;
-            ColumnBirth.Name = "ColumnBirth";
-            // 
-            // ColumnEmail
-            // 
-            ColumnEmail.HeaderText = "Email";
-            ColumnEmail.MinimumWidth = 6;
-            ColumnEmail.Name = "ColumnEmail";
-            // 
-            // ColumnPhone
-            // 
-            ColumnPhone.HeaderText = "Teléfono";
-            ColumnPhone.MinimumWidth = 6;
-            ColumnPhone.Name = "ColumnPhone";
-            // 
-            // ColumnAddress
-            // 
-            ColumnAddress.HeaderText = "Dirección";
-            ColumnAddress.MinimumWidth = 6;
-            ColumnAddress.Name = "ColumnAddress";
-            // 
-            // ColumnNationality
-            // 
-            ColumnNationality.HeaderText = "Nacionalidad";
-            ColumnNationality.MinimumWidth = 6;
-            ColumnNationality.Name = "ColumnNationality";
-            // 
-            // ColumnLocality
-            // 
-            ColumnLocality.HeaderText = "Localidad";
-            ColumnLocality.MinimumWidth = 6;
-            ColumnLocality.Name = "ColumnLocality";
             // 
             // CustomerView
             // 

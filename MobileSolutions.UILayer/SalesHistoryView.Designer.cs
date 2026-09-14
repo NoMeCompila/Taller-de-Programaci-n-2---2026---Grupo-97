@@ -41,17 +41,15 @@ namespace MobileSolutions.UILayer
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             tlpPrincipal = new TableLayoutPanel();
-            lblTitle = new MaterialLabel();
-            flpFiltros = new FlowLayoutPanel();
-            txtFilterSaleNumber = new MaterialTextBox2();
-            dtpDateFrom = new DateTimePicker();
-            dtpDateTo = new DateTimePicker();
-            txtFilterClient = new MaterialTextBox2();
-            cboFilterSeller = new MaterialComboBox();
-            btnSearch = new MaterialButton();
-            btnClear = new MaterialButton();
             splitContainer = new SplitContainer();
             dgvSales = new DataGridView();
+            colNumeroVenta = new DataGridViewTextBoxColumn();
+            colFecha = new DataGridViewTextBoxColumn();
+            colCliente = new DataGridViewTextBoxColumn();
+            colVendedor = new DataGridViewTextBoxColumn();
+            colMetodoPago = new DataGridViewTextBoxColumn();
+            colTotal = new DataGridViewTextBoxColumn();
+            colAcciones = new DataGridViewImageColumn();
             tlpDetalle = new TableLayoutPanel();
             lblDetailTitle = new MaterialLabel();
             dgvSaleDetails = new DataGridView();
@@ -60,15 +58,18 @@ namespace MobileSolutions.UILayer
             colCantidad = new DataGridViewTextBoxColumn();
             colPrecioUnitario = new DataGridViewTextBoxColumn();
             colSubtotal = new DataGridViewTextBoxColumn();
-            colNumeroVenta = new DataGridViewTextBoxColumn();
-            colFecha = new DataGridViewTextBoxColumn();
-            colCliente = new DataGridViewTextBoxColumn();
-            colVendedor = new DataGridViewTextBoxColumn();
-            colMetodoPago = new DataGridViewTextBoxColumn();
-            colTotal = new DataGridViewTextBoxColumn();
-            colAcciones = new DataGridViewImageColumn();
+            flpFiltros = new FlowLayoutPanel();
+            txtFilterSaleNumber = new MaterialTextBox2();
+            dtpDateFrom = new DateTimePicker();
+            dtpDateTo = new DateTimePicker();
+            txtFilterClient = new MaterialTextBox2();
+            cboFilterSeller = new MaterialComboBox();
+            btnSearch = new MaterialButton();
+            btnClear = new MaterialButton();
+            lblTitle = new MaterialLabel();
+            picHistoryTitle = new FontAwesome.Sharp.IconPictureBox();
+            panel1 = new Panel();
             tlpPrincipal.SuspendLayout();
-            flpFiltros.SuspendLayout();
             ((ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
@@ -76,6 +77,9 @@ namespace MobileSolutions.UILayer
             ((ISupportInitialize)dgvSales).BeginInit();
             tlpDetalle.SuspendLayout();
             ((ISupportInitialize)dgvSaleDetails).BeginInit();
+            flpFiltros.SuspendLayout();
+            ((ISupportInitialize)picHistoryTitle).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // tlpPrincipal
@@ -83,33 +87,251 @@ namespace MobileSolutions.UILayer
             tlpPrincipal.BackColor = Color.FromArgb(50, 50, 50);
             tlpPrincipal.ColumnCount = 1;
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpPrincipal.Controls.Add(flpFiltros, 0, 1);
             tlpPrincipal.Controls.Add(splitContainer, 0, 2);
-            tlpPrincipal.Controls.Add(lblTitle, 0, 0);
+            tlpPrincipal.Controls.Add(flpFiltros, 0, 0);
             tlpPrincipal.Dock = DockStyle.Fill;
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
             tlpPrincipal.Padding = new Padding(16, 12, 16, 12);
-            tlpPrincipal.RowCount = 3;
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpPrincipal.Size = new Size(1411, 729);
+            tlpPrincipal.RowCount = 2;
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 77F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 79F));
+            tlpPrincipal.Size = new Size(1680, 830);
             tlpPrincipal.TabIndex = 0;
             // 
-            // lblTitle
+            // splitContainer
             // 
-            lblTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblTitle.Depth = 0;
-            lblTitle.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(19, 12);
-            lblTitle.MouseState = MaterialSkin.MouseState.HOVER;
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(1373, 50);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "HISTORIAL DE VENTAS";
-            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            splitContainer.BackColor = Color.FromArgb(50, 50, 50);
+            splitContainer.Dock = DockStyle.Fill;
+            splitContainer.Location = new Point(19, 100);
+            splitContainer.Name = "splitContainer";
+            splitContainer.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer.Panel1
+            // 
+            splitContainer.Panel1.BackColor = Color.FromArgb(50, 50, 50);
+            splitContainer.Panel1.Controls.Add(dgvSales);
+            splitContainer.Panel1MinSize = 120;
+            // 
+            // splitContainer.Panel2
+            // 
+            splitContainer.Panel2.BackColor = Color.FromArgb(50, 50, 50);
+            splitContainer.Panel2.Controls.Add(tlpDetalle);
+            splitContainer.Panel2MinSize = 120;
+            splitContainer.Size = new Size(1642, 715);
+            splitContainer.SplitterDistance = 372;
+            splitContainer.SplitterWidth = 6;
+            splitContainer.TabIndex = 2;
+            // 
+            // dgvSales
+            // 
+            dgvSales.AllowUserToAddRows = false;
+            dgvSales.AllowUserToDeleteRows = false;
+            dgvSales.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(58, 58, 58);
+            dgvSales.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvSales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSales.BackgroundColor = Color.FromArgb(50, 50, 50);
+            dgvSales.BorderStyle = BorderStyle.None;
+            dgvSales.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvSales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvSales.ColumnHeadersHeight = 38;
+            dgvSales.Columns.AddRange(new DataGridViewColumn[] { colNumeroVenta, colFecha, colCliente, colVendedor, colMetodoPago, colTotal, colAcciones });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(50, 50, 50);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(21, 101, 192);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvSales.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvSales.EnableHeadersVisualStyles = false;
+            dgvSales.GridColor = Color.FromArgb(70, 70, 70);
+            dgvSales.Location = new Point(0, 56);
+            dgvSales.MultiSelect = false;
+            dgvSales.Name = "dgvSales";
+            dgvSales.ReadOnly = true;
+            dgvSales.RowHeadersVisible = false;
+            dgvSales.RowHeadersWidth = 51;
+            dgvSales.RowTemplate.Height = 34;
+            dgvSales.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSales.Size = new Size(1295, 254);
+            dgvSales.TabIndex = 0;
+            // 
+            // colNumeroVenta
+            // 
+            colNumeroVenta.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colNumeroVenta.HeaderText = "N° Venta";
+            colNumeroVenta.MinimumWidth = 6;
+            colNumeroVenta.Name = "colNumeroVenta";
+            colNumeroVenta.ReadOnly = true;
+            // 
+            // colFecha
+            // 
+            colFecha.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colFecha.HeaderText = "Fecha";
+            colFecha.MinimumWidth = 6;
+            colFecha.Name = "colFecha";
+            colFecha.ReadOnly = true;
+            // 
+            // colCliente
+            // 
+            colCliente.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colCliente.HeaderText = "Cliente";
+            colCliente.MinimumWidth = 6;
+            colCliente.Name = "colCliente";
+            colCliente.ReadOnly = true;
+            // 
+            // colVendedor
+            // 
+            colVendedor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colVendedor.HeaderText = "Vendedor";
+            colVendedor.MinimumWidth = 6;
+            colVendedor.Name = "colVendedor";
+            colVendedor.ReadOnly = true;
+            // 
+            // colMetodoPago
+            // 
+            colMetodoPago.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colMetodoPago.HeaderText = "Método Pago";
+            colMetodoPago.MinimumWidth = 6;
+            colMetodoPago.Name = "colMetodoPago";
+            colMetodoPago.ReadOnly = true;
+            // 
+            // colTotal
+            // 
+            colTotal.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTotal.HeaderText = "Total ($)";
+            colTotal.MinimumWidth = 6;
+            colTotal.Name = "colTotal";
+            colTotal.ReadOnly = true;
+            // 
+            // colAcciones
+            // 
+            colAcciones.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colAcciones.HeaderText = "Acciones";
+            colAcciones.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            colAcciones.MinimumWidth = 6;
+            colAcciones.Name = "colAcciones";
+            colAcciones.ReadOnly = true;
+            // 
+            // tlpDetalle
+            // 
+            tlpDetalle.BackColor = Color.FromArgb(50, 50, 50);
+            tlpDetalle.ColumnCount = 1;
+            tlpDetalle.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpDetalle.Controls.Add(lblDetailTitle, 0, 0);
+            tlpDetalle.Controls.Add(dgvSaleDetails, 0, 1);
+            tlpDetalle.Dock = DockStyle.Fill;
+            tlpDetalle.Location = new Point(0, 0);
+            tlpDetalle.Name = "tlpDetalle";
+            tlpDetalle.RowCount = 2;
+            tlpDetalle.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tlpDetalle.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDetalle.Size = new Size(1642, 337);
+            tlpDetalle.TabIndex = 0;
+            // 
+            // lblDetailTitle
+            // 
+            lblDetailTitle.Depth = 0;
+            lblDetailTitle.Dock = DockStyle.Fill;
+            lblDetailTitle.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblDetailTitle.ForeColor = Color.FromArgb(178, 235, 242);
+            lblDetailTitle.Location = new Point(3, 0);
+            lblDetailTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDetailTitle.Name = "lblDetailTitle";
+            lblDetailTitle.Size = new Size(1636, 30);
+            lblDetailTitle.TabIndex = 0;
+            lblDetailTitle.Text = "Detalle del comprobante seleccionado";
+            lblDetailTitle.TextAlign = ContentAlignment.MiddleLeft;
+            lblDetailTitle.Click += lblDetailTitle_Click;
+            // 
+            // dgvSaleDetails
+            // 
+            dgvSaleDetails.AllowUserToAddRows = false;
+            dgvSaleDetails.AllowUserToDeleteRows = false;
+            dgvSaleDetails.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(58, 58, 58);
+            dgvSaleDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvSaleDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSaleDetails.BackgroundColor = Color.FromArgb(50, 50, 50);
+            dgvSaleDetails.BorderStyle = BorderStyle.None;
+            dgvSaleDetails.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvSaleDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dgvSaleDetails.ColumnHeadersHeight = 38;
+            dgvSaleDetails.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colDescripcion, colCantidad, colPrecioUnitario, colSubtotal });
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 50);
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(21, 101, 192);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvSaleDetails.DefaultCellStyle = dataGridViewCellStyle6;
+            dgvSaleDetails.Dock = DockStyle.Fill;
+            dgvSaleDetails.EnableHeadersVisualStyles = false;
+            dgvSaleDetails.GridColor = Color.FromArgb(70, 70, 70);
+            dgvSaleDetails.Location = new Point(3, 33);
+            dgvSaleDetails.MultiSelect = false;
+            dgvSaleDetails.Name = "dgvSaleDetails";
+            dgvSaleDetails.ReadOnly = true;
+            dgvSaleDetails.RowHeadersVisible = false;
+            dgvSaleDetails.RowHeadersWidth = 51;
+            dgvSaleDetails.RowTemplate.Height = 30;
+            dgvSaleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSaleDetails.Size = new Size(1636, 301);
+            dgvSaleDetails.TabIndex = 1;
+            // 
+            // colCodigo
+            // 
+            colCodigo.HeaderText = "Código";
+            colCodigo.MinimumWidth = 6;
+            colCodigo.Name = "colCodigo";
+            colCodigo.ReadOnly = true;
+            // 
+            // colDescripcion
+            // 
+            colDescripcion.FillWeight = 180F;
+            colDescripcion.HeaderText = "Descripción";
+            colDescripcion.MinimumWidth = 6;
+            colDescripcion.Name = "colDescripcion";
+            colDescripcion.ReadOnly = true;
+            // 
+            // colCantidad
+            // 
+            colCantidad.HeaderText = "Cantidad";
+            colCantidad.MinimumWidth = 6;
+            colCantidad.Name = "colCantidad";
+            colCantidad.ReadOnly = true;
+            // 
+            // colPrecioUnitario
+            // 
+            colPrecioUnitario.HeaderText = "Precio Unitario";
+            colPrecioUnitario.MinimumWidth = 6;
+            colPrecioUnitario.Name = "colPrecioUnitario";
+            colPrecioUnitario.ReadOnly = true;
+            // 
+            // colSubtotal
+            // 
+            colSubtotal.HeaderText = "Subtotal";
+            colSubtotal.MinimumWidth = 6;
+            colSubtotal.Name = "colSubtotal";
+            colSubtotal.ReadOnly = true;
             // 
             // flpFiltros
             // 
@@ -121,10 +343,10 @@ namespace MobileSolutions.UILayer
             flpFiltros.Controls.Add(cboFilterSeller);
             flpFiltros.Controls.Add(btnSearch);
             flpFiltros.Controls.Add(btnClear);
-            flpFiltros.Dock = DockStyle.Fill;
-            flpFiltros.Location = new Point(19, 65);
+            flpFiltros.Dock = DockStyle.Top;
+            flpFiltros.Location = new Point(19, 15);
             flpFiltros.Name = "flpFiltros";
-            flpFiltros.Size = new Size(1373, 74);
+            flpFiltros.Size = new Size(1642, 60);
             flpFiltros.TabIndex = 1;
             // 
             // txtFilterSaleNumber
@@ -287,250 +509,53 @@ namespace MobileSolutions.UILayer
             btnClear.UseAccentColor = false;
             btnClear.UseVisualStyleBackColor = true;
             // 
-            // splitContainer
+            // lblTitle
             // 
-            splitContainer.BackColor = Color.FromArgb(50, 50, 50);
-            splitContainer.Dock = DockStyle.Fill;
-            splitContainer.Location = new Point(19, 145);
-            splitContainer.Name = "splitContainer";
-            splitContainer.Orientation = Orientation.Horizontal;
+            lblTitle.AutoSize = true;
+            lblTitle.Depth = 0;
+            lblTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(603, 0);
+            lblTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(621, 72);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "HISTORIAL DE VENTAS";
+            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // splitContainer.Panel1
+            // picHistoryTitle
             // 
-            splitContainer.Panel1.BackColor = Color.FromArgb(50, 50, 50);
-            splitContainer.Panel1.Controls.Add(dgvSales);
-            splitContainer.Panel1MinSize = 120;
+            picHistoryTitle.BackColor = Color.FromArgb(50, 50, 50);
+            picHistoryTitle.IconChar = FontAwesome.Sharp.IconChar.None;
+            picHistoryTitle.IconColor = Color.White;
+            picHistoryTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            picHistoryTitle.IconSize = 94;
+            picHistoryTitle.Location = new Point(491, 0);
+            picHistoryTitle.Name = "picHistoryTitle";
+            picHistoryTitle.Size = new Size(97, 94);
+            picHistoryTitle.TabIndex = 7;
+            picHistoryTitle.TabStop = false;
             // 
-            // splitContainer.Panel2
+            // panel1
             // 
-            splitContainer.Panel2.BackColor = Color.FromArgb(50, 50, 50);
-            splitContainer.Panel2.Controls.Add(tlpDetalle);
-            splitContainer.Panel2MinSize = 120;
-            splitContainer.Size = new Size(1373, 569);
-            splitContainer.SplitterDistance = 377;
-            splitContainer.SplitterWidth = 6;
-            splitContainer.TabIndex = 2;
-            // 
-            // dgvSales
-            // 
-            dgvSales.AllowUserToAddRows = false;
-            dgvSales.AllowUserToDeleteRows = false;
-            dgvSales.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(58, 58, 58);
-            dgvSales.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvSales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvSales.BackgroundColor = Color.FromArgb(50, 50, 50);
-            dgvSales.BorderStyle = BorderStyle.None;
-            dgvSales.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvSales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvSales.ColumnHeadersHeight = 38;
-            dgvSales.Columns.AddRange(new DataGridViewColumn[] { colNumeroVenta, colFecha, colCliente, colVendedor, colMetodoPago, colTotal, colAcciones });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(50, 50, 50);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(21, 101, 192);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvSales.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvSales.Dock = DockStyle.Fill;
-            dgvSales.EnableHeadersVisualStyles = false;
-            dgvSales.GridColor = Color.FromArgb(70, 70, 70);
-            dgvSales.Location = new Point(0, 0);
-            dgvSales.MultiSelect = false;
-            dgvSales.Name = "dgvSales";
-            dgvSales.ReadOnly = true;
-            dgvSales.RowHeadersVisible = false;
-            dgvSales.RowHeadersWidth = 51;
-            dgvSales.RowTemplate.Height = 34;
-            dgvSales.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSales.Size = new Size(1373, 377);
-            dgvSales.TabIndex = 0;
-            // 
-            // tlpDetalle
-            // 
-            tlpDetalle.BackColor = Color.FromArgb(50, 50, 50);
-            tlpDetalle.ColumnCount = 1;
-            tlpDetalle.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpDetalle.Controls.Add(lblDetailTitle, 0, 0);
-            tlpDetalle.Controls.Add(dgvSaleDetails, 0, 1);
-            tlpDetalle.Dock = DockStyle.Fill;
-            tlpDetalle.Location = new Point(0, 0);
-            tlpDetalle.Name = "tlpDetalle";
-            tlpDetalle.RowCount = 2;
-            tlpDetalle.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tlpDetalle.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpDetalle.Size = new Size(1373, 186);
-            tlpDetalle.TabIndex = 0;
-            // 
-            // lblDetailTitle
-            // 
-            lblDetailTitle.Depth = 0;
-            lblDetailTitle.Dock = DockStyle.Fill;
-            lblDetailTitle.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblDetailTitle.ForeColor = Color.FromArgb(178, 235, 242);
-            lblDetailTitle.Location = new Point(3, 0);
-            lblDetailTitle.MouseState = MaterialSkin.MouseState.HOVER;
-            lblDetailTitle.Name = "lblDetailTitle";
-            lblDetailTitle.Size = new Size(1367, 30);
-            lblDetailTitle.TabIndex = 0;
-            lblDetailTitle.Text = "Detalle del comprobante seleccionado";
-            lblDetailTitle.TextAlign = ContentAlignment.MiddleLeft;
-            lblDetailTitle.Click += lblDetailTitle_Click;
-            // 
-            // dgvSaleDetails
-            // 
-            dgvSaleDetails.AllowUserToAddRows = false;
-            dgvSaleDetails.AllowUserToDeleteRows = false;
-            dgvSaleDetails.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(58, 58, 58);
-            dgvSaleDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dgvSaleDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvSaleDetails.BackgroundColor = Color.FromArgb(50, 50, 50);
-            dgvSaleDetails.BorderStyle = BorderStyle.None;
-            dgvSaleDetails.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvSaleDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dgvSaleDetails.ColumnHeadersHeight = 38;
-            dgvSaleDetails.Columns.AddRange(new DataGridViewColumn[] { colCodigo, colDescripcion, colCantidad, colPrecioUnitario, colSubtotal });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 50);
-            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(21, 101, 192);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvSaleDetails.DefaultCellStyle = dataGridViewCellStyle6;
-            dgvSaleDetails.Dock = DockStyle.Fill;
-            dgvSaleDetails.EnableHeadersVisualStyles = false;
-            dgvSaleDetails.GridColor = Color.FromArgb(70, 70, 70);
-            dgvSaleDetails.Location = new Point(3, 33);
-            dgvSaleDetails.MultiSelect = false;
-            dgvSaleDetails.Name = "dgvSaleDetails";
-            dgvSaleDetails.ReadOnly = true;
-            dgvSaleDetails.RowHeadersVisible = false;
-            dgvSaleDetails.RowHeadersWidth = 51;
-            dgvSaleDetails.RowTemplate.Height = 30;
-            dgvSaleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSaleDetails.Size = new Size(1367, 150);
-            dgvSaleDetails.TabIndex = 1;
-            // 
-            // colCodigo
-            // 
-            colCodigo.HeaderText = "Código";
-            colCodigo.MinimumWidth = 6;
-            colCodigo.Name = "colCodigo";
-            colCodigo.ReadOnly = true;
-            // 
-            // colDescripcion
-            // 
-            colDescripcion.FillWeight = 180F;
-            colDescripcion.HeaderText = "Descripción";
-            colDescripcion.MinimumWidth = 6;
-            colDescripcion.Name = "colDescripcion";
-            colDescripcion.ReadOnly = true;
-            // 
-            // colCantidad
-            // 
-            colCantidad.HeaderText = "Cantidad";
-            colCantidad.MinimumWidth = 6;
-            colCantidad.Name = "colCantidad";
-            colCantidad.ReadOnly = true;
-            // 
-            // colPrecioUnitario
-            // 
-            colPrecioUnitario.HeaderText = "Precio Unitario";
-            colPrecioUnitario.MinimumWidth = 6;
-            colPrecioUnitario.Name = "colPrecioUnitario";
-            colPrecioUnitario.ReadOnly = true;
-            // 
-            // colSubtotal
-            // 
-            colSubtotal.HeaderText = "Subtotal";
-            colSubtotal.MinimumWidth = 6;
-            colSubtotal.Name = "colSubtotal";
-            colSubtotal.ReadOnly = true;
-            // 
-            // colNumeroVenta
-            // 
-            colNumeroVenta.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colNumeroVenta.HeaderText = "N° Venta";
-            colNumeroVenta.MinimumWidth = 6;
-            colNumeroVenta.Name = "colNumeroVenta";
-            colNumeroVenta.ReadOnly = true;
-            // 
-            // colFecha
-            // 
-            colFecha.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colFecha.HeaderText = "Fecha";
-            colFecha.MinimumWidth = 6;
-            colFecha.Name = "colFecha";
-            colFecha.ReadOnly = true;
-            // 
-            // colCliente
-            // 
-            colCliente.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colCliente.HeaderText = "Cliente";
-            colCliente.MinimumWidth = 6;
-            colCliente.Name = "colCliente";
-            colCliente.ReadOnly = true;
-            // 
-            // colVendedor
-            // 
-            colVendedor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colVendedor.HeaderText = "Vendedor";
-            colVendedor.MinimumWidth = 6;
-            colVendedor.Name = "colVendedor";
-            colVendedor.ReadOnly = true;
-            // 
-            // colMetodoPago
-            // 
-            colMetodoPago.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colMetodoPago.HeaderText = "Método Pago";
-            colMetodoPago.MinimumWidth = 6;
-            colMetodoPago.Name = "colMetodoPago";
-            colMetodoPago.ReadOnly = true;
-            // 
-            // colTotal
-            // 
-            colTotal.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colTotal.HeaderText = "Total ($)";
-            colTotal.MinimumWidth = 6;
-            colTotal.Name = "colTotal";
-            colTotal.ReadOnly = true;
-            // 
-            // colAcciones
-            // 
-            colAcciones.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colAcciones.HeaderText = "Acciones";
-            colAcciones.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            colAcciones.MinimumWidth = 6;
-            colAcciones.Name = "colAcciones";
-            colAcciones.ReadOnly = true;
+            panel1.Controls.Add(tlpPrincipal);
+            panel1.Location = new Point(0, 100);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1680, 830);
+            panel1.TabIndex = 8;
             // 
             // SalesHistoryView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            Controls.Add(tlpPrincipal);
+            Controls.Add(lblTitle);
+            Controls.Add(picHistoryTitle);
+            Controls.Add(panel1);
             Name = "SalesHistoryView";
-            Size = new Size(1411, 729);
+            Size = new Size(1680, 930);
             tlpPrincipal.ResumeLayout(false);
-            flpFiltros.ResumeLayout(false);
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel2.ResumeLayout(false);
             ((ISupportInitialize)splitContainer).EndInit();
@@ -538,12 +563,17 @@ namespace MobileSolutions.UILayer
             ((ISupportInitialize)dgvSales).EndInit();
             tlpDetalle.ResumeLayout(false);
             ((ISupportInitialize)dgvSaleDetails).EndInit();
+            flpFiltros.ResumeLayout(false);
+            ((ISupportInitialize)picHistoryTitle).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private TableLayoutPanel tlpPrincipal;
         private MaterialLabel lblTitle;
+        private FontAwesome.Sharp.IconPictureBox picHistoryTitle;
         private FlowLayoutPanel flpFiltros;
         private MaterialTextBox2 txtFilterSaleNumber;
         private DateTimePicker dtpDateFrom;
@@ -554,6 +584,13 @@ namespace MobileSolutions.UILayer
         private MaterialButton btnClear;
         private SplitContainer splitContainer;
         private DataGridView dgvSales;
+        private DataGridViewTextBoxColumn colNumeroVenta;
+        private DataGridViewTextBoxColumn colFecha;
+        private DataGridViewTextBoxColumn colCliente;
+        private DataGridViewTextBoxColumn colVendedor;
+        private DataGridViewTextBoxColumn colMetodoPago;
+        private DataGridViewTextBoxColumn colTotal;
+        private DataGridViewImageColumn colAcciones;
         private TableLayoutPanel tlpDetalle;
         private MaterialLabel lblDetailTitle;
         private DataGridView dgvSaleDetails;
@@ -562,12 +599,6 @@ namespace MobileSolutions.UILayer
         private DataGridViewTextBoxColumn colCantidad;
         private DataGridViewTextBoxColumn colPrecioUnitario;
         private DataGridViewTextBoxColumn colSubtotal;
-        private DataGridViewTextBoxColumn colNumeroVenta;
-        private DataGridViewTextBoxColumn colFecha;
-        private DataGridViewTextBoxColumn colCliente;
-        private DataGridViewTextBoxColumn colVendedor;
-        private DataGridViewTextBoxColumn colMetodoPago;
-        private DataGridViewTextBoxColumn colTotal;
-        private DataGridViewImageColumn colAcciones;
+        private Panel panel1;
     }
 }

@@ -39,6 +39,9 @@ namespace MobileSolutions.UILayer
 
             // 3. Display personalized welcome banner in HomeView
             homeView1.SetCurrentUser(_currentUser);
+
+            // 4. Set current seller on the Sale view
+            saleView1.SetVendedor(_currentUser);
         }
 
         private void InitializeTabCacheAndIcons()

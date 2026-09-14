@@ -77,7 +77,7 @@ namespace MobileSolutions.UILayer
             lblHomeTitle.Depth = 0;
             lblHomeTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblHomeTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblHomeTitle.Location = new Point(711, 43);
+            lblHomeTitle.Location = new Point(810, 32);
             lblHomeTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblHomeTitle.Name = "lblHomeTitle";
             lblHomeTitle.Size = new Size(170, 72);
@@ -87,7 +87,7 @@ namespace MobileSolutions.UILayer
             // picHomeTitle
             // 
             picHomeTitle.Anchor = AnchorStyles.Top;
-            picHomeTitle.Location = new Point(592, 28);
+            picHomeTitle.Location = new Point(694, 23);
             picHomeTitle.Margin = new Padding(3, 4, 3, 4);
             picHomeTitle.Name = "picHomeTitle";
             picHomeTitle.Size = new Size(97, 100);
@@ -102,7 +102,7 @@ namespace MobileSolutions.UILayer
             lblWelcomeBanner.Depth = 0;
             lblWelcomeBanner.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblWelcomeBanner.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblWelcomeBanner.Location = new Point(592, 146);
+            lblWelcomeBanner.Location = new Point(681, 138);
             lblWelcomeBanner.MouseState = MaterialSkin.MouseState.HOVER;
             lblWelcomeBanner.Name = "lblWelcomeBanner";
             lblWelcomeBanner.Size = new Size(324, 29);
@@ -118,7 +118,7 @@ namespace MobileSolutions.UILayer
             cardUsers.Cursor = Cursors.Hand;
             cardUsers.Depth = 0;
             cardUsers.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardUsers.Location = new Point(111, 210);
+            cardUsers.Location = new Point(111, 186);
             cardUsers.Margin = new Padding(16, 19, 16, 19);
             cardUsers.MouseState = MaterialSkin.MouseState.HOVER;
             cardUsers.Name = "cardUsers";
@@ -171,7 +171,7 @@ namespace MobileSolutions.UILayer
             cardCustomer.Cursor = Cursors.Hand;
             cardCustomer.Depth = 0;
             cardCustomer.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardCustomer.Location = new Point(599, 210);
+            cardCustomer.Location = new Point(694, 186);
             cardCustomer.Margin = new Padding(16, 19, 16, 19);
             cardCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             cardCustomer.Name = "cardCustomer";
@@ -223,7 +223,7 @@ namespace MobileSolutions.UILayer
             cardSales.Cursor = Cursors.Hand;
             cardSales.Depth = 0;
             cardSales.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardSales.Location = new Point(111, 720);
+            cardSales.Location = new Point(111, 586);
             cardSales.Margin = new Padding(16, 19, 16, 19);
             cardSales.MouseState = MaterialSkin.MouseState.HOVER;
             cardSales.Name = "cardSales";
@@ -276,7 +276,7 @@ namespace MobileSolutions.UILayer
             cardHistory.Cursor = Cursors.Hand;
             cardHistory.Depth = 0;
             cardHistory.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardHistory.Location = new Point(595, 720);
+            cardHistory.Location = new Point(694, 586);
             cardHistory.Margin = new Padding(16, 19, 16, 19);
             cardHistory.MouseState = MaterialSkin.MouseState.HOVER;
             cardHistory.Name = "cardHistory";
@@ -329,7 +329,7 @@ namespace MobileSolutions.UILayer
             cardReports.Cursor = Cursors.Hand;
             cardReports.Depth = 0;
             cardReports.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardReports.Location = new Point(1098, 720);
+            cardReports.Location = new Point(1288, 586);
             cardReports.Margin = new Padding(16, 19, 16, 19);
             cardReports.MouseState = MaterialSkin.MouseState.HOVER;
             cardReports.Name = "cardReports";
@@ -382,7 +382,7 @@ namespace MobileSolutions.UILayer
             cardProducts.Cursor = Cursors.Hand;
             cardProducts.Depth = 0;
             cardProducts.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardProducts.Location = new Point(1098, 210);
+            cardProducts.Location = new Point(1288, 186);
             cardProducts.Margin = new Padding(16, 19, 16, 19);
             cardProducts.MouseState = MaterialSkin.MouseState.HOVER;
             cardProducts.Name = "cardProducts";
@@ -440,7 +440,7 @@ namespace MobileSolutions.UILayer
             Controls.Add(lblHomeTitle);
             Margin = new Padding(3, 4, 3, 4);
             Name = "HomeView";
-            Size = new Size(1490, 1131);
+            Size = new Size(1680, 930);
             ((System.ComponentModel.ISupportInitialize)picHomeTitle).EndInit();
             cardUsers.ResumeLayout(false);
             cardUsers.PerformLayout();

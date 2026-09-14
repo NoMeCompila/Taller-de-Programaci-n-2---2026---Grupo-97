@@ -15,10 +15,12 @@ namespace MobileSolutions.UILayer
             Load += (s, e) => splitContainer.SplitterDistance = (int)(splitContainer.Height * 0.6);
         }
 
-        private void ConfigurarIconos()
+private void ConfigurarIconos()
         {
             btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
             btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
+            picHistoryTitle.IconChar = IconChar.History;
+            picHistoryTitle.IconColor = Color.White;
         }
 
         private void CargarDatosDummy()
