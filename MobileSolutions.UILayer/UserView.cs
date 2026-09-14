@@ -289,19 +289,19 @@ namespace MobileSolutions.UILayer
             // Determinar Sexo seleccionado
             string sexo = materialRadioButton6.Checked ? "Masculino" : (materialRadioButton9.Checked ? "Femenino" : "Otro");
 
-            // Determinar Perfil seleccionado (1: Administrador, 2: Vendedor, 3: Gerente)
+            // Determinar Perfil seleccionado (1: Administrador, 2: Gerente, 3: Vendedor)
             int profileId = 1;
             string profileName = "Administrador";
 
             if (materialRadioButton2.Checked)
             {
                 profileId = 2;
-                profileName = "Vendedor";
+                profileName = "Gerente";
             }
             else if (materialRadioButton3.Checked)
             {
                 profileId = 3;
-                profileName = "Gerente";
+                profileName = "Vendedor";
             }
 
             return new User
@@ -381,8 +381,8 @@ namespace MobileSolutions.UILayer
 
             // RadioButtons de Perfil
             materialRadioButton1.Checked = string.Equals(user.ProfileName, "Administrador", StringComparison.OrdinalIgnoreCase);
-            materialRadioButton2.Checked = string.Equals(user.ProfileName, "Vendedor", StringComparison.OrdinalIgnoreCase);
-            materialRadioButton3.Checked = string.Equals(user.ProfileName, "Gerente", StringComparison.OrdinalIgnoreCase);
+            materialRadioButton2.Checked = string.Equals(user.ProfileName, "Gerente", StringComparison.OrdinalIgnoreCase);
+            materialRadioButton3.Checked = string.Equals(user.ProfileName, "Vendedor", StringComparison.OrdinalIgnoreCase);
         }
 
         private void ActualizarEstadoBotones(bool modoEdicion)

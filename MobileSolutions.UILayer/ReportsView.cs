@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace MobileSolutions.UILayer
@@ -13,7 +14,7 @@ namespace MobileSolutions.UILayer
     public partial class ReportsView : UserControl
     {
 
-        int perfilActual = 2; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
+        int perfilActual = 4; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
         public ReportsView()
         {
             InitializeComponent();
@@ -22,8 +23,8 @@ namespace MobileSolutions.UILayer
             picReportsTitle.IconChar = IconChar.ChartColumn;
             picReportsTitle.IconColor = Color.White;
 
-            picProximamente.IconChar = IconChar.ScrewdriverWrench;
-            picProximamente.IconColor = Color.Yellow;
+            picProximamente.IconChar = IconChar.UserSlash;
+            picProximamente.IconColor = Color.Red;
 
             this.Load += ReportsView_Load;
         }
@@ -44,7 +45,7 @@ namespace MobileSolutions.UILayer
                     reporteAutorizado = new SellerReportControl();
                     break;
                 default:
-                    MessageBox.Show("Perfil no autorizado para ver reportes.");
+                    MaterialMessageBox.Show("Perfil no autorizado para ver reportes.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
             }
 
