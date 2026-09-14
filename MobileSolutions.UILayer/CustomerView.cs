@@ -27,8 +27,8 @@ namespace MobileSolutions.UILayer
             dtpBirth.ForeColor = Color.White;
 
             // Generar iconos blancos de 24x24 px y asignarlos a los botones
-            btnSave.Icon = IconChar.Save.ToBitmap(Color.White);
-            btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
+            //btnSave.Icon = IconChar.Save.ToBitmap(Color.White);
+            //btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
             btnName.Icon = IconChar.UserEdit.ToBitmap(Color.White);
             btnLastname.Icon = IconChar.UserEdit.ToBitmap(Color.White);
             btnDni.Icon = IconChar.IdCard.ToBitmap(Color.White);
@@ -41,8 +41,9 @@ namespace MobileSolutions.UILayer
             picBirth.IconChar = IconChar.Calendar;
             picCustomerTitle.IconChar = IconChar.Users;
             picCustomerTitle.IconColor = Color.White;
-            btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
-            btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
+            //btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
+            //btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
+            btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
 
             ConfigBasicsRestrictions();
         }
@@ -116,6 +117,11 @@ namespace MobileSolutions.UILayer
 
             // Resetear Fecha
             dtpBirth.Value = DateTime.Now.Date;
+        }
+
+        private void swtActive_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

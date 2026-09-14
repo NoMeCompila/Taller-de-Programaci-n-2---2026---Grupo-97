@@ -343,10 +343,10 @@ namespace MobileSolutions.UILayer
             flpFiltros.Controls.Add(cboFilterSeller);
             flpFiltros.Controls.Add(btnSearch);
             flpFiltros.Controls.Add(btnClear);
-            flpFiltros.Dock = DockStyle.Top;
+            flpFiltros.Dock = DockStyle.Fill;
             flpFiltros.Location = new Point(19, 15);
             flpFiltros.Name = "flpFiltros";
-            flpFiltros.Size = new Size(1642, 60);
+            flpFiltros.Size = new Size(1642, 71);
             flpFiltros.TabIndex = 1;
             // 
             // txtFilterSaleNumber
@@ -530,7 +530,7 @@ namespace MobileSolutions.UILayer
             picHistoryTitle.IconChar = FontAwesome.Sharp.IconChar.None;
             picHistoryTitle.IconColor = Color.White;
             picHistoryTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picHistoryTitle.IconSize = 75;
+            picHistoryTitle.IconSize = 94;
             picHistoryTitle.Location = new Point(579, 3);
             picHistoryTitle.Name = "picHistoryTitle";
             picHistoryTitle.Size = new Size(97, 94);

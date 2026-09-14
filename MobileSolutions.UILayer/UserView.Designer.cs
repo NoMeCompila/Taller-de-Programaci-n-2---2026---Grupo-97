@@ -949,7 +949,7 @@ namespace MobileSolutions.UILayer
             picUserTitle.IconChar = FontAwesome.Sharp.IconChar.None;
             picUserTitle.IconColor = Color.FromArgb(222, 0, 0, 0);
             picUserTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picUserTitle.IconSize = 75;
+            picUserTitle.IconSize = 97;
             picUserTitle.Location = new Point(579, 3);
             picUserTitle.Margin = new Padding(3, 4, 3, 4);
             picUserTitle.Name = "picUserTitle";
@@ -1218,7 +1218,7 @@ namespace MobileSolutions.UILayer
             btnUpdate.Enabled = false;
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(44, 312);
+            btnUpdate.Location = new Point(44, 321);
             btnUpdate.Margin = new Padding(5);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
@@ -1281,7 +1281,7 @@ namespace MobileSolutions.UILayer
             btnDelete.Enabled = false;
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
-            btnDelete.Location = new Point(223, 312);
+            btnDelete.Location = new Point(223, 321);
             btnDelete.Margin = new Padding(5);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
