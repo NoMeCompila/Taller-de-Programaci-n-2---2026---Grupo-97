@@ -145,6 +145,9 @@ INSERT INTO Profile (description, status) VALUES
 ('Vendedor', 1),
 ('Gerente', 1);
 
+
+USE MobileSolutionsDB;
+GO
 SELECT * FROM Profile;
 
 
@@ -156,6 +159,7 @@ VALUES (3, 'Fernando', 'Caballero', '38444555', 'Masculino', 'fcaballe', '123', 
 
 
 SELECT * FROM [User];
+UPDATE [User] SET status = 0 WHERE user_id = 1001
 
 
 UPDATE [User] SET phone = '3795667733' WHERE user_id = 1;

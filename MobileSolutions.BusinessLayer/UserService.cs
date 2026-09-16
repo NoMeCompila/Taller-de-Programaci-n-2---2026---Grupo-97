@@ -24,11 +24,23 @@ namespace MobileSolutions.BusinessLayer
             _dbConnection = new DatabaseConnection();
         }
 
-
-        // modificar para identificar a que capa pertenece cada metodo, si es de negocio o de datos
         public List<User> GetActiveUsers()
         {
             return _userDal.GetActiveUsers();
+        }
+
+        public List<User> SearchUsers(string? searchTerm)
+        {
+            // Regla de negocio: si no se especifica término de búsqueda o contiene únicamente espacios, retorna todos los usuarios activos
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return GetActiveUsers();
+            }
+
+            string cleanSearchTerm = searchTerm.Trim();
+
+            // Delegar consulta filtrada a la capa de datos
+            return _userDal.SearchActiveUsers(cleanSearchTerm);
         }
 
         public (bool Success, string Message) CreateUser(User user)
@@ -198,3 +210,4 @@ namespace MobileSolutions.BusinessLayer
         }
     }
 }
+

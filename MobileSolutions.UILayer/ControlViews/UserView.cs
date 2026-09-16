@@ -1,4 +1,4 @@
-using FontAwesome.Sharp;
+﻿using FontAwesome.Sharp;
 using MaterialSkin;
 using System;
 using System.Collections.Generic;
@@ -20,6 +20,8 @@ namespace MobileSolutions.UILayer
 
         private readonly UserService _userService;
         private int _selectedUserId = 0;
+        private System.Windows.Forms.Timer? _searchDebounceTimer;
+
         public UserView()
         {
             InitializeComponent();
@@ -57,6 +59,7 @@ namespace MobileSolutions.UILayer
 
             ConfigBasicsRestrictions();
             dtgUsersConfig();
+            InitializeSearchBehavior();
             dtgUsers.CellClick += dtgUsers_CellClick;
             fillActiveUsers();
             LimpiarFormulario();
@@ -586,9 +589,75 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void InitializeSearchBehavior()
         {
+            // Configuración del temporizador de debounce (350 ms) para evitar saturación en SQL Server
+            _searchDebounceTimer = new System.Windows.Forms.Timer();
+            _searchDebounceTimer.Interval = 350;
+            _searchDebounceTimer.Tick += SearchDebounceTimer_Tick;
 
+            // Enlazar eventos de entrada de texto y pulsación de teclas
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            txtSearch.KeyDown += txtSearch_KeyDown;
+        }
+
+        private void txtSearch_TextChanged(object? sender, EventArgs e)
+        {
+            // Reinicia la cuenta regresiva con cada pulsación del usuario
+            _searchDebounceTimer?.Stop();
+            _searchDebounceTimer?.Start();
+        }
+
+        private void SearchDebounceTimer_Tick(object? sender, EventArgs e)
+        {
+            _searchDebounceTimer?.Stop();
+            ExecuteUserSearch();
+        }
+
+        private void txtSearch_KeyDown(object? sender, KeyEventArgs e)
+        {
+            // Disparar búsqueda inmediata si presiona Enter
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                _searchDebounceTimer?.Stop();
+                ExecuteUserSearch();
+            }
+        }
+
+        private void btnSearch_Click(object? sender, EventArgs e)
+        {
+            _searchDebounceTimer?.Stop();
+            ExecuteUserSearch();
+        }
+
+        private void ExecuteUserSearch()
+        {
+            string searchTerm = txtSearch.Text;
+
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                // Consulta a la capa de negocio BLL
+                List<User> userList = _userService.SearchUsers(searchTerm);
+
+                // Asignar los resultados tipados al DataGridView
+                dtgUsers.DataSource = null;
+                dtgUsers.DataSource = userList;
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(
+                    $"Error al buscar usuarios: {ex.Message}",
+                    "Error de Búsqueda",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
 
         private void materialCard2_Paint(object sender, PaintEventArgs e)

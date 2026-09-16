@@ -247,7 +247,7 @@ namespace MobileSolutions.UILayer
             picProductImage.Image = null;
 
             // Resetear switch
-            swtActive.Checked = true;
+            //swtActive.Checked = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
