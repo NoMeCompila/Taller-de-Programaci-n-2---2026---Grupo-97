@@ -58,7 +58,7 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        
+
         // Decimales con hasta 2 decimales (purchase_price y sale_price DECIMAL(18,2)).
         private void txtDecimalPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -275,6 +275,11 @@ namespace MobileSolutions.UILayer
         }
 
         private void dtgProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblProductTitle_Click(object sender, EventArgs e)
         {
 
         }

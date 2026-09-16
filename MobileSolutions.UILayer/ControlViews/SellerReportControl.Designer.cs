@@ -29,6 +29,8 @@
             lblTopProductosTitle = new MaterialSkin.Controls.MaterialLabel();
             pnlMarcas = new Panel();
             lblMarcasTitle = new MaterialSkin.Controls.MaterialLabel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)picSellerTitle).BeginInit();
             tlpMain.SuspendLayout();
             pnlKpisRow.SuspendLayout();
@@ -36,29 +38,33 @@
             tlpDistribucion.SuspendLayout();
             pnlTopProductos.SuspendLayout();
             pnlMarcas.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // picSellerTitle
             // 
+            picSellerTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             picSellerTitle.BackColor = Color.FromArgb(50, 50, 50);
             picSellerTitle.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
             picSellerTitle.IconColor = Color.White;
             picSellerTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picSellerTitle.IconSize = 75;
-            picSellerTitle.Location = new Point(579, 3);
+            picSellerTitle.IconSize = 61;
+            picSellerTitle.Location = new Point(41, 5);
             picSellerTitle.Name = "picSellerTitle";
-            picSellerTitle.Size = new Size(89, 75);
+            picSellerTitle.Size = new Size(84, 61);
             picSellerTitle.TabIndex = 0;
             picSellerTitle.TabStop = false;
             // 
             // lblSellerTitle
             // 
+            lblSellerTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             lblSellerTitle.AutoSize = true;
             lblSellerTitle.Depth = 0;
             lblSellerTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblSellerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
             lblSellerTitle.ForeColor = Color.White;
-            lblSellerTitle.Location = new Point(680, 6);
+            lblSellerTitle.Location = new Point(131, 3);
             lblSellerTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblSellerTitle.Name = "lblSellerTitle";
             lblSellerTitle.Size = new Size(472, 58);
@@ -210,12 +216,35 @@
             lblMarcasTitle.Text = "Rendimiento por Marca";
             lblMarcasTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanel1.Controls.Add(panel1, 1, 0);
+            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(1674, 75);
+            tableLayoutPanel1.TabIndex = 38;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(picSellerTitle);
+            panel1.Controls.Add(lblSellerTitle);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(505, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(663, 69);
+            panel1.TabIndex = 0;
+            // 
             // SellerReportControl
             // 
             BackColor = Color.FromArgb(50, 50, 50);
+            Controls.Add(tableLayoutPanel1);
             Controls.Add(tlpMain);
-            Controls.Add(lblSellerTitle);
-            Controls.Add(picSellerTitle);
             Name = "SellerReportControl";
             Size = new Size(1680, 930);
             ((System.ComponentModel.ISupportInitialize)picSellerTitle).EndInit();
@@ -225,8 +254,10 @@
             tlpDistribucion.ResumeLayout(false);
             pnlTopProductos.ResumeLayout(false);
             pnlMarcas.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -243,5 +274,7 @@
         private MaterialSkin.Controls.MaterialLabel lblTopProductosTitle;
         private Panel pnlMarcas;
         private MaterialSkin.Controls.MaterialLabel lblMarcasTitle;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
     }
 }

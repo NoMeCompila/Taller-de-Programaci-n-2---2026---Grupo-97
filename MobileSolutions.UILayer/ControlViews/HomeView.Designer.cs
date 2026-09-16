@@ -83,7 +83,7 @@ namespace MobileSolutions.UILayer
             lblHomeTitle.Depth = 0;
             lblHomeTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblHomeTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            lblHomeTitle.Location = new Point(205, 0);
+            lblHomeTitle.Location = new Point(267, 0);
             lblHomeTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblHomeTitle.Name = "lblHomeTitle";
             lblHomeTitle.Size = new Size(137, 58);
@@ -93,9 +93,9 @@ namespace MobileSolutions.UILayer
             // picHomeTitle
             // 
             picHomeTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            picHomeTitle.Location = new Point(137, -3);
+            picHomeTitle.Location = new Point(169, 3);
             picHomeTitle.Name = "picHomeTitle";
-            picHomeTitle.Size = new Size(62, 59);
+            picHomeTitle.Size = new Size(81, 59);
             picHomeTitle.SizeMode = PictureBoxSizeMode.Zoom;
             picHomeTitle.TabIndex = 1;
             picHomeTitle.TabStop = false;
@@ -107,10 +107,10 @@ namespace MobileSolutions.UILayer
             lblWelcomeBanner.Dock = DockStyle.Fill;
             lblWelcomeBanner.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblWelcomeBanner.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblWelcomeBanner.Location = new Point(492, 75);
+            lblWelcomeBanner.Location = new Point(444, 75);
             lblWelcomeBanner.MouseState = MaterialSkin.MouseState.HOVER;
             lblWelcomeBanner.Name = "lblWelcomeBanner";
-            lblWelcomeBanner.Size = new Size(484, 71);
+            lblWelcomeBanner.Size = new Size(582, 71);
             lblWelcomeBanner.TabIndex = 2;
             lblWelcomeBanner.Text = "Bienvenido a Mobile Solutions";
             lblWelcomeBanner.TextAlign = ContentAlignment.MiddleCenter;
@@ -450,9 +450,9 @@ namespace MobileSolutions.UILayer
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.34F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel2.Controls.Add(panel1, 1, 0);
             tableLayoutPanel2.Controls.Add(lblWelcomeBanner, 1, 1);
             tableLayoutPanel2.Dock = DockStyle.Top;
@@ -469,9 +469,9 @@ namespace MobileSolutions.UILayer
             panel1.Controls.Add(picHomeTitle);
             panel1.Controls.Add(lblHomeTitle);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(492, 3);
+            panel1.Location = new Point(444, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(484, 69);
+            panel1.Size = new Size(582, 69);
             panel1.TabIndex = 0;
             // 
             // HomeView
