@@ -28,7 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtName = new MaterialSkin.Controls.MaterialTextBox2();
             txtLastname = new MaterialSkin.Controls.MaterialTextBox2();
             txtDNI = new MaterialSkin.Controls.MaterialTextBox2();
@@ -387,7 +387,7 @@ namespace MobileSolutions.UILayer
             btnSave.HighEmphasis = true;
             btnSave.Icon = null;
             btnSave.Location = new Point(184, 89);
-            btnSave.Margin = new Padding(4, 4, 4, 4);
+            btnSave.Margin = new Padding(4);
             btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
             btnSave.NoAccentTextColor = Color.Empty;
@@ -409,7 +409,7 @@ namespace MobileSolutions.UILayer
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
             btnClear.Location = new Point(16, 92);
-            btnClear.Margin = new Padding(4, 4, 4, 4);
+            btnClear.Margin = new Padding(4);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
             btnClear.NoAccentTextColor = Color.Empty;
@@ -445,7 +445,7 @@ namespace MobileSolutions.UILayer
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
             btnDelete.Location = new Point(184, 236);
-            btnDelete.Margin = new Padding(4, 4, 4, 4);
+            btnDelete.Margin = new Padding(4);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
             btnDelete.NoAccentTextColor = Color.Empty;
@@ -466,7 +466,7 @@ namespace MobileSolutions.UILayer
             btnUpdate.HighEmphasis = true;
             btnUpdate.Icon = null;
             btnUpdate.Location = new Point(16, 236);
-            btnUpdate.Margin = new Padding(4, 4, 4, 4);
+            btnUpdate.Margin = new Padding(4);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
             btnUpdate.NoAccentTextColor = Color.Empty;
@@ -484,7 +484,7 @@ namespace MobileSolutions.UILayer
             swtActive.Checked = true;
             swtActive.CheckState = CheckState.Checked;
             swtActive.Depth = 0;
-            swtActive.Location = new Point(989, 687);
+            swtActive.Location = new Point(934, 491);
             swtActive.Margin = new Padding(0);
             swtActive.MouseLocation = new Point(-1, -1);
             swtActive.MouseState = MaterialSkin.MouseState.HOVER;
@@ -500,7 +500,7 @@ namespace MobileSolutions.UILayer
             // 
             panel1.Anchor = AnchorStyles.Left;
             panel1.Controls.Add(materialCard2);
-            panel1.Location = new Point(3, 226);
+            panel1.Location = new Point(3, 110);
             panel1.Name = "panel1";
             panel1.Size = new Size(605, 358);
             panel1.TabIndex = 39;
@@ -527,10 +527,10 @@ namespace MobileSolutions.UILayer
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard2.Location = new Point(11, 0);
-            materialCard2.Margin = new Padding(14, 14, 14, 14);
+            materialCard2.Margin = new Padding(14);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(14, 14, 14, 14);
+            materialCard2.Padding = new Padding(14);
             materialCard2.Size = new Size(589, 356);
             materialCard2.TabIndex = 43;
             // 
@@ -544,7 +544,7 @@ namespace MobileSolutions.UILayer
             btnLoc.HighEmphasis = true;
             btnLoc.Icon = null;
             btnLoc.Location = new Point(14, 309);
-            btnLoc.Margin = new Padding(4, 4, 4, 4);
+            btnLoc.Margin = new Padding(4);
             btnLoc.MouseState = MaterialSkin.MouseState.HOVER;
             btnLoc.Name = "btnLoc";
             btnLoc.NoAccentTextColor = Color.Empty;
@@ -564,7 +564,7 @@ namespace MobileSolutions.UILayer
             btnNat.HighEmphasis = true;
             btnNat.Icon = null;
             btnNat.Location = new Point(14, 238);
-            btnNat.Margin = new Padding(4, 4, 4, 4);
+            btnNat.Margin = new Padding(4);
             btnNat.MouseState = MaterialSkin.MouseState.HOVER;
             btnNat.Name = "btnNat";
             btnNat.NoAccentTextColor = Color.Empty;
@@ -584,7 +584,7 @@ namespace MobileSolutions.UILayer
             btnAddress.HighEmphasis = true;
             btnAddress.Icon = null;
             btnAddress.Location = new Point(312, 162);
-            btnAddress.Margin = new Padding(4, 4, 4, 4);
+            btnAddress.Margin = new Padding(4);
             btnAddress.MouseState = MaterialSkin.MouseState.HOVER;
             btnAddress.Name = "btnAddress";
             btnAddress.NoAccentTextColor = Color.Empty;
@@ -604,7 +604,7 @@ namespace MobileSolutions.UILayer
             btnCel.HighEmphasis = true;
             btnCel.Icon = null;
             btnCel.Location = new Point(312, 82);
-            btnCel.Margin = new Padding(4, 4, 4, 4);
+            btnCel.Margin = new Padding(4);
             btnCel.MouseState = MaterialSkin.MouseState.HOVER;
             btnCel.Name = "btnCel";
             btnCel.NoAccentTextColor = Color.Empty;
@@ -624,7 +624,7 @@ namespace MobileSolutions.UILayer
             btnEmail.HighEmphasis = true;
             btnEmail.Icon = null;
             btnEmail.Location = new Point(312, 7);
-            btnEmail.Margin = new Padding(4, 4, 4, 4);
+            btnEmail.Margin = new Padding(4);
             btnEmail.MouseState = MaterialSkin.MouseState.HOVER;
             btnEmail.Name = "btnEmail";
             btnEmail.NoAccentTextColor = Color.Empty;
@@ -644,7 +644,7 @@ namespace MobileSolutions.UILayer
             btnDni.HighEmphasis = true;
             btnDni.Icon = null;
             btnDni.Location = new Point(14, 162);
-            btnDni.Margin = new Padding(4, 4, 4, 4);
+            btnDni.Margin = new Padding(4);
             btnDni.MouseState = MaterialSkin.MouseState.HOVER;
             btnDni.Name = "btnDni";
             btnDni.NoAccentTextColor = Color.Empty;
@@ -664,7 +664,7 @@ namespace MobileSolutions.UILayer
             btnLastname.HighEmphasis = true;
             btnLastname.Icon = null;
             btnLastname.Location = new Point(14, 82);
-            btnLastname.Margin = new Padding(4, 4, 4, 4);
+            btnLastname.Margin = new Padding(4);
             btnLastname.MouseState = MaterialSkin.MouseState.HOVER;
             btnLastname.Name = "btnLastname";
             btnLastname.NoAccentTextColor = Color.Empty;
@@ -684,7 +684,7 @@ namespace MobileSolutions.UILayer
             btnName.HighEmphasis = true;
             btnName.Icon = null;
             btnName.Location = new Point(14, 7);
-            btnName.Margin = new Padding(4, 4, 4, 4);
+            btnName.Margin = new Padding(4);
             btnName.MouseState = MaterialSkin.MouseState.HOVER;
             btnName.Name = "btnName";
             btnName.NoAccentTextColor = Color.Empty;
@@ -698,9 +698,9 @@ namespace MobileSolutions.UILayer
             // 
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.Controls.Add(dtgCustomers);
-            panel2.Location = new Point(0, 768);
+            panel2.Location = new Point(0, 536);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1680, 160);
+            panel2.Size = new Size(1470, 160);
             panel2.TabIndex = 40;
             // 
             // dtgCustomers
@@ -709,14 +709,14 @@ namespace MobileSolutions.UILayer
             dtgCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCustomers.BackgroundColor = Color.MidnightBlue;
             dtgCustomers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgCustomers.Columns.AddRange(new DataGridViewColumn[] { ColumnName, ColumnLastname, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
             dtgCustomers.Dock = DockStyle.Fill;
@@ -725,7 +725,7 @@ namespace MobileSolutions.UILayer
             dtgCustomers.Margin = new Padding(3, 2, 3, 2);
             dtgCustomers.Name = "dtgCustomers";
             dtgCustomers.RowHeadersWidth = 51;
-            dtgCustomers.Size = new Size(1680, 160);
+            dtgCustomers.Size = new Size(1470, 160);
             dtgCustomers.TabIndex = 33;
             // 
             // ColumnName
@@ -793,7 +793,7 @@ namespace MobileSolutions.UILayer
             panel3.Anchor = AnchorStyles.Left;
             panel3.Controls.Add(materialCard4);
             panel3.Controls.Add(materialCard3);
-            panel3.Location = new Point(645, 275);
+            panel3.Location = new Point(645, 159);
             panel3.Name = "panel3";
             panel3.Size = new Size(376, 298);
             panel3.TabIndex = 41;
@@ -809,10 +809,10 @@ namespace MobileSolutions.UILayer
             materialCard4.Depth = 0;
             materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard4.Location = new Point(10, 141);
-            materialCard4.Margin = new Padding(14, 14, 14, 14);
+            materialCard4.Margin = new Padding(14);
             materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard4.Name = "materialCard4";
-            materialCard4.Padding = new Padding(14, 14, 14, 14);
+            materialCard4.Padding = new Padding(14);
             materialCard4.Size = new Size(353, 106);
             materialCard4.TabIndex = 43;
             // 
@@ -903,10 +903,10 @@ namespace MobileSolutions.UILayer
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard3.Location = new Point(73, 26);
-            materialCard3.Margin = new Padding(14, 14, 14, 14);
+            materialCard3.Margin = new Padding(14);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
-            materialCard3.Padding = new Padding(14, 14, 14, 14);
+            materialCard3.Padding = new Padding(14);
             materialCard3.Size = new Size(228, 100);
             materialCard3.TabIndex = 43;
             // 
@@ -947,7 +947,7 @@ namespace MobileSolutions.UILayer
             panel4.Controls.Add(iconButton1);
             panel4.Controls.Add(iconButton3);
             panel4.Controls.Add(iconBtn);
-            panel4.Location = new Point(1068, 226);
+            panel4.Location = new Point(1059, 144);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
             panel4.Size = new Size(347, 309);
@@ -1041,7 +1041,7 @@ namespace MobileSolutions.UILayer
             materialTextBox21.HideSelection = true;
             materialTextBox21.Hint = "Buscar";
             materialTextBox21.LeadingIcon = null;
-            materialTextBox21.Location = new Point(671, 676);
+            materialTextBox21.Location = new Point(625, 491);
             materialTextBox21.Margin = new Padding(3, 2, 3, 2);
             materialTextBox21.MaxLength = 32767;
             materialTextBox21.MouseState = MaterialSkin.MouseState.OUT;
@@ -1070,8 +1070,8 @@ namespace MobileSolutions.UILayer
             btnSearch.Depth = 0;
             btnSearch.HighEmphasis = true;
             btnSearch.Icon = null;
-            btnSearch.Location = new Point(626, 676);
-            btnSearch.Margin = new Padding(4, 4, 4, 4);
+            btnSearch.Location = new Point(580, 491);
+            btnSearch.Margin = new Padding(4);
             btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
             btnSearch.Name = "btnSearch";
             btnSearch.NoAccentTextColor = Color.Empty;
@@ -1096,7 +1096,7 @@ namespace MobileSolutions.UILayer
             Controls.Add(lblCustomerTitle);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerView";
-            Size = new Size(1680, 930);
+            Size = new Size(1470, 698);
             panel1.ResumeLayout(false);
             materialCard2.ResumeLayout(false);
             panel2.ResumeLayout(false);

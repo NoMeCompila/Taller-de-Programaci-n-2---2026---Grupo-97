@@ -106,8 +106,8 @@ namespace MobileSolutions.UILayer
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                List<User> usuarios = swtActive.Checked 
-                    ? _userService.GetActiveUsers() 
+                List<User> usuarios = swtActive.Checked
+                    ? _userService.GetActiveUsers()
                     : _userService.GetInactiveUsers();
 
                 // Enlazamos la lista fuertemente tipada
@@ -768,6 +768,11 @@ namespace MobileSolutions.UILayer
         }
 
         private void materialCard2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -158,10 +158,6 @@ BEGIN
 END;
 GO
 
--- Falta agregar la Alta l�gica para reactivar un usuario, si es necesario. 
-
-
-
 
 -- Search
 CREATE OR ALTER PROCEDURE sp_SearchActiveUsers

@@ -28,7 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtName = new MaterialSkin.Controls.MaterialTextBox2();
             txtLastname = new MaterialSkin.Controls.MaterialTextBox2();
             txtDNI = new MaterialSkin.Controls.MaterialTextBox2();
@@ -88,7 +88,9 @@ namespace MobileSolutions.UILayer
             btnLastname = new MaterialSkin.Controls.MaterialButton();
             btnName = new MaterialSkin.Controls.MaterialButton();
             panel3 = new Panel();
+            btnReactivate = new MaterialSkin.Controls.MaterialButton();
             btnUpdate = new MaterialSkin.Controls.MaterialButton();
+            icoBtnReactivate = new FontAwesome.Sharp.IconButton();
             icoBtnUpdate = new FontAwesome.Sharp.IconButton();
             icoBtnClear = new FontAwesome.Sharp.IconButton();
             btnDelete = new MaterialSkin.Controls.MaterialButton();
@@ -96,8 +98,6 @@ namespace MobileSolutions.UILayer
             iconBtnDelete = new FontAwesome.Sharp.IconButton();
             icoBtnSave = new FontAwesome.Sharp.IconButton();
             panel2 = new Panel();
-            btnReactivate = new MaterialSkin.Controls.MaterialButton();
-            icoBtnReactivate = new FontAwesome.Sharp.IconButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgUsers).BeginInit();
             materialCard1.SuspendLayout();
@@ -433,7 +433,7 @@ namespace MobileSolutions.UILayer
             lblBirth.AutoSize = true;
             lblBirth.Depth = 0;
             lblBirth.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblBirth.Location = new Point(58, 13);
+            lblBirth.Location = new Point(56, 27);
             lblBirth.Margin = new Padding(2, 0, 2, 0);
             lblBirth.MouseState = MaterialSkin.MouseState.HOVER;
             lblBirth.Name = "lblBirth";
@@ -450,7 +450,7 @@ namespace MobileSolutions.UILayer
             dtpBirth.Font = new Font("Segoe UI Emoji", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirth.Format = DateTimePickerFormat.Short;
             dtpBirth.ImeMode = ImeMode.NoControl;
-            dtpBirth.Location = new Point(26, 51);
+            dtpBirth.Location = new Point(42, 68);
             dtpBirth.Margin = new Padding(2);
             dtpBirth.Name = "dtpBirth";
             dtpBirth.Size = new Size(140, 33);
@@ -503,7 +503,7 @@ namespace MobileSolutions.UILayer
             lblUserTitle.Depth = 0;
             lblUserTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblUserTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            lblUserTitle.Location = new Point(546, 5);
+            lblUserTitle.Location = new Point(562, 5);
             lblUserTitle.Margin = new Padding(2, 0, 2, 0);
             lblUserTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblUserTitle.Name = "lblUserTitle";
@@ -518,13 +518,13 @@ namespace MobileSolutions.UILayer
             swtActive.Checked = true;
             swtActive.CheckState = CheckState.Checked;
             swtActive.Depth = 0;
-            swtActive.Location = new Point(853, 571);
+            swtActive.Location = new Point(871, 549);
             swtActive.Margin = new Padding(0);
             swtActive.MouseLocation = new Point(-1, -1);
             swtActive.MouseState = MaterialSkin.MouseState.HOVER;
             swtActive.Name = "swtActive";
             swtActive.Ripple = true;
-            swtActive.Size = new Size(102, 37);
+            swtActive.Size = new Size(110, 37);
             swtActive.TabIndex = 38;
             swtActive.Text = "Activos";
             swtActive.UseVisualStyleBackColor = true;
@@ -547,8 +547,9 @@ namespace MobileSolutions.UILayer
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2, 3, 2, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1312, 954);
+            panel1.Size = new Size(1344, 896);
             panel1.TabIndex = 39;
+            panel1.Paint += panel1_Paint;
             // 
             // dtgUsers
             // 
@@ -556,23 +557,23 @@ namespace MobileSolutions.UILayer
             dtgUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgUsers.BackgroundColor = Color.MidnightBlue;
             dtgUsers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgUsers.Columns.AddRange(new DataGridViewColumn[] { ColumnProfile, ColumnName, ColumnLastname, ColumnUsername, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
             dtgUsers.Dock = DockStyle.Bottom;
             dtgUsers.GridColor = SystemColors.InactiveCaptionText;
-            dtgUsers.Location = new Point(0, 651);
+            dtgUsers.Location = new Point(0, 593);
             dtgUsers.Margin = new Padding(2);
             dtgUsers.Name = "dtgUsers";
             dtgUsers.RowHeadersWidth = 51;
-            dtgUsers.Size = new Size(1312, 303);
+            dtgUsers.Size = new Size(1344, 303);
             dtgUsers.TabIndex = 33;
             // 
             // ColumnProfile
@@ -683,7 +684,7 @@ namespace MobileSolutions.UILayer
             txtSearch.HideSelection = true;
             txtSearch.Hint = "Buscar";
             txtSearch.LeadingIcon = null;
-            txtSearch.Location = new Point(558, 560);
+            txtSearch.Location = new Point(574, 546);
             txtSearch.Margin = new Padding(2);
             txtSearch.MaxLength = 32767;
             txtSearch.MouseState = MaterialSkin.MouseState.OUT;
@@ -712,7 +713,7 @@ namespace MobileSolutions.UILayer
             btnSearch.Depth = 0;
             btnSearch.HighEmphasis = true;
             btnSearch.Icon = null;
-            btnSearch.Location = new Point(518, 560);
+            btnSearch.Location = new Point(534, 546);
             btnSearch.Margin = new Padding(4);
             btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
             btnSearch.Name = "btnSearch";
@@ -942,7 +943,7 @@ namespace MobileSolutions.UILayer
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
             materialCard3.Padding = new Padding(13, 15, 13, 15);
-            materialCard3.Size = new Size(223, 101);
+            materialCard3.Size = new Size(221, 118);
             materialCard3.TabIndex = 43;
             // 
             // picBirth
@@ -953,7 +954,7 @@ namespace MobileSolutions.UILayer
             picBirth.IconColor = Color.FromArgb(222, 0, 0, 0);
             picBirth.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picBirth.IconSize = 30;
-            picBirth.Location = new Point(22, 4);
+            picBirth.Location = new Point(15, 12);
             picBirth.Margin = new Padding(2, 3, 2, 3);
             picBirth.Name = "picBirth";
             picBirth.Size = new Size(30, 34);
@@ -969,7 +970,7 @@ namespace MobileSolutions.UILayer
             picUserTitle.IconColor = Color.FromArgb(222, 0, 0, 0);
             picUserTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picUserTitle.IconSize = 78;
-            picUserTitle.Location = new Point(463, 2);
+            picUserTitle.Location = new Point(479, 2);
             picUserTitle.Margin = new Padding(2, 3, 2, 3);
             picUserTitle.Name = "picUserTitle";
             picUserTitle.Size = new Size(78, 80);
@@ -1230,6 +1231,29 @@ namespace MobileSolutions.UILayer
             panel3.Size = new Size(318, 330);
             panel3.TabIndex = 55;
             // 
+            // btnReactivate
+            // 
+            btnReactivate.Anchor = AnchorStyles.Right;
+            btnReactivate.AutoSize = false;
+            btnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReactivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnReactivate.Depth = 0;
+            btnReactivate.Enabled = false;
+            btnReactivate.HighEmphasis = true;
+            btnReactivate.Icon = null;
+            btnReactivate.Location = new Point(116, 170);
+            btnReactivate.Margin = new Padding(4);
+            btnReactivate.MouseState = MaterialSkin.MouseState.HOVER;
+            btnReactivate.Name = "btnReactivate";
+            btnReactivate.NoAccentTextColor = Color.Empty;
+            btnReactivate.Size = new Size(114, 35);
+            btnReactivate.TabIndex = 56;
+            btnReactivate.Text = "Reactivar";
+            btnReactivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnReactivate.UseAccentColor = false;
+            btnReactivate.UseVisualStyleBackColor = true;
+            btnReactivate.Visible = false;
+            // 
             // btnUpdate
             // 
             btnUpdate.Anchor = AnchorStyles.Right;
@@ -1252,6 +1276,28 @@ namespace MobileSolutions.UILayer
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
+            // 
+            // icoBtnReactivate
+            // 
+            icoBtnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnReactivate.BackColor = Color.RoyalBlue;
+            icoBtnReactivate.Enabled = false;
+            icoBtnReactivate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnReactivate.ForeColor = SystemColors.Control;
+            icoBtnReactivate.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            icoBtnReactivate.IconColor = Color.White;
+            icoBtnReactivate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnReactivate.IconSize = 60;
+            icoBtnReactivate.Location = new Point(104, 94);
+            icoBtnReactivate.Margin = new Padding(2, 3, 2, 3);
+            icoBtnReactivate.Name = "icoBtnReactivate";
+            icoBtnReactivate.Size = new Size(137, 128);
+            icoBtnReactivate.TabIndex = 57;
+            icoBtnReactivate.Text = "BUTTON";
+            icoBtnReactivate.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnReactivate.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnReactivate.UseVisualStyleBackColor = false;
+            icoBtnReactivate.Visible = false;
             // 
             // icoBtnUpdate
             // 
@@ -1385,53 +1431,8 @@ namespace MobileSolutions.UILayer
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(2, 3, 2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1312, 958);
+            panel2.Size = new Size(1344, 744);
             panel2.TabIndex = 40;
-            // 
-            // btnReactivate
-            // 
-            btnReactivate.Anchor = AnchorStyles.Right;
-            btnReactivate.AutoSize = false;
-            btnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnReactivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnReactivate.Depth = 0;
-            btnReactivate.Enabled = false;
-            btnReactivate.HighEmphasis = true;
-            btnReactivate.Icon = null;
-            btnReactivate.Location = new Point(116, 170);
-            btnReactivate.Margin = new Padding(4);
-            btnReactivate.MouseState = MaterialSkin.MouseState.HOVER;
-            btnReactivate.Name = "btnReactivate";
-            btnReactivate.NoAccentTextColor = Color.Empty;
-            btnReactivate.Size = new Size(114, 35);
-            btnReactivate.TabIndex = 56;
-            btnReactivate.Text = "Reactivar";
-            btnReactivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnReactivate.UseAccentColor = false;
-            btnReactivate.UseVisualStyleBackColor = true;
-            btnReactivate.Visible = false;
-            // 
-            // icoBtnReactivate
-            // 
-            icoBtnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            icoBtnReactivate.BackColor = Color.RoyalBlue;
-            icoBtnReactivate.Enabled = false;
-            icoBtnReactivate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            icoBtnReactivate.ForeColor = SystemColors.Control;
-            icoBtnReactivate.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
-            icoBtnReactivate.IconColor = Color.White;
-            icoBtnReactivate.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            icoBtnReactivate.IconSize = 60;
-            icoBtnReactivate.Location = new Point(104, 94);
-            icoBtnReactivate.Margin = new Padding(2, 3, 2, 3);
-            icoBtnReactivate.Name = "icoBtnReactivate";
-            icoBtnReactivate.Size = new Size(137, 128);
-            icoBtnReactivate.TabIndex = 57;
-            icoBtnReactivate.Text = "BUTTON";
-            icoBtnReactivate.TextAlign = ContentAlignment.BottomCenter;
-            icoBtnReactivate.TextImageRelation = TextImageRelation.ImageAboveText;
-            icoBtnReactivate.UseVisualStyleBackColor = false;
-            icoBtnReactivate.Visible = false;
             // 
             // UserView
             // 
@@ -1441,7 +1442,7 @@ namespace MobileSolutions.UILayer
             Controls.Add(panel2);
             Margin = new Padding(2);
             Name = "UserView";
-            Size = new Size(1312, 958);
+            Size = new Size(1344, 744);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgUsers).EndInit();
