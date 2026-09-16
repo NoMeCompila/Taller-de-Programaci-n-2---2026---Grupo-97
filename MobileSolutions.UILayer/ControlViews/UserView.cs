@@ -60,6 +60,7 @@ namespace MobileSolutions.UILayer
             ConfigBasicsRestrictions();
             dtgUsersConfig();
             InitializeSearchBehavior();
+            InitializeStatusSwitch();
             dtgUsers.CellClick += dtgUsers_CellClick;
             fillActiveUsers();
             LimpiarFormulario();
@@ -390,10 +391,34 @@ namespace MobileSolutions.UILayer
 
         private void ActualizarEstadoBotones(bool modoEdicion)
         {
-            btnSave.Enabled = !modoEdicion;
-            btnUpdate.Enabled = modoEdicion;
-            btnDelete.Enabled = modoEdicion;
-            btnClear.Enabled = true;
+            bool showActiveButtons = swtActive.Checked;
+
+            // Botones de usuarios activos
+            icoBtnClear.Visible = showActiveButtons;
+            icoBtnClear.Enabled = showActiveButtons;
+            btnClear.Visible = showActiveButtons;
+            btnClear.Enabled = showActiveButtons;
+
+            icoBtnSave.Visible = showActiveButtons;
+            icoBtnSave.Enabled = showActiveButtons && !modoEdicion;
+            btnSave.Visible = showActiveButtons;
+            btnSave.Enabled = showActiveButtons && !modoEdicion;
+
+            icoBtnUpdate.Visible = showActiveButtons;
+            icoBtnUpdate.Enabled = showActiveButtons && modoEdicion;
+            btnUpdate.Visible = showActiveButtons;
+            btnUpdate.Enabled = showActiveButtons && modoEdicion;
+
+            iconBtnDelete.Visible = showActiveButtons;
+            iconBtnDelete.Enabled = showActiveButtons && modoEdicion;
+            btnDelete.Visible = showActiveButtons;
+            btnDelete.Enabled = showActiveButtons && modoEdicion;
+
+            // Botones de reactivación (usuarios inactivos)
+            icoBtnReactivate.Visible = !showActiveButtons;
+            icoBtnReactivate.Enabled = !showActiveButtons;
+            btnReactivate.Visible = !showActiveButtons;
+            btnReactivate.Enabled = !showActiveButtons;
         }
 
         private void LimpiarFormulario()
@@ -658,6 +683,20 @@ namespace MobileSolutions.UILayer
             {
                 Cursor.Current = Cursors.Default;
             }
+        }
+
+        private void InitializeStatusSwitch()
+        {
+            // Asegurar texto y visibilidad inicial segun el estado del switch
+            swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
+            ActualizarEstadoBotones(modoEdicion: _selectedUserId > 0);
+            swtActive.CheckedChanged += swtActive_CheckedChanged;
+        }
+
+        private void swtActive_CheckedChanged(object? sender, EventArgs e)
+        {
+            swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
+            ActualizarEstadoBotones(modoEdicion: _selectedUserId > 0);
         }
 
         private void materialCard2_Paint(object sender, PaintEventArgs e)

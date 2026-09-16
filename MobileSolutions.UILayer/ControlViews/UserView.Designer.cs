@@ -526,7 +526,7 @@ namespace MobileSolutions.UILayer
             swtActive.Ripple = true;
             swtActive.Size = new Size(102, 37);
             swtActive.TabIndex = 38;
-            swtActive.Text = "Activo";
+            swtActive.Text = "Activos";
             swtActive.UseVisualStyleBackColor = true;
             // 
             // panel1
