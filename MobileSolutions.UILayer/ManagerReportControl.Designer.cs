@@ -1,0 +1,301 @@
+﻿namespace MobileSolutions.UILayer
+{
+    partial class ManagerReportControl
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de componentes
+
+        private void InitializeComponent()
+        {
+            picManagerTitle = new FontAwesome.Sharp.IconPictureBox();
+            lblManagerTitle = new MaterialSkin.Controls.MaterialLabel();
+            tlpMain = new TableLayoutPanel();
+            pnlKpisRow = new Panel();
+            tlpKpis = new TableLayoutPanel();
+            tlpGraficos = new TableLayoutPanel();
+            pnlTopProductos = new Panel();
+            lblTopProductosTitle = new MaterialSkin.Controls.MaterialLabel();
+            pnlMarcas = new Panel();
+            lblMarcasTitle = new MaterialSkin.Controls.MaterialLabel();
+            tlpTablas = new TableLayoutPanel();
+            pnlStockAlerts = new Panel();
+            lblStockAlertsTitle = new MaterialSkin.Controls.MaterialLabel();
+            pnlTopSellers = new Panel();
+            lblTopSellersTitle = new MaterialSkin.Controls.MaterialLabel();
+            ((System.ComponentModel.ISupportInitialize)picManagerTitle).BeginInit();
+            tlpMain.SuspendLayout();
+            pnlKpisRow.SuspendLayout();
+            tlpGraficos.SuspendLayout();
+            pnlTopProductos.SuspendLayout();
+            pnlMarcas.SuspendLayout();
+            tlpTablas.SuspendLayout();
+            pnlStockAlerts.SuspendLayout();
+            pnlTopSellers.SuspendLayout();
+            SuspendLayout();
+            // 
+            // picManagerTitle
+            // 
+            picManagerTitle.BackColor = Color.FromArgb(50, 50, 50);
+            picManagerTitle.IconChar = FontAwesome.Sharp.IconChar.PieChart;
+            picManagerTitle.IconColor = Color.White;
+            picManagerTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            picManagerTitle.IconSize = 75;
+            picManagerTitle.Location = new Point(579, 3);
+            picManagerTitle.Name = "picManagerTitle";
+            picManagerTitle.Size = new Size(89, 75);
+            picManagerTitle.TabIndex = 0;
+            picManagerTitle.TabStop = false;
+            // 
+            // lblManagerTitle
+            // 
+            lblManagerTitle.AutoSize = true;
+            lblManagerTitle.Depth = 0;
+            lblManagerTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblManagerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblManagerTitle.ForeColor = Color.White;
+            lblManagerTitle.Location = new Point(677, 6);
+            lblManagerTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblManagerTitle.Name = "lblManagerTitle";
+            lblManagerTitle.Size = new Size(434, 58);
+            lblManagerTitle.TabIndex = 36;
+            lblManagerTitle.Text = "Reportes de Gerente";
+            // 
+            // tlpMain
+            // 
+            tlpMain.BackColor = Color.FromArgb(50, 50, 50);
+            tlpMain.ColumnCount = 1;
+            tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpMain.Controls.Add(pnlKpisRow, 0, 0);
+            tlpMain.Controls.Add(tlpGraficos, 0, 1);
+            tlpMain.Controls.Add(tlpTablas, 0, 2);
+            tlpMain.Dock = DockStyle.Bottom;
+            tlpMain.Location = new Point(0, 84);
+            tlpMain.Name = "tlpMain";
+            tlpMain.Padding = new Padding(12);
+            tlpMain.RowCount = 3;
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tlpMain.Size = new Size(1680, 846);
+            tlpMain.TabIndex = 37;
+            // 
+            // pnlKpisRow
+            // 
+            pnlKpisRow.BackColor = Color.FromArgb(50, 50, 50);
+            pnlKpisRow.Controls.Add(tlpKpis);
+            pnlKpisRow.Dock = DockStyle.Fill;
+            pnlKpisRow.Location = new Point(15, 15);
+            pnlKpisRow.Name = "pnlKpisRow";
+            pnlKpisRow.Size = new Size(1650, 158);
+            pnlKpisRow.TabIndex = 0;
+            // 
+            // tlpKpis
+            // 
+            tlpKpis.BackColor = Color.FromArgb(50, 50, 50);
+            tlpKpis.ColumnCount = 4;
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.Dock = DockStyle.Fill;
+            tlpKpis.Location = new Point(0, 0);
+            tlpKpis.Name = "tlpKpis";
+            tlpKpis.RowCount = 1;
+            tlpKpis.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpKpis.Size = new Size(1650, 158);
+            tlpKpis.TabIndex = 0;
+            // 
+            // tlpGraficos
+            // 
+            tlpGraficos.BackColor = Color.FromArgb(50, 50, 50);
+            tlpGraficos.ColumnCount = 2;
+            tlpGraficos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpGraficos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpGraficos.Controls.Add(pnlTopProductos, 0, 0);
+            tlpGraficos.Controls.Add(pnlMarcas, 1, 0);
+            tlpGraficos.Dock = DockStyle.Fill;
+            tlpGraficos.Location = new Point(15, 179);
+            tlpGraficos.Name = "tlpGraficos";
+            tlpGraficos.RowCount = 1;
+            tlpGraficos.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpGraficos.Size = new Size(1650, 322);
+            tlpGraficos.TabIndex = 1;
+            // 
+            // pnlTopProductos
+            // 
+            pnlTopProductos.BackColor = Color.FromArgb(60, 60, 60);
+            pnlTopProductos.Controls.Add(lblTopProductosTitle);
+            pnlTopProductos.Dock = DockStyle.Fill;
+            pnlTopProductos.Location = new Point(6, 6);
+            pnlTopProductos.Margin = new Padding(6);
+            pnlTopProductos.Name = "pnlTopProductos";
+            pnlTopProductos.Padding = new Padding(12);
+            pnlTopProductos.Size = new Size(813, 310);
+            pnlTopProductos.TabIndex = 0;
+            // 
+            // lblTopProductosTitle
+            // 
+            lblTopProductosTitle.Depth = 0;
+            lblTopProductosTitle.Dock = DockStyle.Top;
+            lblTopProductosTitle.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblTopProductosTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1;
+            lblTopProductosTitle.ForeColor = Color.White;
+            lblTopProductosTitle.Location = new Point(12, 12);
+            lblTopProductosTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTopProductosTitle.Name = "lblTopProductosTitle";
+            lblTopProductosTitle.Padding = new Padding(8, 0, 0, 0);
+            lblTopProductosTitle.Size = new Size(789, 32);
+            lblTopProductosTitle.TabIndex = 0;
+            lblTopProductosTitle.Text = "Top 5 Productos más vendidos";
+            lblTopProductosTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // pnlMarcas
+            // 
+            pnlMarcas.BackColor = Color.FromArgb(60, 60, 60);
+            pnlMarcas.Controls.Add(lblMarcasTitle);
+            pnlMarcas.Dock = DockStyle.Fill;
+            pnlMarcas.Location = new Point(831, 6);
+            pnlMarcas.Margin = new Padding(6);
+            pnlMarcas.Name = "pnlMarcas";
+            pnlMarcas.Padding = new Padding(12);
+            pnlMarcas.Size = new Size(813, 310);
+            pnlMarcas.TabIndex = 1;
+            // 
+            // lblMarcasTitle
+            // 
+            lblMarcasTitle.Depth = 0;
+            lblMarcasTitle.Dock = DockStyle.Top;
+            lblMarcasTitle.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblMarcasTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1;
+            lblMarcasTitle.ForeColor = Color.White;
+            lblMarcasTitle.Location = new Point(12, 12);
+            lblMarcasTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblMarcasTitle.Name = "lblMarcasTitle";
+            lblMarcasTitle.Padding = new Padding(8, 0, 0, 0);
+            lblMarcasTitle.Size = new Size(789, 32);
+            lblMarcasTitle.TabIndex = 0;
+            lblMarcasTitle.Text = "Ventas por Marca";
+            lblMarcasTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // tlpTablas
+            // 
+            tlpTablas.BackColor = Color.FromArgb(50, 50, 50);
+            tlpTablas.ColumnCount = 2;
+            tlpTablas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpTablas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpTablas.Controls.Add(pnlStockAlerts, 0, 0);
+            tlpTablas.Controls.Add(pnlTopSellers, 1, 0);
+            tlpTablas.Dock = DockStyle.Fill;
+            tlpTablas.Location = new Point(15, 507);
+            tlpTablas.Name = "tlpTablas";
+            tlpTablas.RowCount = 1;
+            tlpTablas.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpTablas.Size = new Size(1650, 324);
+            tlpTablas.TabIndex = 2;
+            // 
+            // pnlStockAlerts
+            // 
+            pnlStockAlerts.BackColor = Color.FromArgb(60, 60, 60);
+            pnlStockAlerts.Controls.Add(lblStockAlertsTitle);
+            pnlStockAlerts.Dock = DockStyle.Fill;
+            pnlStockAlerts.Location = new Point(6, 6);
+            pnlStockAlerts.Margin = new Padding(6);
+            pnlStockAlerts.Name = "pnlStockAlerts";
+            pnlStockAlerts.Padding = new Padding(12);
+            pnlStockAlerts.Size = new Size(813, 312);
+            pnlStockAlerts.TabIndex = 0;
+            // 
+            // lblStockAlertsTitle
+            // 
+            lblStockAlertsTitle.Depth = 0;
+            lblStockAlertsTitle.Dock = DockStyle.Top;
+            lblStockAlertsTitle.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStockAlertsTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1;
+            lblStockAlertsTitle.ForeColor = Color.White;
+            lblStockAlertsTitle.Location = new Point(12, 12);
+            lblStockAlertsTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblStockAlertsTitle.Name = "lblStockAlertsTitle";
+            lblStockAlertsTitle.Padding = new Padding(8, 0, 0, 0);
+            lblStockAlertsTitle.Size = new Size(789, 32);
+            lblStockAlertsTitle.TabIndex = 0;
+            lblStockAlertsTitle.Text = "Alertas de Stock";
+            lblStockAlertsTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // pnlTopSellers
+            // 
+            pnlTopSellers.BackColor = Color.FromArgb(60, 60, 60);
+            pnlTopSellers.Controls.Add(lblTopSellersTitle);
+            pnlTopSellers.Dock = DockStyle.Fill;
+            pnlTopSellers.Location = new Point(831, 6);
+            pnlTopSellers.Margin = new Padding(6);
+            pnlTopSellers.Name = "pnlTopSellers";
+            pnlTopSellers.Padding = new Padding(12);
+            pnlTopSellers.Size = new Size(813, 312);
+            pnlTopSellers.TabIndex = 1;
+            // 
+            // lblTopSellersTitle
+            // 
+            lblTopSellersTitle.Depth = 0;
+            lblTopSellersTitle.Dock = DockStyle.Top;
+            lblTopSellersTitle.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblTopSellersTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1;
+            lblTopSellersTitle.ForeColor = Color.White;
+            lblTopSellersTitle.Location = new Point(12, 12);
+            lblTopSellersTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTopSellersTitle.Name = "lblTopSellersTitle";
+            lblTopSellersTitle.Padding = new Padding(8, 0, 0, 0);
+            lblTopSellersTitle.Size = new Size(789, 32);
+            lblTopSellersTitle.TabIndex = 0;
+            lblTopSellersTitle.Text = "Top Sellers";
+            lblTopSellersTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ManagerReportControl
+            // 
+            BackColor = Color.FromArgb(50, 50, 50);
+            Controls.Add(tlpMain);
+            Controls.Add(lblManagerTitle);
+            Controls.Add(picManagerTitle);
+            Name = "ManagerReportControl";
+            Size = new Size(1680, 930);
+            ((System.ComponentModel.ISupportInitialize)picManagerTitle).EndInit();
+            tlpMain.ResumeLayout(false);
+            pnlKpisRow.ResumeLayout(false);
+            tlpGraficos.ResumeLayout(false);
+            pnlTopProductos.ResumeLayout(false);
+            pnlMarcas.ResumeLayout(false);
+            tlpTablas.ResumeLayout(false);
+            pnlStockAlerts.ResumeLayout(false);
+            pnlTopSellers.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private FontAwesome.Sharp.IconPictureBox picManagerTitle;
+        private MaterialSkin.Controls.MaterialLabel lblManagerTitle;
+        private TableLayoutPanel tlpMain;
+        private Panel pnlKpisRow;
+        private TableLayoutPanel tlpKpis;
+        private TableLayoutPanel tlpGraficos;
+        private Panel pnlTopProductos;
+        private MaterialSkin.Controls.MaterialLabel lblTopProductosTitle;
+        private Panel pnlMarcas;
+        private MaterialSkin.Controls.MaterialLabel lblMarcasTitle;
+        private TableLayoutPanel tlpTablas;
+        private Panel pnlStockAlerts;
+        private MaterialSkin.Controls.MaterialLabel lblStockAlertsTitle;
+        private Panel pnlTopSellers;
+        private MaterialSkin.Controls.MaterialLabel lblTopSellersTitle;
+    }
+}

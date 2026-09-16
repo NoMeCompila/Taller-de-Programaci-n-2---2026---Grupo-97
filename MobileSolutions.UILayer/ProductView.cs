@@ -20,10 +20,11 @@ namespace MobileSolutions.UILayer
             InitializeComponent();
 
             // Asignar íconos FontAwesome a los botones de acción
-            btnSave.Icon = IconChar.Save.ToBitmap(Color.White);
-            btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
-            btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
-            btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
+            //btnSave.Icon = IconChar.Save.ToBitmap(Color.White);
+            //btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
+            //btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
+            //btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
+            btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
 
             // Íconos de los botones pequeños junto a cada campo
             btnBrand.Icon = IconChar.Tag.ToBitmap(Color.White);

@@ -159,3 +159,51 @@ END;
 GO
 
 -- Falta agregar la Alta lógica para reactivar un usuario, si es necesario. 
+
+
+
+
+-- Search
+CREATE OR ALTER PROCEDURE sp_SearchActiveUsers
+    @SearchTerm NVARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Normaliza el término de búsqueda: elimina espacios en blanco y convierte cadena vacía a NULL
+    SET @SearchTerm = NULLIF(LTRIM(RTRIM(@SearchTerm)), '');
+
+    SELECT 
+        u.user_id          AS user_id,
+        u.profile_id       AS profile_id,
+        p.description      AS Perfil,
+        u.name             AS Nombre,
+        u.lastname         AS Apellido,
+        u.username         AS Usuario,
+        u.dni              AS DNI,
+        u.sex              AS Sexo,
+        u.birth            AS [Fecha Nacimiento],
+        u.email            AS Email,
+        u.phone            AS Telefono,
+        u.address          AS Direccion,
+        u.nationality      AS Nacionalidad,
+        u.locality         AS Localidad,
+        u.status           AS Estado
+    FROM [User] AS u
+    INNER JOIN Profile AS p 
+        ON u.profile_id = p.profile_id
+    WHERE 
+        u.status = 1
+        AND (
+            @SearchTerm IS NULL 
+            OR u.name         LIKE '%' + @SearchTerm + '%'
+            OR u.lastname     LIKE '%' + @SearchTerm + '%'
+            OR u.dni          LIKE '%' + @SearchTerm + '%'
+            OR u.email        LIKE '%' + @SearchTerm + '%'
+            OR u.username     LIKE '%' + @SearchTerm + '%'
+            OR p.description  LIKE '%' + @SearchTerm + '%'
+            OR u.phone        LIKE '%' + @SearchTerm + '%'
+        )
+    ORDER BY u.lastname ASC, u.name ASC;
+END;
+GO

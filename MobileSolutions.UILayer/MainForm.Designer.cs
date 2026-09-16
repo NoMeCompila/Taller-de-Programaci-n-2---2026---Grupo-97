@@ -32,8 +32,10 @@ namespace MobileSolutions.UILayer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             imageList1 = new ImageList(components);
             tabPage8 = new TabPage();
+            reportsView1 = new ReportsView();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             tabPage7 = new TabPage();
+            salesHistoryView2 = new SalesHistoryView();
             materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             tabPage6 = new TabPage();
             saleView1 = new SaleView();
@@ -68,20 +70,31 @@ namespace MobileSolutions.UILayer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(reportsView1);
             tabPage8.Controls.Add(materialLabel8);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 29);
+            tabPage8.Margin = new Padding(3, 5, 3, 5);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1698, 930);
+            tabPage8.Size = new Size(1756, 1002);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Reportes";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // reportsView1
+            // 
+            reportsView1.Dock = DockStyle.Fill;
+            reportsView1.Location = new Point(0, 0);
+            reportsView1.Margin = new Padding(3, 4, 3, 4);
+            reportsView1.Name = "reportsView1";
+            reportsView1.Size = new Size(1756, 1002);
+            reportsView1.TabIndex = 4;
             // 
             // materialLabel8
             // 
             materialLabel8.AutoSize = true;
             materialLabel8.Depth = 0;
             materialLabel8.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel8.Location = new Point(490, 318);
+            materialLabel8.Location = new Point(560, 424);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
             materialLabel8.Size = new Size(63, 19);
@@ -90,20 +103,31 @@ namespace MobileSolutions.UILayer
             // 
             // tabPage7
             // 
+            tabPage7.Controls.Add(salesHistoryView2);
             tabPage7.Controls.Add(materialLabel7);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 29);
+            tabPage7.Margin = new Padding(3, 5, 3, 5);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1698, 930);
+            tabPage7.Size = new Size(1756, 1002);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Historial De Ventas";
             tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // salesHistoryView2
+            // 
+            salesHistoryView2.BackColor = SystemColors.Control;
+            salesHistoryView2.Dock = DockStyle.Fill;
+            salesHistoryView2.Location = new Point(0, 0);
+            salesHistoryView2.Name = "salesHistoryView2";
+            salesHistoryView2.Size = new Size(1756, 1002);
+            salesHistoryView2.TabIndex = 4;
             // 
             // materialLabel7
             // 
             materialLabel7.AutoSize = true;
             materialLabel7.Depth = 0;
             materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel7.Location = new Point(490, 318);
+            materialLabel7.Location = new Point(560, 424);
             materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel7.Name = "materialLabel7";
             materialLabel7.Size = new Size(134, 19);
@@ -114,20 +138,21 @@ namespace MobileSolutions.UILayer
             // 
             tabPage6.Controls.Add(saleView1);
             tabPage6.Controls.Add(materialLabel6);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 29);
+            tabPage6.Margin = new Padding(3, 5, 3, 5);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1698, 930);
+            tabPage6.Size = new Size(1756, 1002);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Venta";
             tabPage6.UseVisualStyleBackColor = true;
             // 
             // saleView1
             // 
+            saleView1.BackColor = Color.FromArgb(50, 50, 50);
             saleView1.Dock = DockStyle.Fill;
             saleView1.Location = new Point(0, 0);
-            saleView1.Margin = new Padding(3, 2, 3, 2);
             saleView1.Name = "saleView1";
-            saleView1.Size = new Size(1698, 930);
+            saleView1.Size = new Size(1756, 1002);
             saleView1.TabIndex = 4;
             // 
             // materialLabel6
@@ -135,7 +160,7 @@ namespace MobileSolutions.UILayer
             materialLabel6.AutoSize = true;
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel6.Location = new Point(490, 318);
+            materialLabel6.Location = new Point(560, 424);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
             materialLabel6.Size = new Size(50, 19);
@@ -146,9 +171,10 @@ namespace MobileSolutions.UILayer
             // 
             tabPage4.Controls.Add(productView1);
             tabPage4.Controls.Add(materialLabel4);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1698, 930);
+            tabPage4.Size = new Size(1756, 1002);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Productos";
             tabPage4.UseVisualStyleBackColor = true;
@@ -157,9 +183,8 @@ namespace MobileSolutions.UILayer
             // 
             productView1.Dock = DockStyle.Fill;
             productView1.Location = new Point(0, 0);
-            productView1.Margin = new Padding(3, 2, 3, 2);
             productView1.Name = "productView1";
-            productView1.Size = new Size(1698, 930);
+            productView1.Size = new Size(1756, 1002);
             productView1.TabIndex = 4;
             // 
             // materialLabel4
@@ -167,7 +192,7 @@ namespace MobileSolutions.UILayer
             materialLabel4.AutoSize = true;
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(490, 318);
+            materialLabel4.Location = new Point(560, 424);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
             materialLabel4.Size = new Size(73, 19);
@@ -178,9 +203,10 @@ namespace MobileSolutions.UILayer
             // 
             tabPage3.Controls.Add(customerView1);
             tabPage3.Controls.Add(materialLabel2);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Margin = new Padding(3, 5, 3, 5);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1698, 930);
+            tabPage3.Size = new Size(1756, 1002);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Clientes";
             tabPage3.UseVisualStyleBackColor = true;
@@ -189,9 +215,8 @@ namespace MobileSolutions.UILayer
             // 
             customerView1.Dock = DockStyle.Fill;
             customerView1.Location = new Point(0, 0);
-            customerView1.Margin = new Padding(3, 2, 3, 2);
             customerView1.Name = "customerView1";
-            customerView1.Size = new Size(1698, 930);
+            customerView1.Size = new Size(1756, 1002);
             customerView1.TabIndex = 4;
             // 
             // materialLabel2
@@ -199,7 +224,7 @@ namespace MobileSolutions.UILayer
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(490, 318);
+            materialLabel2.Location = new Point(560, 424);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(57, 19);
@@ -210,10 +235,11 @@ namespace MobileSolutions.UILayer
             // 
             tabPage2.Controls.Add(userView1);
             tabPage2.Controls.Add(materialLabel3);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Margin = new Padding(3, 5, 3, 5);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 2, 3, 2);
-            tabPage2.Size = new Size(1698, 930);
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1756, 1002);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
@@ -221,10 +247,9 @@ namespace MobileSolutions.UILayer
             // userView1
             // 
             userView1.Dock = DockStyle.Fill;
-            userView1.Location = new Point(3, 2);
-            userView1.Margin = new Padding(3, 2, 3, 2);
+            userView1.Location = new Point(3, 3);
             userView1.Name = "userView1";
-            userView1.Size = new Size(1692, 926);
+            userView1.Size = new Size(1750, 996);
             userView1.TabIndex = 3;
             // 
             // materialLabel3
@@ -232,7 +257,7 @@ namespace MobileSolutions.UILayer
             materialLabel3.AutoSize = true;
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(498, 326);
+            materialLabel3.Location = new Point(569, 435);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(63, 19);
@@ -242,10 +267,11 @@ namespace MobileSolutions.UILayer
             // tabPage1
             // 
             tabPage1.Controls.Add(homeView1);
-            tabPage1.Location = new Point(4, 24);
+            tabPage1.Location = new Point(4, 29);
+            tabPage1.Margin = new Padding(3, 5, 3, 5);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(1698, 930);
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1666, 830);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Home";
             tabPage1.UseVisualStyleBackColor = true;
@@ -253,10 +279,10 @@ namespace MobileSolutions.UILayer
             // homeView1
             // 
             homeView1.Dock = DockStyle.Fill;
-            homeView1.Location = new Point(3, 2);
+            homeView1.Location = new Point(3, 3);
             homeView1.Margin = new Padding(3, 4, 3, 4);
             homeView1.Name = "homeView1";
-            homeView1.Size = new Size(1692, 926);
+            homeView1.Size = new Size(1660, 824);
             homeView1.TabIndex = 0;
             // 
             // materialTabControl1
@@ -270,27 +296,28 @@ namespace MobileSolutions.UILayer
             materialTabControl1.Controls.Add(tabPage8);
             materialTabControl1.Depth = 0;
             materialTabControl1.Dock = DockStyle.Fill;
-            materialTabControl1.Location = new Point(3, 48);
+            materialTabControl1.Location = new Point(3, 64);
+            materialTabControl1.Margin = new Padding(3, 5, 3, 5);
             materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1706, 958);
+            materialTabControl1.Size = new Size(1674, 863);
             materialTabControl1.TabIndex = 0;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1712, 1008);
+            ClientSize = new Size(1680, 930);
             Controls.Add(materialTabControl1);
             DrawerTabControl = materialTabControl1;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";
-            Padding = new Padding(3, 48, 3, 2);
             Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mobile Solutions";
@@ -319,6 +346,7 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private TabPage tabPage6;
         private SaleView saleView1;
+        private SalesHistoryView salesHistoryView1;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private TabPage tabPage4;
         private ProductView productView1;
@@ -332,6 +360,8 @@ namespace MobileSolutions.UILayer
         private TabPage tabPage1;
         private HomeView homeView1;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        private ReportsView reportsView1;
+        private SalesHistoryView salesHistoryView2;
     }
 }
 

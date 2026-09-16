@@ -75,21 +75,22 @@ namespace MobileSolutions.UILayer
             lblHomeTitle.Anchor = AnchorStyles.Top;
             lblHomeTitle.AutoSize = true;
             lblHomeTitle.Depth = 0;
-            lblHomeTitle.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblHomeTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lblHomeTitle.Location = new Point(653, 21);
+            lblHomeTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblHomeTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblHomeTitle.Location = new Point(698, 6);
             lblHomeTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblHomeTitle.Name = "lblHomeTitle";
-            lblHomeTitle.Size = new Size(170, 72);
+            lblHomeTitle.Size = new Size(137, 58);
             lblHomeTitle.TabIndex = 0;
             lblHomeTitle.Text = "HOME";
             // 
             // picHomeTitle
             // 
             picHomeTitle.Anchor = AnchorStyles.Top;
-            picHomeTitle.Location = new Point(549, 21);
+            picHomeTitle.Location = new Point(579, 3);
+            picHomeTitle.Margin = new Padding(3, 4, 3, 4);
             picHomeTitle.Name = "picHomeTitle";
-            picHomeTitle.Size = new Size(85, 75);
+            picHomeTitle.Size = new Size(97, 100);
             picHomeTitle.SizeMode = PictureBoxSizeMode.Zoom;
             picHomeTitle.TabIndex = 1;
             picHomeTitle.TabStop = false;
@@ -101,7 +102,7 @@ namespace MobileSolutions.UILayer
             lblWelcomeBanner.Depth = 0;
             lblWelcomeBanner.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblWelcomeBanner.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblWelcomeBanner.Location = new Point(549, 109);
+            lblWelcomeBanner.Location = new Point(681, 138);
             lblWelcomeBanner.MouseState = MaterialSkin.MouseState.HOVER;
             lblWelcomeBanner.Name = "lblWelcomeBanner";
             lblWelcomeBanner.Size = new Size(324, 29);
@@ -117,12 +118,12 @@ namespace MobileSolutions.UILayer
             cardUsers.Cursor = Cursors.Hand;
             cardUsers.Depth = 0;
             cardUsers.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardUsers.Location = new Point(93, 238);
-            cardUsers.Margin = new Padding(14);
+            cardUsers.Location = new Point(111, 186);
+            cardUsers.Margin = new Padding(16, 19, 16, 19);
             cardUsers.MouseState = MaterialSkin.MouseState.HOVER;
             cardUsers.Name = "cardUsers";
-            cardUsers.Padding = new Padding(14);
-            cardUsers.Size = new Size(250, 250);
+            cardUsers.Padding = new Padding(16, 19, 16, 19);
+            cardUsers.Size = new Size(286, 333);
             cardUsers.TabIndex = 3;
             // 
             // label1
@@ -131,18 +132,19 @@ namespace MobileSolutions.UILayer
             label1.AutoSize = true;
             label1.BackColor = SystemColors.Control;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(45, 136);
+            label1.Location = new Point(31, 196);
             label1.Name = "label1";
-            label1.Size = new Size(188, 63);
+            label1.Size = new Size(236, 84);
             label1.TabIndex = 11;
             label1.Text = "Gestiona accesos, roles \r\ny perfiles del personal  \r\ndel sistema.";
             // 
             // picUsers
             // 
             picUsers.Anchor = AnchorStyles.Top;
-            picUsers.Location = new Point(88, 36);
+            picUsers.Location = new Point(90, 48);
+            picUsers.Margin = new Padding(3, 4, 3, 4);
             picUsers.Name = "picUsers";
-            picUsers.Size = new Size(85, 75);
+            picUsers.Size = new Size(97, 100);
             picUsers.SizeMode = PictureBoxSizeMode.Zoom;
             picUsers.TabIndex = 9;
             picUsers.TabStop = false;
@@ -152,7 +154,7 @@ namespace MobileSolutions.UILayer
             lblUsers.AutoSize = true;
             lblUsers.Depth = 0;
             lblUsers.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsers.Location = new Point(88, 14);
+            lblUsers.Location = new Point(101, 19);
             lblUsers.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsers.Name = "lblUsers";
             lblUsers.Size = new Size(76, 19);
@@ -169,12 +171,12 @@ namespace MobileSolutions.UILayer
             cardCustomer.Cursor = Cursors.Hand;
             cardCustomer.Depth = 0;
             cardCustomer.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardCustomer.Location = new Point(521, 238);
-            cardCustomer.Margin = new Padding(14);
+            cardCustomer.Location = new Point(694, 186);
+            cardCustomer.Margin = new Padding(16, 19, 16, 19);
             cardCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             cardCustomer.Name = "cardCustomer";
-            cardCustomer.Padding = new Padding(14);
-            cardCustomer.Size = new Size(250, 250);
+            cardCustomer.Padding = new Padding(16, 19, 16, 19);
+            cardCustomer.Size = new Size(286, 333);
             cardCustomer.TabIndex = 4;
             // 
             // label2
@@ -182,18 +184,19 @@ namespace MobileSolutions.UILayer
             label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(28, 157);
+            label2.Location = new Point(32, 209);
             label2.Name = "label2";
-            label2.Size = new Size(191, 63);
+            label2.Size = new Size(240, 84);
             label2.TabIndex = 12;
             label2.Text = "Administra la base de \r\ndatos de tus clientes \r\ny sus datos de contacto.";
             // 
             // picCustomers
             // 
             picCustomers.Anchor = AnchorStyles.Top;
-            picCustomers.Location = new Point(78, 36);
+            picCustomers.Location = new Point(89, 48);
+            picCustomers.Margin = new Padding(3, 4, 3, 4);
             picCustomers.Name = "picCustomers";
-            picCustomers.Size = new Size(85, 75);
+            picCustomers.Size = new Size(97, 100);
             picCustomers.SizeMode = PictureBoxSizeMode.Zoom;
             picCustomers.TabIndex = 10;
             picCustomers.TabStop = false;
@@ -203,7 +206,7 @@ namespace MobileSolutions.UILayer
             lblCustomer.AutoSize = true;
             lblCustomer.Depth = 0;
             lblCustomer.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblCustomer.Location = new Point(78, 14);
+            lblCustomer.Location = new Point(89, 19);
             lblCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             lblCustomer.Name = "lblCustomer";
             lblCustomer.Size = new Size(73, 19);
@@ -220,12 +223,12 @@ namespace MobileSolutions.UILayer
             cardSales.Cursor = Cursors.Hand;
             cardSales.Depth = 0;
             cardSales.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardSales.Location = new Point(93, 540);
-            cardSales.Margin = new Padding(14);
+            cardSales.Location = new Point(111, 586);
+            cardSales.Margin = new Padding(16, 19, 16, 19);
             cardSales.MouseState = MaterialSkin.MouseState.HOVER;
             cardSales.Name = "cardSales";
-            cardSales.Padding = new Padding(14);
-            cardSales.Size = new Size(250, 250);
+            cardSales.Padding = new Padding(16, 19, 16, 19);
+            cardSales.Size = new Size(286, 333);
             cardSales.TabIndex = 5;
             // 
             // label4
@@ -234,18 +237,19 @@ namespace MobileSolutions.UILayer
             label4.AutoSize = true;
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(17, 158);
+            label4.Location = new Point(5, 212);
             label4.Name = "label4";
-            label4.Size = new Size(226, 63);
+            label4.Size = new Size(281, 84);
             label4.TabIndex = 13;
             label4.Text = "Realiza nuevas cotizaciones \r\ny procesa órdenes de \r\nventa rápidamente.";
             // 
             // picSalesHome
             // 
             picSalesHome.Anchor = AnchorStyles.Top;
-            picSalesHome.Location = new Point(79, 36);
+            picSalesHome.Location = new Point(90, 48);
+            picSalesHome.Margin = new Padding(3, 4, 3, 4);
             picSalesHome.Name = "picSalesHome";
-            picSalesHome.Size = new Size(85, 75);
+            picSalesHome.Size = new Size(97, 100);
             picSalesHome.SizeMode = PictureBoxSizeMode.Zoom;
             picSalesHome.TabIndex = 12;
             picSalesHome.TabStop = false;
@@ -255,7 +259,7 @@ namespace MobileSolutions.UILayer
             lblSales.AutoSize = true;
             lblSales.Depth = 0;
             lblSales.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblSales.Location = new Point(88, 14);
+            lblSales.Location = new Point(101, 19);
             lblSales.MouseState = MaterialSkin.MouseState.HOVER;
             lblSales.Name = "lblSales";
             lblSales.Size = new Size(61, 19);
@@ -272,12 +276,12 @@ namespace MobileSolutions.UILayer
             cardHistory.Cursor = Cursors.Hand;
             cardHistory.Depth = 0;
             cardHistory.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardHistory.Location = new Point(521, 540);
-            cardHistory.Margin = new Padding(14);
+            cardHistory.Location = new Point(694, 586);
+            cardHistory.Margin = new Padding(16, 19, 16, 19);
             cardHistory.MouseState = MaterialSkin.MouseState.HOVER;
             cardHistory.Name = "cardHistory";
-            cardHistory.Padding = new Padding(14);
-            cardHistory.Size = new Size(250, 250);
+            cardHistory.Padding = new Padding(16, 19, 16, 19);
+            cardHistory.Size = new Size(286, 333);
             cardHistory.TabIndex = 6;
             // 
             // label5
@@ -286,18 +290,19 @@ namespace MobileSolutions.UILayer
             label5.AutoSize = true;
             label5.BackColor = SystemColors.Control;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(17, 148);
+            label5.Location = new Point(4, 212);
             label5.Name = "label5";
-            label5.Size = new Size(224, 63);
+            label5.Size = new Size(282, 84);
             label5.TabIndex = 13;
             label5.Text = "Consulta y revisa el registro \r\ncompleto de todas \r\nlas ventas pasadas.";
             // 
             // picHistoryHome
             // 
             picHistoryHome.Anchor = AnchorStyles.Top;
-            picHistoryHome.Location = new Point(78, 36);
+            picHistoryHome.Location = new Point(89, 48);
+            picHistoryHome.Margin = new Padding(3, 4, 3, 4);
             picHistoryHome.Name = "picHistoryHome";
-            picHistoryHome.Size = new Size(85, 75);
+            picHistoryHome.Size = new Size(97, 100);
             picHistoryHome.SizeMode = PictureBoxSizeMode.Zoom;
             picHistoryHome.TabIndex = 12;
             picHistoryHome.TabStop = false;
@@ -307,7 +312,7 @@ namespace MobileSolutions.UILayer
             lblHistory.AutoSize = true;
             lblHistory.Depth = 0;
             lblHistory.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblHistory.Location = new Point(37, 14);
+            lblHistory.Location = new Point(42, 19);
             lblHistory.MouseState = MaterialSkin.MouseState.HOVER;
             lblHistory.Name = "lblHistory";
             lblHistory.Size = new Size(168, 19);
@@ -324,12 +329,12 @@ namespace MobileSolutions.UILayer
             cardReports.Cursor = Cursors.Hand;
             cardReports.Depth = 0;
             cardReports.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardReports.Location = new Point(961, 540);
-            cardReports.Margin = new Padding(14);
+            cardReports.Location = new Point(1288, 586);
+            cardReports.Margin = new Padding(16, 19, 16, 19);
             cardReports.MouseState = MaterialSkin.MouseState.HOVER;
             cardReports.Name = "cardReports";
-            cardReports.Padding = new Padding(14);
-            cardReports.Size = new Size(250, 250);
+            cardReports.Padding = new Padding(16, 19, 16, 19);
+            cardReports.Size = new Size(286, 333);
             cardReports.TabIndex = 8;
             // 
             // label6
@@ -338,18 +343,19 @@ namespace MobileSolutions.UILayer
             label6.AutoSize = true;
             label6.BackColor = SystemColors.Control;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(21, 148);
+            label6.Location = new Point(19, 212);
             label6.Name = "label6";
-            label6.Size = new Size(212, 63);
+            label6.Size = new Size(265, 84);
             label6.TabIndex = 13;
             label6.Text = "Genera informes y analiza \r\nel desempeño de tu \r\nnegocio con gráficas.";
             // 
             // picReportsHome
             // 
             picReportsHome.Anchor = AnchorStyles.Top;
-            picReportsHome.Location = new Point(75, 36);
+            picReportsHome.Location = new Point(86, 48);
+            picReportsHome.Margin = new Padding(3, 4, 3, 4);
             picReportsHome.Name = "picReportsHome";
-            picReportsHome.Size = new Size(85, 75);
+            picReportsHome.Size = new Size(97, 100);
             picReportsHome.SizeMode = PictureBoxSizeMode.Zoom;
             picReportsHome.TabIndex = 12;
             picReportsHome.TabStop = false;
@@ -359,7 +365,7 @@ namespace MobileSolutions.UILayer
             lblCharts.AutoSize = true;
             lblCharts.Depth = 0;
             lblCharts.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblCharts.Location = new Point(75, 14);
+            lblCharts.Location = new Point(86, 19);
             lblCharts.MouseState = MaterialSkin.MouseState.HOVER;
             lblCharts.Name = "lblCharts";
             lblCharts.Size = new Size(80, 19);
@@ -376,12 +382,12 @@ namespace MobileSolutions.UILayer
             cardProducts.Cursor = Cursors.Hand;
             cardProducts.Depth = 0;
             cardProducts.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardProducts.Location = new Point(961, 238);
-            cardProducts.Margin = new Padding(14);
+            cardProducts.Location = new Point(1288, 186);
+            cardProducts.Margin = new Padding(16, 19, 16, 19);
             cardProducts.MouseState = MaterialSkin.MouseState.HOVER;
             cardProducts.Name = "cardProducts";
-            cardProducts.Padding = new Padding(14);
-            cardProducts.Size = new Size(250, 250);
+            cardProducts.Padding = new Padding(16, 19, 16, 19);
+            cardProducts.Size = new Size(286, 333);
             cardProducts.TabIndex = 7;
             // 
             // label3
@@ -390,18 +396,19 @@ namespace MobileSolutions.UILayer
             label3.AutoSize = true;
             label3.BackColor = SystemColors.Control;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(20, 147);
+            label3.Location = new Point(0, 209);
             label3.Name = "label3";
-            label3.Size = new Size(213, 63);
+            label3.Size = new Size(268, 84);
             label3.TabIndex = 12;
             label3.Text = "Controla el inventario, \r\nprecios, stock y categorías \r\nde tus productos";
             // 
             // picProductsHome
             // 
             picProductsHome.Anchor = AnchorStyles.Top;
-            picProductsHome.Location = new Point(84, 36);
+            picProductsHome.Location = new Point(96, 48);
+            picProductsHome.Margin = new Padding(3, 4, 3, 4);
             picProductsHome.Name = "picProductsHome";
-            picProductsHome.Size = new Size(85, 75);
+            picProductsHome.Size = new Size(97, 100);
             picProductsHome.SizeMode = PictureBoxSizeMode.Zoom;
             picProductsHome.TabIndex = 11;
             picProductsHome.TabStop = false;
@@ -411,7 +418,7 @@ namespace MobileSolutions.UILayer
             lblProducts.AutoSize = true;
             lblProducts.Depth = 0;
             lblProducts.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblProducts.Location = new Point(75, 14);
+            lblProducts.Location = new Point(86, 19);
             lblProducts.MouseState = MaterialSkin.MouseState.HOVER;
             lblProducts.Name = "lblProducts";
             lblProducts.Size = new Size(94, 19);
@@ -420,7 +427,7 @@ namespace MobileSolutions.UILayer
             // 
             // HomeView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(cardReports);
             Controls.Add(cardProducts);
@@ -431,8 +438,9 @@ namespace MobileSolutions.UILayer
             Controls.Add(lblWelcomeBanner);
             Controls.Add(picHomeTitle);
             Controls.Add(lblHomeTitle);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "HomeView";
-            Size = new Size(1304, 848);
+            Size = new Size(1680, 930);
             ((System.ComponentModel.ISupportInitialize)picHomeTitle).EndInit();
             cardUsers.ResumeLayout(false);
             cardUsers.PerformLayout();
