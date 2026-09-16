@@ -1,4 +1,4 @@
-USE MobileSolutionsDB;
+ï»¿USE MobileSolutionsDB;
 GO
 
 -- User Table Store Procedures
@@ -158,7 +158,7 @@ BEGIN
 END;
 GO
 
--- Falta agregar la Alta lógica para reactivar un usuario, si es necesario. 
+-- Falta agregar la Alta lï¿½gica para reactivar un usuario, si es necesario. 
 
 
 
@@ -170,7 +170,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Normaliza el término de búsqueda: elimina espacios en blanco y convierte cadena vacía a NULL
+    -- Normaliza el tï¿½rmino de bï¿½squeda: elimina espacios en blanco y convierte cadena vacï¿½a a NULL
     SET @SearchTerm = NULLIF(LTRIM(RTRIM(@SearchTerm)), '');
 
     SELECT 
@@ -194,6 +194,63 @@ BEGIN
         ON u.profile_id = p.profile_id
     WHERE 
         u.status = 1
+        AND (
+            @SearchTerm IS NULL 
+            OR u.name         LIKE '%' + @SearchTerm + '%'
+            OR u.lastname     LIKE '%' + @SearchTerm + '%'
+            OR u.dni          LIKE '%' + @SearchTerm + '%'
+            OR u.email        LIKE '%' + @SearchTerm + '%'
+            OR u.username     LIKE '%' + @SearchTerm + '%'
+            OR p.description  LIKE '%' + @SearchTerm + '%'
+            OR u.phone        LIKE '%' + @SearchTerm + '%'
+        )
+    ORDER BY u.lastname ASC, u.name ASC;
+END;
+GO
+
+-- Reactivate User
+CREATE OR ALTER PROCEDURE sp_ReactivateUser
+    @user_id INT
+AS
+BEGIN
+    SET NOCOUNT OFF;
+
+    UPDATE [User]
+    SET status = 1
+    WHERE user_id = @user_id;
+END;
+GO
+
+-- Search Inactive Users
+CREATE OR ALTER PROCEDURE sp_SearchInactiveUsers
+    @SearchTerm NVARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SET @SearchTerm = NULLIF(LTRIM(RTRIM(@SearchTerm)), '');
+
+    SELECT 
+        u.user_id          AS user_id,
+        u.profile_id       AS profile_id,
+        p.description      AS Perfil,
+        u.name             AS Nombre,
+        u.lastname         AS Apellido,
+        u.username         AS Usuario,
+        u.dni              AS DNI,
+        u.sex              AS Sexo,
+        u.birth            AS [Fecha Nacimiento],
+        u.email            AS Email,
+        u.phone            AS Telefono,
+        u.address          AS Direccion,
+        u.nationality      AS Nacionalidad,
+        u.locality         AS Localidad,
+        u.status           AS Estado
+    FROM [User] AS u
+    INNER JOIN Profile AS p 
+        ON u.profile_id = p.profile_id
+    WHERE 
+        u.status = 0
         AND (
             @SearchTerm IS NULL 
             OR u.name         LIKE '%' + @SearchTerm + '%'

@@ -120,6 +120,58 @@ namespace MobileSolutions.DataLayer
             return users;
         }
 
+        public List<User> GetInactiveUsers()
+        {
+            var users = new List<User>();
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_GetInactiveUsers", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int ordProfileName = GetOrdinalSafe(reader, "Perfil", "profile_name", "description");
+                    int ordName = GetOrdinalSafe(reader, "Nombre", "name");
+                    int ordLastname = GetOrdinalSafe(reader, "Apellido", "lastname");
+                    int ordDni = GetOrdinalSafe(reader, "DNI", "dni");
+                    int ordSex = GetOrdinalSafe(reader, "Sexo", "sex");
+                    int ordUsername = GetOrdinalSafe(reader, "Usuario", "username");
+                    int ordEmail = GetOrdinalSafe(reader, "Email", "email");
+                    int ordPhone = GetOrdinalSafe(reader, "Telefono", "phone");
+                    int ordAddress = GetOrdinalSafe(reader, "Direccion", "address");
+                    int ordBirth = GetOrdinalSafe(reader, "Fecha Nacimiento", "birth");
+                    int ordNationality = GetOrdinalSafe(reader, "Nacionalidad", "nationality");
+                    int ordLocality = GetOrdinalSafe(reader, "Localidad", "locality");
+                    int ordUserId = GetOrdinalSafe(reader, "user_id", "UserId");
+                    int ordProfileId = GetOrdinalSafe(reader, "profile_id", "ProfileId");
+                    int ordRegisterDate = GetOrdinalSafe(reader, "register_date", "RegisterDate");
+
+                    while (reader.Read())
+                    {
+                        users.Add(MapUserFromReader(
+                            reader,
+                            ordUserId,
+                            ordProfileId,
+                            ordProfileName,
+                            ordName,
+                            ordLastname,
+                            ordDni,
+                            ordSex,
+                            ordUsername,
+                            ordEmail,
+                            ordPhone,
+                            ordAddress,
+                            ordBirth,
+                            ordNationality,
+                            ordLocality,
+                            ordRegisterDate));
+                    }
+                }
+            }
+            return users;
+        }
+
         public List<User> SearchActiveUsers(string? searchTerm)
         {
             var users = new List<User>();
@@ -130,6 +182,68 @@ namespace MobileSolutions.DataLayer
                 command.CommandTimeout = 30;
 
                 // Parámetro seguro para prevenir inyección SQL
+                object dbValue = string.IsNullOrWhiteSpace(searchTerm)
+                    ? DBNull.Value
+                    : searchTerm.Trim();
+
+                command.Parameters.Add(new SqlParameter("@SearchTerm", SqlDbType.NVarChar, 100)
+                {
+                    Value = dbValue
+                });
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int ordProfileName = GetOrdinalSafe(reader, "Perfil", "profile_name", "description");
+                    int ordName = GetOrdinalSafe(reader, "Nombre", "name");
+                    int ordLastname = GetOrdinalSafe(reader, "Apellido", "lastname");
+                    int ordDni = GetOrdinalSafe(reader, "DNI", "dni");
+                    int ordSex = GetOrdinalSafe(reader, "Sexo", "sex");
+                    int ordUsername = GetOrdinalSafe(reader, "Usuario", "username");
+                    int ordEmail = GetOrdinalSafe(reader, "Email", "email");
+                    int ordPhone = GetOrdinalSafe(reader, "Telefono", "phone");
+                    int ordAddress = GetOrdinalSafe(reader, "Direccion", "address");
+                    int ordBirth = GetOrdinalSafe(reader, "Fecha Nacimiento", "birth");
+                    int ordNationality = GetOrdinalSafe(reader, "Nacionalidad", "nationality");
+                    int ordLocality = GetOrdinalSafe(reader, "Localidad", "locality");
+                    int ordUserId = GetOrdinalSafe(reader, "user_id", "UserId");
+                    int ordProfileId = GetOrdinalSafe(reader, "profile_id", "ProfileId");
+                    int ordRegisterDate = GetOrdinalSafe(reader, "register_date", "RegisterDate");
+
+                    while (reader.Read())
+                    {
+                        users.Add(MapUserFromReader(
+                            reader,
+                            ordUserId,
+                            ordProfileId,
+                            ordProfileName,
+                            ordName,
+                            ordLastname,
+                            ordDni,
+                            ordSex,
+                            ordUsername,
+                            ordEmail,
+                            ordPhone,
+                            ordAddress,
+                            ordBirth,
+                            ordNationality,
+                            ordLocality,
+                            ordRegisterDate));
+                    }
+                }
+            }
+            return users;
+        }
+
+        public List<User> SearchInactiveUsers(string? searchTerm)
+        {
+            var users = new List<User>();
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_SearchInactiveUsers", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+
                 object dbValue = string.IsNullOrWhiteSpace(searchTerm)
                     ? DBNull.Value
                     : searchTerm.Trim();
@@ -244,6 +358,22 @@ namespace MobileSolutions.DataLayer
         {
             using (SqlConnection connection = _dbConnection.GetConnection())
             using (SqlCommand command = new SqlCommand("sp_DeleteUser", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+
+                command.Parameters.Add("@user_id", SqlDbType.Int).Value = userId;
+
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0 || rowsAffected == -1;
+            }
+        }
+
+        public bool ReactivateUser(int userId)
+        {
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_ReactivateUser", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandTimeout = 30;

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using MobileSolutions.BusinessLayer.Models;
@@ -29,18 +29,27 @@ namespace MobileSolutions.BusinessLayer
             return _userDal.GetActiveUsers();
         }
 
+        public List<User> GetInactiveUsers()
+        {
+            return _userDal.GetInactiveUsers();
+        }
+
         public List<User> SearchUsers(string? searchTerm)
         {
-            // Regla de negocio: si no se especifica término de búsqueda o contiene únicamente espacios, retorna todos los usuarios activos
+            return SearchUsersByStatus(searchTerm, isInactiveMode: false);
+        }
+
+        public List<User> SearchUsersByStatus(string? searchTerm, bool isInactiveMode)
+        {
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                return GetActiveUsers();
+                return isInactiveMode ? GetInactiveUsers() : GetActiveUsers();
             }
 
             string cleanSearchTerm = searchTerm.Trim();
-
-            // Delegar consulta filtrada a la capa de datos
-            return _userDal.SearchActiveUsers(cleanSearchTerm);
+            return isInactiveMode 
+                ? _userDal.SearchInactiveUsers(cleanSearchTerm) 
+                : _userDal.SearchActiveUsers(cleanSearchTerm);
         }
 
         public (bool Success, string Message) CreateUser(User user)
@@ -167,6 +176,33 @@ namespace MobileSolutions.BusinessLayer
             catch (Exception ex)
             {
                 return (false, $"Error inesperado al dar de baja al usuario: {ex.Message}");
+            }
+        }
+
+        public (bool Success, string Message) ReactivateUser(int userId)
+        {
+            if (userId <= 0)
+            {
+                return (false, "Identificador de usuario no válido para la reactivación.");
+            }
+
+            try
+            {
+                bool reactivated = _userDal.ReactivateUser(userId);
+                if (reactivated)
+                {
+                    return (true, "Usuario reactivado correctamente.");
+                }
+
+                return (false, "No se pudo reactivar el usuario en la base de datos.");
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado al reactivar el usuario: {ex.Message}");
             }
         }
 

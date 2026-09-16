@@ -106,7 +106,10 @@ namespace MobileSolutions.UILayer
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                List<User> usuarios = _userService.GetActiveUsers();
+                List<User> usuarios = swtActive.Checked 
+                    ? _userService.GetActiveUsers() 
+                    : _userService.GetInactiveUsers();
+
                 // Enlazamos la lista fuertemente tipada
                 dtgUsers.DataSource = null; // Limpia enlace previo para forzar refresco
                 dtgUsers.DataSource = usuarios;
@@ -659,13 +662,14 @@ namespace MobileSolutions.UILayer
         private void ExecuteUserSearch()
         {
             string searchTerm = txtSearch.Text;
+            bool isInactiveMode = !swtActive.Checked;
 
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                // Consulta a la capa de negocio BLL
-                List<User> userList = _userService.SearchUsers(searchTerm);
+                // Consulta sensible al estado del switch en la capa de negocio BLL
+                List<User> userList = _userService.SearchUsersByStatus(searchTerm, isInactiveMode);
 
                 // Asignar los resultados tipados al DataGridView
                 dtgUsers.DataSource = null;
@@ -691,12 +695,76 @@ namespace MobileSolutions.UILayer
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
             ActualizarEstadoBotones(modoEdicion: _selectedUserId > 0);
             swtActive.CheckedChanged += swtActive_CheckedChanged;
+
+            // Enlazar eventos de reactivacion
+            btnReactivate.Click += btnReactivate_Click;
+            icoBtnReactivate.Click += btnReactivate_Click;
         }
 
         private void swtActive_CheckedChanged(object? sender, EventArgs e)
         {
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
             ActualizarEstadoBotones(modoEdicion: _selectedUserId > 0);
+            txtSearch.Clear();
+            LimpiarFormulario();
+            fillActiveUsers();
+        }
+
+        private void btnReactivate_Click(object? sender, EventArgs e)
+        {
+            if (_selectedUserId <= 0)
+            {
+                MaterialMessageBox.Show(
+                    "Debe seleccionar un usuario inactivo de la grilla para reactivarlo.",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                // Invocar reactivacion en la capa de negocio BLL
+                var (success, message) = _userService.ReactivateUser(_selectedUserId);
+
+                if (success)
+                {
+                    // Refrescar grilla de usuarios inactivos
+                    fillActiveUsers();
+
+                    // Limpiar campos del formulario
+                    LimpiarFormulario();
+
+                    // Notificacion visual de exito solicitada
+                    MaterialMessageBox.Show(
+                        "Usuario Reactivado",
+                        "info",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MaterialMessageBox.Show(
+                        message,
+                        "Advertencia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(
+                    $"Error inesperado al reactivar el usuario: {ex.Message}",
+                    "Error de Sistema",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
 
         private void materialCard2_Paint(object sender, PaintEventArgs e)
