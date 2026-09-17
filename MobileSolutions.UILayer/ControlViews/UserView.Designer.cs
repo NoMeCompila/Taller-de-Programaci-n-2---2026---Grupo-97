@@ -49,6 +49,9 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel2 = new TableLayoutPanel();
             panel6 = new Panel();
             picUserTitle = new FontAwesome.Sharp.IconPictureBox();
+            panel7 = new Panel();
+            lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
+            btnLogout = new MaterialSkin.Controls.MaterialButton();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel4 = new Panel();
             materialCard3 = new MaterialSkin.Controls.MaterialCard();
@@ -107,6 +110,7 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel2.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picUserTitle).BeginInit();
+            panel7.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel4.SuspendLayout();
             materialCard3.SuspendLayout();
@@ -132,7 +136,7 @@ namespace MobileSolutions.UILayer
             txtName.HideSelection = true;
             txtName.Hint = "Nombre";
             txtName.LeadingIcon = null;
-            txtName.Location = new Point(56, 10);
+            txtName.Location = new Point(54, 10);
             txtName.Margin = new Padding(2);
             txtName.MaxLength = 32767;
             txtName.MouseState = MaterialSkin.MouseState.OUT;
@@ -164,7 +168,7 @@ namespace MobileSolutions.UILayer
             txtLastname.HideSelection = true;
             txtLastname.Hint = "Apellido";
             txtLastname.LeadingIcon = null;
-            txtLastname.Location = new Point(58, 90);
+            txtLastname.Location = new Point(56, 90);
             txtLastname.Margin = new Padding(2);
             txtLastname.MaxLength = 32767;
             txtLastname.MouseState = MaterialSkin.MouseState.OUT;
@@ -196,7 +200,7 @@ namespace MobileSolutions.UILayer
             txtDNI.HideSelection = true;
             txtDNI.Hint = "DNI";
             txtDNI.LeadingIcon = null;
-            txtDNI.Location = new Point(58, 175);
+            txtDNI.Location = new Point(56, 175);
             txtDNI.Margin = new Padding(2);
             txtDNI.MaxLength = 32767;
             txtDNI.MouseState = MaterialSkin.MouseState.OUT;
@@ -228,7 +232,7 @@ namespace MobileSolutions.UILayer
             txtUsername.HideSelection = true;
             txtUsername.Hint = "Usuario";
             txtUsername.LeadingIcon = null;
-            txtUsername.Location = new Point(56, 256);
+            txtUsername.Location = new Point(54, 256);
             txtUsername.Margin = new Padding(2);
             txtUsername.MaxLength = 32767;
             txtUsername.MouseState = MaterialSkin.MouseState.OUT;
@@ -260,7 +264,7 @@ namespace MobileSolutions.UILayer
             txtPassword.HideSelection = true;
             txtPassword.Hint = "Contraseña";
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(56, 332);
+            txtPassword.Location = new Point(54, 332);
             txtPassword.Margin = new Padding(2);
             txtPassword.MaxLength = 32767;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
@@ -292,7 +296,7 @@ namespace MobileSolutions.UILayer
             txtEmail.HideSelection = true;
             txtEmail.Hint = "Email";
             txtEmail.LeadingIcon = null;
-            txtEmail.Location = new Point(328, 10);
+            txtEmail.Location = new Point(326, 10);
             txtEmail.Margin = new Padding(2);
             txtEmail.MaxLength = 32767;
             txtEmail.MouseState = MaterialSkin.MouseState.OUT;
@@ -323,7 +327,7 @@ namespace MobileSolutions.UILayer
             txtPhone.HideSelection = true;
             txtPhone.Hint = "Teléfono";
             txtPhone.LeadingIcon = null;
-            txtPhone.Location = new Point(328, 90);
+            txtPhone.Location = new Point(326, 90);
             txtPhone.Margin = new Padding(2);
             txtPhone.MaxLength = 32767;
             txtPhone.MouseState = MaterialSkin.MouseState.OUT;
@@ -355,7 +359,7 @@ namespace MobileSolutions.UILayer
             txtAddress.HideSelection = true;
             txtAddress.Hint = "Dirección";
             txtAddress.LeadingIcon = null;
-            txtAddress.Location = new Point(328, 175);
+            txtAddress.Location = new Point(326, 175);
             txtAddress.Margin = new Padding(2);
             txtAddress.MaxLength = 32767;
             txtAddress.MouseState = MaterialSkin.MouseState.OUT;
@@ -386,7 +390,7 @@ namespace MobileSolutions.UILayer
             txtNationality.HideSelection = true;
             txtNationality.Hint = "Nacionalidad";
             txtNationality.LeadingIcon = null;
-            txtNationality.Location = new Point(329, 256);
+            txtNationality.Location = new Point(327, 256);
             txtNationality.Margin = new Padding(2);
             txtNationality.MaxLength = 32767;
             txtNationality.MouseState = MaterialSkin.MouseState.OUT;
@@ -417,7 +421,7 @@ namespace MobileSolutions.UILayer
             txtLocality.HideSelection = true;
             txtLocality.Hint = "Localidad";
             txtLocality.LeadingIcon = null;
-            txtLocality.Location = new Point(328, 332);
+            txtLocality.Location = new Point(326, 332);
             txtLocality.Margin = new Padding(2);
             txtLocality.MaxLength = 32767;
             txtLocality.MouseState = MaterialSkin.MouseState.OUT;
@@ -528,7 +532,7 @@ namespace MobileSolutions.UILayer
             swtActive.Checked = true;
             swtActive.CheckState = CheckState.Checked;
             swtActive.Depth = 0;
-            swtActive.Location = new Point(858, 4);
+            swtActive.Location = new Point(857, 4);
             swtActive.Margin = new Padding(0);
             swtActive.MouseLocation = new Point(-1, -1);
             swtActive.MouseState = MaterialSkin.MouseState.HOVER;
@@ -559,11 +563,12 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel2.Controls.Add(panel6, 1, 0);
+            tableLayoutPanel2.Controls.Add(panel7, 2, 0);
             tableLayoutPanel2.Location = new Point(3, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1338, 85);
+            tableLayoutPanel2.Size = new Size(1336, 85);
             tableLayoutPanel2.TabIndex = 57;
             // 
             // panel6
@@ -571,9 +576,9 @@ namespace MobileSolutions.UILayer
             panel6.Controls.Add(picUserTitle);
             panel6.Controls.Add(lblUserTitle);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(404, 3);
+            panel6.Location = new Point(403, 3);
             panel6.Name = "panel6";
-            panel6.Size = new Size(529, 79);
+            panel6.Size = new Size(528, 79);
             panel6.TabIndex = 0;
             // 
             // picUserTitle
@@ -592,6 +597,50 @@ namespace MobileSolutions.UILayer
             picUserTitle.TabIndex = 45;
             picUserTitle.TabStop = false;
             // 
+            // panel7
+            // 
+            panel7.Controls.Add(lblCurrentUser);
+            panel7.Controls.Add(btnLogout);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(937, 3);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(396, 79);
+            panel7.TabIndex = 1;
+            // 
+            // lblCurrentUser
+            // 
+            lblCurrentUser.AutoSize = true;
+            lblCurrentUser.Depth = 0;
+            lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lblCurrentUser.Location = new Point(95, 10);
+            lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCurrentUser.Name = "lblCurrentUser";
+            lblCurrentUser.Size = new Size(79, 24);
+            lblCurrentUser.TabIndex = 2;
+            lblCurrentUser.Text = "[Usuario]";
+            // 
+            // btnLogout
+            // 
+            btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogout.BackColor = Color.Firebrick;
+            btnLogout.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnLogout.Depth = 0;
+            btnLogout.HighEmphasis = true;
+            btnLogout.Icon = null;
+            btnLogout.Location = new Point(234, 6);
+            btnLogout.Margin = new Padding(10);
+            btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
+            btnLogout.Name = "btnLogout";
+            btnLogout.NoAccentTextColor = Color.Empty;
+            btnLogout.Size = new Size(131, 36);
+            btnLogout.TabIndex = 1;
+            btnLogout.Text = "Cerrar Sesion";
+            btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnLogout.UseAccentColor = false;
+            btnLogout.UseVisualStyleBackColor = false;
+            // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 3;
@@ -608,7 +657,7 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 63.59447F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 5F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.40553F));
-            tableLayoutPanel1.Size = new Size(1341, 656);
+            tableLayoutPanel1.Size = new Size(1338, 656);
             tableLayoutPanel1.TabIndex = 56;
             // 
             // panel4
@@ -617,9 +666,9 @@ namespace MobileSolutions.UILayer
             panel4.Controls.Add(materialCard4);
             panel4.Controls.Add(materialCard1);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(571, 3);
+            panel4.Location = new Point(570, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(376, 408);
+            panel4.Size = new Size(375, 408);
             panel4.TabIndex = 44;
             // 
             // materialCard3
@@ -671,7 +720,7 @@ namespace MobileSolutions.UILayer
             materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard4.Name = "materialCard4";
             materialCard4.Padding = new Padding(13, 15, 13, 15);
-            materialCard4.Size = new Size(375, 125);
+            materialCard4.Size = new Size(374, 125);
             materialCard4.TabIndex = 43;
             // 
             // picSex
@@ -869,7 +918,7 @@ namespace MobileSolutions.UILayer
             panel3.Controls.Add(btnSave);
             panel3.Controls.Add(iconBtnDelete);
             panel3.Controls.Add(icoBtnSave);
-            panel3.Location = new Point(986, 42);
+            panel3.Location = new Point(984, 42);
             panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
             panel3.Size = new Size(318, 330);
@@ -1078,7 +1127,7 @@ namespace MobileSolutions.UILayer
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(3, 422);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1335, 231);
+            panel5.Size = new Size(1332, 231);
             panel5.TabIndex = 56;
             // 
             // btnSearch
@@ -1090,7 +1139,7 @@ namespace MobileSolutions.UILayer
             btnSearch.Depth = 0;
             btnSearch.HighEmphasis = true;
             btnSearch.Icon = null;
-            btnSearch.Location = new Point(529, 4);
+            btnSearch.Location = new Point(528, 4);
             btnSearch.Margin = new Padding(4);
             btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
             btnSearch.Name = "btnSearch";
@@ -1234,7 +1283,7 @@ namespace MobileSolutions.UILayer
             txtSearch.HideSelection = true;
             txtSearch.Hint = "Buscar";
             txtSearch.LeadingIcon = null;
-            txtSearch.Location = new Point(569, 0);
+            txtSearch.Location = new Point(568, 0);
             txtSearch.Margin = new Padding(2);
             txtSearch.MaxLength = 32767;
             txtSearch.MouseState = MaterialSkin.MouseState.OUT;
@@ -1286,7 +1335,7 @@ namespace MobileSolutions.UILayer
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
             materialCard2.Padding = new Padding(13, 15, 13, 15);
-            materialCard2.Size = new Size(542, 384);
+            materialCard2.Size = new Size(540, 384);
             materialCard2.TabIndex = 43;
             materialCard2.Paint += materialCard2_Paint;
             // 
@@ -1299,7 +1348,7 @@ namespace MobileSolutions.UILayer
             btnLoc.Depth = 0;
             btnLoc.HighEmphasis = true;
             btnLoc.Icon = null;
-            btnLoc.Location = new Point(288, 332);
+            btnLoc.Location = new Point(286, 332);
             btnLoc.Margin = new Padding(4);
             btnLoc.MouseState = MaterialSkin.MouseState.HOVER;
             btnLoc.Name = "btnLoc";
@@ -1319,7 +1368,7 @@ namespace MobileSolutions.UILayer
             btnNat.Depth = 0;
             btnNat.HighEmphasis = true;
             btnNat.Icon = null;
-            btnNat.Location = new Point(288, 256);
+            btnNat.Location = new Point(286, 256);
             btnNat.Margin = new Padding(4);
             btnNat.MouseState = MaterialSkin.MouseState.HOVER;
             btnNat.Name = "btnNat";
@@ -1339,7 +1388,7 @@ namespace MobileSolutions.UILayer
             btnAddress.Depth = 0;
             btnAddress.HighEmphasis = true;
             btnAddress.Icon = null;
-            btnAddress.Location = new Point(288, 175);
+            btnAddress.Location = new Point(286, 175);
             btnAddress.Margin = new Padding(4);
             btnAddress.MouseState = MaterialSkin.MouseState.HOVER;
             btnAddress.Name = "btnAddress";
@@ -1359,7 +1408,7 @@ namespace MobileSolutions.UILayer
             btnCel.Depth = 0;
             btnCel.HighEmphasis = true;
             btnCel.Icon = null;
-            btnCel.Location = new Point(288, 90);
+            btnCel.Location = new Point(286, 90);
             btnCel.Margin = new Padding(4);
             btnCel.MouseState = MaterialSkin.MouseState.HOVER;
             btnCel.Name = "btnCel";
@@ -1379,7 +1428,7 @@ namespace MobileSolutions.UILayer
             btnEmail.Depth = 0;
             btnEmail.HighEmphasis = true;
             btnEmail.Icon = null;
-            btnEmail.Location = new Point(288, 10);
+            btnEmail.Location = new Point(286, 10);
             btnEmail.Margin = new Padding(4);
             btnEmail.MouseState = MaterialSkin.MouseState.HOVER;
             btnEmail.Name = "btnEmail";
@@ -1399,7 +1448,7 @@ namespace MobileSolutions.UILayer
             btnPassword.Depth = 0;
             btnPassword.HighEmphasis = true;
             btnPassword.Icon = null;
-            btnPassword.Location = new Point(16, 332);
+            btnPassword.Location = new Point(14, 332);
             btnPassword.Margin = new Padding(4);
             btnPassword.MouseState = MaterialSkin.MouseState.HOVER;
             btnPassword.Name = "btnPassword";
@@ -1419,7 +1468,7 @@ namespace MobileSolutions.UILayer
             btnUser.Depth = 0;
             btnUser.HighEmphasis = true;
             btnUser.Icon = null;
-            btnUser.Location = new Point(16, 256);
+            btnUser.Location = new Point(14, 256);
             btnUser.Margin = new Padding(4);
             btnUser.MouseState = MaterialSkin.MouseState.HOVER;
             btnUser.Name = "btnUser";
@@ -1439,7 +1488,7 @@ namespace MobileSolutions.UILayer
             btnDni.Depth = 0;
             btnDni.HighEmphasis = true;
             btnDni.Icon = null;
-            btnDni.Location = new Point(16, 175);
+            btnDni.Location = new Point(14, 175);
             btnDni.Margin = new Padding(4);
             btnDni.MouseState = MaterialSkin.MouseState.HOVER;
             btnDni.Name = "btnDni";
@@ -1459,7 +1508,7 @@ namespace MobileSolutions.UILayer
             btnLastname.Depth = 0;
             btnLastname.HighEmphasis = true;
             btnLastname.Icon = null;
-            btnLastname.Location = new Point(16, 90);
+            btnLastname.Location = new Point(14, 90);
             btnLastname.Margin = new Padding(4);
             btnLastname.MouseState = MaterialSkin.MouseState.HOVER;
             btnLastname.Name = "btnLastname";
@@ -1479,7 +1528,7 @@ namespace MobileSolutions.UILayer
             btnName.Depth = 0;
             btnName.HighEmphasis = true;
             btnName.Icon = null;
-            btnName.Location = new Point(16, 10);
+            btnName.Location = new Point(14, 10);
             btnName.Margin = new Padding(4);
             btnName.MouseState = MaterialSkin.MouseState.HOVER;
             btnName.Name = "btnName";
@@ -1514,6 +1563,8 @@ namespace MobileSolutions.UILayer
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picUserTitle).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             panel4.ResumeLayout(false);
@@ -1610,5 +1661,8 @@ namespace MobileSolutions.UILayer
         private Panel panel5;
         private TableLayoutPanel tableLayoutPanel2;
         private Panel panel6;
+        private Panel panel7;
+        private MaterialSkin.Controls.MaterialButton btnLogout;
+        private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
     }
 }

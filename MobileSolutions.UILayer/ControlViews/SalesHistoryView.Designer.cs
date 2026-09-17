@@ -71,6 +71,9 @@ namespace MobileSolutions.UILayer
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel2 = new Panel();
+            panel3 = new Panel();
+            lblCurrentUser = new MaterialLabel();
+            btnLogout = new MaterialButton();
             tlpPrincipal.SuspendLayout();
             ((ISupportInitialize)splitContainer).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -84,6 +87,7 @@ namespace MobileSolutions.UILayer
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // tlpPrincipal
@@ -565,6 +569,7 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel1.Controls.Add(panel2, 1, 0);
+            tableLayoutPanel1.Controls.Add(panel3, 2, 0);
             tableLayoutPanel1.Location = new Point(3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
@@ -581,6 +586,50 @@ namespace MobileSolutions.UILayer
             panel2.Name = "panel2";
             panel2.Size = new Size(579, 62);
             panel2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(lblCurrentUser);
+            panel3.Controls.Add(btnLogout);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(1027, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(434, 62);
+            panel3.TabIndex = 1;
+            // 
+            // lblCurrentUser
+            // 
+            lblCurrentUser.AutoSize = true;
+            lblCurrentUser.Depth = 0;
+            lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lblCurrentUser.Location = new Point(99, 4);
+            lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCurrentUser.Name = "lblCurrentUser";
+            lblCurrentUser.Size = new Size(79, 24);
+            lblCurrentUser.TabIndex = 2;
+            lblCurrentUser.Text = "[Usuario]";
+            // 
+            // btnLogout
+            // 
+            btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogout.BackColor = Color.Firebrick;
+            btnLogout.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnLogout.Depth = 0;
+            btnLogout.HighEmphasis = true;
+            btnLogout.Icon = null;
+            btnLogout.Location = new Point(263, 4);
+            btnLogout.Margin = new Padding(4, 6, 4, 6);
+            btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
+            btnLogout.Name = "btnLogout";
+            btnLogout.NoAccentTextColor = Color.Empty;
+            btnLogout.Size = new Size(131, 36);
+            btnLogout.TabIndex = 1;
+            btnLogout.Text = "Cerrar Sesion";
+            btnLogout.Type = MaterialButton.MaterialButtonType.Contained;
+            btnLogout.UseAccentColor = false;
+            btnLogout.UseVisualStyleBackColor = false;
             // 
             // SalesHistoryView
             // 
@@ -606,6 +655,8 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -641,5 +692,8 @@ namespace MobileSolutions.UILayer
         private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel2;
+        private Panel panel3;
+        private MaterialButton btnLogout;
+        private MaterialLabel lblCurrentUser;
     }
 }

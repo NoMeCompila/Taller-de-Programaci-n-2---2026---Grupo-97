@@ -54,6 +54,7 @@ namespace MobileSolutions.UILayer
             picBirth.IconColor = Color.White;
             picUserTitle.IconChar = IconChar.UserGear;
             picUserTitle.IconColor = Color.White;
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
 
             _userService = new UserService();
 

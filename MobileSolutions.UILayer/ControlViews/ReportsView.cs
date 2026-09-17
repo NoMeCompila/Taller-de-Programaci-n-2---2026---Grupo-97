@@ -26,6 +26,8 @@ namespace MobileSolutions.UILayer
             picProximamente.IconChar = IconChar.UserSlash;
             picProximamente.IconColor = Color.Red;
 
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+
             this.Load += ReportsView_Load;
         }
 
