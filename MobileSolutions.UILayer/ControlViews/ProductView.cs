@@ -25,6 +25,7 @@ namespace MobileSolutions.UILayer
             //btnDelete.Icon = IconChar.Trash.ToBitmap(Color.White);
             //btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
             btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
 
             // Íconos de los botones pequeños junto a cada campo
             btnBrand.Icon = IconChar.Tag.ToBitmap(Color.White);
@@ -58,7 +59,7 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        
+
         // Decimales con hasta 2 decimales (purchase_price y sale_price DECIMAL(18,2)).
         private void txtDecimalPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -275,6 +276,11 @@ namespace MobileSolutions.UILayer
         }
 
         private void dtgProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblProductTitle_Click(object sender, EventArgs e)
         {
 
         }

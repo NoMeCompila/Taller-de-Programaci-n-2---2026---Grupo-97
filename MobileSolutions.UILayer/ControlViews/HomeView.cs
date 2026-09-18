@@ -21,6 +21,7 @@ namespace MobileSolutions.UILayer
             this.picSalesHome.Image = IconChar.CashRegister.ToBitmap(ColorTranslator.FromHtml("#1379ED"), 64);
             this.picHistoryHome.Image = IconChar.History.ToBitmap(ColorTranslator.FromHtml("#1379ED"), 64);
             this.picReportsHome.Image = IconChar.ChartBar.ToBitmap(ColorTranslator.FromHtml("#1379ED"), 64);
+            this.btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
         }
 
         public void SetCurrentUser(string username)
