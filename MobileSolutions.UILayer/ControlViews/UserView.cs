@@ -26,6 +26,7 @@ namespace MobileSolutions.UILayer
         {
             InitializeComponent();
 
+
             // Configuración de colores oscuros/azules para el DateTimePicker
             dtpBirth.CalendarMonthBackground = Color.FromArgb(21, 101, 192); // Blue800
             dtpBirth.CalendarTitleBackColor = Color.FromArgb(13, 71, 161);   // Blue900

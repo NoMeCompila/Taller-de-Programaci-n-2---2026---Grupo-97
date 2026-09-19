@@ -545,19 +545,20 @@ namespace MobileSolutions.UILayer
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel1.Controls.Add(tableLayoutPanel2);
             panel1.Controls.Add(tableLayoutPanel1);
-            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2, 3, 2, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1344, 896);
+            panel1.Size = new Size(1344, 930);
             panel1.TabIndex = 39;
             panel1.Paint += panel1_Paint;
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 3;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
@@ -643,6 +644,7 @@ namespace MobileSolutions.UILayer
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.4310226F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.5607758F));
@@ -651,7 +653,7 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.Controls.Add(panel3, 2, 0);
             tableLayoutPanel1.Controls.Add(panel5, 1, 1);
             tableLayoutPanel1.Controls.Add(materialCard2, 0, 0);
-            tableLayoutPanel1.Location = new Point(3, 88);
+            tableLayoutPanel1.Location = new Point(3, 69);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 63.59447F));
@@ -705,7 +707,6 @@ namespace MobileSolutions.UILayer
             // 
             // materialCard4
             // 
-            materialCard4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             materialCard4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialCard4.BackColor = Color.FromArgb(255, 255, 255);
             materialCard4.Controls.Add(picSex);
@@ -1119,12 +1120,12 @@ namespace MobileSolutions.UILayer
             // 
             // panel5
             // 
+            panel5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.SetColumnSpan(panel5, 3);
             panel5.Controls.Add(btnSearch);
             panel5.Controls.Add(dtgUsers);
             panel5.Controls.Add(txtSearch);
             panel5.Controls.Add(swtActive);
-            panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(3, 422);
             panel5.Name = "panel5";
             panel5.Size = new Size(1332, 231);
@@ -1154,6 +1155,7 @@ namespace MobileSolutions.UILayer
             // dtgUsers
             // 
             dtgUsers.AllowUserToOrderColumns = true;
+            dtgUsers.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgUsers.BackgroundColor = Color.MidnightBlue;
             dtgUsers.BorderStyle = BorderStyle.None;
@@ -1168,11 +1170,11 @@ namespace MobileSolutions.UILayer
             dtgUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgUsers.Columns.AddRange(new DataGridViewColumn[] { ColumnProfile, ColumnName, ColumnLastname, ColumnUsername, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
             dtgUsers.GridColor = SystemColors.InactiveCaptionText;
-            dtgUsers.Location = new Point(2, 51);
+            dtgUsers.Location = new Point(0, 53);
             dtgUsers.Margin = new Padding(2);
             dtgUsers.Name = "dtgUsers";
             dtgUsers.RowHeadersWidth = 51;
-            dtgUsers.Size = new Size(1331, 178);
+            dtgUsers.Size = new Size(1332, 178);
             dtgUsers.TabIndex = 33;
             // 
             // ColumnProfile
