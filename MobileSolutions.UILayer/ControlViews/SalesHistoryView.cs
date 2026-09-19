@@ -21,6 +21,7 @@ private void ConfigurarIconos()
             btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
             picHistoryTitle.IconChar = IconChar.History;
             picHistoryTitle.IconColor = Color.White;
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
         }
 
         private void CargarDatosDummy()

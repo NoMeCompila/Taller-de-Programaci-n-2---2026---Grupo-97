@@ -69,11 +69,11 @@ namespace MobileSolutions.UILayer
                 return;
             }
             // Opcional para confirmar visualmente que conectó:
-            MaterialMessageBox.Show(
-                "Conexión exitosa a SQL Server (MobileSolutionsDB).",
-                "Conectado",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            //MaterialMessageBox.Show(
+             //   "Conexión exitosa a SQL Server (MobileSolutionsDB).",
+             //   "Conectado",
+              //  MessageBoxButtons.OK,
+              //  MessageBoxIcon.Information);
 
 
             string username = txtUser.Text.Trim();

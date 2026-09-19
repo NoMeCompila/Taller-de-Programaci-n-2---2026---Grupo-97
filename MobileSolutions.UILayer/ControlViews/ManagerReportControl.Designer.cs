@@ -32,6 +32,11 @@
             lblStockAlertsTitle = new MaterialSkin.Controls.MaterialLabel();
             pnlTopSellers = new Panel();
             lblTopSellersTitle = new MaterialSkin.Controls.MaterialLabel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
+            btnLogout = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)picManagerTitle).BeginInit();
             tlpMain.SuspendLayout();
             pnlKpisRow.SuspendLayout();
@@ -41,29 +46,34 @@
             tlpTablas.SuspendLayout();
             pnlStockAlerts.SuspendLayout();
             pnlTopSellers.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // picManagerTitle
             // 
+            picManagerTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             picManagerTitle.BackColor = Color.FromArgb(50, 50, 50);
             picManagerTitle.IconChar = FontAwesome.Sharp.IconChar.PieChart;
             picManagerTitle.IconColor = Color.White;
             picManagerTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picManagerTitle.IconSize = 75;
-            picManagerTitle.Location = new Point(579, 3);
+            picManagerTitle.IconSize = 61;
+            picManagerTitle.Location = new Point(54, 6);
             picManagerTitle.Name = "picManagerTitle";
-            picManagerTitle.Size = new Size(89, 75);
+            picManagerTitle.Size = new Size(77, 61);
             picManagerTitle.TabIndex = 0;
             picManagerTitle.TabStop = false;
             // 
             // lblManagerTitle
             // 
+            lblManagerTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             lblManagerTitle.AutoSize = true;
             lblManagerTitle.Depth = 0;
             lblManagerTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblManagerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
             lblManagerTitle.ForeColor = Color.White;
-            lblManagerTitle.Location = new Point(677, 6);
+            lblManagerTitle.Location = new Point(137, 6);
             lblManagerTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblManagerTitle.Name = "lblManagerTitle";
             lblManagerTitle.Size = new Size(434, 58);
@@ -259,12 +269,80 @@
             lblTopSellersTitle.Text = "Top Sellers";
             lblTopSellersTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanel1.Controls.Add(panel1, 1, 0);
+            tableLayoutPanel1.Controls.Add(panel2, 2, 0);
+            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(1674, 75);
+            tableLayoutPanel1.TabIndex = 38;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(picManagerTitle);
+            panel1.Controls.Add(lblManagerTitle);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(505, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(663, 69);
+            panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(lblCurrentUser);
+            panel2.Controls.Add(btnLogout);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(1174, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(497, 69);
+            panel2.TabIndex = 1;
+            // 
+            // lblCurrentUser
+            // 
+            lblCurrentUser.AutoSize = true;
+            lblCurrentUser.Depth = 0;
+            lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lblCurrentUser.Location = new Point(182, 6);
+            lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCurrentUser.Name = "lblCurrentUser";
+            lblCurrentUser.Size = new Size(79, 24);
+            lblCurrentUser.TabIndex = 2;
+            lblCurrentUser.Text = "[Usuario]";
+            // 
+            // btnLogout
+            // 
+            btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogout.BackColor = Color.Firebrick;
+            btnLogout.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnLogout.Depth = 0;
+            btnLogout.HighEmphasis = true;
+            btnLogout.Icon = null;
+            btnLogout.Location = new Point(339, 4);
+            btnLogout.Margin = new Padding(10);
+            btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
+            btnLogout.Name = "btnLogout";
+            btnLogout.NoAccentTextColor = Color.Empty;
+            btnLogout.Size = new Size(131, 36);
+            btnLogout.TabIndex = 1;
+            btnLogout.Text = "Cerrar Sesion";
+            btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnLogout.UseAccentColor = false;
+            btnLogout.UseVisualStyleBackColor = false;
+            // 
             // ManagerReportControl
             // 
             BackColor = Color.FromArgb(50, 50, 50);
+            Controls.Add(tableLayoutPanel1);
             Controls.Add(tlpMain);
-            Controls.Add(lblManagerTitle);
-            Controls.Add(picManagerTitle);
             Name = "ManagerReportControl";
             Size = new Size(1680, 930);
             ((System.ComponentModel.ISupportInitialize)picManagerTitle).EndInit();
@@ -276,8 +354,12 @@
             tlpTablas.ResumeLayout(false);
             pnlStockAlerts.ResumeLayout(false);
             pnlTopSellers.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -297,5 +379,10 @@
         private MaterialSkin.Controls.MaterialLabel lblStockAlertsTitle;
         private Panel pnlTopSellers;
         private MaterialSkin.Controls.MaterialLabel lblTopSellersTitle;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private Panel panel2;
+        private MaterialSkin.Controls.MaterialButton btnLogout;
+        private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
     }
 }

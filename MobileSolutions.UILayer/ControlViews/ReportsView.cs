@@ -14,7 +14,7 @@ namespace MobileSolutions.UILayer
     public partial class ReportsView : UserControl
     {
 
-        int perfilActual = 4; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
+        int perfilActual = 3; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
         public ReportsView()
         {
             InitializeComponent();
@@ -25,6 +25,8 @@ namespace MobileSolutions.UILayer
 
             picProximamente.IconChar = IconChar.UserSlash;
             picProximamente.IconColor = Color.Red;
+
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
 
             this.Load += ReportsView_Load;
         }

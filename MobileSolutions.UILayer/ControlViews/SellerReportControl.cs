@@ -25,6 +25,7 @@ namespace MobileSolutions.UILayer
         public SellerReportControl()
         {
             InitializeComponent();
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             ConfigurarLayout();
         }
 

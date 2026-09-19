@@ -27,6 +27,7 @@ namespace MobileSolutions.UILayer
         public ManagerReportControl()
         {
             InitializeComponent();
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             ConfigurarLayout();
         }
 

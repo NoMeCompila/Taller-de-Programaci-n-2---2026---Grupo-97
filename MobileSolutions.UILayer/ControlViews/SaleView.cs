@@ -42,6 +42,8 @@ namespace MobileSolutions.UILayer
 
             picSaleTitle.IconChar = IconChar.Shopify;
             picSaleTitle.IconColor = Color.White;
+
+            btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
         }
 
         private void CargarTiposDePago()

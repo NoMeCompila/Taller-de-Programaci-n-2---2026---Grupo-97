@@ -35,5 +35,23 @@
     </EmbeddedResource>
   </ItemGroup>
 
+	
+	<!-- Posible solucion al problema de desacomodo de las views al traer cambios de diseño -->
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<!-- O la versión de .NET que estén usando -->
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Configuración para la aplicación en ejecución -->
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+
+		<!-- FIX DEFINITIVO: Fuerza al diseñador a trabajar siempre al 100% (96 DPI) -->
+		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	</PropertyGroup>
+
 </Project>
 
