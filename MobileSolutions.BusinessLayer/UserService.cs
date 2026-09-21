@@ -90,6 +90,8 @@ namespace MobileSolutions.BusinessLayer
                         return (false, "El nombre de usuario ya se encuentra en uso.");
                     if (ex.Message.Contains("UQ_User_Email"))
                         return (false, "El correo electrónico ya está registrado en el sistema.");
+                    if (ex.Message.Contains("UQ_User_Phone"))
+                        return (false, "El teléfono ya ha sido agregado anteriormente.");
 
                     return (false, "Ya existe un registro con datos duplicados.");
                 }

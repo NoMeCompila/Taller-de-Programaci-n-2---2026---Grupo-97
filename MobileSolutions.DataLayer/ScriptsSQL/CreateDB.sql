@@ -146,8 +146,7 @@ INSERT INTO Profile (description, status) VALUES
 ('Gerente', 1);
 
 
-USE MobileSolutionsDB;
-GO
+
 SELECT * FROM Profile;
 
 
@@ -180,3 +179,13 @@ SELECT
     modify_date AS UltimaModificacion
 FROM sys.procedures
 ORDER BY Esquema, NombreProcedimiento;
+
+
+USE MobileSolutionsDB;
+GO
+Delete from [User] Where username = 'testuser'
+
+-- Actualziar tabla de User para que el phone sea unico y no se repita
+ALTER TABLE [User] 
+ADD CONSTRAINT UQ_User_Phone UNIQUE (phone);
+
