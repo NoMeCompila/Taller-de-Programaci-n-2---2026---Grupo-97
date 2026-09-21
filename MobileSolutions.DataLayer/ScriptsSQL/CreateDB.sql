@@ -189,3 +189,11 @@ Delete from [User] Where username = 'testuser'
 ALTER TABLE [User] 
 ADD CONSTRAINT UQ_User_Phone UNIQUE (phone);
 
+
+-- Agregar validacion de mayoria de edad a la tabla de User
+-- Eliminamos el check anterior
+ALTER TABLE [User] DROP CONSTRAINT CHK_User_Birth;
+
+-- Agregamos la regla de mayoria de edad
+ALTER TABLE [User] 
+ADD CONSTRAINT CHK_User_Birth CHECK (birth <= DATEADD(year, -18, CAST(GETDATE() AS DATE)));

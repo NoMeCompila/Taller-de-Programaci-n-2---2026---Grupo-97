@@ -68,7 +68,8 @@ namespace MobileSolutions.BusinessLayer
                 return (false, "Debe ingresar un correo electrónico válido.");
             if (user.ProfileId <= 0)
                 return (false, "Debe seleccionar un perfil válido para el usuario.");
-
+            if (user.Birth.Date > DateTime.Today.AddYears(-18))
+                return (false, "El usuario debe ser mayor de 18 años.");
             try
             {
                 int newId = _userDal.CreateUser(user);
@@ -120,6 +121,8 @@ namespace MobileSolutions.BusinessLayer
                 return (false, "Debe ingresar un correo electrónico válido.");
             if (user.ProfileId <= 0)
                 return (false, "Debe seleccionar un perfil válido para el usuario.");
+            if (user.Birth.Date > DateTime.Today.AddYears(-18))
+                return (false, "El usuario debe ser mayor de 18 años.");
 
             try
             {
