@@ -260,9 +260,9 @@ namespace MobileSolutions.BusinessLayer
 
         private static readonly List<User> _mockUsers = new()
         {
-            new User { Username = "admin", ProfileName = "Administrator" },
-            new User { Username = "fer", ProfileName = "Gerente" },
-            new User { Username = "nico", ProfileName = "Vendedor" }
+            new User { Username = "admin", ProfileName = "Administrator", Password = "Test123!" },
+            new User { Username = "fer", ProfileName = "Gerente", Password = "Test123!" },
+            new User { Username = "nico", ProfileName = "Vendedor", Password = "Test123!" }
         };
 
         public bool AuthenticateUser(string username, string password)
@@ -278,7 +278,8 @@ namespace MobileSolutions.BusinessLayer
             }
 
             return _mockUsers.FirstOrDefault(u =>
-                string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase));
+                string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(u.Password, password));
         }
 
         public User? GetUserByUsername(string username)
