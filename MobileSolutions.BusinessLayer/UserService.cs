@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MobileSolutions.BusinessLayer.Models;
@@ -62,8 +62,9 @@ namespace MobileSolutions.BusinessLayer
                 return (false, "El DNI debe contener entre 7 y 8 dígitos.");
             if (string.IsNullOrWhiteSpace(user.Username))
                 return (false, "El nombre de usuario es obligatorio.");
-            if (string.IsNullOrWhiteSpace(user.Password))
-                return (false, "La contraseña es obligatoria.");
+            var passwordValidation = ValidatePasswordComplexity(user.Password, isRequired: true);
+            if (!passwordValidation.IsValid)
+                return (false, passwordValidation.Message);
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
                 return (false, "Debe ingresar un correo electrónico válido.");
             if (user.ProfileId <= 0)
@@ -117,6 +118,12 @@ namespace MobileSolutions.BusinessLayer
                 return (false, "El DNI debe contener entre 7 y 8 dígitos.");
             if (string.IsNullOrWhiteSpace(user.Username))
                 return (false, "El nombre de usuario es obligatorio.");
+            if (!string.IsNullOrWhiteSpace(user.Password))
+            {
+                var passwordValidation = ValidatePasswordComplexity(user.Password, isRequired: false);
+                if (!passwordValidation.IsValid)
+                    return (false, passwordValidation.Message);
+            }
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
                 return (false, "Debe ingresar un correo electrónico válido.");
             if (user.ProfileId <= 0)
@@ -216,6 +223,39 @@ namespace MobileSolutions.BusinessLayer
         public (bool IsConnected, string? ErrorMessage) CheckDatabaseConnection()
         {
             return _dbConnection.TestConnection();
+        }
+
+        /// <summary>
+        /// Valida las reglas de complejidad de contraseña:
+        /// - Mínimo 8 caracteres
+        /// - Al menos 1 letra mayúscula
+        /// - Al menos 1 símbolo especial
+        /// </summary>
+        public (bool IsValid, string Message) ValidatePasswordComplexity(string? password, bool isRequired = true)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return isRequired
+                    ? (false, "La contraseña es obligatoria.")
+                    : (true, string.Empty);
+            }
+
+            if (password.Length < 8)
+            {
+                return (false, "La contraseña debe contener al menos 8 caracteres.");
+            }
+
+            if (!password.Any(char.IsUpper))
+            {
+                return (false, "La contraseña debe contener al menos una letra mayúscula.");
+            }
+
+            if (!password.Any(c => !char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c)))
+            {
+                return (false, "La contraseña debe contener al menos un carácter especial (ej. !@#$%^&*).");
+            }
+
+            return (true, string.Empty);
         }
 
         private static readonly List<User> _mockUsers = new()

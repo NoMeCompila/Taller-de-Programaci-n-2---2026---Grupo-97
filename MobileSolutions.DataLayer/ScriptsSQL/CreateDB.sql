@@ -183,7 +183,7 @@ ORDER BY Esquema, NombreProcedimiento;
 
 USE MobileSolutionsDB;
 GO
-Delete from [User] Where username = 'testuser'
+Delete from [User] Where username = 'cabafer'
 
 -- Actualziar tabla de User para que el phone sea unico y no se repita
 ALTER TABLE [User] 
@@ -197,3 +197,4 @@ ALTER TABLE [User] DROP CONSTRAINT CHK_User_Birth;
 -- Agregamos la regla de mayoria de edad
 ALTER TABLE [User] 
 ADD CONSTRAINT CHK_User_Birth CHECK (birth <= DATEADD(year, -18, CAST(GETDATE() AS DATE)));
+

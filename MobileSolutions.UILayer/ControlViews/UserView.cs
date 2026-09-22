@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+using FontAwesome.Sharp;
 using MaterialSkin;
 using System;
 using System.Collections.Generic;
@@ -255,7 +255,6 @@ namespace MobileSolutions.UILayer
                 || string.IsNullOrWhiteSpace(txtLastname.Text)
                 || string.IsNullOrWhiteSpace(txtDNI.Text)
                 || string.IsNullOrWhiteSpace(txtUsername.Text)
-                || (!isUpdate && string.IsNullOrWhiteSpace(txtPassword.Text))
                 || string.IsNullOrWhiteSpace(txtEmail.Text)
                 || string.IsNullOrWhiteSpace(txtNationality.Text)
                 || string.IsNullOrWhiteSpace(txtLocality.Text))
@@ -266,6 +265,36 @@ namespace MobileSolutions.UILayer
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return false;
+            }
+
+            // Validación de complejidad de contraseña (Alta obligatoria, Modificación opcional si se ingresa nueva contraseña)
+            string password = txtPassword.Text;
+            bool isPasswordProvided = !string.IsNullOrWhiteSpace(password);
+
+            if (!isUpdate && !isPasswordProvided)
+            {
+                MaterialMessageBox.Show(
+                    "La contraseña es obligatoria.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtPassword.Focus();
+                return false;
+            }
+
+            if (isPasswordProvided)
+            {
+                var (isValid, errorMessage) = _userService.ValidatePasswordComplexity(password, isRequired: !isUpdate);
+                if (!isValid)
+                {
+                    MaterialMessageBox.Show(
+                        errorMessage,
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    txtPassword.Focus();
+                    return false;
+                }
             }
 
             if (txtDNI.Text.Trim().Length < 7 || txtDNI.Text.Trim().Length > 8)
@@ -279,7 +308,7 @@ namespace MobileSolutions.UILayer
                 return false;
             }
 
-            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))   
             {
                 MaterialMessageBox.Show(
                     "Ingrese un formato de correo electrónico válido.",

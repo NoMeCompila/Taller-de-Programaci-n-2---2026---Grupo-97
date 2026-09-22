@@ -1,4 +1,4 @@
-﻿USE MobileSolutionsDB;
+USE MobileSolutionsDB;
 GO
 
 -- User Table Store Procedures
@@ -83,6 +83,12 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
+    IF @password IS NULL OR LEN(@password) < 8
+    BEGIN
+        RAISERROR('La contraseña debe contener al menos 8 caracteres.', 16, 1);
+        RETURN;
+    END
+
     INSERT INTO [User] (
         profile_id, name, lastname, dni, sex, username, 
         password, email, phone, address, birth, nationality, 
@@ -121,6 +127,12 @@ CREATE OR ALTER PROCEDURE sp_UpdateUser
 AS
 BEGIN
     SET NOCOUNT OFF;
+
+    IF @password IS NOT NULL AND LEN(@password) < 8
+    BEGIN
+        RAISERROR('La contraseña debe contener al menos 8 caracteres.', 16, 1);
+        RETURN;
+    END
 
     UPDATE [User]
     SET 

@@ -299,6 +299,12 @@ namespace MobileSolutions.DataLayer
 
         public int CreateUser(User user)
         {
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            if (string.IsNullOrWhiteSpace(user.Password) || user.Password.Length < 8)
+                throw new ArgumentException("La contraseña es requerida y debe contener al menos 8 caracteres para su almacenamiento.", nameof(user.Password));
+
             using (SqlConnection connection = _dbConnection.GetConnection())
             using (SqlCommand command = new SqlCommand("sp_CreateUser", connection))
             {
@@ -327,6 +333,12 @@ namespace MobileSolutions.DataLayer
 
         public bool UpdateUser(User user)
         {
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            if (!string.IsNullOrWhiteSpace(user.Password) && user.Password.Length < 8)
+                throw new ArgumentException("La contraseña debe contener al menos 8 caracteres para su almacenamiento.", nameof(user.Password));
+
             using (SqlConnection connection = _dbConnection.GetConnection())
             using (SqlCommand command = new SqlCommand("sp_UpdateUser", connection))
             {
