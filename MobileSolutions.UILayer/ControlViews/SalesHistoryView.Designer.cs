@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,12 +9,12 @@ namespace MobileSolutions.UILayer
     partial class SalesHistoryView
     {
         /// <summary> 
-        /// Variable del diseÃ±ador necesaria.
+        /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Limpiar los recursos que se estÃ©n usando.
+        /// Limpiar los recursos que se estén usando.
         /// </summary>
         /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
@@ -26,11 +26,11 @@ namespace MobileSolutions.UILayer
             base.Dispose(disposing);
         }
 
-        #region CÃ³digo generado por el DiseÃ±ador de componentes
+        #region Código generado por el Diseñador de componentes
 
         /// <summary> 
-        /// MÃ©todo necesario para admitir el DiseÃ±ador. No se puede modificar
-        /// el contenido de este mÃ©todo con el editor de cÃ³digo.
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
@@ -68,7 +68,6 @@ namespace MobileSolutions.UILayer
             btnClear = new MaterialButton();
             lblTitle = new MaterialLabel();
             picHistoryTitle = new FontAwesome.Sharp.IconPictureBox();
-            panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel2 = new Panel();
             panel3 = new Panel();
@@ -84,7 +83,6 @@ namespace MobileSolutions.UILayer
             ((ISupportInitialize)dgvSaleDetails).BeginInit();
             flpFiltros.SuspendLayout();
             ((ISupportInitialize)picHistoryTitle).BeginInit();
-            panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -97,23 +95,23 @@ namespace MobileSolutions.UILayer
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpPrincipal.Controls.Add(splitContainer, 0, 2);
             tlpPrincipal.Controls.Add(flpFiltros, 0, 0);
-            tlpPrincipal.Dock = DockStyle.Fill;
-            tlpPrincipal.Location = new Point(0, 0);
+            tlpPrincipal.Dock = DockStyle.Bottom;
+            tlpPrincipal.Location = new Point(0, 168);
             tlpPrincipal.Margin = new Padding(3, 2, 3, 2);
             tlpPrincipal.Name = "tlpPrincipal";
             tlpPrincipal.Padding = new Padding(14, 9, 14, 9);
             tlpPrincipal.RowCount = 2;
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 82F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 6F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tlpPrincipal.Size = new Size(1470, 622);
+            tlpPrincipal.RowStyles.Add(new RowStyle());
+            tlpPrincipal.RowStyles.Add(new RowStyle());
+            tlpPrincipal.RowStyles.Add(new RowStyle());
+            tlpPrincipal.Size = new Size(1680, 762);
             tlpPrincipal.TabIndex = 0;
             // 
             // splitContainer
             // 
             splitContainer.BackColor = Color.FromArgb(50, 50, 50);
             splitContainer.Dock = DockStyle.Fill;
-            splitContainer.Location = new Point(17, 99);
+            splitContainer.Location = new Point(17, 93);
             splitContainer.Margin = new Padding(3, 2, 3, 2);
             splitContainer.Name = "splitContainer";
             splitContainer.Orientation = Orientation.Horizontal;
@@ -129,8 +127,8 @@ namespace MobileSolutions.UILayer
             splitContainer.Panel2.BackColor = Color.FromArgb(50, 50, 50);
             splitContainer.Panel2.Controls.Add(tlpDetalle);
             splitContainer.Panel2MinSize = 120;
-            splitContainer.Size = new Size(1436, 512);
-            splitContainer.SplitterDistance = 265;
+            splitContainer.Size = new Size(1646, 717);
+            splitContainer.SplitterDistance = 371;
             splitContainer.TabIndex = 2;
             // 
             // dgvSales
@@ -162,9 +160,10 @@ namespace MobileSolutions.UILayer
             dataGridViewCellStyle3.SelectionForeColor = Color.White;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvSales.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvSales.Dock = DockStyle.Fill;
             dgvSales.EnableHeadersVisualStyles = false;
             dgvSales.GridColor = Color.FromArgb(70, 70, 70);
-            dgvSales.Location = new Point(0, 11);
+            dgvSales.Location = new Point(0, 0);
             dgvSales.Margin = new Padding(3, 2, 3, 2);
             dgvSales.MultiSelect = false;
             dgvSales.Name = "dgvSales";
@@ -173,13 +172,13 @@ namespace MobileSolutions.UILayer
             dgvSales.RowHeadersWidth = 51;
             dgvSales.RowTemplate.Height = 34;
             dgvSales.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSales.Size = new Size(1433, 234);
+            dgvSales.Size = new Size(1646, 371);
             dgvSales.TabIndex = 0;
             // 
             // colNumeroVenta
             // 
             colNumeroVenta.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colNumeroVenta.HeaderText = "NÂ° Venta";
+            colNumeroVenta.HeaderText = "N° Venta";
             colNumeroVenta.MinimumWidth = 6;
             colNumeroVenta.Name = "colNumeroVenta";
             colNumeroVenta.ReadOnly = true;
@@ -211,7 +210,7 @@ namespace MobileSolutions.UILayer
             // colMetodoPago
             // 
             colMetodoPago.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colMetodoPago.HeaderText = "MÃ©todo Pago";
+            colMetodoPago.HeaderText = "Método Pago";
             colMetodoPago.MinimumWidth = 6;
             colMetodoPago.Name = "colMetodoPago";
             colMetodoPago.ReadOnly = true;
@@ -247,7 +246,7 @@ namespace MobileSolutions.UILayer
             tlpDetalle.RowCount = 2;
             tlpDetalle.RowStyles.Add(new RowStyle(SizeType.Absolute, 22F));
             tlpDetalle.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpDetalle.Size = new Size(1436, 243);
+            tlpDetalle.Size = new Size(1646, 342);
             tlpDetalle.TabIndex = 0;
             // 
             // lblDetailTitle
@@ -259,7 +258,7 @@ namespace MobileSolutions.UILayer
             lblDetailTitle.Location = new Point(3, 0);
             lblDetailTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblDetailTitle.Name = "lblDetailTitle";
-            lblDetailTitle.Size = new Size(1430, 22);
+            lblDetailTitle.Size = new Size(1640, 22);
             lblDetailTitle.TabIndex = 0;
             lblDetailTitle.Text = "Detalle del comprobante seleccionado";
             lblDetailTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -306,12 +305,12 @@ namespace MobileSolutions.UILayer
             dgvSaleDetails.RowHeadersWidth = 51;
             dgvSaleDetails.RowTemplate.Height = 30;
             dgvSaleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSaleDetails.Size = new Size(1430, 217);
+            dgvSaleDetails.Size = new Size(1640, 316);
             dgvSaleDetails.TabIndex = 1;
             // 
             // colCodigo
             // 
-            colCodigo.HeaderText = "CÃ³digo";
+            colCodigo.HeaderText = "Código";
             colCodigo.MinimumWidth = 6;
             colCodigo.Name = "colCodigo";
             colCodigo.ReadOnly = true;
@@ -319,7 +318,7 @@ namespace MobileSolutions.UILayer
             // colDescripcion
             // 
             colDescripcion.FillWeight = 180F;
-            colDescripcion.HeaderText = "DescripciÃ³n";
+            colDescripcion.HeaderText = "Descripción";
             colDescripcion.MinimumWidth = 6;
             colDescripcion.Name = "colDescripcion";
             colDescripcion.ReadOnly = true;
@@ -359,7 +358,7 @@ namespace MobileSolutions.UILayer
             flpFiltros.Location = new Point(17, 11);
             flpFiltros.Margin = new Padding(3, 2, 3, 2);
             flpFiltros.Name = "flpFiltros";
-            flpFiltros.Size = new Size(1436, 78);
+            flpFiltros.Size = new Size(1646, 78);
             flpFiltros.TabIndex = 1;
             // 
             // txtFilterSaleNumber
@@ -370,7 +369,7 @@ namespace MobileSolutions.UILayer
             txtFilterSaleNumber.Depth = 0;
             txtFilterSaleNumber.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtFilterSaleNumber.HideSelection = true;
-            txtFilterSaleNumber.Hint = "NÂ° Comprobante";
+            txtFilterSaleNumber.Hint = "N° Comprobante";
             txtFilterSaleNumber.LeadingIcon = null;
             txtFilterSaleNumber.Location = new Point(5, 12);
             txtFilterSaleNumber.Margin = new Padding(5, 12, 5, 12);
@@ -530,7 +529,7 @@ namespace MobileSolutions.UILayer
             lblTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(76, 4);
+            lblTitle.Location = new Point(120, 4);
             lblTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(500, 58);
@@ -546,21 +545,12 @@ namespace MobileSolutions.UILayer
             picHistoryTitle.IconColor = Color.White;
             picHistoryTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picHistoryTitle.IconSize = 65;
-            picHistoryTitle.Location = new Point(5, -1);
+            picHistoryTitle.Location = new Point(49, 4);
             picHistoryTitle.Margin = new Padding(3, 2, 3, 2);
             picHistoryTitle.Name = "picHistoryTitle";
-            picHistoryTitle.Size = new Size(65, 65);
+            picHistoryTitle.Size = new Size(65, 72);
             picHistoryTitle.TabIndex = 7;
             picHistoryTitle.TabStop = false;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(tlpPrincipal);
-            panel1.Location = new Point(0, 75);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1470, 622);
-            panel1.TabIndex = 8;
             // 
             // tableLayoutPanel1
             // 
@@ -570,11 +560,12 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel1.Controls.Add(panel2, 1, 0);
             tableLayoutPanel1.Controls.Add(panel3, 2, 0);
-            tableLayoutPanel1.Location = new Point(3, 4);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1464, 68);
+            tableLayoutPanel1.Size = new Size(1680, 90);
             tableLayoutPanel1.TabIndex = 9;
             // 
             // panel2
@@ -582,9 +573,9 @@ namespace MobileSolutions.UILayer
             panel2.Controls.Add(picHistoryTitle);
             panel2.Controls.Add(lblTitle);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(442, 3);
+            panel2.Location = new Point(507, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(579, 62);
+            panel2.Size = new Size(666, 84);
             panel2.TabIndex = 0;
             // 
             // panel3
@@ -592,9 +583,9 @@ namespace MobileSolutions.UILayer
             panel3.Controls.Add(lblCurrentUser);
             panel3.Controls.Add(btnLogout);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(1027, 3);
+            panel3.Location = new Point(1179, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(434, 62);
+            panel3.Size = new Size(498, 84);
             panel3.TabIndex = 1;
             // 
             // lblCurrentUser
@@ -603,7 +594,7 @@ namespace MobileSolutions.UILayer
             lblCurrentUser.Depth = 0;
             lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            lblCurrentUser.Location = new Point(99, 4);
+            lblCurrentUser.Location = new Point(149, 16);
             lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
             lblCurrentUser.Name = "lblCurrentUser";
             lblCurrentUser.Size = new Size(79, 24);
@@ -619,7 +610,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(263, 4);
+            btnLogout.Location = new Point(327, 4);
             btnLogout.Margin = new Padding(4, 6, 4, 6);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
@@ -633,14 +624,13 @@ namespace MobileSolutions.UILayer
             // 
             // SalesHistoryView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.Control;
+            Controls.Add(tlpPrincipal);
             Controls.Add(tableLayoutPanel1);
-            Controls.Add(panel1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "SalesHistoryView";
-            Size = new Size(1470, 698);
+            Size = new Size(1680, 930);
             tlpPrincipal.ResumeLayout(false);
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel2.ResumeLayout(false);
@@ -651,7 +641,6 @@ namespace MobileSolutions.UILayer
             ((ISupportInitialize)dgvSaleDetails).EndInit();
             flpFiltros.ResumeLayout(false);
             ((ISupportInitialize)picHistoryTitle).EndInit();
-            panel1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -689,7 +678,6 @@ namespace MobileSolutions.UILayer
         private DataGridViewTextBoxColumn colCantidad;
         private DataGridViewTextBoxColumn colPrecioUnitario;
         private DataGridViewTextBoxColumn colSubtotal;
-        private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel2;
         private Panel panel3;

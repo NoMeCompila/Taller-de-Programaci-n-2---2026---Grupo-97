@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,6 @@ namespace MobileSolutions.UILayer
     public partial class ReportsView : UserControl
     {
 
-        int perfilActual = 3; // Asigno manualmente el perfil actual para pruebas (1: Admin, 2: Manager, 3: Seller)
         public ReportsView()
         {
             InitializeComponent();
@@ -27,12 +26,22 @@ namespace MobileSolutions.UILayer
             picProximamente.IconColor = Color.Red;
 
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
-
-            this.Load += ReportsView_Load;
         }
 
-        private void ReportsView_Load(object sender, EventArgs e)
+        private bool _reporteInyectado = false;
+
+        protected override void OnVisibleChanged(EventArgs e)
         {
+            base.OnVisibleChanged(e);
+            if (this.Visible && !_reporteInyectado)
+            {
+                CargarReporteSegunPerfil();
+            }
+        }
+
+        private void CargarReporteSegunPerfil()
+        {
+            int perfilActual = MobileSolutions.BusinessLayer.SesionActual.ProfileId;
             UserControl reporteAutorizado = null;
 
             switch (perfilActual)
@@ -47,16 +56,16 @@ namespace MobileSolutions.UILayer
                     reporteAutorizado = new SellerReportControl();
                     break;
                 default:
-                    MaterialMessageBox.Show("Perfil no autorizado para ver reportes.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // Perfil no reconocido: se deja el diseño original del panel (ícono + texto "Perfil No Autorizado")
                     return;
             }
 
-            // Inyectamos el panel correspondiente en el contenedor
             if (reporteAutorizado != null)
             {
                 reporteAutorizado.Dock = DockStyle.Fill;
                 pnlContainer.Controls.Clear();
                 pnlContainer.Controls.Add(reporteAutorizado);
+                _reporteInyectado = true;
             }
         }
     }

@@ -1,14 +1,14 @@
-ï»¿namespace MobileSolutions.UILayer
+namespace MobileSolutions.UILayer
 {
     partial class ReportsView
     {
         /// <summary> 
-        /// Variable del diseÃ±ador necesaria.
+        /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Limpiar los recursos que se estÃ©n usando.
+        /// Limpiar los recursos que se estén usando.
         /// </summary>
         /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        #region CÃ³digo generado por el DiseÃ±ador de componentes
+        #region Código generado por el Diseñador de componentes
 
         /// <summary> 
-        /// MÃ©todo necesario para admitir el DiseÃ±ador. No se puede modificar
-        /// el contenido de este mÃ©todo con el editor de cÃ³digo.
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
@@ -111,7 +111,7 @@
             pnlContainer.Location = new Point(0, 0);
             pnlContainer.Margin = new Padding(3, 2, 3, 2);
             pnlContainer.Name = "pnlContainer";
-            pnlContainer.Size = new Size(1479, 698);
+            pnlContainer.Size = new Size(1680, 930);
             pnlContainer.TabIndex = 49;
             // 
             // tableLayoutPanel1
@@ -185,12 +185,11 @@
             // 
             // ReportsView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             Controls.Add(pnlContainer);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ReportsView";
-            Size = new Size(1479, 698);
+            Size = new Size(1680, 930);
             ((System.ComponentModel.ISupportInitialize)picProximamente).EndInit();
             ((System.ComponentModel.ISupportInitialize)picReportsTitle).EndInit();
             pnlContainer.ResumeLayout(false);
