@@ -59,7 +59,7 @@ namespace MobileSolutions.UILayer
             picManagerTitle.IconColor = Color.White;
             picManagerTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picManagerTitle.IconSize = 61;
-            picManagerTitle.Location = new Point(54, 6);
+            picManagerTitle.Location = new Point(56, 6);
             picManagerTitle.Name = "picManagerTitle";
             picManagerTitle.Size = new Size(77, 61);
             picManagerTitle.TabIndex = 0;
@@ -73,7 +73,7 @@ namespace MobileSolutions.UILayer
             lblManagerTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblManagerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
             lblManagerTitle.ForeColor = Color.White;
-            lblManagerTitle.Location = new Point(137, 6);
+            lblManagerTitle.Location = new Point(139, 6);
             lblManagerTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblManagerTitle.Name = "lblManagerTitle";
             lblManagerTitle.Size = new Size(434, 58);
@@ -89,14 +89,14 @@ namespace MobileSolutions.UILayer
             tlpMain.Controls.Add(tlpGraficos, 0, 1);
             tlpMain.Controls.Add(tlpTablas, 0, 2);
             tlpMain.Dock = DockStyle.Bottom;
-            tlpMain.Location = new Point(0, 84);
+            tlpMain.Location = new Point(0, 122);
             tlpMain.Name = "tlpMain";
             tlpMain.Padding = new Padding(12);
             tlpMain.RowCount = 3;
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tlpMain.Size = new Size(1680, 846);
+            tlpMain.Size = new Size(1680, 808);
             tlpMain.TabIndex = 37;
             // 
             // pnlKpisRow
@@ -106,7 +106,7 @@ namespace MobileSolutions.UILayer
             pnlKpisRow.Dock = DockStyle.Fill;
             pnlKpisRow.Location = new Point(15, 15);
             pnlKpisRow.Name = "pnlKpisRow";
-            pnlKpisRow.Size = new Size(1650, 158);
+            pnlKpisRow.Size = new Size(1650, 150);
             pnlKpisRow.TabIndex = 0;
             // 
             // tlpKpis
@@ -122,7 +122,7 @@ namespace MobileSolutions.UILayer
             tlpKpis.Name = "tlpKpis";
             tlpKpis.RowCount = 1;
             tlpKpis.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpKpis.Size = new Size(1650, 158);
+            tlpKpis.Size = new Size(1650, 150);
             tlpKpis.TabIndex = 0;
             // 
             // tlpGraficos
@@ -134,11 +134,11 @@ namespace MobileSolutions.UILayer
             tlpGraficos.Controls.Add(pnlTopProductos, 0, 0);
             tlpGraficos.Controls.Add(pnlMarcas, 1, 0);
             tlpGraficos.Dock = DockStyle.Fill;
-            tlpGraficos.Location = new Point(15, 179);
+            tlpGraficos.Location = new Point(15, 171);
             tlpGraficos.Name = "tlpGraficos";
             tlpGraficos.RowCount = 1;
             tlpGraficos.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpGraficos.Size = new Size(1650, 322);
+            tlpGraficos.Size = new Size(1650, 307);
             tlpGraficos.TabIndex = 1;
             // 
             // pnlTopProductos
@@ -150,7 +150,7 @@ namespace MobileSolutions.UILayer
             pnlTopProductos.Margin = new Padding(6);
             pnlTopProductos.Name = "pnlTopProductos";
             pnlTopProductos.Padding = new Padding(12);
-            pnlTopProductos.Size = new Size(813, 310);
+            pnlTopProductos.Size = new Size(813, 295);
             pnlTopProductos.TabIndex = 0;
             // 
             // lblTopProductosTitle
@@ -178,7 +178,7 @@ namespace MobileSolutions.UILayer
             pnlMarcas.Margin = new Padding(6);
             pnlMarcas.Name = "pnlMarcas";
             pnlMarcas.Padding = new Padding(12);
-            pnlMarcas.Size = new Size(813, 310);
+            pnlMarcas.Size = new Size(813, 295);
             pnlMarcas.TabIndex = 1;
             // 
             // lblMarcasTitle
@@ -206,11 +206,11 @@ namespace MobileSolutions.UILayer
             tlpTablas.Controls.Add(pnlStockAlerts, 0, 0);
             tlpTablas.Controls.Add(pnlTopSellers, 1, 0);
             tlpTablas.Dock = DockStyle.Fill;
-            tlpTablas.Location = new Point(15, 507);
+            tlpTablas.Location = new Point(15, 484);
             tlpTablas.Name = "tlpTablas";
             tlpTablas.RowCount = 1;
             tlpTablas.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpTablas.Size = new Size(1650, 324);
+            tlpTablas.Size = new Size(1650, 309);
             tlpTablas.TabIndex = 2;
             // 
             // pnlStockAlerts
@@ -222,7 +222,7 @@ namespace MobileSolutions.UILayer
             pnlStockAlerts.Margin = new Padding(6);
             pnlStockAlerts.Name = "pnlStockAlerts";
             pnlStockAlerts.Padding = new Padding(12);
-            pnlStockAlerts.Size = new Size(813, 312);
+            pnlStockAlerts.Size = new Size(813, 297);
             pnlStockAlerts.TabIndex = 0;
             // 
             // lblStockAlertsTitle
@@ -250,7 +250,7 @@ namespace MobileSolutions.UILayer
             pnlTopSellers.Margin = new Padding(6);
             pnlTopSellers.Name = "pnlTopSellers";
             pnlTopSellers.Padding = new Padding(12);
-            pnlTopSellers.Size = new Size(813, 312);
+            pnlTopSellers.Size = new Size(813, 297);
             pnlTopSellers.TabIndex = 1;
             // 
             // lblTopSellersTitle
@@ -277,11 +277,12 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel1.Controls.Add(panel1, 1, 0);
             tableLayoutPanel1.Controls.Add(panel2, 2, 0);
-            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1674, 75);
+            tableLayoutPanel1.Size = new Size(1680, 75);
             tableLayoutPanel1.TabIndex = 38;
             // 
             // panel1
@@ -289,9 +290,9 @@ namespace MobileSolutions.UILayer
             panel1.Controls.Add(picManagerTitle);
             panel1.Controls.Add(lblManagerTitle);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(505, 3);
+            panel1.Location = new Point(507, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(663, 69);
+            panel1.Size = new Size(666, 69);
             panel1.TabIndex = 0;
             // 
             // panel2
@@ -299,9 +300,9 @@ namespace MobileSolutions.UILayer
             panel2.Controls.Add(lblCurrentUser);
             panel2.Controls.Add(btnLogout);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(1174, 3);
+            panel2.Location = new Point(1179, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(497, 69);
+            panel2.Size = new Size(498, 69);
             panel2.TabIndex = 1;
             // 
             // lblCurrentUser
@@ -326,7 +327,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(339, 4);
+            btnLogout.Location = new Point(340, 4);
             btnLogout.Margin = new Padding(10);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
