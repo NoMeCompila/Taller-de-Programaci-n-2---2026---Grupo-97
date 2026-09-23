@@ -260,9 +260,9 @@ namespace MobileSolutions.BusinessLayer
 
         private static readonly List<User> _mockUsers = new()
         {
-            new User { Username = "admin", ProfileName = "Administrator", Password = "Test123!" },
-            new User { Username = "fer", ProfileName = "Gerente", Password = "Test123!" },
-            new User { Username = "nico", ProfileName = "Vendedor", Password = "Test123!" }
+            new User { UserId = 1, ProfileId = 1, Username = "admin", ProfileName = "Administrator", Password = "Test123!", Name = "Administrador" },
+            new User { UserId = 2, ProfileId = 2, Username = "fer", ProfileName = "Gerente", Password = "Test123!", Name = "Fernando" },
+            new User { UserId = 3, ProfileId = 3, Username = "nico", ProfileName = "Vendedor", Password = "Test123!", Name = "Nicolas" }
         };
 
         public bool AuthenticateUser(string username, string password)
