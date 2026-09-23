@@ -1,4 +1,4 @@
-ï»¿namespace MobileSolutions.UILayer
+namespace MobileSolutions.UILayer
 {
     partial class SellerReportControl
     {
@@ -13,7 +13,7 @@
             base.Dispose(disposing);
         }
 
-        #region CÃ³digo generado por el DiseÃ±ador de componentes
+        #region Código generado por el Diseñador de componentes
 
         private void InitializeComponent()
         {
@@ -145,7 +145,7 @@
             lblEvolucionTitle.Padding = new Padding(8, 0, 0, 0);
             lblEvolucionTitle.Size = new Size(1620, 32);
             lblEvolucionTitle.TabIndex = 0;
-            lblEvolucionTitle.Text = "EvoluciÃ³n de Ventas Diarias";
+            lblEvolucionTitle.Text = "Evolución de Ventas Diarias";
             lblEvolucionTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tlpDistribucion

@@ -525,11 +525,11 @@ namespace MobileSolutions.UILayer
             // HomeView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
             Name = "HomeView";
-            Size = new Size(1470, 698);
+            Size = new Size(1680, 930);
             ((System.ComponentModel.ISupportInitialize)picHomeTitle).EndInit();
             cardUsers.ResumeLayout(false);
             cardUsers.PerformLayout();

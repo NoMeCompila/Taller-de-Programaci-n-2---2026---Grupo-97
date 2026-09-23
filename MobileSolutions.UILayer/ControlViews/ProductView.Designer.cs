@@ -972,12 +972,12 @@ namespace MobileSolutions.UILayer
             // ProductView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ProductView";
-            Size = new Size(1470, 698);
+            Size = new Size(1680, 930);
             ((System.ComponentModel.ISupportInitialize)dtgProducts).EndInit();
             materialCardImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picProductImage).EndInit();

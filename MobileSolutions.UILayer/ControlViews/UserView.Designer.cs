@@ -1554,12 +1554,12 @@ namespace MobileSolutions.UILayer
             // UserView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleMode = AutoScaleMode.None;
             Controls.Add(panel1);
             Controls.Add(panel2);
             Margin = new Padding(2);
             Name = "UserView";
-            Size = new Size(1344, 744);
+            Size = new Size(1680, 930);
             panel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             panel6.ResumeLayout(false);

@@ -1191,12 +1191,12 @@ namespace MobileSolutions.UILayer
             // CustomerView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerView";
-            Size = new Size(1470, 698);
+            Size = new Size(1680, 930);
             panel1.ResumeLayout(false);
             materialCard2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgCustomers).EndInit();

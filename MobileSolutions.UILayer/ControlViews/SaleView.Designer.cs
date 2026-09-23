@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -198,7 +198,7 @@ namespace MobileSolutions.UILayer
             txtSaleNumber.Dock = DockStyle.Fill;
             txtSaleNumber.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtSaleNumber.HideSelection = true;
-            txtSaleNumber.Hint = "NÃºmero de Venta";
+            txtSaleNumber.Hint = "Número de Venta";
             txtSaleNumber.LeadingIcon = null;
             txtSaleNumber.Location = new Point(656, 11);
             txtSaleNumber.Margin = new Padding(4, 11, 4, 5);
@@ -460,7 +460,7 @@ namespace MobileSolutions.UILayer
             // 
             // colTelefono
             // 
-            colTelefono.HeaderText = "TelÃ©fono";
+            colTelefono.HeaderText = "Teléfono";
             colTelefono.MinimumWidth = 6;
             colTelefono.Name = "colTelefono";
             colTelefono.ReadOnly = true;
@@ -641,7 +641,7 @@ namespace MobileSolutions.UILayer
             txtProductCode.Dock = DockStyle.Fill;
             txtProductCode.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtProductCode.HideSelection = true;
-            txtProductCode.Hint = "CÃ³digo de Producto";
+            txtProductCode.Hint = "Código de Producto";
             txtProductCode.LeadingIcon = null;
             txtProductCode.Location = new Point(55, 10);
             txtProductCode.Margin = new Padding(4, 10, 4, 5);
@@ -729,7 +729,7 @@ namespace MobileSolutions.UILayer
             // colCodigoProducto
             // 
             colCodigoProducto.FillWeight = 15F;
-            colCodigoProducto.HeaderText = "CÃ³digo";
+            colCodigoProducto.HeaderText = "Código";
             colCodigoProducto.MinimumWidth = 6;
             colCodigoProducto.Name = "colCodigoProducto";
             colCodigoProducto.ReadOnly = true;

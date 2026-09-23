@@ -1,4 +1,4 @@
-Ôªønamespace MobileSolutions.UILayer
+namespace MobileSolutions.UILayer
 {
     partial class ManagerReportControl
     {
@@ -13,7 +13,7 @@
             base.Dispose(disposing);
         }
 
-        #region C√≥digo generado por el Dise√±ador de componentes
+        #region CÛdigo generado por el DiseÒador de componentes
 
         private void InitializeComponent()
         {
@@ -166,7 +166,7 @@
             lblTopProductosTitle.Padding = new Padding(8, 0, 0, 0);
             lblTopProductosTitle.Size = new Size(789, 32);
             lblTopProductosTitle.TabIndex = 0;
-            lblTopProductosTitle.Text = "Top 5 Productos m√°s vendidos";
+            lblTopProductosTitle.Text = "Top 5 Productos m·s vendidos";
             lblTopProductosTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // pnlMarcas

@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,12 +9,12 @@ namespace MobileSolutions.UILayer
     partial class SalesHistoryView
     {
         /// <summary> 
-        /// Variable del diseÃ±ador necesaria.
+        /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Limpiar los recursos que se estÃ©n usando.
+        /// Limpiar los recursos que se estén usando.
         /// </summary>
         /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
@@ -26,11 +26,11 @@ namespace MobileSolutions.UILayer
             base.Dispose(disposing);
         }
 
-        #region CÃ³digo generado por el DiseÃ±ador de componentes
+        #region Código generado por el Diseñador de componentes
 
         /// <summary> 
-        /// MÃ©todo necesario para admitir el DiseÃ±ador. No se puede modificar
-        /// el contenido de este mÃ©todo con el editor de cÃ³digo.
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
@@ -179,7 +179,7 @@ namespace MobileSolutions.UILayer
             // colNumeroVenta
             // 
             colNumeroVenta.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colNumeroVenta.HeaderText = "NÂ° Venta";
+            colNumeroVenta.HeaderText = "N° Venta";
             colNumeroVenta.MinimumWidth = 6;
             colNumeroVenta.Name = "colNumeroVenta";
             colNumeroVenta.ReadOnly = true;
@@ -211,7 +211,7 @@ namespace MobileSolutions.UILayer
             // colMetodoPago
             // 
             colMetodoPago.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colMetodoPago.HeaderText = "MÃ©todo Pago";
+            colMetodoPago.HeaderText = "Método Pago";
             colMetodoPago.MinimumWidth = 6;
             colMetodoPago.Name = "colMetodoPago";
             colMetodoPago.ReadOnly = true;
@@ -311,7 +311,7 @@ namespace MobileSolutions.UILayer
             // 
             // colCodigo
             // 
-            colCodigo.HeaderText = "CÃ³digo";
+            colCodigo.HeaderText = "Código";
             colCodigo.MinimumWidth = 6;
             colCodigo.Name = "colCodigo";
             colCodigo.ReadOnly = true;
@@ -319,7 +319,7 @@ namespace MobileSolutions.UILayer
             // colDescripcion
             // 
             colDescripcion.FillWeight = 180F;
-            colDescripcion.HeaderText = "DescripciÃ³n";
+            colDescripcion.HeaderText = "Descripción";
             colDescripcion.MinimumWidth = 6;
             colDescripcion.Name = "colDescripcion";
             colDescripcion.ReadOnly = true;
@@ -370,7 +370,7 @@ namespace MobileSolutions.UILayer
             txtFilterSaleNumber.Depth = 0;
             txtFilterSaleNumber.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtFilterSaleNumber.HideSelection = true;
-            txtFilterSaleNumber.Hint = "NÂ° Comprobante";
+            txtFilterSaleNumber.Hint = "N° Comprobante";
             txtFilterSaleNumber.LeadingIcon = null;
             txtFilterSaleNumber.Location = new Point(5, 12);
             txtFilterSaleNumber.Margin = new Padding(5, 12, 5, 12);
@@ -634,13 +634,13 @@ namespace MobileSolutions.UILayer
             // SalesHistoryView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.Control;
             Controls.Add(tableLayoutPanel1);
             Controls.Add(panel1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "SalesHistoryView";
-            Size = new Size(1470, 698);
+            Size = new Size(1680, 930);
             tlpPrincipal.ResumeLayout(false);
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel2.ResumeLayout(false);
