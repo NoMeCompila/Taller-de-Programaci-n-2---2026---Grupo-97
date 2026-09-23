@@ -111,7 +111,7 @@ namespace MobileSolutions.UILayer
             pnlContainer.Location = new Point(0, 0);
             pnlContainer.Margin = new Padding(3, 2, 3, 2);
             pnlContainer.Name = "pnlContainer";
-            pnlContainer.Size = new Size(1479, 698);
+            pnlContainer.Size = new Size(1680, 930);
             pnlContainer.TabIndex = 49;
             // 
             // tableLayoutPanel1
@@ -185,7 +185,6 @@ namespace MobileSolutions.UILayer
             // 
             // ReportsView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.None;
             Controls.Add(pnlContainer);
             Margin = new Padding(3, 2, 3, 2);

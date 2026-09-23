@@ -12,12 +12,12 @@ namespace MobileSolutions.UILayer
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             picSaleTitle = new IconPictureBox();
             lblProductTitle = new MaterialLabel();
             tlpMain = new TableLayoutPanel();
@@ -67,8 +67,8 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             panel2 = new Panel();
-            lblCurrentUser = new MaterialLabel();
             btnLogout = new MaterialButton();
+            lblCurrentUser = new MaterialLabel();
             ((ISupportInitialize)picSaleTitle).BeginInit();
             tlpMain.SuspendLayout();
             tlpLeft.SuspendLayout();
@@ -392,30 +392,30 @@ namespace MobileSolutions.UILayer
             dgvCustomerInfo.AllowUserToAddRows = false;
             dgvCustomerInfo.AllowUserToDeleteRows = false;
             dgvCustomerInfo.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(58, 58, 58);
-            dgvCustomerInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(58, 58, 58);
+            dgvCustomerInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvCustomerInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCustomerInfo.BackgroundColor = Color.FromArgb(50, 50, 50);
             dgvCustomerInfo.BorderStyle = BorderStyle.None;
             dgvCustomerInfo.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvCustomerInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvCustomerInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvCustomerInfo.ColumnHeadersHeight = 38;
             dgvCustomerInfo.Columns.AddRange(new DataGridViewColumn[] { colDni, colNombre, colApellido, colEmail, colTelefono, colLocalidad });
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(50, 50, 50);
-            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(21, 101, 192);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            dgvCustomerInfo.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(50, 50, 50);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(21, 101, 192);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvCustomerInfo.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCustomerInfo.Dock = DockStyle.Fill;
             dgvCustomerInfo.EnableHeadersVisualStyles = false;
             dgvCustomerInfo.GridColor = Color.FromArgb(70, 70, 70);
@@ -688,30 +688,30 @@ namespace MobileSolutions.UILayer
             dgvSaleDetails.AllowUserToAddRows = false;
             dgvSaleDetails.AllowUserToDeleteRows = false;
             dgvSaleDetails.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(58, 58, 58);
-            dgvSaleDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(58, 58, 58);
+            dgvSaleDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvSaleDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSaleDetails.BackgroundColor = Color.FromArgb(50, 50, 50);
             dgvSaleDetails.BorderStyle = BorderStyle.None;
             dgvSaleDetails.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle11.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle11.SelectionForeColor = Color.White;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dgvSaleDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(13, 71, 161);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvSaleDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvSaleDetails.ColumnHeadersHeight = 38;
             dgvSaleDetails.Columns.AddRange(new DataGridViewColumn[] { colCodigoProducto, colProducto, colCantidad, colPrecioUnitario, colTotalProducto });
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(50, 50, 50);
-            dataGridViewCellStyle12.Font = new Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(21, 101, 192);
-            dataGridViewCellStyle12.SelectionForeColor = Color.White;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
-            dgvSaleDetails.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 50);
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(21, 101, 192);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvSaleDetails.DefaultCellStyle = dataGridViewCellStyle6;
             dgvSaleDetails.Dock = DockStyle.Fill;
             dgvSaleDetails.EnableHeadersVisualStyles = false;
             dgvSaleDetails.GridColor = Color.FromArgb(70, 70, 70);
@@ -981,19 +981,6 @@ namespace MobileSolutions.UILayer
             panel2.Size = new Size(497, 72);
             panel2.TabIndex = 1;
             // 
-            // lblCurrentUser
-            // 
-            lblCurrentUser.AutoSize = true;
-            lblCurrentUser.Depth = 0;
-            lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            lblCurrentUser.Location = new Point(143, 6);
-            lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
-            lblCurrentUser.Name = "lblCurrentUser";
-            lblCurrentUser.Size = new Size(79, 24);
-            lblCurrentUser.TabIndex = 2;
-            lblCurrentUser.Text = "[Usuario]";
-            // 
             // btnLogout
             // 
             btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -1014,6 +1001,19 @@ namespace MobileSolutions.UILayer
             btnLogout.Type = MaterialButton.MaterialButtonType.Contained;
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = false;
+            // 
+            // lblCurrentUser
+            // 
+            lblCurrentUser.AutoSize = true;
+            lblCurrentUser.Depth = 0;
+            lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lblCurrentUser.Location = new Point(143, 6);
+            lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCurrentUser.Name = "lblCurrentUser";
+            lblCurrentUser.Size = new Size(79, 24);
+            lblCurrentUser.TabIndex = 2;
+            lblCurrentUser.Text = "[Usuario]";
             // 
             // SaleView
             // 

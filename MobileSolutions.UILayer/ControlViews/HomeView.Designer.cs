@@ -110,10 +110,10 @@ namespace MobileSolutions.UILayer
             lblWelcomeBanner.Dock = DockStyle.Fill;
             lblWelcomeBanner.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblWelcomeBanner.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblWelcomeBanner.Location = new Point(444, 75);
+            lblWelcomeBanner.Location = new Point(507, 75);
             lblWelcomeBanner.MouseState = MaterialSkin.MouseState.HOVER;
             lblWelcomeBanner.Name = "lblWelcomeBanner";
-            lblWelcomeBanner.Size = new Size(582, 71);
+            lblWelcomeBanner.Size = new Size(666, 71);
             lblWelcomeBanner.TabIndex = 2;
             lblWelcomeBanner.Text = "Bienvenido a Mobile Solutions";
             lblWelcomeBanner.TextAlign = ContentAlignment.MiddleCenter;
@@ -128,12 +128,12 @@ namespace MobileSolutions.UILayer
             cardUsers.Cursor = Cursors.Hand;
             cardUsers.Depth = 0;
             cardUsers.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardUsers.Location = new Point(609, 14);
+            cardUsers.Location = new Point(714, 14);
             cardUsers.Margin = new Padding(14);
             cardUsers.MouseState = MaterialSkin.MouseState.HOVER;
             cardUsers.Name = "cardUsers";
             cardUsers.Padding = new Padding(14);
-            cardUsers.Size = new Size(250, 238);
+            cardUsers.Size = new Size(250, 319);
             cardUsers.TabIndex = 3;
             // 
             // label1
@@ -180,12 +180,12 @@ namespace MobileSolutions.UILayer
             cardCustomer.Cursor = Cursors.Hand;
             cardCustomer.Depth = 0;
             cardCustomer.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardCustomer.Location = new Point(119, 14);
+            cardCustomer.Location = new Point(154, 14);
             cardCustomer.Margin = new Padding(14);
             cardCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             cardCustomer.Name = "cardCustomer";
             cardCustomer.Padding = new Padding(14);
-            cardCustomer.Size = new Size(250, 238);
+            cardCustomer.Size = new Size(250, 319);
             cardCustomer.TabIndex = 4;
             // 
             // label2
@@ -231,12 +231,12 @@ namespace MobileSolutions.UILayer
             cardSales.Cursor = Cursors.Hand;
             cardSales.Depth = 0;
             cardSales.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardSales.Location = new Point(119, 280);
+            cardSales.Location = new Point(154, 361);
             cardSales.Margin = new Padding(14);
             cardSales.MouseState = MaterialSkin.MouseState.HOVER;
             cardSales.Name = "cardSales";
             cardSales.Padding = new Padding(14);
-            cardSales.Size = new Size(250, 239);
+            cardSales.Size = new Size(250, 319);
             cardSales.TabIndex = 5;
             // 
             // label4
@@ -283,12 +283,12 @@ namespace MobileSolutions.UILayer
             cardHistory.Cursor = Cursors.Hand;
             cardHistory.Depth = 0;
             cardHistory.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardHistory.Location = new Point(609, 280);
+            cardHistory.Location = new Point(714, 361);
             cardHistory.Margin = new Padding(14);
             cardHistory.MouseState = MaterialSkin.MouseState.HOVER;
             cardHistory.Name = "cardHistory";
             cardHistory.Padding = new Padding(14);
-            cardHistory.Size = new Size(250, 239);
+            cardHistory.Size = new Size(250, 319);
             cardHistory.TabIndex = 6;
             // 
             // label5
@@ -335,12 +335,12 @@ namespace MobileSolutions.UILayer
             cardReports.Cursor = Cursors.Hand;
             cardReports.Depth = 0;
             cardReports.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardReports.Location = new Point(1099, 280);
+            cardReports.Location = new Point(1274, 361);
             cardReports.Margin = new Padding(14);
             cardReports.MouseState = MaterialSkin.MouseState.HOVER;
             cardReports.Name = "cardReports";
             cardReports.Padding = new Padding(14);
-            cardReports.Size = new Size(250, 239);
+            cardReports.Size = new Size(250, 319);
             cardReports.TabIndex = 8;
             // 
             // label6
@@ -387,12 +387,12 @@ namespace MobileSolutions.UILayer
             cardProducts.Cursor = Cursors.Hand;
             cardProducts.Depth = 0;
             cardProducts.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardProducts.Location = new Point(1099, 14);
+            cardProducts.Location = new Point(1274, 14);
             cardProducts.Margin = new Padding(14);
             cardProducts.MouseState = MaterialSkin.MouseState.HOVER;
             cardProducts.Name = "cardProducts";
             cardProducts.Padding = new Padding(14);
-            cardProducts.Size = new Size(250, 238);
+            cardProducts.Size = new Size(250, 319);
             cardProducts.TabIndex = 7;
             // 
             // label3
@@ -431,7 +431,6 @@ namespace MobileSolutions.UILayer
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.34F));
@@ -442,12 +441,13 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.Controls.Add(cardSales, 0, 1);
             tableLayoutPanel1.Controls.Add(cardHistory, 1, 1);
             tableLayoutPanel1.Controls.Add(cardCustomer, 0, 0);
-            tableLayoutPanel1.Location = new Point(0, 165);
+            tableLayoutPanel1.Dock = DockStyle.Bottom;
+            tableLayoutPanel1.Location = new Point(0, 236);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1470, 533);
+            tableLayoutPanel1.Size = new Size(1680, 694);
             tableLayoutPanel1.TabIndex = 9;
             // 
             // tableLayoutPanel2
@@ -465,7 +465,7 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1470, 146);
+            tableLayoutPanel2.Size = new Size(1680, 146);
             tableLayoutPanel2.TabIndex = 10;
             // 
             // panel1
@@ -473,9 +473,9 @@ namespace MobileSolutions.UILayer
             panel1.Controls.Add(picHomeTitle);
             panel1.Controls.Add(lblHomeTitle);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(444, 3);
+            panel1.Location = new Point(507, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(582, 69);
+            panel1.Size = new Size(666, 69);
             panel1.TabIndex = 0;
             // 
             // panel2
@@ -483,9 +483,9 @@ namespace MobileSolutions.UILayer
             panel2.Controls.Add(lblCurrentUser);
             panel2.Controls.Add(btnLogout);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(1032, 3);
+            panel2.Location = new Point(1179, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(435, 69);
+            panel2.Size = new Size(498, 69);
             panel2.TabIndex = 3;
             // 
             // lblCurrentUser
@@ -510,7 +510,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(291, 6);
+            btnLogout.Location = new Point(354, 6);
             btnLogout.Margin = new Padding(4, 6, 4, 6);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
@@ -524,7 +524,6 @@ namespace MobileSolutions.UILayer
             // 
             // HomeView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.None;
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
