@@ -61,9 +61,9 @@ namespace MobileSolutions.UILayer
             lblSubtotal = new MaterialLabel();
             lblTotalSale = new MaterialLabel();
             btnTotalSale = new MaterialButton();
-            btnInvoice = new MaterialButton();
             btnConfirmSale = new MaterialButton();
             btnCancelSale = new MaterialButton();
+            btnInvoice = new MaterialButton();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -93,7 +93,7 @@ namespace MobileSolutions.UILayer
             picSaleTitle.IconColor = Color.White;
             picSaleTitle.IconFont = IconFont.Auto;
             picSaleTitle.IconSize = 55;
-            picSaleTitle.Location = new Point(210, 6);
+            picSaleTitle.Location = new Point(212, 6);
             picSaleTitle.Name = "picSaleTitle";
             picSaleTitle.Size = new Size(70, 55);
             picSaleTitle.TabIndex = 0;
@@ -107,7 +107,7 @@ namespace MobileSolutions.UILayer
             lblProductTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblProductTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
             lblProductTitle.ForeColor = Color.White;
-            lblProductTitle.Location = new Point(295, 3);
+            lblProductTitle.Location = new Point(297, 3);
             lblProductTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblProductTitle.Name = "lblProductTitle";
             lblProductTitle.Size = new Size(125, 58);
@@ -125,12 +125,12 @@ namespace MobileSolutions.UILayer
             tlpMain.Controls.Add(tlpLeft, 0, 0);
             tlpMain.Controls.Add(pnlResumen, 1, 0);
             tlpMain.Dock = DockStyle.Bottom;
-            tlpMain.Location = new Point(0, 84);
+            tlpMain.Location = new Point(0, 124);
             tlpMain.Name = "tlpMain";
             tlpMain.Padding = new Padding(16, 8, 16, 16);
             tlpMain.RowCount = 1;
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMain.Size = new Size(1680, 846);
+            tlpMain.Size = new Size(1680, 806);
             tlpMain.TabIndex = 37;
             // 
             // tlpLeft
@@ -146,7 +146,7 @@ namespace MobileSolutions.UILayer
             tlpLeft.RowCount = 2;
             tlpLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 38F));
             tlpLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 62F));
-            tlpLeft.Size = new Size(1180, 816);
+            tlpLeft.Size = new Size(1180, 776);
             tlpLeft.TabIndex = 0;
             // 
             // pnlHeader
@@ -158,7 +158,7 @@ namespace MobileSolutions.UILayer
             pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Padding = new Padding(8, 8, 8, 6);
-            pnlHeader.Size = new Size(1174, 304);
+            pnlHeader.Size = new Size(1174, 288);
             pnlHeader.TabIndex = 0;
             // 
             // tlpInputsVenta
@@ -427,7 +427,7 @@ namespace MobileSolutions.UILayer
             dgvCustomerInfo.RowHeadersWidth = 51;
             dgvCustomerInfo.RowTemplate.Height = 32;
             dgvCustomerInfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCustomerInfo.Size = new Size(1158, 290);
+            dgvCustomerInfo.Size = new Size(1158, 274);
             dgvCustomerInfo.TabIndex = 1;
             // 
             // colDni
@@ -478,10 +478,10 @@ namespace MobileSolutions.UILayer
             pnlProducto.Controls.Add(tlpInputsProducto);
             pnlProducto.Controls.Add(dgvSaleDetails);
             pnlProducto.Dock = DockStyle.Fill;
-            pnlProducto.Location = new Point(3, 313);
+            pnlProducto.Location = new Point(3, 297);
             pnlProducto.Name = "pnlProducto";
             pnlProducto.Padding = new Padding(8, 8, 8, 6);
-            pnlProducto.Size = new Size(1174, 500);
+            pnlProducto.Size = new Size(1174, 476);
             pnlProducto.TabIndex = 1;
             // 
             // tlpInputsProducto
@@ -723,7 +723,7 @@ namespace MobileSolutions.UILayer
             dgvSaleDetails.RowHeadersWidth = 51;
             dgvSaleDetails.RowTemplate.Height = 32;
             dgvSaleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSaleDetails.Size = new Size(1158, 486);
+            dgvSaleDetails.Size = new Size(1158, 462);
             dgvSaleDetails.TabIndex = 1;
             // 
             // colCodigoProducto
@@ -774,7 +774,7 @@ namespace MobileSolutions.UILayer
             pnlResumen.Location = new Point(1205, 11);
             pnlResumen.Name = "pnlResumen";
             pnlResumen.Padding = new Padding(16, 12, 16, 16);
-            pnlResumen.Size = new Size(456, 816);
+            pnlResumen.Size = new Size(456, 776);
             pnlResumen.TabIndex = 1;
             // 
             // tlpResumen
@@ -787,30 +787,31 @@ namespace MobileSolutions.UILayer
             tlpResumen.Controls.Add(lblSubtotal, 0, 2);
             tlpResumen.Controls.Add(lblTotalSale, 0, 3);
             tlpResumen.Controls.Add(btnTotalSale, 0, 4);
-            tlpResumen.Controls.Add(btnInvoice, 0, 5);
             tlpResumen.Controls.Add(btnConfirmSale, 0, 6);
             tlpResumen.Controls.Add(btnCancelSale, 0, 7);
+            tlpResumen.Controls.Add(btnInvoice, 0, 8);
             tlpResumen.Dock = DockStyle.Fill;
             tlpResumen.Location = new Point(16, 12);
             tlpResumen.Name = "tlpResumen";
             tlpResumen.RowCount = 9;
             tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 41F));
+            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
+            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
+            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 127F));
+            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
+            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 292F));
             tlpResumen.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpResumen.Size = new Size(424, 788);
+            tlpResumen.Size = new Size(424, 748);
             tlpResumen.TabIndex = 0;
             // 
             // lblResumenTitle
             // 
             lblResumenTitle.Depth = 0;
             lblResumenTitle.Dock = DockStyle.Fill;
-            lblResumenTitle.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblResumenTitle.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblResumenTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
             lblResumenTitle.ForeColor = Color.FromArgb(178, 235, 242);
             lblResumenTitle.Location = new Point(3, 0);
             lblResumenTitle.MouseState = MaterialSkin.MouseState.HOVER;
@@ -823,13 +824,13 @@ namespace MobileSolutions.UILayer
             // lblCantidadItems
             // 
             lblCantidadItems.Depth = 0;
-            lblCantidadItems.Dock = DockStyle.Fill;
+            lblCantidadItems.Dock = DockStyle.Top;
             lblCantidadItems.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblCantidadItems.ForeColor = Color.White;
             lblCantidadItems.Location = new Point(3, 48);
             lblCantidadItems.MouseState = MaterialSkin.MouseState.HOVER;
             lblCantidadItems.Name = "lblCantidadItems";
-            lblCantidadItems.Size = new Size(418, 28);
+            lblCantidadItems.Size = new Size(418, 38);
             lblCantidadItems.TabIndex = 1;
             lblCantidadItems.Text = "Productos: 0";
             lblCantidadItems.TextAlign = ContentAlignment.MiddleCenter;
@@ -837,13 +838,13 @@ namespace MobileSolutions.UILayer
             // lblSubtotal
             // 
             lblSubtotal.Depth = 0;
-            lblSubtotal.Dock = DockStyle.Fill;
+            lblSubtotal.Dock = DockStyle.Top;
             lblSubtotal.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblSubtotal.ForeColor = Color.White;
-            lblSubtotal.Location = new Point(3, 76);
+            lblSubtotal.Location = new Point(3, 86);
             lblSubtotal.MouseState = MaterialSkin.MouseState.HOVER;
             lblSubtotal.Name = "lblSubtotal";
-            lblSubtotal.Size = new Size(418, 28);
+            lblSubtotal.Size = new Size(418, 41);
             lblSubtotal.TabIndex = 2;
             lblSubtotal.Text = "Subtotal: $ 0.00";
             lblSubtotal.TextAlign = ContentAlignment.MiddleCenter;
@@ -851,10 +852,10 @@ namespace MobileSolutions.UILayer
             // lblTotalSale
             // 
             lblTotalSale.Depth = 0;
-            lblTotalSale.Dock = DockStyle.Fill;
+            lblTotalSale.Dock = DockStyle.Bottom;
             lblTotalSale.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblTotalSale.ForeColor = Color.FromArgb(178, 235, 242);
-            lblTotalSale.Location = new Point(3, 104);
+            lblTotalSale.Location = new Point(3, 136);
             lblTotalSale.MouseState = MaterialSkin.MouseState.HOVER;
             lblTotalSale.Name = "lblTotalSale";
             lblTotalSale.Size = new Size(418, 56);
@@ -868,10 +869,10 @@ namespace MobileSolutions.UILayer
             btnTotalSale.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnTotalSale.Density = MaterialButton.MaterialButtonDensity.Default;
             btnTotalSale.Depth = 0;
-            btnTotalSale.Dock = DockStyle.Fill;
+            btnTotalSale.Dock = DockStyle.Top;
             btnTotalSale.HighEmphasis = true;
             btnTotalSale.Icon = null;
-            btnTotalSale.Location = new Point(4, 164);
+            btnTotalSale.Location = new Point(4, 196);
             btnTotalSale.Margin = new Padding(4);
             btnTotalSale.MouseState = MaterialSkin.MouseState.HOVER;
             btnTotalSale.Name = "btnTotalSale";
@@ -883,37 +884,16 @@ namespace MobileSolutions.UILayer
             btnTotalSale.UseAccentColor = false;
             btnTotalSale.UseVisualStyleBackColor = true;
             // 
-            // btnInvoice
-            // 
-            btnInvoice.AutoSize = false;
-            btnInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnInvoice.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnInvoice.Depth = 0;
-            btnInvoice.Dock = DockStyle.Fill;
-            btnInvoice.HighEmphasis = true;
-            btnInvoice.Icon = null;
-            btnInvoice.Location = new Point(4, 214);
-            btnInvoice.Margin = new Padding(4);
-            btnInvoice.MouseState = MaterialSkin.MouseState.HOVER;
-            btnInvoice.Name = "btnInvoice";
-            btnInvoice.NoAccentTextColor = Color.Empty;
-            btnInvoice.Size = new Size(416, 42);
-            btnInvoice.TabIndex = 5;
-            btnInvoice.Text = "Descargar Factura";
-            btnInvoice.Type = MaterialButton.MaterialButtonType.Contained;
-            btnInvoice.UseAccentColor = false;
-            btnInvoice.UseVisualStyleBackColor = true;
-            // 
             // btnConfirmSale
             // 
             btnConfirmSale.AutoSize = false;
             btnConfirmSale.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnConfirmSale.Density = MaterialButton.MaterialButtonDensity.Default;
             btnConfirmSale.Depth = 0;
-            btnConfirmSale.Dock = DockStyle.Fill;
+            btnConfirmSale.Dock = DockStyle.Top;
             btnConfirmSale.HighEmphasis = true;
             btnConfirmSale.Icon = null;
-            btnConfirmSale.Location = new Point(4, 264);
+            btnConfirmSale.Location = new Point(4, 375);
             btnConfirmSale.Margin = new Padding(4);
             btnConfirmSale.MouseState = MaterialSkin.MouseState.HOVER;
             btnConfirmSale.Name = "btnConfirmSale";
@@ -931,10 +911,10 @@ namespace MobileSolutions.UILayer
             btnCancelSale.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnCancelSale.Density = MaterialButton.MaterialButtonDensity.Default;
             btnCancelSale.Depth = 0;
-            btnCancelSale.Dock = DockStyle.Fill;
+            btnCancelSale.Dock = DockStyle.Top;
             btnCancelSale.HighEmphasis = true;
             btnCancelSale.Icon = null;
-            btnCancelSale.Location = new Point(4, 314);
+            btnCancelSale.Location = new Point(4, 428);
             btnCancelSale.Margin = new Padding(4);
             btnCancelSale.MouseState = MaterialSkin.MouseState.HOVER;
             btnCancelSale.Name = "btnCancelSale";
@@ -946,6 +926,27 @@ namespace MobileSolutions.UILayer
             btnCancelSale.UseAccentColor = false;
             btnCancelSale.UseVisualStyleBackColor = true;
             // 
+            // btnInvoice
+            // 
+            btnInvoice.AutoSize = false;
+            btnInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnInvoice.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnInvoice.Depth = 0;
+            btnInvoice.Dock = DockStyle.Top;
+            btnInvoice.HighEmphasis = true;
+            btnInvoice.Icon = null;
+            btnInvoice.Location = new Point(4, 720);
+            btnInvoice.Margin = new Padding(4);
+            btnInvoice.MouseState = MaterialSkin.MouseState.HOVER;
+            btnInvoice.Name = "btnInvoice";
+            btnInvoice.NoAccentTextColor = Color.Empty;
+            btnInvoice.Size = new Size(416, 24);
+            btnInvoice.TabIndex = 5;
+            btnInvoice.Text = "Descargar Factura";
+            btnInvoice.Type = MaterialButton.MaterialButtonType.Contained;
+            btnInvoice.UseAccentColor = false;
+            btnInvoice.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 3;
@@ -954,11 +955,12 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel1.Controls.Add(panel1, 1, 0);
             tableLayoutPanel1.Controls.Add(panel2, 2, 0);
-            tableLayoutPanel1.Location = new Point(3, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1674, 78);
+            tableLayoutPanel1.Size = new Size(1680, 78);
             tableLayoutPanel1.TabIndex = 38;
             // 
             // panel1
@@ -966,9 +968,9 @@ namespace MobileSolutions.UILayer
             panel1.Controls.Add(picSaleTitle);
             panel1.Controls.Add(lblProductTitle);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(505, 3);
+            panel1.Location = new Point(507, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(663, 72);
+            panel1.Size = new Size(666, 72);
             panel1.TabIndex = 0;
             // 
             // panel2
@@ -976,9 +978,9 @@ namespace MobileSolutions.UILayer
             panel2.Controls.Add(btnLogout);
             panel2.Controls.Add(lblCurrentUser);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(1174, 3);
+            panel2.Location = new Point(1179, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(497, 72);
+            panel2.Size = new Size(498, 72);
             panel2.TabIndex = 1;
             // 
             // btnLogout
@@ -990,7 +992,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(313, 6);
+            btnLogout.Location = new Point(314, 6);
             btnLogout.Margin = new Padding(4, 6, 4, 6);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
