@@ -1,12 +1,16 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 
+using MobileSolutions.UILayer.Contracts;
+
 namespace MobileSolutions.UILayer
 {
-    public partial class SalesHistoryView : UserControl
+    public partial class SalesHistoryView : UserControl, ILogoutSupport
     {
+        public event EventHandler? LogoutRequested;
+
         public SalesHistoryView()
         {
             InitializeComponent();
@@ -15,13 +19,14 @@ namespace MobileSolutions.UILayer
             Load += (s, e) => splitContainer.SplitterDistance = (int)(splitContainer.Height * 0.6);
         }
 
-private void ConfigurarIconos()
+        private void ConfigurarIconos()
         {
             btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
             btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
             picHistoryTitle.IconChar = IconChar.History;
             picHistoryTitle.IconColor = Color.White;
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void CargarDatosDummy()

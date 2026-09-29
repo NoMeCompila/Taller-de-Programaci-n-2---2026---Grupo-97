@@ -10,11 +10,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using MaterialSkin.Controls;
+using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
 {
-    public partial class ProductView : UserControl
+    public partial class ProductView : UserControl, ILogoutSupport
     {
+        public event EventHandler? LogoutRequested;
+
         public ProductView()
         {
             InitializeComponent();
@@ -26,6 +29,7 @@ namespace MobileSolutions.UILayer
             //btnUpdate.Icon = IconChar.Pencil.ToBitmap(Color.White);
             btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
 
             // Íconos de los botones pequeños junto a cada campo
             btnBrand.Icon = IconChar.Tag.ToBitmap(Color.White);

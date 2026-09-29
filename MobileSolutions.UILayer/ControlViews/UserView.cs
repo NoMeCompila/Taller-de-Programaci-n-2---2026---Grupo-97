@@ -11,12 +11,13 @@ using System.Globalization;
 using MaterialSkin.Controls;
 using MobileSolutions.BusinessLayer;
 using MobileSolutions.BusinessLayer.Models;
-
+using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
 {
-    public partial class UserView : UserControl
+    public partial class UserView : UserControl, ILogoutSupport
     {
+        public event EventHandler? LogoutRequested;
 
         private readonly UserService _userService;
         private int _selectedUserId = 0;
@@ -56,6 +57,7 @@ namespace MobileSolutions.UILayer
             picUserTitle.IconChar = IconChar.UserGear;
             picUserTitle.IconColor = Color.White;
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
 
             _userService = new UserService();
 

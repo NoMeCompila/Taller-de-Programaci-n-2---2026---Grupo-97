@@ -7,12 +7,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
+using MobileSolutions.UILayer.Contracts;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace MobileSolutions.UILayer
 {
-    public partial class ReportsView : UserControl
+    public partial class ReportsView : UserControl, ILogoutSupport
     {
+        public event EventHandler? LogoutRequested;
 
         public ReportsView()
         {
@@ -26,6 +28,7 @@ namespace MobileSolutions.UILayer
             picProximamente.IconColor = Color.Red;
 
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private bool _reporteInyectado = false;
@@ -62,6 +65,11 @@ namespace MobileSolutions.UILayer
 
             if (reporteAutorizado != null)
             {
+                if (reporteAutorizado is ILogoutSupport logoutSupport)
+                {
+                    logoutSupport.LogoutRequested += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
+                }
+
                 reporteAutorizado.Dock = DockStyle.Fill;
                 pnlContainer.Controls.Clear();
                 pnlContainer.Controls.Add(reporteAutorizado);

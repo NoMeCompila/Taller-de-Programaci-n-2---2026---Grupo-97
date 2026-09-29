@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -6,11 +6,14 @@ using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using MaterialSkin.Controls;
+using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
 {
-    public partial class SaleView : UserControl
+    public partial class SaleView : UserControl, ILogoutSupport
     {
+        public event EventHandler? LogoutRequested;
+
         private List<ClienteInfo> _clientesMock = new();
 
         public SaleView()
@@ -44,6 +47,7 @@ namespace MobileSolutions.UILayer
             picSaleTitle.IconColor = Color.White;
 
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void CargarTiposDePago()

@@ -85,6 +85,21 @@ namespace MobileSolutions.UILayer
             {
                 MobileSolutions.BusinessLayer.SesionActual.IniciarSesion(user);
                 MainForm mainForm = new MainForm(user.Username);
+
+                mainForm.FormClosed += (s, args) =>
+                {
+                    if (mainForm.IsLoggingOut)
+                    {
+                        txtPassword.Clear();
+                        txtUser.Focus();
+                        this.Show();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
+                };
+
                 mainForm.Show();
                 this.Hide();
             }

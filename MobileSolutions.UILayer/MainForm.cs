@@ -1,6 +1,7 @@
 using FontAwesome.Sharp;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
 {
@@ -8,6 +9,8 @@ namespace MobileSolutions.UILayer
     {
         private readonly List<TabPage> _originalTabPages = new();
         private readonly string _currentUser = "admin";
+
+        public bool IsLoggingOut { get; private set; } = false;
 
         public MainForm() : this("admin")
         {
@@ -42,6 +45,9 @@ namespace MobileSolutions.UILayer
 
             // 4. Set current seller on the Sale view
             saleView1.SetVendedor(_currentUser);
+
+            // 5. Wire decoupled logout events from child views
+            WireLogoutEvents(this);
         }
 
         private void InitializeTabCacheAndIcons()
@@ -137,10 +143,51 @@ namespace MobileSolutions.UILayer
             this.DrawerTabControl = materialTabControl1;
             materialTabControl1.ResumeLayout(true);
         }
+ 
+        private void WireLogoutEvents(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is ILogoutSupport logoutControl)
+                {
+                    logoutControl.LogoutRequested += HandleLogoutRequested;
+                }
+
+                if (control.HasChildren)
+                {
+                    WireLogoutEvents(control);
+                }
+            }
+        }
+
+        private void HandleLogoutRequested(object? sender, EventArgs e)
+        {
+            DialogResult result = MaterialMessageBox.Show(
+                "¿Seguro que quiere cerrar sesión?",
+                "Cerrar Sesión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            // 1. Limpiar estado de sesión
+            MobileSolutions.BusinessLayer.SesionActual.LimpiarSesion();
+
+            // 2. Marcar estado de logout y cerrar MainForm para retornar al login
+            IsLoggingOut = true;
+            this.Close();
+        }
 
         private void MainForm_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            Environment.Exit(0);
+            // Si el cierre NO fue por logout (ej. clic en la 'X' de la ventana), se finaliza la aplicación
+            if (!IsLoggingOut)
+            {
+                Application.Exit();
+            }
         }
     }
 }
