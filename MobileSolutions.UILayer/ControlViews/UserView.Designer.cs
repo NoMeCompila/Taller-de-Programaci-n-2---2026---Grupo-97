@@ -45,7 +45,6 @@ namespace MobileSolutions.UILayer
             materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             lblUserTitle = new MaterialSkin.Controls.MaterialLabel();
             swtActive = new MaterialSkin.Controls.MaterialSwitch();
-            panel1 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel6 = new Panel();
             picUserTitle = new FontAwesome.Sharp.IconPictureBox();
@@ -105,8 +104,6 @@ namespace MobileSolutions.UILayer
             btnDni = new MaterialSkin.Controls.MaterialButton();
             btnLastname = new MaterialSkin.Controls.MaterialButton();
             btnName = new MaterialSkin.Controls.MaterialButton();
-            panel2 = new Panel();
-            panel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picUserTitle).BeginInit();
@@ -136,7 +133,7 @@ namespace MobileSolutions.UILayer
             txtName.HideSelection = true;
             txtName.Hint = "Nombre";
             txtName.LeadingIcon = null;
-            txtName.Location = new Point(54, 10);
+            txtName.Location = new Point(84, 11);
             txtName.Margin = new Padding(2);
             txtName.MaxLength = 32767;
             txtName.MouseState = MaterialSkin.MouseState.OUT;
@@ -168,7 +165,7 @@ namespace MobileSolutions.UILayer
             txtLastname.HideSelection = true;
             txtLastname.Hint = "Apellido";
             txtLastname.LeadingIcon = null;
-            txtLastname.Location = new Point(56, 90);
+            txtLastname.Location = new Point(86, 91);
             txtLastname.Margin = new Padding(2);
             txtLastname.MaxLength = 32767;
             txtLastname.MouseState = MaterialSkin.MouseState.OUT;
@@ -200,7 +197,7 @@ namespace MobileSolutions.UILayer
             txtDNI.HideSelection = true;
             txtDNI.Hint = "DNI";
             txtDNI.LeadingIcon = null;
-            txtDNI.Location = new Point(56, 175);
+            txtDNI.Location = new Point(86, 176);
             txtDNI.Margin = new Padding(2);
             txtDNI.MaxLength = 32767;
             txtDNI.MouseState = MaterialSkin.MouseState.OUT;
@@ -232,7 +229,7 @@ namespace MobileSolutions.UILayer
             txtUsername.HideSelection = true;
             txtUsername.Hint = "Usuario";
             txtUsername.LeadingIcon = null;
-            txtUsername.Location = new Point(54, 256);
+            txtUsername.Location = new Point(84, 257);
             txtUsername.Margin = new Padding(2);
             txtUsername.MaxLength = 32767;
             txtUsername.MouseState = MaterialSkin.MouseState.OUT;
@@ -264,7 +261,7 @@ namespace MobileSolutions.UILayer
             txtPassword.HideSelection = true;
             txtPassword.Hint = "Contraseña";
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(54, 332);
+            txtPassword.Location = new Point(84, 333);
             txtPassword.Margin = new Padding(2);
             txtPassword.MaxLength = 32767;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
@@ -296,7 +293,7 @@ namespace MobileSolutions.UILayer
             txtEmail.HideSelection = true;
             txtEmail.Hint = "Email";
             txtEmail.LeadingIcon = null;
-            txtEmail.Location = new Point(326, 10);
+            txtEmail.Location = new Point(356, 11);
             txtEmail.Margin = new Padding(2);
             txtEmail.MaxLength = 32767;
             txtEmail.MouseState = MaterialSkin.MouseState.OUT;
@@ -327,7 +324,7 @@ namespace MobileSolutions.UILayer
             txtPhone.HideSelection = true;
             txtPhone.Hint = "Teléfono";
             txtPhone.LeadingIcon = null;
-            txtPhone.Location = new Point(326, 90);
+            txtPhone.Location = new Point(356, 91);
             txtPhone.Margin = new Padding(2);
             txtPhone.MaxLength = 32767;
             txtPhone.MouseState = MaterialSkin.MouseState.OUT;
@@ -359,7 +356,7 @@ namespace MobileSolutions.UILayer
             txtAddress.HideSelection = true;
             txtAddress.Hint = "Dirección";
             txtAddress.LeadingIcon = null;
-            txtAddress.Location = new Point(326, 175);
+            txtAddress.Location = new Point(356, 176);
             txtAddress.Margin = new Padding(2);
             txtAddress.MaxLength = 32767;
             txtAddress.MouseState = MaterialSkin.MouseState.OUT;
@@ -390,7 +387,7 @@ namespace MobileSolutions.UILayer
             txtNationality.HideSelection = true;
             txtNationality.Hint = "Nacionalidad";
             txtNationality.LeadingIcon = null;
-            txtNationality.Location = new Point(327, 256);
+            txtNationality.Location = new Point(357, 257);
             txtNationality.Margin = new Padding(2);
             txtNationality.MaxLength = 32767;
             txtNationality.MouseState = MaterialSkin.MouseState.OUT;
@@ -421,7 +418,7 @@ namespace MobileSolutions.UILayer
             txtLocality.HideSelection = true;
             txtLocality.Hint = "Localidad";
             txtLocality.LeadingIcon = null;
-            txtLocality.Location = new Point(326, 332);
+            txtLocality.Location = new Point(356, 333);
             txtLocality.Margin = new Padding(2);
             txtLocality.MaxLength = 32767;
             txtLocality.MouseState = MaterialSkin.MouseState.OUT;
@@ -447,7 +444,7 @@ namespace MobileSolutions.UILayer
             lblBirth.AutoSize = true;
             lblBirth.Depth = 0;
             lblBirth.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblBirth.Location = new Point(138, 29);
+            lblBirth.Location = new Point(199, 29);
             lblBirth.Margin = new Padding(2, 0, 2, 0);
             lblBirth.MouseState = MaterialSkin.MouseState.HOVER;
             lblBirth.Name = "lblBirth";
@@ -464,7 +461,7 @@ namespace MobileSolutions.UILayer
             dtpBirth.Font = new Font("Segoe UI Emoji", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpBirth.Format = DateTimePickerFormat.Short;
             dtpBirth.ImeMode = ImeMode.NoControl;
-            dtpBirth.Location = new Point(122, 68);
+            dtpBirth.Location = new Point(183, 68);
             dtpBirth.Margin = new Padding(2);
             dtpBirth.Name = "dtpBirth";
             dtpBirth.Size = new Size(140, 33);
@@ -517,7 +514,7 @@ namespace MobileSolutions.UILayer
             lblUserTitle.Depth = 0;
             lblUserTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblUserTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            lblUserTitle.Location = new Point(220, 15);
+            lblUserTitle.Location = new Point(289, 15);
             lblUserTitle.Margin = new Padding(2, 0, 2, 0);
             lblUserTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblUserTitle.Name = "lblUserTitle";
@@ -532,7 +529,7 @@ namespace MobileSolutions.UILayer
             swtActive.Checked = true;
             swtActive.CheckState = CheckState.Checked;
             swtActive.Depth = 0;
-            swtActive.Location = new Point(857, 4);
+            swtActive.Location = new Point(1018, 21);
             swtActive.Margin = new Padding(0);
             swtActive.MouseLocation = new Point(-1, -1);
             swtActive.MouseState = MaterialSkin.MouseState.HOVER;
@@ -543,33 +540,20 @@ namespace MobileSolutions.UILayer
             swtActive.Text = "Activos";
             swtActive.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel1.Controls.Add(tableLayoutPanel2);
-            panel1.Controls.Add(tableLayoutPanel1);
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(2, 3, 2, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1344, 930);
-            panel1.TabIndex = 39;
-            panel1.Paint += panel1_Paint;
-            // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 3;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel2.Controls.Add(panel6, 1, 0);
             tableLayoutPanel2.Controls.Add(panel7, 2, 0);
-            tableLayoutPanel2.Location = new Point(3, 0);
+            tableLayoutPanel2.Dock = DockStyle.Top;
+            tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1336, 85);
+            tableLayoutPanel2.Size = new Size(1680, 96);
             tableLayoutPanel2.TabIndex = 57;
             // 
             // panel6
@@ -577,9 +561,9 @@ namespace MobileSolutions.UILayer
             panel6.Controls.Add(picUserTitle);
             panel6.Controls.Add(lblUserTitle);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(403, 3);
+            panel6.Location = new Point(507, 3);
             panel6.Name = "panel6";
-            panel6.Size = new Size(528, 79);
+            panel6.Size = new Size(666, 90);
             panel6.TabIndex = 0;
             // 
             // picUserTitle
@@ -591,10 +575,10 @@ namespace MobileSolutions.UILayer
             picUserTitle.IconColor = Color.FromArgb(222, 0, 0, 0);
             picUserTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picUserTitle.IconSize = 69;
-            picUserTitle.Location = new Point(128, 3);
+            picUserTitle.Location = new Point(197, 3);
             picUserTitle.Margin = new Padding(2, 3, 2, 3);
             picUserTitle.Name = "picUserTitle";
-            picUserTitle.Size = new Size(69, 76);
+            picUserTitle.Size = new Size(69, 87);
             picUserTitle.TabIndex = 45;
             picUserTitle.TabStop = false;
             // 
@@ -603,9 +587,9 @@ namespace MobileSolutions.UILayer
             panel7.Controls.Add(lblCurrentUser);
             panel7.Controls.Add(btnLogout);
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(937, 3);
+            panel7.Location = new Point(1179, 3);
             panel7.Name = "panel7";
-            panel7.Size = new Size(396, 79);
+            panel7.Size = new Size(498, 90);
             panel7.TabIndex = 1;
             // 
             // lblCurrentUser
@@ -630,7 +614,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(234, 6);
+            btnLogout.Location = new Point(336, 6);
             btnLogout.Margin = new Padding(10);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
@@ -644,22 +628,22 @@ namespace MobileSolutions.UILayer
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.4310226F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.5607758F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.0827732F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.9047623F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.8452377F));
             tableLayoutPanel1.Controls.Add(panel4, 1, 0);
             tableLayoutPanel1.Controls.Add(panel3, 2, 0);
             tableLayoutPanel1.Controls.Add(panel5, 1, 1);
             tableLayoutPanel1.Controls.Add(materialCard2, 0, 0);
-            tableLayoutPanel1.Location = new Point(3, 69);
+            tableLayoutPanel1.Dock = DockStyle.Bottom;
+            tableLayoutPanel1.Location = new Point(0, 168);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 63.59447F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 55.085865F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 5F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 36.40553F));
-            tableLayoutPanel1.Size = new Size(1338, 656);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 44.914135F));
+            tableLayoutPanel1.Size = new Size(1680, 762);
             tableLayoutPanel1.TabIndex = 56;
             // 
             // panel4
@@ -668,13 +652,14 @@ namespace MobileSolutions.UILayer
             panel4.Controls.Add(materialCard4);
             panel4.Controls.Add(materialCard1);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(570, 3);
+            panel4.Location = new Point(696, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(375, 408);
+            panel4.Size = new Size(530, 411);
             panel4.TabIndex = 44;
             // 
             // materialCard3
             // 
+            materialCard3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             materialCard3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialCard3.BackColor = Color.FromArgb(255, 255, 255);
             materialCard3.Controls.Add(picBirth);
@@ -682,12 +667,12 @@ namespace MobileSolutions.UILayer
             materialCard3.Controls.Add(dtpBirth);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(1, 15);
+            materialCard3.Location = new Point(8, 6);
             materialCard3.Margin = new Padding(13, 15, 13, 15);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
             materialCard3.Padding = new Padding(13, 15, 13, 15);
-            materialCard3.Size = new Size(375, 118);
+            materialCard3.Size = new Size(507, 118);
             materialCard3.TabIndex = 43;
             // 
             // picBirth
@@ -698,7 +683,7 @@ namespace MobileSolutions.UILayer
             picBirth.IconColor = Color.FromArgb(222, 0, 0, 0);
             picBirth.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picBirth.IconSize = 30;
-            picBirth.Location = new Point(98, 17);
+            picBirth.Location = new Point(165, 18);
             picBirth.Margin = new Padding(2, 3, 2, 3);
             picBirth.Name = "picBirth";
             picBirth.Size = new Size(30, 34);
@@ -707,6 +692,7 @@ namespace MobileSolutions.UILayer
             // 
             // materialCard4
             // 
+            materialCard4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             materialCard4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialCard4.BackColor = Color.FromArgb(255, 255, 255);
             materialCard4.Controls.Add(picSex);
@@ -716,12 +702,12 @@ namespace MobileSolutions.UILayer
             materialCard4.Controls.Add(materialRadioButton9);
             materialCard4.Depth = 0;
             materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard4.Location = new Point(1, 139);
+            materialCard4.Location = new Point(8, 133);
             materialCard4.Margin = new Padding(13, 15, 13, 15);
             materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard4.Name = "materialCard4";
             materialCard4.Padding = new Padding(13, 15, 13, 15);
-            materialCard4.Size = new Size(374, 125);
+            materialCard4.Size = new Size(507, 125);
             materialCard4.TabIndex = 43;
             // 
             // picSex
@@ -732,7 +718,7 @@ namespace MobileSolutions.UILayer
             picSex.IconColor = Color.FromArgb(222, 0, 0, 0);
             picSex.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picSex.IconSize = 30;
-            picSex.Location = new Point(138, 12);
+            picSex.Location = new Point(197, 9);
             picSex.Margin = new Padding(2, 3, 2, 3);
             picSex.Name = "picSex";
             picSex.Size = new Size(30, 34);
@@ -745,7 +731,7 @@ namespace MobileSolutions.UILayer
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(176, 24);
+            materialLabel2.Location = new Point(231, 23);
             materialLabel2.Margin = new Padding(2, 0, 2, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
@@ -758,7 +744,7 @@ namespace MobileSolutions.UILayer
             materialRadioButton6.Anchor = AnchorStyles.Left;
             materialRadioButton6.AutoSize = true;
             materialRadioButton6.Depth = 0;
-            materialRadioButton6.Location = new Point(138, 61);
+            materialRadioButton6.Location = new Point(176, 61);
             materialRadioButton6.Margin = new Padding(0);
             materialRadioButton6.MouseLocation = new Point(-1, -1);
             materialRadioButton6.MouseState = MaterialSkin.MouseState.HOVER;
@@ -775,7 +761,7 @@ namespace MobileSolutions.UILayer
             materialRadioButton7.Anchor = AnchorStyles.Left;
             materialRadioButton7.AutoSize = true;
             materialRadioButton7.Depth = 0;
-            materialRadioButton7.Location = new Point(255, 61);
+            materialRadioButton7.Location = new Point(335, 61);
             materialRadioButton7.Margin = new Padding(0);
             materialRadioButton7.MouseLocation = new Point(-1, -1);
             materialRadioButton7.MouseState = MaterialSkin.MouseState.HOVER;
@@ -807,6 +793,7 @@ namespace MobileSolutions.UILayer
             // 
             // materialCard1
             // 
+            materialCard1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             materialCard1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
             materialCard1.Controls.Add(picProfile);
@@ -816,12 +803,12 @@ namespace MobileSolutions.UILayer
             materialCard1.Controls.Add(lblProfile);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(0, 267);
+            materialCard1.Location = new Point(8, 269);
             materialCard1.Margin = new Padding(13, 15, 13, 15);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
             materialCard1.Padding = new Padding(13, 15, 13, 15);
-            materialCard1.Size = new Size(376, 125);
+            materialCard1.Size = new Size(507, 125);
             materialCard1.TabIndex = 42;
             // 
             // picProfile
@@ -832,7 +819,7 @@ namespace MobileSolutions.UILayer
             picProfile.IconColor = Color.FromArgb(222, 0, 0, 0);
             picProfile.IconFont = FontAwesome.Sharp.IconFont.Auto;
             picProfile.IconSize = 30;
-            picProfile.Location = new Point(139, 15);
+            picProfile.Location = new Point(176, 14);
             picProfile.Margin = new Padding(2, 3, 2, 3);
             picProfile.Name = "picProfile";
             picProfile.Size = new Size(30, 34);
@@ -862,7 +849,7 @@ namespace MobileSolutions.UILayer
             materialRadioButton2.Anchor = AnchorStyles.Left;
             materialRadioButton2.AutoSize = true;
             materialRadioButton2.Depth = 0;
-            materialRadioButton2.Location = new Point(166, 73);
+            materialRadioButton2.Location = new Point(183, 73);
             materialRadioButton2.Margin = new Padding(0);
             materialRadioButton2.MouseLocation = new Point(-1, -1);
             materialRadioButton2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -879,7 +866,7 @@ namespace MobileSolutions.UILayer
             materialRadioButton3.Anchor = AnchorStyles.Left;
             materialRadioButton3.AutoSize = true;
             materialRadioButton3.Depth = 0;
-            materialRadioButton3.Location = new Point(268, 73);
+            materialRadioButton3.Location = new Point(317, 73);
             materialRadioButton3.Margin = new Padding(0);
             materialRadioButton3.MouseLocation = new Point(-1, -1);
             materialRadioButton3.MouseState = MaterialSkin.MouseState.HOVER;
@@ -897,7 +884,7 @@ namespace MobileSolutions.UILayer
             lblProfile.AutoSize = true;
             lblProfile.Depth = 0;
             lblProfile.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblProfile.Location = new Point(177, 23);
+            lblProfile.Location = new Point(220, 22);
             lblProfile.Margin = new Padding(2, 0, 2, 0);
             lblProfile.MouseState = MaterialSkin.MouseState.HOVER;
             lblProfile.Name = "lblProfile";
@@ -919,7 +906,7 @@ namespace MobileSolutions.UILayer
             panel3.Controls.Add(btnSave);
             panel3.Controls.Add(iconBtnDelete);
             panel3.Controls.Add(icoBtnSave);
-            panel3.Location = new Point(984, 42);
+            panel3.Location = new Point(1295, 43);
             panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
             panel3.Size = new Size(318, 330);
@@ -1126,9 +1113,9 @@ namespace MobileSolutions.UILayer
             panel5.Controls.Add(dtgUsers);
             panel5.Controls.Add(txtSearch);
             panel5.Controls.Add(swtActive);
-            panel5.Location = new Point(3, 422);
+            panel5.Location = new Point(3, 425);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1332, 231);
+            panel5.Size = new Size(1674, 334);
             panel5.TabIndex = 56;
             // 
             // btnSearch
@@ -1140,7 +1127,7 @@ namespace MobileSolutions.UILayer
             btnSearch.Depth = 0;
             btnSearch.HighEmphasis = true;
             btnSearch.Icon = null;
-            btnSearch.Location = new Point(528, 4);
+            btnSearch.Location = new Point(691, 18);
             btnSearch.Margin = new Padding(4);
             btnSearch.MouseState = MaterialSkin.MouseState.HOVER;
             btnSearch.Name = "btnSearch";
@@ -1155,7 +1142,6 @@ namespace MobileSolutions.UILayer
             // dtgUsers
             // 
             dtgUsers.AllowUserToOrderColumns = true;
-            dtgUsers.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgUsers.BackgroundColor = Color.MidnightBlue;
             dtgUsers.BorderStyle = BorderStyle.None;
@@ -1169,12 +1155,13 @@ namespace MobileSolutions.UILayer
             dtgUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgUsers.Columns.AddRange(new DataGridViewColumn[] { ColumnProfile, ColumnName, ColumnLastname, ColumnUsername, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
+            dtgUsers.Dock = DockStyle.Bottom;
             dtgUsers.GridColor = SystemColors.InactiveCaptionText;
-            dtgUsers.Location = new Point(0, 53);
+            dtgUsers.Location = new Point(0, 65);
             dtgUsers.Margin = new Padding(2);
             dtgUsers.Name = "dtgUsers";
             dtgUsers.RowHeadersWidth = 51;
-            dtgUsers.Size = new Size(1332, 178);
+            dtgUsers.Size = new Size(1674, 269);
             dtgUsers.TabIndex = 33;
             // 
             // ColumnProfile
@@ -1285,7 +1272,7 @@ namespace MobileSolutions.UILayer
             txtSearch.HideSelection = true;
             txtSearch.Hint = "Buscar";
             txtSearch.LeadingIcon = null;
-            txtSearch.Location = new Point(568, 0);
+            txtSearch.Location = new Point(731, 13);
             txtSearch.Margin = new Padding(2);
             txtSearch.MaxLength = 32767;
             txtSearch.MouseState = MaterialSkin.MouseState.OUT;
@@ -1307,8 +1294,7 @@ namespace MobileSolutions.UILayer
             // 
             // materialCard2
             // 
-            materialCard2.AutoSize = true;
-            materialCard2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialCard2.Anchor = AnchorStyles.None;
             materialCard2.BackColor = Color.FromArgb(255, 255, 255);
             materialCard2.Controls.Add(btnLoc);
             materialCard2.Controls.Add(btnNat);
@@ -1332,12 +1318,12 @@ namespace MobileSolutions.UILayer
             materialCard2.Controls.Add(txtPassword);
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(13, 15);
+            materialCard2.Location = new Point(61, 15);
             materialCard2.Margin = new Padding(13, 15, 13, 15);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
             materialCard2.Padding = new Padding(13, 15, 13, 15);
-            materialCard2.Size = new Size(540, 384);
+            materialCard2.Size = new Size(570, 387);
             materialCard2.TabIndex = 43;
             materialCard2.Paint += materialCard2_Paint;
             // 
@@ -1350,7 +1336,7 @@ namespace MobileSolutions.UILayer
             btnLoc.Depth = 0;
             btnLoc.HighEmphasis = true;
             btnLoc.Icon = null;
-            btnLoc.Location = new Point(286, 332);
+            btnLoc.Location = new Point(316, 333);
             btnLoc.Margin = new Padding(4);
             btnLoc.MouseState = MaterialSkin.MouseState.HOVER;
             btnLoc.Name = "btnLoc";
@@ -1370,7 +1356,7 @@ namespace MobileSolutions.UILayer
             btnNat.Depth = 0;
             btnNat.HighEmphasis = true;
             btnNat.Icon = null;
-            btnNat.Location = new Point(286, 256);
+            btnNat.Location = new Point(316, 257);
             btnNat.Margin = new Padding(4);
             btnNat.MouseState = MaterialSkin.MouseState.HOVER;
             btnNat.Name = "btnNat";
@@ -1390,7 +1376,7 @@ namespace MobileSolutions.UILayer
             btnAddress.Depth = 0;
             btnAddress.HighEmphasis = true;
             btnAddress.Icon = null;
-            btnAddress.Location = new Point(286, 175);
+            btnAddress.Location = new Point(316, 176);
             btnAddress.Margin = new Padding(4);
             btnAddress.MouseState = MaterialSkin.MouseState.HOVER;
             btnAddress.Name = "btnAddress";
@@ -1410,7 +1396,7 @@ namespace MobileSolutions.UILayer
             btnCel.Depth = 0;
             btnCel.HighEmphasis = true;
             btnCel.Icon = null;
-            btnCel.Location = new Point(286, 90);
+            btnCel.Location = new Point(316, 91);
             btnCel.Margin = new Padding(4);
             btnCel.MouseState = MaterialSkin.MouseState.HOVER;
             btnCel.Name = "btnCel";
@@ -1430,7 +1416,7 @@ namespace MobileSolutions.UILayer
             btnEmail.Depth = 0;
             btnEmail.HighEmphasis = true;
             btnEmail.Icon = null;
-            btnEmail.Location = new Point(286, 10);
+            btnEmail.Location = new Point(316, 11);
             btnEmail.Margin = new Padding(4);
             btnEmail.MouseState = MaterialSkin.MouseState.HOVER;
             btnEmail.Name = "btnEmail";
@@ -1450,7 +1436,7 @@ namespace MobileSolutions.UILayer
             btnPassword.Depth = 0;
             btnPassword.HighEmphasis = true;
             btnPassword.Icon = null;
-            btnPassword.Location = new Point(14, 332);
+            btnPassword.Location = new Point(44, 333);
             btnPassword.Margin = new Padding(4);
             btnPassword.MouseState = MaterialSkin.MouseState.HOVER;
             btnPassword.Name = "btnPassword";
@@ -1470,7 +1456,7 @@ namespace MobileSolutions.UILayer
             btnUser.Depth = 0;
             btnUser.HighEmphasis = true;
             btnUser.Icon = null;
-            btnUser.Location = new Point(14, 256);
+            btnUser.Location = new Point(44, 257);
             btnUser.Margin = new Padding(4);
             btnUser.MouseState = MaterialSkin.MouseState.HOVER;
             btnUser.Name = "btnUser";
@@ -1490,7 +1476,7 @@ namespace MobileSolutions.UILayer
             btnDni.Depth = 0;
             btnDni.HighEmphasis = true;
             btnDni.Icon = null;
-            btnDni.Location = new Point(14, 175);
+            btnDni.Location = new Point(44, 176);
             btnDni.Margin = new Padding(4);
             btnDni.MouseState = MaterialSkin.MouseState.HOVER;
             btnDni.Name = "btnDni";
@@ -1510,7 +1496,7 @@ namespace MobileSolutions.UILayer
             btnLastname.Depth = 0;
             btnLastname.HighEmphasis = true;
             btnLastname.Icon = null;
-            btnLastname.Location = new Point(14, 90);
+            btnLastname.Location = new Point(44, 91);
             btnLastname.Margin = new Padding(4);
             btnLastname.MouseState = MaterialSkin.MouseState.HOVER;
             btnLastname.Name = "btnLastname";
@@ -1530,7 +1516,7 @@ namespace MobileSolutions.UILayer
             btnName.Depth = 0;
             btnName.HighEmphasis = true;
             btnName.Icon = null;
-            btnName.Location = new Point(14, 10);
+            btnName.Location = new Point(44, 11);
             btnName.Margin = new Padding(4);
             btnName.MouseState = MaterialSkin.MouseState.HOVER;
             btnName.Name = "btnName";
@@ -1541,26 +1527,14 @@ namespace MobileSolutions.UILayer
             btnName.UseAccentColor = false;
             btnName.UseVisualStyleBackColor = true;
             // 
-            // panel2
-            // 
-            panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(2, 3, 2, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1344, 744);
-            panel2.TabIndex = 40;
-            // 
             // UserView
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
-            Controls.Add(panel1);
-            Controls.Add(panel2);
+            AutoScaleMode = AutoScaleMode.None;
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(tableLayoutPanel2);
             Margin = new Padding(2);
             Name = "UserView";
-            Size = new Size(1344, 744);
-            panel1.ResumeLayout(false);
+            Size = new Size(1680, 930);
             tableLayoutPanel2.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
@@ -1568,7 +1542,6 @@ namespace MobileSolutions.UILayer
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
             panel4.ResumeLayout(false);
             materialCard3.ResumeLayout(false);
             materialCard3.PerformLayout();
@@ -1605,8 +1578,6 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
         private MaterialSkin.Controls.MaterialLabel lblUserTitle;
         private MaterialSkin.Controls.MaterialSwitch swtActive;
-        private Panel panel1;
-        private Panel panel2;
         private DataGridView dtgUsers;
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private MaterialSkin.Controls.MaterialCard materialCard3;

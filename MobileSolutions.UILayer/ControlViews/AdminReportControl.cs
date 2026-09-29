@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,9 @@ namespace MobileSolutions.UILayer
         public AdminReportControl()
         {
             InitializeComponent();
+            picProximamente.IconChar = IconChar.ScrewdriverWrench;
+
+            picProximamente.IconColor = Color.Black;
         }
     }
 }

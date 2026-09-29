@@ -240,7 +240,16 @@ namespace MobileSolutions.UILayer
 
         private bool ValidateFields(bool isUpdate = false)
         {
-
+            if (dtpBirth.Value.Date > DateTime.Today.AddYears(-18))
+            {
+                MaterialMessageBox.Show(
+                    "El usuario debe ser mayor de edad (18 años o más).",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                dtpBirth.Focus();
+                return false;
+            }
 
             if (string.IsNullOrWhiteSpace(txtName.Text)
                 || string.IsNullOrWhiteSpace(txtLastname.Text)
@@ -325,6 +334,17 @@ namespace MobileSolutions.UILayer
             {
                 MaterialMessageBox.Show(
                     "La fecha de nacimiento debe ser anterior a la fecha actual.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                dtpBirth.Focus();
+                return false;
+            }
+
+            if (dtpBirth.Value.Date > DateTime.Today.AddYears(-18))
+            {
+                MaterialMessageBox.Show(
+                    "El usuario debe ser mayor de edad (18 años o más).",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
