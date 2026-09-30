@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.IO;
 using FontAwesome.Sharp;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -176,18 +178,60 @@ namespace MobileSolutions.UILayer
             // 1. Limpiar estado de sesión
             MobileSolutions.BusinessLayer.SesionActual.LimpiarSesion();
 
-            // 2. Marcar estado de logout y cerrar MainForm para retornar al login
+            // 2. Marcar estado de logout
             IsLoggingOut = true;
-            this.Close();
+
+            // 3. Ejecutar el ejecutable para reiniciar la aplicación mostrando el Login
+            EjecutarReinicioAplicacion();
+
+            // 4. Terminar de forma inmediata el proceso actual para evitar residuos en memoria
+            Environment.Exit(0);
+        }
+
+        private void EjecutarReinicioAplicacion()
+        {
+            try
+            {
+                string targetDir = @"C:\Users\FeR\Desktop\Taller 2\Taller-de-Programaci-n-2---2026---Grupo-97\MobileSolutions.UILayer\bin\Debug\net10.0-windows";
+                string exePath = Path.Combine(targetDir, "MobileSolutions.UILayer.exe");
+
+                if (!File.Exists(exePath))
+                {
+                    exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MobileSolutions.UILayer.exe");
+                }
+
+                if (File.Exists(exePath))
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = exePath,
+                        WorkingDirectory = Path.GetDirectoryName(exePath)!,
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    string batPath = Path.Combine(targetDir, "restart_app.bat");
+                    if (File.Exists(batPath))
+                    {
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = batPath,
+                            WorkingDirectory = targetDir,
+                            UseShellExecute = true
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show($"Error al reiniciar la aplicación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void MainForm_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            // Si el cierre NO fue por logout (ej. clic en la 'X' de la ventana), se finaliza la aplicación
-            if (!IsLoggingOut)
-            {
-                Application.Exit();
-            }
+            Environment.Exit(0);
         }
     }
 }
