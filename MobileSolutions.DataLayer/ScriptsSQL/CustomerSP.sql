@@ -79,6 +79,18 @@ BEGIN
         RETURN;
     END
 
+        -- Validar que los campos obligatorios no vengan vacíos ni con puros espacios
+    IF LTRIM(RTRIM(@name)) = '' 
+       OR LTRIM(RTRIM(@lastname)) = '' 
+       OR LTRIM(RTRIM(@dni)) = '' 
+       OR LTRIM(RTRIM(@email)) = ''
+       OR LTRIM(RTRIM(@nationality)) = ''
+       OR LTRIM(RTRIM(@locality)) = ''
+    BEGIN
+        RAISERROR('Los campos obligatorios no pueden estar vacíos o contener solo espacios.', 16, 1);
+        RETURN;
+    END
+
     INSERT INTO Customer (
         name, lastname, dni, sex, email, 
         phone, address, birth, nationality, 
@@ -118,6 +130,18 @@ BEGIN
     IF @birth > DATEADD(YEAR, -18, GETDATE())
     BEGIN
         RAISERROR('El cliente debe ser mayor de 18 años.', 16, 1);
+        RETURN;
+    END
+
+        -- Validar que los campos obligatorios no vengan vacíos ni con puros espacios
+    IF LTRIM(RTRIM(@name)) = '' 
+       OR LTRIM(RTRIM(@lastname)) = '' 
+       OR LTRIM(RTRIM(@dni)) = '' 
+       OR LTRIM(RTRIM(@email)) = ''
+       OR LTRIM(RTRIM(@nationality)) = ''
+       OR LTRIM(RTRIM(@locality)) = ''
+    BEGIN
+        RAISERROR('Los campos obligatorios no pueden estar vacíos o contener solo espacios.', 16, 1);
         RETURN;
     END
 
