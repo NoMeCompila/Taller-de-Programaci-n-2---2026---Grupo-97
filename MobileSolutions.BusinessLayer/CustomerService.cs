@@ -7,7 +7,7 @@ using MobileSolutions.DataLayer;
 
 namespace MobileSolutions.BusinessLayer
 {
-    internal class CustomerService
+    public class CustomerService
     {
         private readonly CustomerDal _customerDal;
         private readonly DatabaseConnection _dbConnection;
