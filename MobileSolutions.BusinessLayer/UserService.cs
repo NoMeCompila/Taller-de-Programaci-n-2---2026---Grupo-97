@@ -67,6 +67,10 @@ namespace MobileSolutions.BusinessLayer
                 return (false, passwordValidation.Message);
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
                 return (false, "Debe ingresar un correo electrónico válido.");
+            if (string.IsNullOrWhiteSpace(user.Nationality) || string.IsNullOrWhiteSpace(user.Locality))
+                return (false, "La nacionalidad y localidad son obligatorias.");
+            if (string.IsNullOrWhiteSpace(user.Sex))
+                return (false, "Seleccionar un Sexo es Obligatorio.");
             if (user.ProfileId <= 0)
                 return (false, "Debe seleccionar un perfil válido para el usuario.");
             if (user.Birth.Date > DateTime.Today.AddYears(-18))
@@ -126,6 +130,10 @@ namespace MobileSolutions.BusinessLayer
             }
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
                 return (false, "Debe ingresar un correo electrónico válido.");
+            if (string.IsNullOrWhiteSpace(user.Nationality) || string.IsNullOrWhiteSpace(user.Locality))
+                return (false, "La nacionalidad y localidad son obligatorias.");
+            if (string.IsNullOrWhiteSpace(user.Sex))
+                return (false, "Seleccionar un Sexo es Obligatorio.");
             if (user.ProfileId <= 0)
                 return (false, "Debe seleccionar un perfil válido para el usuario.");
             if (user.Birth.Date > DateTime.Today.AddYears(-18))
@@ -162,7 +170,7 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al actualizar el usuario: {ex.Message}");
+                return (false, $"Error inesperado al intentar actualizar el usuario: {ex.Message}");
             }
         }
 

@@ -9,11 +9,16 @@ using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using MaterialSkin.Controls;
+using MobileSolutions.BusinessLayer;
+using MobileSolutions.BusinessLayer.Models;
 
 namespace MobileSolutions.UILayer
 {
     public partial class CustomerView : UserControl
     {
+        private readonly CustomerService _customerService;
+        private int _selectedCustomerId = 0;
+        private System.Windows.Forms.Timer? _searchDebounceTimer;
         public CustomerView()
         {
             InitializeComponent();
