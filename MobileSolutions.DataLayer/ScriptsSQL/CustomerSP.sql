@@ -16,12 +16,13 @@ BEGIN
         c.lastname        AS Apellido,
         c.dni             AS DNI,
         c.sex             AS Sexo,
+        c.birth           AS [Fecha Nacimiento],
         c.email           AS Email,
         c.phone           AS Telefono,
         c.address         AS Direccion,
-        c.birth           AS [Fecha Nacimiento],
         c.nationality     AS Nacionalidad,
-        c.locality        AS Localidad
+        c.locality        AS Localidad,
+        c.register_date   AS RegisterDate
     FROM Customer AS c
     WHERE c.status = 1
     ORDER BY c.lastname ASC, c.name ASC;
@@ -29,7 +30,7 @@ END;
 GO
 
 -- ============================================================================
--- 2. OBTENER TODOS LOS CLIENTES INACTIVOS (sp_GetInactiveCustomer)
+-- 2. OBTENER TODOS LOS CLIENTES INACTIVOS (sp_GetInactiveCustomers)
 -- ============================================================================
 CREATE OR ALTER PROCEDURE sp_GetInactiveCustomers
 AS
@@ -42,12 +43,13 @@ BEGIN
         c.lastname        AS Apellido,
         c.dni             AS DNI,
         c.sex             AS Sexo,
+        c.birth           AS [Fecha Nacimiento],
         c.email           AS Email,
         c.phone           AS Telefono,
         c.address         AS Direccion,
-        c.birth           AS [Fecha Nacimiento],
         c.nationality     AS Nacionalidad,
-        c.locality        AS Localidad
+        c.locality        AS Localidad,
+        c.register_date   AS RegisterDate
     FROM Customer AS c
     WHERE c.status = 0
     ORDER BY c.lastname ASC, c.name ASC;
@@ -79,13 +81,15 @@ BEGIN
         RETURN;
     END
 
-        -- Validar que los campos obligatorios no vengan vacíos ni con puros espacios
-    IF LTRIM(RTRIM(@name)) = '' 
-       OR LTRIM(RTRIM(@lastname)) = '' 
-       OR LTRIM(RTRIM(@dni)) = '' 
-       OR LTRIM(RTRIM(@email)) = ''
-       OR LTRIM(RTRIM(@nationality)) = ''
-       OR LTRIM(RTRIM(@locality)) = ''
+    -- Validar que los campos obligatorios no vengan vacíos, nulos ni con puros espacios
+    IF ISNULL(LTRIM(RTRIM(@name)), '') = '' 
+       OR ISNULL(LTRIM(RTRIM(@lastname)), '') = '' 
+       OR ISNULL(LTRIM(RTRIM(@dni)), '') = '' 
+       OR ISNULL(LTRIM(RTRIM(@sex)), '') = ''
+       OR ISNULL(LTRIM(RTRIM(@email)), '') = ''
+       OR ISNULL(LTRIM(RTRIM(@nationality)), '') = ''
+       OR ISNULL(LTRIM(RTRIM(@locality)), '') = ''
+       OR @birth IS NULL
     BEGIN
         RAISERROR('Los campos obligatorios no pueden estar vacíos o contener solo espacios.', 16, 1);
         RETURN;
@@ -133,13 +137,15 @@ BEGIN
         RETURN;
     END
 
-        -- Validar que los campos obligatorios no vengan vacíos ni con puros espacios
-    IF LTRIM(RTRIM(@name)) = '' 
-       OR LTRIM(RTRIM(@lastname)) = '' 
-       OR LTRIM(RTRIM(@dni)) = '' 
-       OR LTRIM(RTRIM(@email)) = ''
-       OR LTRIM(RTRIM(@nationality)) = ''
-       OR LTRIM(RTRIM(@locality)) = ''
+    -- Validar que los campos obligatorios no vengan vacíos, nulos ni con puros espacios
+    IF ISNULL(LTRIM(RTRIM(@name)), '') = '' 
+       OR ISNULL(LTRIM(RTRIM(@lastname)), '') = '' 
+       OR ISNULL(LTRIM(RTRIM(@dni)), '') = '' 
+       OR ISNULL(LTRIM(RTRIM(@sex)), '') = ''
+       OR ISNULL(LTRIM(RTRIM(@email)), '') = ''
+       OR ISNULL(LTRIM(RTRIM(@nationality)), '') = ''
+       OR ISNULL(LTRIM(RTRIM(@locality)), '') = ''
+       OR @birth IS NULL
     BEGIN
         RAISERROR('Los campos obligatorios no pueden estar vacíos o contener solo espacios.', 16, 1);
         RETURN;
@@ -211,12 +217,13 @@ BEGIN
         c.lastname        AS Apellido,
         c.dni             AS DNI,
         c.sex             AS Sexo,
+        c.birth           AS [Fecha Nacimiento],
         c.email           AS Email,
         c.phone           AS Telefono,
         c.address         AS Direccion,
-        c.birth           AS [Fecha Nacimiento],
         c.nationality     AS Nacionalidad,
-        c.locality        AS Localidad
+        c.locality        AS Localidad,
+        c.register_date   AS RegisterDate
     FROM Customer AS c
     WHERE 
         c.status = 1
@@ -252,12 +259,13 @@ BEGIN
         c.lastname        AS Apellido,
         c.dni             AS DNI,
         c.sex             AS Sexo,
+        c.birth           AS [Fecha Nacimiento],
         c.email           AS Email,
         c.phone           AS Telefono,
         c.address         AS Direccion,
-        c.birth           AS [Fecha Nacimiento],
         c.nationality     AS Nacionalidad,
-        c.locality        AS Localidad
+        c.locality        AS Localidad,
+        c.register_date   AS RegisterDate
     FROM Customer AS c
     WHERE 
         c.status = 0
