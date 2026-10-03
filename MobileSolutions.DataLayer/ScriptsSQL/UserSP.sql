@@ -272,3 +272,38 @@ BEGIN
     ORDER BY u.lastname ASC, u.name ASC;
 END;
 GO
+
+-- Validate User Login
+CREATE OR ALTER PROCEDURE sp_ValidateUser
+    @UsernameOrEmail VARCHAR(100),
+    @Password        VARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        u.user_id          AS user_id,
+        u.profile_id       AS profile_id,
+        p.description      AS Perfil,
+        u.name             AS Nombre,
+        u.lastname         AS Apellido,
+        u.username         AS Usuario,
+        u.dni              AS DNI,
+        u.sex              AS Sexo,
+        u.birth            AS [Fecha Nacimiento],
+        u.email            AS Email,
+        u.phone            AS Telefono,
+        u.address          AS Direccion,
+        u.nationality      AS Nacionalidad,
+        u.locality         AS Localidad,
+        u.register_date    AS RegisterDate,
+        u.status           AS Estado
+    FROM [User] AS u
+    INNER JOIN Profile AS p 
+        ON u.profile_id = p.profile_id
+    WHERE (u.username = @UsernameOrEmail OR u.email = @UsernameOrEmail)
+      AND u.password = @Password
+      AND u.status = 1
+      AND p.status = 1;
+END;
+GO

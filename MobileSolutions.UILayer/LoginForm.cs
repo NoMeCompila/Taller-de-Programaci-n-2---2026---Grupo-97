@@ -80,22 +80,18 @@ namespace MobileSolutions.UILayer
             string username = txtUser.Text.Trim();
             string password = txtPassword.Text;
 
-            var user = _userService.GetUser(username, password);
+            var (success, message, user) = _userService.Login(username, password);
 
-            if (user != null)
+            if (success && user != null)
             {
                 MobileSolutions.BusinessLayer.SesionActual.IniciarSesion(user);
                 MainForm mainForm = new MainForm(user.Username);
                 mainForm.Show();
                 this.Hide();
             }
-            else if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                MaterialMessageBox.Show("Por favor ingrese las credenciales", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             else
             {
-                MaterialMessageBox.Show("Usuario/Contraseña no válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MaterialMessageBox.Show(message, "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

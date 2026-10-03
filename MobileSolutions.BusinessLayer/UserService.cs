@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using MobileSolutions.BusinessLayer.Models;
 using MobileSolutions.DataLayer;
 
@@ -65,6 +67,9 @@ namespace MobileSolutions.BusinessLayer
             var passwordValidation = ValidatePasswordComplexity(user.Password, isRequired: true);
             if (!passwordValidation.IsValid)
                 return (false, passwordValidation.Message);
+
+            // Hash password with SHA-256 before persisting
+            user.Password = ComputeSha256Hash(user.Password!);
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
                 return (false, "Debe ingresar un correo electrónico válido.");
             if (user.ProfileId <= 0)
@@ -123,6 +128,9 @@ namespace MobileSolutions.BusinessLayer
                 var passwordValidation = ValidatePasswordComplexity(user.Password, isRequired: false);
                 if (!passwordValidation.IsValid)
                     return (false, passwordValidation.Message);
+
+                // Hash password with SHA-256 before persisting
+                user.Password = ComputeSha256Hash(user.Password);
             }
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
                 return (false, "Debe ingresar un correo electrónico válido.");
@@ -258,12 +266,52 @@ namespace MobileSolutions.BusinessLayer
             return (true, string.Empty);
         }
 
-        private static readonly List<User> _mockUsers = new()
+        /// <summary>
+        /// Genera el resumen criptográfico SHA-256 en formato hexadecimal en minúsculas (64 caracteres).
+        /// </summary>
+        public static string ComputeSha256Hash(string rawData)
         {
-            new User { UserId = 1, ProfileId = 1, Username = "admin", ProfileName = "Administrator", Password = "Test123!", Name = "Administrador" },
-            new User { UserId = 2, ProfileId = 2, Username = "fer", ProfileName = "Gerente", Password = "Test123!", Name = "Fernando" },
-            new User { UserId = 3, ProfileId = 3, Username = "nico", ProfileName = "Vendedor", Password = "Test123!", Name = "Nicolas" }
-        };
+            if (string.IsNullOrEmpty(rawData))
+            {
+                return string.Empty;
+            }
+
+            byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(rawData));
+            StringBuilder builder = new StringBuilder(bytes.Length * 2);
+            foreach (byte b in bytes)
+            {
+                builder.Append(b.ToString("x2"));
+            }
+            return builder.ToString();
+        }
+
+        public (bool Success, string Message, User? User) Login(string usernameOrEmail, string password)
+        {
+            if (string.IsNullOrWhiteSpace(usernameOrEmail) || string.IsNullOrWhiteSpace(password))
+            {
+                return (false, "Por favor ingrese usuario y contraseña.", null);
+            }
+
+            try
+            {
+                string hashedPassword = ComputeSha256Hash(password);
+                User? user = _userDal.ValidateLogin(usernameOrEmail.Trim(), hashedPassword);
+                if (user == null)
+                {
+                    return (false, "Usuario o contraseña no válidos, o la cuenta está inactiva.", null);
+                }
+
+                return (true, "Inicio de sesión correcto.", user);
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                return (false, $"Error al conectar con la base de datos: {ex.Message}", null);
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado durante la autenticación: {ex.Message}", null);
+            }
+        }
 
         public bool AuthenticateUser(string username, string password)
         {
@@ -277,9 +325,8 @@ namespace MobileSolutions.BusinessLayer
                 return null;
             }
 
-            return _mockUsers.FirstOrDefault(u =>
-                string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase) &&
-                string.Equals(u.Password, password));
+            string hashedPassword = ComputeSha256Hash(password);
+            return _userDal.ValidateLogin(username.Trim(), hashedPassword);
         }
 
         public User? GetUserByUsername(string username)
@@ -289,7 +336,7 @@ namespace MobileSolutions.BusinessLayer
                 return null;
             }
 
-            return _mockUsers.FirstOrDefault(u =>
+            return _userDal.GetActiveUsers().FirstOrDefault(u =>
                 string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase));
         }
     }

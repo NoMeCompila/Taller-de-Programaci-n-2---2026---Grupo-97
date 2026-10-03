@@ -102,33 +102,35 @@ namespace MobileSolutions.UILayer
             materialTabControl1.TabPages.Clear();
 
             string normalizedUser = username.Trim().ToLowerInvariant();
+            int profileId = MobileSolutions.BusinessLayer.SesionActual.ProfileId;
+            string profileName = MobileSolutions.BusinessLayer.SesionActual.ProfileName.Trim().ToLowerInvariant();
 
             List<TabPage> allowedTabs;
-            switch (normalizedUser)
+
+            // Role-based access control based on DB profile (with fallback to username)
+            if (profileId == 1 || profileName == "administrador" || profileName == "administrator" || normalizedUser == "admin")
             {
-                case "admin":
-                    // Administrator: All 7 tabs visible
-                    allowedTabs = new List<TabPage>(_originalTabPages);
-                    break;
-
-                case "fer":
-                    // Gerente: Only 6 tabs (Usuarios and Clientes removed)
-                    allowedTabs = _originalTabPages
-                        .Where(tab => tab != tabPage2)
-                        .ToList();
-                    break;
-
-                case "nico":
-                    // Vendedor: Only 5 tabs (Usuarios, Productos, and Marcas removed)
-                    allowedTabs = _originalTabPages
-                        .Where(tab => tab != tabPage2 && tab != tabPage4)
-                        .ToList();
-                    break;
-
-                default:
-                    // Fallback: Home tab only
-                    allowedTabs = new List<TabPage> { tabPage1 };
-                    break;
+                // Administrator: All 7 tabs visible
+                allowedTabs = new List<TabPage>(_originalTabPages);
+            }
+            else if (profileId == 3 || profileName == "gerente" || normalizedUser == "fer" || normalizedUser == "fcaballe")
+            {
+                // Gerente: Only 6 tabs (Usuarios removed)
+                allowedTabs = _originalTabPages
+                    .Where(tab => tab != tabPage2)
+                    .ToList();
+            }
+            else if (profileId == 2 || profileName == "vendedor" || normalizedUser == "nico")
+            {
+                // Vendedor: Only 5 tabs (Usuarios and Productos removed)
+                allowedTabs = _originalTabPages
+                    .Where(tab => tab != tabPage2 && tab != tabPage4)
+                    .ToList();
+            }
+            else
+            {
+                // Fallback: Home tab only
+                allowedTabs = new List<TabPage> { tabPage1 };
             }
 
             foreach (var tab in allowedTabs)

@@ -152,9 +152,9 @@ SELECT * FROM Profile;
 
 
 INSERT INTO dbo.[User] (profile_id, name, lastname, dni, sex, username, password, email, birth, nationality, locality)
-VALUES (3, 'Fernando', 'Caballero', '38444555', 'Masculino', 'fcaballe', '123', 'fcaballe@email.com', '1998-02-22', 'Argentina', 'Misiones'),
-(1, 'Juan', 'Perez', '40442525', 'Masculino', 'admin', '123', 'admin@email.com', '1990-03-11', 'Argentina', 'Corrientes'),
-(2, 'Nicolas', 'Panunzio', '39441155', 'Masculino', 'nico', '123', 'nico@email.com', '2000-10-02', 'Argentina', 'Corrientes');
+VALUES (3, 'Fernando', 'Caballero', '38444555', 'Masculino', 'fcaballe', LOWER(CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '123'), 2)), 'fcaballe@email.com', '1998-02-22', 'Argentina', 'Misiones'),
+(1, 'Juan', 'Perez', '40442525', 'Masculino', 'admin', LOWER(CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '123'), 2)), 'admin@email.com', '1990-03-11', 'Argentina', 'Corrientes'),
+(2, 'Nicolas', 'Panunzio', '39441155', 'Masculino', 'nico', LOWER(CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '123'), 2)), 'nico@email.com', '2000-10-02', 'Argentina', 'Corrientes');
 
 
 SELECT * FROM [User];
