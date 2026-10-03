@@ -165,3 +165,5 @@ SELECT * FROM [User] WHERE status = 0 ORDER BY lastname ASC, name ASC;
 
 
 DELETE FROM [User] WHERE dni = '87654321';
+
+SELECT * FROM [User] WHERE username = 'TestUser';
