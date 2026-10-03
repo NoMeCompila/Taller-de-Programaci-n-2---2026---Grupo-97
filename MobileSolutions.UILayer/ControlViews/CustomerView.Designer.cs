@@ -28,7 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             txtName = new MaterialSkin.Controls.MaterialTextBox2();
             txtLastname = new MaterialSkin.Controls.MaterialTextBox2();
             txtDNI = new MaterialSkin.Controls.MaterialTextBox2();
@@ -55,16 +55,6 @@ namespace MobileSolutions.UILayer
             btnLastname = new MaterialSkin.Controls.MaterialButton();
             btnName = new MaterialSkin.Controls.MaterialButton();
             dtgCustomers = new DataGridView();
-            ColumnName = new DataGridViewLinkColumn();
-            ColumnLastname = new DataGridViewLinkColumn();
-            ColumnDNI = new DataGridViewLinkColumn();
-            ColumnSex = new DataGridViewLinkColumn();
-            ColumnBirth = new DataGridViewLinkColumn();
-            ColumnEmail = new DataGridViewLinkColumn();
-            ColumnPhone = new DataGridViewLinkColumn();
-            ColumnAddress = new DataGridViewLinkColumn();
-            ColumnNationality = new DataGridViewLinkColumn();
-            ColumnLocality = new DataGridViewLinkColumn();
             panel3 = new Panel();
             materialCard4 = new MaterialSkin.Controls.MaterialCard();
             picSex = new FontAwesome.Sharp.IconPictureBox();
@@ -76,6 +66,8 @@ namespace MobileSolutions.UILayer
             picBirth = new FontAwesome.Sharp.IconPictureBox();
             picCustomerTitle = new FontAwesome.Sharp.IconPictureBox();
             panel4 = new Panel();
+            btnReactivate = new MaterialSkin.Controls.MaterialButton();
+            icoBtnReactivate = new FontAwesome.Sharp.IconButton();
             icoBtnUpdate = new FontAwesome.Sharp.IconButton();
             icoBtnClear = new FontAwesome.Sharp.IconButton();
             icoBtnDelete = new FontAwesome.Sharp.IconButton();
@@ -89,8 +81,16 @@ namespace MobileSolutions.UILayer
             panel6 = new Panel();
             lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
             btnLogout = new MaterialSkin.Controls.MaterialButton();
-            icoBtnReactivate = new FontAwesome.Sharp.IconButton();
-            btnReactivate = new MaterialSkin.Controls.MaterialButton();
+            ColumnName = new DataGridViewTextBoxColumn();
+            ColumnLastname = new DataGridViewTextBoxColumn();
+            ColumnDNI = new DataGridViewTextBoxColumn();
+            ColumnSex = new DataGridViewTextBoxColumn();
+            ColumnBirth = new DataGridViewTextBoxColumn();
+            ColumnEmail = new DataGridViewTextBoxColumn();
+            ColumnPhone = new DataGridViewTextBoxColumn();
+            ColumnAddress = new DataGridViewTextBoxColumn();
+            ColumnNationality = new DataGridViewTextBoxColumn();
+            ColumnLocality = new DataGridViewTextBoxColumn();
             materialCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCustomers).BeginInit();
             panel3.SuspendLayout();
@@ -465,6 +465,7 @@ namespace MobileSolutions.UILayer
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnDelete.UseAccentColor = false;
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
@@ -486,6 +487,7 @@ namespace MobileSolutions.UILayer
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // swtActive
             // 
@@ -702,14 +704,14 @@ namespace MobileSolutions.UILayer
             dtgCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCustomers.BackgroundColor = Color.MidnightBlue;
             dtgCustomers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgCustomers.Columns.AddRange(new DataGridViewColumn[] { ColumnName, ColumnLastname, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
             dtgCustomers.Dock = DockStyle.Bottom;
@@ -720,66 +722,6 @@ namespace MobileSolutions.UILayer
             dtgCustomers.RowHeadersWidth = 51;
             dtgCustomers.Size = new Size(1674, 275);
             dtgCustomers.TabIndex = 33;
-            // 
-            // ColumnName
-            // 
-            ColumnName.HeaderText = "Nombre";
-            ColumnName.MinimumWidth = 6;
-            ColumnName.Name = "ColumnName";
-            // 
-            // ColumnLastname
-            // 
-            ColumnLastname.HeaderText = "Apellido";
-            ColumnLastname.MinimumWidth = 6;
-            ColumnLastname.Name = "ColumnLastname";
-            // 
-            // ColumnDNI
-            // 
-            ColumnDNI.HeaderText = "DNI";
-            ColumnDNI.MinimumWidth = 6;
-            ColumnDNI.Name = "ColumnDNI";
-            // 
-            // ColumnSex
-            // 
-            ColumnSex.HeaderText = "Sexo";
-            ColumnSex.MinimumWidth = 6;
-            ColumnSex.Name = "ColumnSex";
-            // 
-            // ColumnBirth
-            // 
-            ColumnBirth.HeaderText = "Fecha de Nac.";
-            ColumnBirth.MinimumWidth = 6;
-            ColumnBirth.Name = "ColumnBirth";
-            // 
-            // ColumnEmail
-            // 
-            ColumnEmail.HeaderText = "Email";
-            ColumnEmail.MinimumWidth = 6;
-            ColumnEmail.Name = "ColumnEmail";
-            // 
-            // ColumnPhone
-            // 
-            ColumnPhone.HeaderText = "Teléfono";
-            ColumnPhone.MinimumWidth = 6;
-            ColumnPhone.Name = "ColumnPhone";
-            // 
-            // ColumnAddress
-            // 
-            ColumnAddress.HeaderText = "Dirección";
-            ColumnAddress.MinimumWidth = 6;
-            ColumnAddress.Name = "ColumnAddress";
-            // 
-            // ColumnNationality
-            // 
-            ColumnNationality.HeaderText = "Nacionalidad";
-            ColumnNationality.MinimumWidth = 6;
-            ColumnNationality.Name = "ColumnNationality";
-            // 
-            // ColumnLocality
-            // 
-            ColumnLocality.HeaderText = "Localidad";
-            ColumnLocality.MinimumWidth = 6;
-            ColumnLocality.Name = "ColumnLocality";
             // 
             // panel3
             // 
@@ -951,6 +893,53 @@ namespace MobileSolutions.UILayer
             panel4.Name = "panel4";
             panel4.Size = new Size(464, 444);
             panel4.TabIndex = 57;
+            // 
+            // btnReactivate
+            // 
+            btnReactivate.Anchor = AnchorStyles.None;
+            btnReactivate.AutoSize = false;
+            btnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReactivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnReactivate.Depth = 0;
+            btnReactivate.Enabled = false;
+            btnReactivate.HighEmphasis = true;
+            btnReactivate.Icon = null;
+            btnReactivate.Location = new Point(176, 234);
+            btnReactivate.Margin = new Padding(4);
+            btnReactivate.MouseState = MaterialSkin.MouseState.HOVER;
+            btnReactivate.Name = "btnReactivate";
+            btnReactivate.NoAccentTextColor = Color.Empty;
+            btnReactivate.Size = new Size(114, 35);
+            btnReactivate.TabIndex = 59;
+            btnReactivate.Text = "Reactivar";
+            btnReactivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnReactivate.UseAccentColor = false;
+            btnReactivate.UseVisualStyleBackColor = true;
+            btnReactivate.Visible = false;
+            btnReactivate.Click += btnReactivate_Click;
+            // 
+            // icoBtnReactivate
+            // 
+            icoBtnReactivate.Anchor = AnchorStyles.None;
+            icoBtnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnReactivate.BackColor = Color.RoyalBlue;
+            icoBtnReactivate.Enabled = false;
+            icoBtnReactivate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnReactivate.ForeColor = SystemColors.Control;
+            icoBtnReactivate.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            icoBtnReactivate.IconColor = Color.White;
+            icoBtnReactivate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnReactivate.IconSize = 60;
+            icoBtnReactivate.Location = new Point(164, 158);
+            icoBtnReactivate.Margin = new Padding(2, 3, 2, 3);
+            icoBtnReactivate.Name = "icoBtnReactivate";
+            icoBtnReactivate.Size = new Size(137, 128);
+            icoBtnReactivate.TabIndex = 58;
+            icoBtnReactivate.Text = "BUTTON";
+            icoBtnReactivate.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnReactivate.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnReactivate.UseVisualStyleBackColor = false;
+            icoBtnReactivate.Visible = false;
             // 
             // icoBtnUpdate
             // 
@@ -1187,50 +1176,85 @@ namespace MobileSolutions.UILayer
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = false;
             // 
-            // icoBtnReactivate
+            // ColumnName
             // 
-            icoBtnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            icoBtnReactivate.BackColor = Color.RoyalBlue;
-            icoBtnReactivate.Enabled = false;
-            icoBtnReactivate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            icoBtnReactivate.ForeColor = SystemColors.Control;
-            icoBtnReactivate.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
-            icoBtnReactivate.IconColor = Color.White;
-            icoBtnReactivate.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            icoBtnReactivate.IconSize = 60;
-            icoBtnReactivate.Location = new Point(164, 158);
-            icoBtnReactivate.Margin = new Padding(2, 3, 2, 3);
-            icoBtnReactivate.Name = "icoBtnReactivate";
-            icoBtnReactivate.Size = new Size(137, 128);
-            icoBtnReactivate.TabIndex = 58;
-            icoBtnReactivate.Text = "BUTTON";
-            icoBtnReactivate.TextAlign = ContentAlignment.BottomCenter;
-            icoBtnReactivate.TextImageRelation = TextImageRelation.ImageAboveText;
-            icoBtnReactivate.UseVisualStyleBackColor = false;
-            icoBtnReactivate.Visible = false;
+            ColumnName.HeaderText = "Nombre";
+            ColumnName.MinimumWidth = 6;
+            ColumnName.Name = "ColumnName";
+            ColumnName.Resizable = DataGridViewTriState.True;
+            ColumnName.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // btnReactivate
+            // ColumnLastname
             // 
-            btnReactivate.Anchor = AnchorStyles.Right;
-            btnReactivate.AutoSize = false;
-            btnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnReactivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnReactivate.Depth = 0;
-            btnReactivate.Enabled = false;
-            btnReactivate.HighEmphasis = true;
-            btnReactivate.Icon = null;
-            btnReactivate.Location = new Point(176, 234);
-            btnReactivate.Margin = new Padding(4);
-            btnReactivate.MouseState = MaterialSkin.MouseState.HOVER;
-            btnReactivate.Name = "btnReactivate";
-            btnReactivate.NoAccentTextColor = Color.Empty;
-            btnReactivate.Size = new Size(114, 35);
-            btnReactivate.TabIndex = 59;
-            btnReactivate.Text = "Reactivar";
-            btnReactivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnReactivate.UseAccentColor = false;
-            btnReactivate.UseVisualStyleBackColor = true;
-            btnReactivate.Visible = false;
+            ColumnLastname.HeaderText = "Apellido";
+            ColumnLastname.MinimumWidth = 6;
+            ColumnLastname.Name = "ColumnLastname";
+            ColumnLastname.Resizable = DataGridViewTriState.True;
+            ColumnLastname.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnDNI
+            // 
+            ColumnDNI.HeaderText = "DNI";
+            ColumnDNI.MinimumWidth = 6;
+            ColumnDNI.Name = "ColumnDNI";
+            ColumnDNI.Resizable = DataGridViewTriState.True;
+            ColumnDNI.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnSex
+            // 
+            ColumnSex.HeaderText = "Sexo";
+            ColumnSex.MinimumWidth = 6;
+            ColumnSex.Name = "ColumnSex";
+            ColumnSex.Resizable = DataGridViewTriState.True;
+            ColumnSex.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnBirth
+            // 
+            ColumnBirth.HeaderText = "Fecha de Nac.";
+            ColumnBirth.MinimumWidth = 6;
+            ColumnBirth.Name = "ColumnBirth";
+            ColumnBirth.Resizable = DataGridViewTriState.True;
+            ColumnBirth.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnEmail
+            // 
+            ColumnEmail.HeaderText = "Email";
+            ColumnEmail.MinimumWidth = 6;
+            ColumnEmail.Name = "ColumnEmail";
+            ColumnEmail.Resizable = DataGridViewTriState.True;
+            ColumnEmail.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnPhone
+            // 
+            ColumnPhone.HeaderText = "Teléfono";
+            ColumnPhone.MinimumWidth = 6;
+            ColumnPhone.Name = "ColumnPhone";
+            ColumnPhone.Resizable = DataGridViewTriState.True;
+            ColumnPhone.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnAddress
+            // 
+            ColumnAddress.HeaderText = "Dirección";
+            ColumnAddress.MinimumWidth = 6;
+            ColumnAddress.Name = "ColumnAddress";
+            ColumnAddress.Resizable = DataGridViewTriState.True;
+            ColumnAddress.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnNationality
+            // 
+            ColumnNationality.HeaderText = "Nacionalidad";
+            ColumnNationality.MinimumWidth = 6;
+            ColumnNationality.Name = "ColumnNationality";
+            ColumnNationality.Resizable = DataGridViewTriState.True;
+            ColumnNationality.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnLocality
+            // 
+            ColumnLocality.HeaderText = "Localidad";
+            ColumnLocality.MinimumWidth = 6;
+            ColumnLocality.Name = "ColumnLocality";
+            ColumnLocality.Resizable = DataGridViewTriState.True;
+            ColumnLocality.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // CustomerView
             // 
@@ -1300,16 +1324,6 @@ namespace MobileSolutions.UILayer
         private FontAwesome.Sharp.IconPictureBox picSex;
         private FontAwesome.Sharp.IconPictureBox picBirth;
         private FontAwesome.Sharp.IconPictureBox picCustomerTitle;
-        private DataGridViewLinkColumn ColumnName;
-        private DataGridViewLinkColumn ColumnLastname;
-        private DataGridViewLinkColumn ColumnDNI;
-        private DataGridViewLinkColumn ColumnSex;
-        private DataGridViewLinkColumn ColumnBirth;
-        private DataGridViewLinkColumn ColumnEmail;
-        private DataGridViewLinkColumn ColumnPhone;
-        private DataGridViewLinkColumn ColumnAddress;
-        private DataGridViewLinkColumn ColumnNationality;
-        private DataGridViewLinkColumn ColumnLocality;
         private Panel panel4;
         private FontAwesome.Sharp.IconButton icoBtnUpdate;
         private FontAwesome.Sharp.IconButton icoBtnClear;
@@ -1326,6 +1340,16 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
         private FontAwesome.Sharp.IconButton icoBtnReactivate;
         private MaterialSkin.Controls.MaterialButton btnReactivate;
+        private DataGridViewTextBoxColumn ColumnName;
+        private DataGridViewTextBoxColumn ColumnLastname;
+        private DataGridViewTextBoxColumn ColumnDNI;
+        private DataGridViewTextBoxColumn ColumnSex;
+        private DataGridViewTextBoxColumn ColumnBirth;
+        private DataGridViewTextBoxColumn ColumnEmail;
+        private DataGridViewTextBoxColumn ColumnPhone;
+        private DataGridViewTextBoxColumn ColumnAddress;
+        private DataGridViewTextBoxColumn ColumnNationality;
+        private DataGridViewTextBoxColumn ColumnLocality;
     }
 }
 
