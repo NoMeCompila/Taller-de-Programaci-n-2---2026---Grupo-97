@@ -397,6 +397,75 @@ namespace MobileSolutions.DataLayer
                 return rowsAffected > 0 || rowsAffected == -1;
             }
         }
+
+        public User? ValidateLogin(string usernameOrEmail, string password)
+        {
+            if (string.IsNullOrWhiteSpace(usernameOrEmail) || string.IsNullOrWhiteSpace(password))
+            {
+                return null;
+            }
+
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_ValidateUser", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+
+                command.Parameters.Add(new SqlParameter("@UsernameOrEmail", SqlDbType.VarChar, 100)
+                {
+                    Value = usernameOrEmail.Trim()
+                });
+
+                command.Parameters.Add(new SqlParameter("@Password", SqlDbType.VarChar, 255)
+                {
+                    Value = password
+                });
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow))
+                {
+                    if (reader.Read())
+                    {
+                        int ordProfileName = GetOrdinalSafe(reader, "Perfil", "profile_name", "description");
+                        int ordName = GetOrdinalSafe(reader, "Nombre", "name");
+                        int ordLastname = GetOrdinalSafe(reader, "Apellido", "lastname");
+                        int ordDni = GetOrdinalSafe(reader, "DNI", "dni");
+                        int ordSex = GetOrdinalSafe(reader, "Sexo", "sex");
+                        int ordUsername = GetOrdinalSafe(reader, "Usuario", "username");
+                        int ordEmail = GetOrdinalSafe(reader, "Email", "email");
+                        int ordPhone = GetOrdinalSafe(reader, "Telefono", "phone");
+                        int ordAddress = GetOrdinalSafe(reader, "Direccion", "address");
+                        int ordBirth = GetOrdinalSafe(reader, "Fecha Nacimiento", "birth");
+                        int ordNationality = GetOrdinalSafe(reader, "Nacionalidad", "nationality");
+                        int ordLocality = GetOrdinalSafe(reader, "Localidad", "locality");
+                        int ordUserId = GetOrdinalSafe(reader, "user_id", "UserId");
+                        int ordProfileId = GetOrdinalSafe(reader, "profile_id", "ProfileId");
+                        int ordRegisterDate = GetOrdinalSafe(reader, "register_date", "RegisterDate");
+
+                        return MapUserFromReader(
+                            reader,
+                            ordUserId,
+                            ordProfileId,
+                            ordProfileName,
+                            ordName,
+                            ordLastname,
+                            ordDni,
+                            ordSex,
+                            ordUsername,
+                            ordEmail,
+                            ordPhone,
+                            ordAddress,
+                            ordBirth,
+                            ordNationality,
+                            ordLocality,
+                            ordRegisterDate);
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }
+
 

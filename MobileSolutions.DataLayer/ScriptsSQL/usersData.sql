@@ -140,6 +140,12 @@ VALUES
 (2, 'Taylor', 'Centurion', '93101160', 'Otro', 'tcenturion60', 'Pass1234!', 'tcenturion60@yahoo.com', '0983387660', 'General Diaz 210', '1996-10-31', 'Paraguay', 'Luque', '2023-08-09 17:45:00', 0);
 GO
 
+-- Hashear contraseñas recién insertadas a SHA-256 (64 caracteres hex)
+UPDATE [User]
+SET password = LOWER(CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', password), 2))
+WHERE LEN(password) <> 64;
+GO
+
 -- ==============================================================================
 -- Verificación de resumen
 -- ==============================================================================
@@ -156,3 +162,6 @@ GO
 SELECT * FROM [User] WHERE status = 1 ORDER BY lastname ASC, name ASC;
 
 SELECT * FROM [User] WHERE status = 0 ORDER BY lastname ASC, name ASC;
+
+
+DELETE FROM [User] WHERE dni = '87654321';

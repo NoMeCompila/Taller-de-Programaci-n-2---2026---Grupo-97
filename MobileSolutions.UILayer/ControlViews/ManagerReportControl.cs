@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
@@ -12,10 +12,14 @@ using WpfBrushes = System.Windows.Media.Brushes;
 using WpfColor = System.Windows.Media.Color;
 using WpfFontFamily = System.Windows.Media.FontFamily;
 
+using MobileSolutions.UILayer.Contracts;
+
 namespace MobileSolutions.UILayer
 {
-    public partial class ManagerReportControl : UserControl
+    public partial class ManagerReportControl : UserControl, ILogoutSupport
     {
+        public event EventHandler? LogoutRequested;
+
         private static readonly Color FondoPrincipal = Color.FromArgb(50, 50, 50);
         private static readonly Color FondoTarjeta = Color.FromArgb(60, 60, 60);
         private static readonly Color FondoCabeceraTabla = Color.FromArgb(13, 71, 161);
@@ -28,6 +32,7 @@ namespace MobileSolutions.UILayer
         {
             InitializeComponent();
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
             ConfigurarLayout();
         }
 

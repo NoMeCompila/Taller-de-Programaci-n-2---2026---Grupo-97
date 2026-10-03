@@ -11,14 +11,17 @@ using System.Drawing;
 using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
+using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
 {
-    public partial class CustomerView : UserControl
+    public partial class CustomerView : UserControl, ILogoutSupport
     {
         private readonly CustomerService _customerService;
         private int _selectedCustomerId = 0;
         private System.Windows.Forms.Timer? _searchDebounceTimer;
+        public event EventHandler? LogoutRequested;
 
         public CustomerView()
         {
@@ -49,6 +52,7 @@ namespace MobileSolutions.UILayer
             picCustomerTitle.IconChar = IconChar.Users;
             picCustomerTitle.IconColor = Color.White;
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
 
             _customerService = new CustomerService();
 

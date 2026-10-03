@@ -1,6 +1,9 @@
+using System.Diagnostics;
+using System.IO;
 using FontAwesome.Sharp;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
 {
@@ -8,6 +11,8 @@ namespace MobileSolutions.UILayer
     {
         private readonly List<TabPage> _originalTabPages = new();
         private readonly string _currentUser = "admin";
+
+        public bool IsLoggingOut { get; private set; } = false;
 
         public MainForm() : this("admin")
         {
@@ -42,6 +47,9 @@ namespace MobileSolutions.UILayer
 
             // 4. Set current seller on the Sale view
             saleView1.SetVendedor(_currentUser);
+
+            // 5. Wire decoupled logout events from child views
+            WireLogoutEvents(this);
         }
 
         private void InitializeTabCacheAndIcons()
@@ -94,33 +102,35 @@ namespace MobileSolutions.UILayer
             materialTabControl1.TabPages.Clear();
 
             string normalizedUser = username.Trim().ToLowerInvariant();
+            int profileId = MobileSolutions.BusinessLayer.SesionActual.ProfileId;
+            string profileName = MobileSolutions.BusinessLayer.SesionActual.ProfileName.Trim().ToLowerInvariant();
 
             List<TabPage> allowedTabs;
-            switch (normalizedUser)
+
+            // Role-based access control based on DB profile (with fallback to username)
+            if (profileId == 1 || profileName == "administrador" || profileName == "administrator" || normalizedUser == "admin")
             {
-                case "admin":
-                    // Administrator: All 7 tabs visible
-                    allowedTabs = new List<TabPage>(_originalTabPages);
-                    break;
-
-                case "fer":
-                    // Gerente: Only 6 tabs (Usuarios and Clientes removed)
-                    allowedTabs = _originalTabPages
-                        .Where(tab => tab != tabPage2)
-                        .ToList();
-                    break;
-
-                case "nico":
-                    // Vendedor: Only 5 tabs (Usuarios, Productos, and Marcas removed)
-                    allowedTabs = _originalTabPages
-                        .Where(tab => tab != tabPage2 && tab != tabPage4)
-                        .ToList();
-                    break;
-
-                default:
-                    // Fallback: Home tab only
-                    allowedTabs = new List<TabPage> { tabPage1 };
-                    break;
+                // Administrator: All 7 tabs visible
+                allowedTabs = new List<TabPage>(_originalTabPages);
+            }
+            else if (profileId == 3 || profileName == "gerente" || normalizedUser == "fer" || normalizedUser == "fcaballe")
+            {
+                // Gerente: Only 6 tabs (Usuarios removed)
+                allowedTabs = _originalTabPages
+                    .Where(tab => tab != tabPage2)
+                    .ToList();
+            }
+            else if (profileId == 2 || profileName == "vendedor" || normalizedUser == "nico")
+            {
+                // Vendedor: Only 5 tabs (Usuarios and Productos removed)
+                allowedTabs = _originalTabPages
+                    .Where(tab => tab != tabPage2 && tab != tabPage4)
+                    .ToList();
+            }
+            else
+            {
+                // Fallback: Home tab only
+                allowedTabs = new List<TabPage> { tabPage1 };
             }
 
             foreach (var tab in allowedTabs)
@@ -136,6 +146,89 @@ namespace MobileSolutions.UILayer
             // Bind filtered tabs to MaterialSkin drawer
             this.DrawerTabControl = materialTabControl1;
             materialTabControl1.ResumeLayout(true);
+        }
+ 
+        private void WireLogoutEvents(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is ILogoutSupport logoutControl)
+                {
+                    logoutControl.LogoutRequested += HandleLogoutRequested;
+                }
+
+                if (control.HasChildren)
+                {
+                    WireLogoutEvents(control);
+                }
+            }
+        }
+
+        private void HandleLogoutRequested(object? sender, EventArgs e)
+        {
+            DialogResult result = MaterialMessageBox.Show(
+                "¿Seguro que quiere cerrar sesión?",
+                "Cerrar Sesión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            // 1. Limpiar estado de sesión
+            MobileSolutions.BusinessLayer.SesionActual.LimpiarSesion();
+
+            // 2. Marcar estado de logout
+            IsLoggingOut = true;
+
+            // 3. Ejecutar el ejecutable para reiniciar la aplicación mostrando el Login
+            EjecutarReinicioAplicacion();
+
+            // 4. Terminar de forma inmediata el proceso actual para evitar residuos en memoria
+            Environment.Exit(0);
+        }
+
+        private void EjecutarReinicioAplicacion()
+        {
+            try
+            {
+                string targetDir = @"C:\Users\FeR\Desktop\Taller 2\Taller-de-Programaci-n-2---2026---Grupo-97\MobileSolutions.UILayer\bin\Debug\net10.0-windows";
+                string exePath = Path.Combine(targetDir, "MobileSolutions.UILayer.exe");
+
+                if (!File.Exists(exePath))
+                {
+                    exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MobileSolutions.UILayer.exe");
+                }
+
+                if (File.Exists(exePath))
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = exePath,
+                        WorkingDirectory = Path.GetDirectoryName(exePath)!,
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    string batPath = Path.Combine(targetDir, "restart_app.bat");
+                    if (File.Exists(batPath))
+                    {
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = batPath,
+                            WorkingDirectory = targetDir,
+                            UseShellExecute = true
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show($"Error al reiniciar la aplicación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void MainForm_FormClosed(object? sender, FormClosedEventArgs e)

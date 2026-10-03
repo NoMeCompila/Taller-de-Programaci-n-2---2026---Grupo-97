@@ -7,10 +7,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using MobileSolutions.UILayer.Contracts;
+
 namespace MobileSolutions.UILayer
 {
-    public partial class HomeView : UserControl
+    public partial class HomeView : UserControl, ILogoutSupport
     {
+        public event EventHandler? LogoutRequested;
+
         public HomeView()
         {
             InitializeComponent();
@@ -22,6 +26,7 @@ namespace MobileSolutions.UILayer
             this.picHistoryHome.Image = IconChar.History.ToBitmap(ColorTranslator.FromHtml("#1379ED"), 64);
             this.picReportsHome.Image = IconChar.ChartBar.ToBitmap(ColorTranslator.FromHtml("#1379ED"), 64);
             this.btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
+            this.btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
         }
 
         public void SetCurrentUser(string username)
