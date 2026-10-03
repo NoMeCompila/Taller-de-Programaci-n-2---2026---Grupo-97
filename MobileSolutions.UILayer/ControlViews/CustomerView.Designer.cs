@@ -55,32 +55,24 @@ namespace MobileSolutions.UILayer
             btnLastname = new MaterialSkin.Controls.MaterialButton();
             btnName = new MaterialSkin.Controls.MaterialButton();
             dtgCustomers = new DataGridView();
-            ColumnName = new DataGridViewLinkColumn();
-            ColumnLastname = new DataGridViewLinkColumn();
-            ColumnDNI = new DataGridViewLinkColumn();
-            ColumnSex = new DataGridViewLinkColumn();
-            ColumnBirth = new DataGridViewLinkColumn();
-            ColumnEmail = new DataGridViewLinkColumn();
-            ColumnPhone = new DataGridViewLinkColumn();
-            ColumnAddress = new DataGridViewLinkColumn();
-            ColumnNationality = new DataGridViewLinkColumn();
-            ColumnLocality = new DataGridViewLinkColumn();
             panel3 = new Panel();
             materialCard4 = new MaterialSkin.Controls.MaterialCard();
             picSex = new FontAwesome.Sharp.IconPictureBox();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            radMasculino = new MaterialSkin.Controls.MaterialRadioButton();
-            radOtro = new MaterialSkin.Controls.MaterialRadioButton();
-            radFemenino = new MaterialSkin.Controls.MaterialRadioButton();
+            radMale = new MaterialSkin.Controls.MaterialRadioButton();
+            radOther = new MaterialSkin.Controls.MaterialRadioButton();
+            radFemale = new MaterialSkin.Controls.MaterialRadioButton();
             materialCard3 = new MaterialSkin.Controls.MaterialCard();
             picBirth = new FontAwesome.Sharp.IconPictureBox();
             picCustomerTitle = new FontAwesome.Sharp.IconPictureBox();
             panel4 = new Panel();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
-            iconButton3 = new FontAwesome.Sharp.IconButton();
-            iconBtn = new FontAwesome.Sharp.IconButton();
-            materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
+            btnReactivate = new MaterialSkin.Controls.MaterialButton();
+            icoBtnReactivate = new FontAwesome.Sharp.IconButton();
+            icoBtnUpdate = new FontAwesome.Sharp.IconButton();
+            icoBtnClear = new FontAwesome.Sharp.IconButton();
+            icoBtnDelete = new FontAwesome.Sharp.IconButton();
+            icoBtnSave = new FontAwesome.Sharp.IconButton();
+            txtSearch = new MaterialSkin.Controls.MaterialTextBox2();
             btnSearch = new MaterialSkin.Controls.MaterialButton();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel5 = new Panel();
@@ -89,6 +81,16 @@ namespace MobileSolutions.UILayer
             panel6 = new Panel();
             lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
             btnLogout = new MaterialSkin.Controls.MaterialButton();
+            ColumnName = new DataGridViewTextBoxColumn();
+            ColumnLastname = new DataGridViewTextBoxColumn();
+            ColumnDNI = new DataGridViewTextBoxColumn();
+            ColumnSex = new DataGridViewTextBoxColumn();
+            ColumnBirth = new DataGridViewTextBoxColumn();
+            ColumnEmail = new DataGridViewTextBoxColumn();
+            ColumnPhone = new DataGridViewTextBoxColumn();
+            ColumnAddress = new DataGridViewTextBoxColumn();
+            ColumnNationality = new DataGridViewTextBoxColumn();
+            ColumnLocality = new DataGridViewTextBoxColumn();
             materialCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCustomers).BeginInit();
             panel3.SuspendLayout();
@@ -463,6 +465,7 @@ namespace MobileSolutions.UILayer
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnDelete.UseAccentColor = false;
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
@@ -484,6 +487,7 @@ namespace MobileSolutions.UILayer
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // swtActive
             // 
@@ -719,66 +723,6 @@ namespace MobileSolutions.UILayer
             dtgCustomers.Size = new Size(1674, 275);
             dtgCustomers.TabIndex = 33;
             // 
-            // ColumnName
-            // 
-            ColumnName.HeaderText = "Nombre";
-            ColumnName.MinimumWidth = 6;
-            ColumnName.Name = "ColumnName";
-            // 
-            // ColumnLastname
-            // 
-            ColumnLastname.HeaderText = "Apellido";
-            ColumnLastname.MinimumWidth = 6;
-            ColumnLastname.Name = "ColumnLastname";
-            // 
-            // ColumnDNI
-            // 
-            ColumnDNI.HeaderText = "DNI";
-            ColumnDNI.MinimumWidth = 6;
-            ColumnDNI.Name = "ColumnDNI";
-            // 
-            // ColumnSex
-            // 
-            ColumnSex.HeaderText = "Sexo";
-            ColumnSex.MinimumWidth = 6;
-            ColumnSex.Name = "ColumnSex";
-            // 
-            // ColumnBirth
-            // 
-            ColumnBirth.HeaderText = "Fecha de Nac.";
-            ColumnBirth.MinimumWidth = 6;
-            ColumnBirth.Name = "ColumnBirth";
-            // 
-            // ColumnEmail
-            // 
-            ColumnEmail.HeaderText = "Email";
-            ColumnEmail.MinimumWidth = 6;
-            ColumnEmail.Name = "ColumnEmail";
-            // 
-            // ColumnPhone
-            // 
-            ColumnPhone.HeaderText = "Teléfono";
-            ColumnPhone.MinimumWidth = 6;
-            ColumnPhone.Name = "ColumnPhone";
-            // 
-            // ColumnAddress
-            // 
-            ColumnAddress.HeaderText = "Dirección";
-            ColumnAddress.MinimumWidth = 6;
-            ColumnAddress.Name = "ColumnAddress";
-            // 
-            // ColumnNationality
-            // 
-            ColumnNationality.HeaderText = "Nacionalidad";
-            ColumnNationality.MinimumWidth = 6;
-            ColumnNationality.Name = "ColumnNationality";
-            // 
-            // ColumnLocality
-            // 
-            ColumnLocality.HeaderText = "Localidad";
-            ColumnLocality.MinimumWidth = 6;
-            ColumnLocality.Name = "ColumnLocality";
-            // 
             // panel3
             // 
             panel3.Controls.Add(materialCard4);
@@ -794,9 +738,9 @@ namespace MobileSolutions.UILayer
             materialCard4.BackColor = Color.FromArgb(255, 255, 255);
             materialCard4.Controls.Add(picSex);
             materialCard4.Controls.Add(materialLabel2);
-            materialCard4.Controls.Add(radMasculino);
-            materialCard4.Controls.Add(radOtro);
-            materialCard4.Controls.Add(radFemenino);
+            materialCard4.Controls.Add(radMale);
+            materialCard4.Controls.Add(radOther);
+            materialCard4.Controls.Add(radFemale);
             materialCard4.Depth = 0;
             materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard4.Location = new Point(29, 191);
@@ -833,57 +777,57 @@ namespace MobileSolutions.UILayer
             materialLabel2.TabIndex = 42;
             materialLabel2.Text = "SEXO";
             // 
-            // radMasculino
+            // radMale
             // 
-            radMasculino.Anchor = AnchorStyles.Left;
-            radMasculino.AutoSize = true;
-            radMasculino.Depth = 0;
-            radMasculino.Location = new Point(151, 52);
-            radMasculino.Margin = new Padding(0);
-            radMasculino.MouseLocation = new Point(-1, -1);
-            radMasculino.MouseState = MaterialSkin.MouseState.HOVER;
-            radMasculino.Name = "radMasculino";
-            radMasculino.Ripple = true;
-            radMasculino.Size = new Size(109, 37);
-            radMasculino.TabIndex = 20;
-            radMasculino.TabStop = true;
-            radMasculino.Text = "Masculino";
-            radMasculino.UseVisualStyleBackColor = true;
+            radMale.Anchor = AnchorStyles.Left;
+            radMale.AutoSize = true;
+            radMale.Depth = 0;
+            radMale.Location = new Point(151, 52);
+            radMale.Margin = new Padding(0);
+            radMale.MouseLocation = new Point(-1, -1);
+            radMale.MouseState = MaterialSkin.MouseState.HOVER;
+            radMale.Name = "radMale";
+            radMale.Ripple = true;
+            radMale.Size = new Size(109, 37);
+            radMale.TabIndex = 20;
+            radMale.TabStop = true;
+            radMale.Text = "Masculino";
+            radMale.UseVisualStyleBackColor = true;
             // 
-            // radOtro
+            // radOther
             // 
-            radOtro.Anchor = AnchorStyles.Left;
-            radOtro.AutoSize = true;
-            radOtro.Depth = 0;
-            radOtro.Location = new Point(279, 52);
-            radOtro.Margin = new Padding(0);
-            radOtro.MouseLocation = new Point(-1, -1);
-            radOtro.MouseState = MaterialSkin.MouseState.HOVER;
-            radOtro.Name = "radOtro";
-            radOtro.Ripple = true;
-            radOtro.Size = new Size(65, 37);
-            radOtro.TabIndex = 22;
-            radOtro.TabStop = true;
-            radOtro.Text = "Otro";
-            radOtro.UseVisualStyleBackColor = true;
+            radOther.Anchor = AnchorStyles.Left;
+            radOther.AutoSize = true;
+            radOther.Depth = 0;
+            radOther.Location = new Point(279, 52);
+            radOther.Margin = new Padding(0);
+            radOther.MouseLocation = new Point(-1, -1);
+            radOther.MouseState = MaterialSkin.MouseState.HOVER;
+            radOther.Name = "radOther";
+            radOther.Ripple = true;
+            radOther.Size = new Size(65, 37);
+            radOther.TabIndex = 22;
+            radOther.TabStop = true;
+            radOther.Text = "Otro";
+            radOther.UseVisualStyleBackColor = true;
             // 
-            // radFemenino
+            // radFemale
             // 
-            radFemenino.Anchor = AnchorStyles.Left;
-            radFemenino.AutoSize = true;
-            radFemenino.Checked = true;
-            radFemenino.Depth = 0;
-            radFemenino.Location = new Point(29, 52);
-            radFemenino.Margin = new Padding(0);
-            radFemenino.MouseLocation = new Point(-1, -1);
-            radFemenino.MouseState = MaterialSkin.MouseState.HOVER;
-            radFemenino.Name = "radFemenino";
-            radFemenino.Ripple = true;
-            radFemenino.Size = new Size(105, 37);
-            radFemenino.TabIndex = 21;
-            radFemenino.TabStop = true;
-            radFemenino.Text = "Femenino";
-            radFemenino.UseVisualStyleBackColor = true;
+            radFemale.Anchor = AnchorStyles.Left;
+            radFemale.AutoSize = true;
+            radFemale.Checked = true;
+            radFemale.Depth = 0;
+            radFemale.Location = new Point(29, 52);
+            radFemale.Margin = new Padding(0);
+            radFemale.MouseLocation = new Point(-1, -1);
+            radFemale.MouseState = MaterialSkin.MouseState.HOVER;
+            radFemale.Name = "radFemale";
+            radFemale.Ripple = true;
+            radFemale.Size = new Size(105, 37);
+            radFemale.TabIndex = 21;
+            radFemale.TabStop = true;
+            radFemale.Text = "Femenino";
+            radFemale.UseVisualStyleBackColor = true;
             // 
             // materialCard3
             // 
@@ -934,131 +878,180 @@ namespace MobileSolutions.UILayer
             // 
             panel4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel4.Controls.Add(btnReactivate);
+            panel4.Controls.Add(icoBtnReactivate);
             panel4.Controls.Add(btnDelete);
             panel4.Controls.Add(btnSave);
             panel4.Controls.Add(btnClear);
             panel4.Controls.Add(btnUpdate);
-            panel4.Controls.Add(iconButton2);
-            panel4.Controls.Add(iconButton1);
-            panel4.Controls.Add(iconButton3);
-            panel4.Controls.Add(iconBtn);
+            panel4.Controls.Add(icoBtnUpdate);
+            panel4.Controls.Add(icoBtnClear);
+            panel4.Controls.Add(icoBtnDelete);
+            panel4.Controls.Add(icoBtnSave);
             panel4.Location = new Point(1213, 2);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
             panel4.Size = new Size(464, 444);
             panel4.TabIndex = 57;
             // 
-            // iconButton2
+            // btnReactivate
             // 
-            iconButton2.Anchor = AnchorStyles.None;
-            iconButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton2.BackColor = Color.RoyalBlue;
-            iconButton2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton2.ForeColor = SystemColors.Control;
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.Pencil;
-            iconButton2.IconColor = Color.White;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.IconSize = 60;
-            iconButton2.Location = new Point(80, 227);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Size = new Size(150, 120);
-            iconButton2.TabIndex = 46;
-            iconButton2.Text = "BUTTON";
-            iconButton2.TextAlign = ContentAlignment.BottomCenter;
-            iconButton2.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconButton2.UseVisualStyleBackColor = false;
+            btnReactivate.Anchor = AnchorStyles.None;
+            btnReactivate.AutoSize = false;
+            btnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReactivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnReactivate.Depth = 0;
+            btnReactivate.Enabled = false;
+            btnReactivate.HighEmphasis = true;
+            btnReactivate.Icon = null;
+            btnReactivate.Location = new Point(176, 234);
+            btnReactivate.Margin = new Padding(4);
+            btnReactivate.MouseState = MaterialSkin.MouseState.HOVER;
+            btnReactivate.Name = "btnReactivate";
+            btnReactivate.NoAccentTextColor = Color.Empty;
+            btnReactivate.Size = new Size(114, 35);
+            btnReactivate.TabIndex = 59;
+            btnReactivate.Text = "Reactivar";
+            btnReactivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnReactivate.UseAccentColor = false;
+            btnReactivate.UseVisualStyleBackColor = true;
+            btnReactivate.Visible = false;
+            btnReactivate.Click += btnReactivate_Click;
             // 
-            // iconButton1
+            // icoBtnReactivate
             // 
-            iconButton1.Anchor = AnchorStyles.None;
-            iconButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton1.BackColor = Color.RoyalBlue;
-            iconButton1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton1.ForeColor = SystemColors.Control;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.DeleteLeft;
-            iconButton1.IconColor = Color.White;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 60;
-            iconButton1.Location = new Point(80, 101);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(150, 120);
-            iconButton1.TabIndex = 45;
-            iconButton1.Text = "BUTTON";
-            iconButton1.TextAlign = ContentAlignment.BottomCenter;
-            iconButton1.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconButton1.UseVisualStyleBackColor = false;
+            icoBtnReactivate.Anchor = AnchorStyles.None;
+            icoBtnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnReactivate.BackColor = Color.RoyalBlue;
+            icoBtnReactivate.Enabled = false;
+            icoBtnReactivate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnReactivate.ForeColor = SystemColors.Control;
+            icoBtnReactivate.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            icoBtnReactivate.IconColor = Color.White;
+            icoBtnReactivate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnReactivate.IconSize = 60;
+            icoBtnReactivate.Location = new Point(164, 158);
+            icoBtnReactivate.Margin = new Padding(2, 3, 2, 3);
+            icoBtnReactivate.Name = "icoBtnReactivate";
+            icoBtnReactivate.Size = new Size(137, 128);
+            icoBtnReactivate.TabIndex = 58;
+            icoBtnReactivate.Text = "BUTTON";
+            icoBtnReactivate.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnReactivate.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnReactivate.UseVisualStyleBackColor = false;
+            icoBtnReactivate.Visible = false;
             // 
-            // iconButton3
+            // icoBtnUpdate
             // 
-            iconButton3.Anchor = AnchorStyles.None;
-            iconButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton3.BackColor = Color.RoyalBlue;
-            iconButton3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton3.ForeColor = SystemColors.Control;
-            iconButton3.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            iconButton3.IconColor = Color.White;
-            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton3.IconSize = 60;
-            iconButton3.Location = new Point(246, 227);
-            iconButton3.Name = "iconButton3";
-            iconButton3.Size = new Size(150, 120);
-            iconButton3.TabIndex = 47;
-            iconButton3.Text = "BUTTON";
-            iconButton3.TextAlign = ContentAlignment.BottomCenter;
-            iconButton3.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconButton3.UseVisualStyleBackColor = false;
+            icoBtnUpdate.Anchor = AnchorStyles.None;
+            icoBtnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnUpdate.BackColor = Color.RoyalBlue;
+            icoBtnUpdate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnUpdate.ForeColor = SystemColors.Control;
+            icoBtnUpdate.IconChar = FontAwesome.Sharp.IconChar.Pencil;
+            icoBtnUpdate.IconColor = Color.White;
+            icoBtnUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnUpdate.IconSize = 60;
+            icoBtnUpdate.Location = new Point(80, 227);
+            icoBtnUpdate.Name = "icoBtnUpdate";
+            icoBtnUpdate.Size = new Size(150, 120);
+            icoBtnUpdate.TabIndex = 46;
+            icoBtnUpdate.Text = "BUTTON";
+            icoBtnUpdate.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnUpdate.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnUpdate.UseVisualStyleBackColor = false;
             // 
-            // iconBtn
+            // icoBtnClear
             // 
-            iconBtn.Anchor = AnchorStyles.None;
-            iconBtn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconBtn.BackColor = Color.RoyalBlue;
-            iconBtn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconBtn.ForeColor = SystemColors.Control;
-            iconBtn.IconChar = FontAwesome.Sharp.IconChar.Save;
-            iconBtn.IconColor = Color.White;
-            iconBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconBtn.IconSize = 60;
-            iconBtn.Location = new Point(246, 101);
-            iconBtn.Name = "iconBtn";
-            iconBtn.Size = new Size(150, 120);
-            iconBtn.TabIndex = 44;
-            iconBtn.Text = "BUTTON";
-            iconBtn.TextAlign = ContentAlignment.BottomCenter;
-            iconBtn.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconBtn.UseVisualStyleBackColor = false;
+            icoBtnClear.Anchor = AnchorStyles.None;
+            icoBtnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnClear.BackColor = Color.RoyalBlue;
+            icoBtnClear.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnClear.ForeColor = SystemColors.Control;
+            icoBtnClear.IconChar = FontAwesome.Sharp.IconChar.DeleteLeft;
+            icoBtnClear.IconColor = Color.White;
+            icoBtnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnClear.IconSize = 60;
+            icoBtnClear.Location = new Point(80, 101);
+            icoBtnClear.Name = "icoBtnClear";
+            icoBtnClear.Size = new Size(150, 120);
+            icoBtnClear.TabIndex = 45;
+            icoBtnClear.Text = "BUTTON";
+            icoBtnClear.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnClear.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnClear.UseVisualStyleBackColor = false;
             // 
-            // materialTextBox21
+            // icoBtnDelete
             // 
-            materialTextBox21.Anchor = AnchorStyles.Bottom;
-            materialTextBox21.AnimateReadOnly = false;
-            materialTextBox21.BackgroundImageLayout = ImageLayout.None;
-            materialTextBox21.CharacterCasing = CharacterCasing.Normal;
-            materialTextBox21.Depth = 0;
-            materialTextBox21.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox21.HelperText = "Buscar por...";
-            materialTextBox21.HideSelection = true;
-            materialTextBox21.Hint = "Buscar";
-            materialTextBox21.LeadingIcon = null;
-            materialTextBox21.Location = new Point(709, 27);
-            materialTextBox21.Margin = new Padding(3, 2, 3, 2);
-            materialTextBox21.MaxLength = 32767;
-            materialTextBox21.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox21.Name = "materialTextBox21";
-            materialTextBox21.PasswordChar = '\0';
-            materialTextBox21.PrefixSuffixText = null;
-            materialTextBox21.ReadOnly = false;
-            materialTextBox21.RightToLeft = RightToLeft.No;
-            materialTextBox21.SelectedText = "";
-            materialTextBox21.SelectionLength = 0;
-            materialTextBox21.SelectionStart = 0;
-            materialTextBox21.ShortcutsEnabled = true;
-            materialTextBox21.Size = new Size(304, 48);
-            materialTextBox21.TabIndex = 58;
-            materialTextBox21.TabStop = false;
-            materialTextBox21.TextAlign = HorizontalAlignment.Left;
-            materialTextBox21.TrailingIcon = null;
-            materialTextBox21.UseSystemPasswordChar = false;
+            icoBtnDelete.Anchor = AnchorStyles.None;
+            icoBtnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnDelete.BackColor = Color.RoyalBlue;
+            icoBtnDelete.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnDelete.ForeColor = SystemColors.Control;
+            icoBtnDelete.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            icoBtnDelete.IconColor = Color.White;
+            icoBtnDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnDelete.IconSize = 60;
+            icoBtnDelete.Location = new Point(246, 227);
+            icoBtnDelete.Name = "icoBtnDelete";
+            icoBtnDelete.Size = new Size(150, 120);
+            icoBtnDelete.TabIndex = 47;
+            icoBtnDelete.Text = "BUTTON";
+            icoBtnDelete.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnDelete.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnDelete.UseVisualStyleBackColor = false;
+            // 
+            // icoBtnSave
+            // 
+            icoBtnSave.Anchor = AnchorStyles.None;
+            icoBtnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnSave.BackColor = Color.RoyalBlue;
+            icoBtnSave.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnSave.ForeColor = SystemColors.Control;
+            icoBtnSave.IconChar = FontAwesome.Sharp.IconChar.Save;
+            icoBtnSave.IconColor = Color.White;
+            icoBtnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnSave.IconSize = 60;
+            icoBtnSave.Location = new Point(246, 101);
+            icoBtnSave.Name = "icoBtnSave";
+            icoBtnSave.Size = new Size(150, 120);
+            icoBtnSave.TabIndex = 44;
+            icoBtnSave.Text = "BUTTON";
+            icoBtnSave.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnSave.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnSave.UseVisualStyleBackColor = false;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Anchor = AnchorStyles.Bottom;
+            txtSearch.AnimateReadOnly = false;
+            txtSearch.BackgroundImageLayout = ImageLayout.None;
+            txtSearch.CharacterCasing = CharacterCasing.Normal;
+            txtSearch.Depth = 0;
+            txtSearch.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtSearch.HelperText = "Buscar por...";
+            txtSearch.HideSelection = true;
+            txtSearch.Hint = "Buscar";
+            txtSearch.LeadingIcon = null;
+            txtSearch.Location = new Point(709, 27);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
+            txtSearch.MaxLength = 32767;
+            txtSearch.MouseState = MaterialSkin.MouseState.OUT;
+            txtSearch.Name = "txtSearch";
+            txtSearch.PasswordChar = '\0';
+            txtSearch.PrefixSuffixText = null;
+            txtSearch.ReadOnly = false;
+            txtSearch.RightToLeft = RightToLeft.No;
+            txtSearch.SelectedText = "";
+            txtSearch.SelectionLength = 0;
+            txtSearch.SelectionStart = 0;
+            txtSearch.ShortcutsEnabled = true;
+            txtSearch.Size = new Size(304, 48);
+            txtSearch.TabIndex = 58;
+            txtSearch.TabStop = false;
+            txtSearch.TextAlign = HorizontalAlignment.Left;
+            txtSearch.TrailingIcon = null;
+            txtSearch.UseSystemPasswordChar = false;
             // 
             // btnSearch
             // 
@@ -1105,7 +1098,7 @@ namespace MobileSolutions.UILayer
             tableLayoutPanel1.SetColumnSpan(panel5, 3);
             panel5.Controls.Add(dtgCustomers);
             panel5.Controls.Add(btnSearch);
-            panel5.Controls.Add(materialTextBox21);
+            panel5.Controls.Add(txtSearch);
             panel5.Controls.Add(swtActive);
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(3, 456);
@@ -1183,6 +1176,86 @@ namespace MobileSolutions.UILayer
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = false;
             // 
+            // ColumnName
+            // 
+            ColumnName.HeaderText = "Nombre";
+            ColumnName.MinimumWidth = 6;
+            ColumnName.Name = "ColumnName";
+            ColumnName.Resizable = DataGridViewTriState.True;
+            ColumnName.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnLastname
+            // 
+            ColumnLastname.HeaderText = "Apellido";
+            ColumnLastname.MinimumWidth = 6;
+            ColumnLastname.Name = "ColumnLastname";
+            ColumnLastname.Resizable = DataGridViewTriState.True;
+            ColumnLastname.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnDNI
+            // 
+            ColumnDNI.HeaderText = "DNI";
+            ColumnDNI.MinimumWidth = 6;
+            ColumnDNI.Name = "ColumnDNI";
+            ColumnDNI.Resizable = DataGridViewTriState.True;
+            ColumnDNI.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnSex
+            // 
+            ColumnSex.HeaderText = "Sexo";
+            ColumnSex.MinimumWidth = 6;
+            ColumnSex.Name = "ColumnSex";
+            ColumnSex.Resizable = DataGridViewTriState.True;
+            ColumnSex.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnBirth
+            // 
+            ColumnBirth.HeaderText = "Fecha de Nac.";
+            ColumnBirth.MinimumWidth = 6;
+            ColumnBirth.Name = "ColumnBirth";
+            ColumnBirth.Resizable = DataGridViewTriState.True;
+            ColumnBirth.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnEmail
+            // 
+            ColumnEmail.HeaderText = "Email";
+            ColumnEmail.MinimumWidth = 6;
+            ColumnEmail.Name = "ColumnEmail";
+            ColumnEmail.Resizable = DataGridViewTriState.True;
+            ColumnEmail.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnPhone
+            // 
+            ColumnPhone.HeaderText = "Teléfono";
+            ColumnPhone.MinimumWidth = 6;
+            ColumnPhone.Name = "ColumnPhone";
+            ColumnPhone.Resizable = DataGridViewTriState.True;
+            ColumnPhone.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnAddress
+            // 
+            ColumnAddress.HeaderText = "Dirección";
+            ColumnAddress.MinimumWidth = 6;
+            ColumnAddress.Name = "ColumnAddress";
+            ColumnAddress.Resizable = DataGridViewTriState.True;
+            ColumnAddress.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnNationality
+            // 
+            ColumnNationality.HeaderText = "Nacionalidad";
+            ColumnNationality.MinimumWidth = 6;
+            ColumnNationality.Name = "ColumnNationality";
+            ColumnNationality.Resizable = DataGridViewTriState.True;
+            ColumnNationality.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnLocality
+            // 
+            ColumnLocality.HeaderText = "Localidad";
+            ColumnLocality.MinimumWidth = 6;
+            ColumnLocality.Name = "ColumnLocality";
+            ColumnLocality.Resizable = DataGridViewTriState.True;
+            ColumnLocality.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // CustomerView
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -1233,9 +1306,9 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialSwitch swtActive;
         private DataGridView dtgCustomers;
         private Panel panel3;
-        private MaterialSkin.Controls.MaterialRadioButton radMasculino;
-        private MaterialSkin.Controls.MaterialRadioButton radOtro;
-        private MaterialSkin.Controls.MaterialRadioButton radFemenino;
+        private MaterialSkin.Controls.MaterialRadioButton radMale;
+        private MaterialSkin.Controls.MaterialRadioButton radOther;
+        private MaterialSkin.Controls.MaterialRadioButton radFemale;
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private MaterialSkin.Controls.MaterialCard materialCard3;
         private MaterialSkin.Controls.MaterialCard materialCard4;
@@ -1251,22 +1324,12 @@ namespace MobileSolutions.UILayer
         private FontAwesome.Sharp.IconPictureBox picSex;
         private FontAwesome.Sharp.IconPictureBox picBirth;
         private FontAwesome.Sharp.IconPictureBox picCustomerTitle;
-        private DataGridViewLinkColumn ColumnName;
-        private DataGridViewLinkColumn ColumnLastname;
-        private DataGridViewLinkColumn ColumnDNI;
-        private DataGridViewLinkColumn ColumnSex;
-        private DataGridViewLinkColumn ColumnBirth;
-        private DataGridViewLinkColumn ColumnEmail;
-        private DataGridViewLinkColumn ColumnPhone;
-        private DataGridViewLinkColumn ColumnAddress;
-        private DataGridViewLinkColumn ColumnNationality;
-        private DataGridViewLinkColumn ColumnLocality;
         private Panel panel4;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconBtn;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
+        private FontAwesome.Sharp.IconButton icoBtnUpdate;
+        private FontAwesome.Sharp.IconButton icoBtnClear;
+        private FontAwesome.Sharp.IconButton icoBtnDelete;
+        private FontAwesome.Sharp.IconButton icoBtnSave;
+        private MaterialSkin.Controls.MaterialTextBox2 txtSearch;
         private MaterialSkin.Controls.MaterialButton btnSearch;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel5;
@@ -1275,6 +1338,18 @@ namespace MobileSolutions.UILayer
         private Panel panel6;
         private MaterialSkin.Controls.MaterialButton btnLogout;
         private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
+        private FontAwesome.Sharp.IconButton icoBtnReactivate;
+        private MaterialSkin.Controls.MaterialButton btnReactivate;
+        private DataGridViewTextBoxColumn ColumnName;
+        private DataGridViewTextBoxColumn ColumnLastname;
+        private DataGridViewTextBoxColumn ColumnDNI;
+        private DataGridViewTextBoxColumn ColumnSex;
+        private DataGridViewTextBoxColumn ColumnBirth;
+        private DataGridViewTextBoxColumn ColumnEmail;
+        private DataGridViewTextBoxColumn ColumnPhone;
+        private DataGridViewTextBoxColumn ColumnAddress;
+        private DataGridViewTextBoxColumn ColumnNationality;
+        private DataGridViewTextBoxColumn ColumnLocality;
     }
 }
 
