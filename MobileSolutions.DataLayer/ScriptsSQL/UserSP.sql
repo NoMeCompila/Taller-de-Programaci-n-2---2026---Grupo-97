@@ -89,6 +89,20 @@ BEGIN
         RETURN;
     END
 
+      -- Validar que los campos obligatorios no vengan vacíos ni con puros espacios
+    IF LTRIM(RTRIM(@name)) = '' 
+       OR LTRIM(RTRIM(@lastname)) = '' 
+       OR LTRIM(RTRIM(@dni)) = '' 
+       OR LTRIM(RTRIM(@username)) = '' 
+       OR LTRIM(RTRIM(@password)) = '' 
+       OR LTRIM(RTRIM(@email)) = ''
+       OR LTRIM(RTRIM(@nationality)) = ''
+       OR LTRIM(RTRIM(@locality)) = ''
+    BEGIN
+        RAISERROR('Los campos obligatorios no pueden estar vacíos o contener solo espacios.', 16, 1);
+        RETURN;
+    END
+
     INSERT INTO [User] (
         profile_id, name, lastname, dni, sex, username, 
         password, email, phone, address, birth, nationality, 
@@ -131,6 +145,20 @@ BEGIN
     IF @password IS NOT NULL AND LEN(@password) < 8
     BEGIN
         RAISERROR('La contraseña debe contener al menos 8 caracteres.', 16, 1);
+        RETURN;
+    END
+
+        -- Validar que los campos obligatorios no vengan vacíos ni con puros espacios
+    IF LTRIM(RTRIM(@name)) = '' 
+       OR LTRIM(RTRIM(@lastname)) = '' 
+       OR LTRIM(RTRIM(@dni)) = '' 
+       OR LTRIM(RTRIM(@username)) = '' 
+       OR LTRIM(RTRIM(@password)) = '' 
+       OR LTRIM(RTRIM(@email)) = ''
+       OR LTRIM(RTRIM(@nationality)) = ''
+       OR LTRIM(RTRIM(@locality)) = ''
+    BEGIN
+        RAISERROR('Los campos obligatorios no pueden estar vacíos o contener solo espacios.', 16, 1);
         RETURN;
     END
 
