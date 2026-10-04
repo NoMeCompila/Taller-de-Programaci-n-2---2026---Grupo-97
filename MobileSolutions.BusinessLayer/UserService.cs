@@ -347,6 +347,92 @@ namespace MobileSolutions.BusinessLayer
             return _userDal.GetActiveUsers().FirstOrDefault(u =>
                 string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase));
         }
+
+        public (bool Success, string Message) RequestPasswordReset(string emailOrUsername)
+        {
+            if (string.IsNullOrWhiteSpace(emailOrUsername))
+            {
+                return (false, "Por favor ingrese su correo electrónico o nombre de usuario.");
+            }
+
+            try
+            {
+                // 1. Generar código numérico OTP de 6 dígitos seguro
+                string otp = PasswordResetService.GenerateNumericOtp();
+
+                // 2. Persistir en base de datos con expiración de 15 minutos
+                var (saved, destinationEmail) = _userDal.SavePasswordResetOtp(emailOrUsername.Trim(), otp);
+                if (!saved || string.IsNullOrWhiteSpace(destinationEmail))
+                {
+                    return (false, "No se encontró ningún usuario activo con el correo o usuario indicado.");
+                }
+
+                // 3. Enviar correo vía MailKit / MimeKit
+                var (sent, errorMessage) = PasswordResetService.SendResetOtpEmail(destinationEmail, otp);
+                if (!sent)
+                {
+                    return (false, $"Código generado pero ocurrió un error al enviar el correo: {errorMessage}");
+                }
+
+                return (true, "Código de verificación enviado exitosamente a tu correo registrado.");
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                return (false, $"Error al conectar con la base de datos: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado al solicitar restablecimiento: {ex.Message}");
+            }
+        }
+
+        public (bool Success, string Message) CompletePasswordReset(string emailOrUsername, string otpCode, string newPassword)
+        {
+            if (string.IsNullOrWhiteSpace(emailOrUsername))
+            {
+                return (false, "Debe ingresar el correo o nombre de usuario.");
+            }
+
+            if (string.IsNullOrWhiteSpace(otpCode))
+            {
+                return (false, "Debe ingresar el código de verificación de 6 dígitos.");
+            }
+
+            if (string.IsNullOrWhiteSpace(newPassword))
+            {
+                return (false, "Debe ingresar la nueva contraseña.");
+            }
+
+            // 1. Validar reglas de complejidad de la nueva contraseña
+            var (isValid, complexityMessage) = ValidatePasswordComplexity(newPassword, isRequired: true);
+            if (!isValid)
+            {
+                return (false, complexityMessage);
+            }
+
+            try
+            {
+                // 2. Hashear la nueva contraseña con SHA-256
+                string hashedNewPassword = ComputeSha256Hash(newPassword);
+
+                // 3. Validar token no expirado y actualizar en base de datos
+                bool updated = _userDal.ResetPasswordWithOtp(emailOrUsername.Trim(), otpCode.Trim(), hashedNewPassword);
+                if (!updated)
+                {
+                    return (false, "El código de verificación es incorrecto, no coincide o ha expirado (15 minutos).");
+                }
+
+                return (true, "Contraseña actualizada correctamente. Ya puede iniciar sesión con sus nuevas credenciales.");
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                return (false, $"Error al conectar con la base de datos: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error inesperado al actualizar la contraseña: {ex.Message}");
+            }
+        }
     }
 }
 

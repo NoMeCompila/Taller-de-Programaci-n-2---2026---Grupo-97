@@ -40,6 +40,7 @@ namespace MobileSolutions.UILayer
             txtCode = new MaterialSkin.Controls.MaterialTextBox();
             btnSendEmail = new MaterialSkin.Controls.MaterialButton();
             btnConfirm = new MaterialSkin.Controls.MaterialButton();
+            txtNewPassword = new MaterialSkin.Controls.MaterialTextBox();
             ((System.ComponentModel.ISupportInitialize)picBanner).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBG).BeginInit();
@@ -214,6 +215,27 @@ namespace MobileSolutions.UILayer
             btnSendEmail.Visible = false;
             btnSendEmail.Click += btnSendEmail_Click;
             // 
+            // txtNewPassword
+            // 
+            txtNewPassword.AnimateReadOnly = false;
+            txtNewPassword.BorderStyle = BorderStyle.None;
+            txtNewPassword.Depth = 0;
+            txtNewPassword.Enabled = false;
+            txtNewPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtNewPassword.Hint = "Nueva Contraseña";
+            txtNewPassword.LeadingIcon = null;
+            txtNewPassword.Location = new Point(387, 888);
+            txtNewPassword.MaxLength = 50;
+            txtNewPassword.MouseState = MaterialSkin.MouseState.OUT;
+            txtNewPassword.Multiline = false;
+            txtNewPassword.Name = "txtNewPassword";
+            txtNewPassword.Password = true;
+            txtNewPassword.Size = new Size(325, 50);
+            txtNewPassword.TabIndex = 11;
+            txtNewPassword.Text = "";
+            txtNewPassword.TrailingIcon = null;
+            txtNewPassword.Visible = false;
+            // 
             // btnConfirm
             // 
             btnConfirm.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -222,7 +244,7 @@ namespace MobileSolutions.UILayer
             btnConfirm.Enabled = false;
             btnConfirm.HighEmphasis = true;
             btnConfirm.Icon = null;
-            btnConfirm.Location = new Point(719, 819);
+            btnConfirm.Location = new Point(719, 902);
             btnConfirm.Margin = new Padding(4, 6, 4, 6);
             btnConfirm.MouseState = MaterialSkin.MouseState.HOVER;
             btnConfirm.Name = "btnConfirm";
@@ -234,6 +256,7 @@ namespace MobileSolutions.UILayer
             btnConfirm.UseAccentColor = false;
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Visible = false;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // LoginForm
             // 
@@ -241,6 +264,7 @@ namespace MobileSolutions.UILayer
             BackColor = SystemColors.ActiveCaptionText;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1244, 1100);
+            Controls.Add(txtNewPassword);
             Controls.Add(btnConfirm);
             Controls.Add(btnSendEmail);
             Controls.Add(txtCode);
@@ -281,6 +305,7 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialTextBox txtCode;
         private MaterialSkin.Controls.MaterialButton btnSendEmail;
         private MaterialSkin.Controls.MaterialButton btnConfirm;
+        private MaterialSkin.Controls.MaterialTextBox txtNewPassword;
     }
 }
 
