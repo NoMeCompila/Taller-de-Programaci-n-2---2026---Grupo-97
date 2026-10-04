@@ -70,6 +70,12 @@ namespace MobileSolutions.UILayer
                     logoutSupport.LogoutRequested += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
                 }
 
+                string currentUsername = !string.IsNullOrWhiteSpace(MobileSolutions.BusinessLayer.SesionActual.Username)
+                    ? MobileSolutions.BusinessLayer.SesionActual.Username
+                    : "admin";
+
+                MainForm.SetCurrentUserInLabels(reporteAutorizado, currentUsername);
+
                 reporteAutorizado.Dock = DockStyle.Fill;
                 pnlContainer.Controls.Clear();
                 pnlContainer.Controls.Add(reporteAutorizado);

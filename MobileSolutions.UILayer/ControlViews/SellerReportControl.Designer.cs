@@ -258,11 +258,12 @@ namespace MobileSolutions.UILayer
             // 
             // lblCurrentUser
             // 
+            lblCurrentUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblCurrentUser.AutoSize = true;
             lblCurrentUser.Depth = 0;
             lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            lblCurrentUser.Location = new Point(141, 9);
+            lblCurrentUser.Location = new Point(364, 4);
             lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
             lblCurrentUser.Name = "lblCurrentUser";
             lblCurrentUser.Size = new Size(79, 24);
@@ -278,7 +279,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(321, 5);
+            btnLogout.Location = new Point(363, 31);
             btnLogout.Margin = new Padding(4, 6, 4, 6);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";

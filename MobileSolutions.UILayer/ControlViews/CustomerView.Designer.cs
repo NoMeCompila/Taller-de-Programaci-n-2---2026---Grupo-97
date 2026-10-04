@@ -28,7 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtName = new MaterialSkin.Controls.MaterialTextBox2();
             txtLastname = new MaterialSkin.Controls.MaterialTextBox2();
             txtDNI = new MaterialSkin.Controls.MaterialTextBox2();
@@ -55,6 +55,16 @@ namespace MobileSolutions.UILayer
             btnLastname = new MaterialSkin.Controls.MaterialButton();
             btnName = new MaterialSkin.Controls.MaterialButton();
             dtgCustomers = new DataGridView();
+            ColumnName = new DataGridViewTextBoxColumn();
+            ColumnLastname = new DataGridViewTextBoxColumn();
+            ColumnDNI = new DataGridViewTextBoxColumn();
+            ColumnSex = new DataGridViewTextBoxColumn();
+            ColumnBirth = new DataGridViewTextBoxColumn();
+            ColumnEmail = new DataGridViewTextBoxColumn();
+            ColumnPhone = new DataGridViewTextBoxColumn();
+            ColumnAddress = new DataGridViewTextBoxColumn();
+            ColumnNationality = new DataGridViewTextBoxColumn();
+            ColumnLocality = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
             materialCard4 = new MaterialSkin.Controls.MaterialCard();
             picSex = new FontAwesome.Sharp.IconPictureBox();
@@ -81,16 +91,6 @@ namespace MobileSolutions.UILayer
             panel6 = new Panel();
             lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
             btnLogout = new MaterialSkin.Controls.MaterialButton();
-            ColumnName = new DataGridViewTextBoxColumn();
-            ColumnLastname = new DataGridViewTextBoxColumn();
-            ColumnDNI = new DataGridViewTextBoxColumn();
-            ColumnSex = new DataGridViewTextBoxColumn();
-            ColumnBirth = new DataGridViewTextBoxColumn();
-            ColumnEmail = new DataGridViewTextBoxColumn();
-            ColumnPhone = new DataGridViewTextBoxColumn();
-            ColumnAddress = new DataGridViewTextBoxColumn();
-            ColumnNationality = new DataGridViewTextBoxColumn();
-            ColumnLocality = new DataGridViewTextBoxColumn();
             materialCard2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCustomers).BeginInit();
             panel3.SuspendLayout();
@@ -704,14 +704,14 @@ namespace MobileSolutions.UILayer
             dtgCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCustomers.BackgroundColor = Color.MidnightBlue;
             dtgCustomers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgCustomers.Columns.AddRange(new DataGridViewColumn[] { ColumnName, ColumnLastname, ColumnDNI, ColumnSex, ColumnBirth, ColumnEmail, ColumnPhone, ColumnAddress, ColumnNationality, ColumnLocality });
             dtgCustomers.Dock = DockStyle.Bottom;
@@ -722,6 +722,86 @@ namespace MobileSolutions.UILayer
             dtgCustomers.RowHeadersWidth = 51;
             dtgCustomers.Size = new Size(1674, 275);
             dtgCustomers.TabIndex = 33;
+            // 
+            // ColumnName
+            // 
+            ColumnName.HeaderText = "Nombre";
+            ColumnName.MinimumWidth = 6;
+            ColumnName.Name = "ColumnName";
+            ColumnName.Resizable = DataGridViewTriState.True;
+            ColumnName.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnLastname
+            // 
+            ColumnLastname.HeaderText = "Apellido";
+            ColumnLastname.MinimumWidth = 6;
+            ColumnLastname.Name = "ColumnLastname";
+            ColumnLastname.Resizable = DataGridViewTriState.True;
+            ColumnLastname.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnDNI
+            // 
+            ColumnDNI.HeaderText = "DNI";
+            ColumnDNI.MinimumWidth = 6;
+            ColumnDNI.Name = "ColumnDNI";
+            ColumnDNI.Resizable = DataGridViewTriState.True;
+            ColumnDNI.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnSex
+            // 
+            ColumnSex.HeaderText = "Sexo";
+            ColumnSex.MinimumWidth = 6;
+            ColumnSex.Name = "ColumnSex";
+            ColumnSex.Resizable = DataGridViewTriState.True;
+            ColumnSex.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnBirth
+            // 
+            ColumnBirth.HeaderText = "Fecha de Nac.";
+            ColumnBirth.MinimumWidth = 6;
+            ColumnBirth.Name = "ColumnBirth";
+            ColumnBirth.Resizable = DataGridViewTriState.True;
+            ColumnBirth.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnEmail
+            // 
+            ColumnEmail.HeaderText = "Email";
+            ColumnEmail.MinimumWidth = 6;
+            ColumnEmail.Name = "ColumnEmail";
+            ColumnEmail.Resizable = DataGridViewTriState.True;
+            ColumnEmail.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnPhone
+            // 
+            ColumnPhone.HeaderText = "Teléfono";
+            ColumnPhone.MinimumWidth = 6;
+            ColumnPhone.Name = "ColumnPhone";
+            ColumnPhone.Resizable = DataGridViewTriState.True;
+            ColumnPhone.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnAddress
+            // 
+            ColumnAddress.HeaderText = "Dirección";
+            ColumnAddress.MinimumWidth = 6;
+            ColumnAddress.Name = "ColumnAddress";
+            ColumnAddress.Resizable = DataGridViewTriState.True;
+            ColumnAddress.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnNationality
+            // 
+            ColumnNationality.HeaderText = "Nacionalidad";
+            ColumnNationality.MinimumWidth = 6;
+            ColumnNationality.Name = "ColumnNationality";
+            ColumnNationality.Resizable = DataGridViewTriState.True;
+            ColumnNationality.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnLocality
+            // 
+            ColumnLocality.HeaderText = "Localidad";
+            ColumnLocality.MinimumWidth = 6;
+            ColumnLocality.Name = "ColumnLocality";
+            ColumnLocality.Resizable = DataGridViewTriState.True;
+            ColumnLocality.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // panel3
             // 
@@ -1144,11 +1224,12 @@ namespace MobileSolutions.UILayer
             // 
             // lblCurrentUser
             // 
+            lblCurrentUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblCurrentUser.AutoSize = true;
             lblCurrentUser.Depth = 0;
             lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            lblCurrentUser.Location = new Point(106, 6);
+            lblCurrentUser.Location = new Point(366, 1);
             lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
             lblCurrentUser.Name = "lblCurrentUser";
             lblCurrentUser.Size = new Size(79, 24);
@@ -1164,7 +1245,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(322, 3);
+            btnLogout.Location = new Point(366, 31);
             btnLogout.Margin = new Padding(4, 6, 4, 6);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
@@ -1175,86 +1256,6 @@ namespace MobileSolutions.UILayer
             btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = false;
-            // 
-            // ColumnName
-            // 
-            ColumnName.HeaderText = "Nombre";
-            ColumnName.MinimumWidth = 6;
-            ColumnName.Name = "ColumnName";
-            ColumnName.Resizable = DataGridViewTriState.True;
-            ColumnName.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnLastname
-            // 
-            ColumnLastname.HeaderText = "Apellido";
-            ColumnLastname.MinimumWidth = 6;
-            ColumnLastname.Name = "ColumnLastname";
-            ColumnLastname.Resizable = DataGridViewTriState.True;
-            ColumnLastname.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnDNI
-            // 
-            ColumnDNI.HeaderText = "DNI";
-            ColumnDNI.MinimumWidth = 6;
-            ColumnDNI.Name = "ColumnDNI";
-            ColumnDNI.Resizable = DataGridViewTriState.True;
-            ColumnDNI.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnSex
-            // 
-            ColumnSex.HeaderText = "Sexo";
-            ColumnSex.MinimumWidth = 6;
-            ColumnSex.Name = "ColumnSex";
-            ColumnSex.Resizable = DataGridViewTriState.True;
-            ColumnSex.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnBirth
-            // 
-            ColumnBirth.HeaderText = "Fecha de Nac.";
-            ColumnBirth.MinimumWidth = 6;
-            ColumnBirth.Name = "ColumnBirth";
-            ColumnBirth.Resizable = DataGridViewTriState.True;
-            ColumnBirth.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnEmail
-            // 
-            ColumnEmail.HeaderText = "Email";
-            ColumnEmail.MinimumWidth = 6;
-            ColumnEmail.Name = "ColumnEmail";
-            ColumnEmail.Resizable = DataGridViewTriState.True;
-            ColumnEmail.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnPhone
-            // 
-            ColumnPhone.HeaderText = "Teléfono";
-            ColumnPhone.MinimumWidth = 6;
-            ColumnPhone.Name = "ColumnPhone";
-            ColumnPhone.Resizable = DataGridViewTriState.True;
-            ColumnPhone.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnAddress
-            // 
-            ColumnAddress.HeaderText = "Dirección";
-            ColumnAddress.MinimumWidth = 6;
-            ColumnAddress.Name = "ColumnAddress";
-            ColumnAddress.Resizable = DataGridViewTriState.True;
-            ColumnAddress.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnNationality
-            // 
-            ColumnNationality.HeaderText = "Nacionalidad";
-            ColumnNationality.MinimumWidth = 6;
-            ColumnNationality.Name = "ColumnNationality";
-            ColumnNationality.Resizable = DataGridViewTriState.True;
-            ColumnNationality.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnLocality
-            // 
-            ColumnLocality.HeaderText = "Localidad";
-            ColumnLocality.MinimumWidth = 6;
-            ColumnLocality.Name = "ColumnLocality";
-            ColumnLocality.Resizable = DataGridViewTriState.True;
-            ColumnLocality.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // CustomerView
             // 

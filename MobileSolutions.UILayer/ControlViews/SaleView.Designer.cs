@@ -101,7 +101,7 @@ namespace MobileSolutions.UILayer
             // 
             // lblProductTitle
             // 
-            lblProductTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            lblProductTitle.Anchor = AnchorStyles.Top;
             lblProductTitle.AutoSize = true;
             lblProductTitle.Depth = 0;
             lblProductTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
@@ -110,9 +110,9 @@ namespace MobileSolutions.UILayer
             lblProductTitle.Location = new Point(297, 3);
             lblProductTitle.MouseState = MaterialSkin.MouseState.HOVER;
             lblProductTitle.Name = "lblProductTitle";
-            lblProductTitle.Size = new Size(125, 58);
+            lblProductTitle.Size = new Size(153, 58);
             lblProductTitle.TabIndex = 36;
-            lblProductTitle.Text = "Venta";
+            lblProductTitle.Text = "VENTA";
             lblProductTitle.TextAlign = ContentAlignment.MiddleCenter;
             lblProductTitle.Click += lblProductTitle_Click;
             // 
@@ -343,7 +343,7 @@ namespace MobileSolutions.UILayer
             txtSeller.CharacterCasing = CharacterCasing.Normal;
             txtSeller.Depth = 0;
             txtSeller.Dock = DockStyle.Fill;
-            txtSeller.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtSeller.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtSeller.HideSelection = true;
             txtSeller.Hint = "Vendedor";
             txtSeller.LeadingIcon = null;
@@ -992,7 +992,7 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(314, 6);
+            btnLogout.Location = new Point(363, 30);
             btnLogout.Margin = new Padding(4, 6, 4, 6);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
@@ -1006,11 +1006,12 @@ namespace MobileSolutions.UILayer
             // 
             // lblCurrentUser
             // 
+            lblCurrentUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblCurrentUser.AutoSize = true;
             lblCurrentUser.Depth = 0;
             lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            lblCurrentUser.Location = new Point(143, 6);
+            lblCurrentUser.Location = new Point(363, 3);
             lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
             lblCurrentUser.Name = "lblCurrentUser";
             lblCurrentUser.Size = new Size(79, 24);

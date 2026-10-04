@@ -50,6 +50,13 @@ namespace MobileSolutions.UILayer
 
             // 5. Wire decoupled logout events from child views
             WireLogoutEvents(this);
+
+            // 6. Set current user dynamically in all lblCurrentUser labels across all views
+            SetCurrentUserInLabels(this, _currentUser);
+            foreach (var tab in _originalTabPages)
+            {
+                SetCurrentUserInLabels(tab, _currentUser);
+            }
         }
 
         private void InitializeTabCacheAndIcons()
@@ -160,6 +167,27 @@ namespace MobileSolutions.UILayer
                 if (control.HasChildren)
                 {
                     WireLogoutEvents(control);
+                }
+            }
+        }
+
+        public static void SetCurrentUserInLabels(Control parent, string username)
+        {
+            if (parent == null || string.IsNullOrWhiteSpace(username))
+            {
+                return;
+            }
+
+            foreach (Control control in parent.Controls)
+            {
+                if (control.Name == "lblCurrentUser")
+                {
+                    control.Text = username;
+                }
+
+                if (control.HasChildren)
+                {
+                    SetCurrentUserInLabels(control, username);
                 }
             }
         }

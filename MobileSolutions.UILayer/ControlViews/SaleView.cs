@@ -48,6 +48,9 @@ namespace MobileSolutions.UILayer
 
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
+
+            txtSeller.TabStop = false;
+            txtSeller.Enter += (s, e) => this.ActiveControl = null;
         }
 
         private void CargarTiposDePago()

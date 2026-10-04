@@ -49,7 +49,7 @@ namespace MobileSolutions.UILayer
             txtUser.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUser.Hint = "Usuario";
             txtUser.LeadingIcon = null;
-            txtUser.Location = new Point(387, 323);
+            txtUser.Location = new Point(387, 284);
             txtUser.MaxLength = 50;
             txtUser.MouseState = MaterialSkin.MouseState.OUT;
             txtUser.Multiline = false;
@@ -67,7 +67,7 @@ namespace MobileSolutions.UILayer
             txtPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.Hint = "Contraseña";
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(387, 399);
+            txtPassword.Location = new Point(387, 353);
             txtPassword.MaxLength = 50;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtPassword.Multiline = false;
@@ -85,7 +85,7 @@ namespace MobileSolutions.UILayer
             btnLogin.Depth = 0;
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = null;
-            btnLogin.Location = new Point(520, 475);
+            btnLogin.Location = new Point(520, 423);
             btnLogin.Margin = new Padding(4, 6, 4, 6);
             btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogin.Name = "btnLogin";
@@ -114,7 +114,7 @@ namespace MobileSolutions.UILayer
             picLogo.BackColor = Color.Transparent;
             picLogo.BackgroundImage = (Image)resources.GetObject("picLogo.BackgroundImage");
             picLogo.BackgroundImageLayout = ImageLayout.Zoom;
-            picLogo.Location = new Point(467, 530);
+            picLogo.Location = new Point(457, 484);
             picLogo.Name = "picLogo";
             picLogo.Size = new Size(199, 184);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
@@ -129,7 +129,7 @@ namespace MobileSolutions.UILayer
             picBG.Image = (Image)resources.GetObject("picBG.Image");
             picBG.Location = new Point(3, 64);
             picBG.Name = "picBG";
-            picBG.Size = new Size(1126, 761);
+            picBG.Size = new Size(1158, 839);
             picBG.SizeMode = PictureBoxSizeMode.StretchImage;
             picBG.TabIndex = 7;
             picBG.TabStop = false;
@@ -139,7 +139,7 @@ namespace MobileSolutions.UILayer
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(479, 284);
+            materialLabel1.Location = new Point(483, 680);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(137, 19);
@@ -148,11 +148,10 @@ namespace MobileSolutions.UILayer
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ActiveCaptionText;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1132, 828);
+            ClientSize = new Size(1164, 906);
             Controls.Add(materialLabel1);
             Controls.Add(picLogo);
             Controls.Add(picBanner);
