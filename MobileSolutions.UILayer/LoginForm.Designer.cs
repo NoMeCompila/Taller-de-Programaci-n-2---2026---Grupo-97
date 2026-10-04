@@ -35,7 +35,11 @@ namespace MobileSolutions.UILayer
             picBanner = new PictureBox();
             picLogo = new PictureBox();
             picBG = new PictureBox();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            lblForgotMyPassword = new MaterialSkin.Controls.MaterialLabel();
+            txtCorreo = new MaterialSkin.Controls.MaterialTextBox();
+            txtCode = new MaterialSkin.Controls.MaterialTextBox();
+            btnSendEmail = new MaterialSkin.Controls.MaterialButton();
+            btnConfirm = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)picBanner).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBG).BeginInit();
@@ -47,7 +51,7 @@ namespace MobileSolutions.UILayer
             txtUser.BorderStyle = BorderStyle.None;
             txtUser.Depth = 0;
             txtUser.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtUser.Hint = "Usuario";
+            txtUser.Hint = "Usuario / Correo";
             txtUser.LeadingIcon = null;
             txtUser.Location = new Point(387, 284);
             txtUser.MaxLength = 50;
@@ -129,30 +133,119 @@ namespace MobileSolutions.UILayer
             picBG.Image = (Image)resources.GetObject("picBG.Image");
             picBG.Location = new Point(3, 64);
             picBG.Name = "picBG";
-            picBG.Size = new Size(1158, 839);
+            picBG.Size = new Size(1238, 1033);
             picBG.SizeMode = PictureBoxSizeMode.StretchImage;
             picBG.TabIndex = 7;
             picBG.TabStop = false;
             // 
-            // materialLabel1
+            // lblForgotMyPassword
             // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(483, 680);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(137, 19);
-            materialLabel1.TabIndex = 8;
-            materialLabel1.Text = "Ingresar al Sistema";
+            lblForgotMyPassword.AutoSize = true;
+            lblForgotMyPassword.Cursor = Cursors.Hand;
+            lblForgotMyPassword.Depth = 0;
+            lblForgotMyPassword.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblForgotMyPassword.Location = new Point(483, 680);
+            lblForgotMyPassword.MouseState = MaterialSkin.MouseState.HOVER;
+            lblForgotMyPassword.Name = "lblForgotMyPassword";
+            lblForgotMyPassword.Size = new Size(152, 19);
+            lblForgotMyPassword.TabIndex = 8;
+            lblForgotMyPassword.Text = "Olvidé Mi Contraseña";
+            lblForgotMyPassword.Click += lblForgotMyPassword_Click;
+            // 
+            // txtCorreo
+            // 
+            txtCorreo.AnimateReadOnly = false;
+            txtCorreo.BorderStyle = BorderStyle.None;
+            txtCorreo.Depth = 0;
+            txtCorreo.Enabled = false;
+            txtCorreo.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtCorreo.Hint = "Correo";
+            txtCorreo.LeadingIcon = null;
+            txtCorreo.Location = new Point(387, 722);
+            txtCorreo.MaxLength = 50;
+            txtCorreo.MouseState = MaterialSkin.MouseState.OUT;
+            txtCorreo.Multiline = false;
+            txtCorreo.Name = "txtCorreo";
+            txtCorreo.Size = new Size(325, 50);
+            txtCorreo.TabIndex = 9;
+            txtCorreo.Text = "";
+            txtCorreo.TrailingIcon = null;
+            txtCorreo.Visible = false;
+            // 
+            // txtCode
+            // 
+            txtCode.AnimateReadOnly = false;
+            txtCode.BorderStyle = BorderStyle.None;
+            txtCode.Depth = 0;
+            txtCode.Enabled = false;
+            txtCode.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtCode.Hint = "Código";
+            txtCode.LeadingIcon = null;
+            txtCode.Location = new Point(387, 805);
+            txtCode.MaxLength = 50;
+            txtCode.MouseState = MaterialSkin.MouseState.OUT;
+            txtCode.Multiline = false;
+            txtCode.Name = "txtCode";
+            txtCode.Size = new Size(325, 50);
+            txtCode.TabIndex = 10;
+            txtCode.Text = "";
+            txtCode.TrailingIcon = null;
+            txtCode.Visible = false;
+            // 
+            // btnSendEmail
+            // 
+            btnSendEmail.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSendEmail.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnSendEmail.Depth = 0;
+            btnSendEmail.Enabled = false;
+            btnSendEmail.HighEmphasis = true;
+            btnSendEmail.Icon = null;
+            btnSendEmail.Location = new Point(719, 736);
+            btnSendEmail.Margin = new Padding(4, 6, 4, 6);
+            btnSendEmail.MouseState = MaterialSkin.MouseState.HOVER;
+            btnSendEmail.Name = "btnSendEmail";
+            btnSendEmail.NoAccentTextColor = Color.Empty;
+            btnSendEmail.Size = new Size(73, 36);
+            btnSendEmail.TabIndex = 11;
+            btnSendEmail.Text = "Enviar";
+            btnSendEmail.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnSendEmail.UseAccentColor = false;
+            btnSendEmail.UseVisualStyleBackColor = true;
+            btnSendEmail.Visible = false;
+            btnSendEmail.Click += btnSendEmail_Click;
+            // 
+            // btnConfirm
+            // 
+            btnConfirm.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnConfirm.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnConfirm.Depth = 0;
+            btnConfirm.Enabled = false;
+            btnConfirm.HighEmphasis = true;
+            btnConfirm.Icon = null;
+            btnConfirm.Location = new Point(719, 819);
+            btnConfirm.Margin = new Padding(4, 6, 4, 6);
+            btnConfirm.MouseState = MaterialSkin.MouseState.HOVER;
+            btnConfirm.Name = "btnConfirm";
+            btnConfirm.NoAccentTextColor = Color.Empty;
+            btnConfirm.Size = new Size(105, 36);
+            btnConfirm.TabIndex = 12;
+            btnConfirm.Text = "Confirmar";
+            btnConfirm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnConfirm.UseAccentColor = false;
+            btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Visible = false;
             // 
             // LoginForm
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ActiveCaptionText;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1164, 906);
-            Controls.Add(materialLabel1);
+            ClientSize = new Size(1244, 1100);
+            Controls.Add(btnConfirm);
+            Controls.Add(btnSendEmail);
+            Controls.Add(txtCode);
+            Controls.Add(txtCorreo);
+            Controls.Add(lblForgotMyPassword);
             Controls.Add(picLogo);
             Controls.Add(picBanner);
             Controls.Add(btnLogin);
@@ -183,7 +276,11 @@ namespace MobileSolutions.UILayer
         private PictureBox picBanner;
         private PictureBox picLogo;
         private PictureBox picBG;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel lblForgotMyPassword;
+        private MaterialSkin.Controls.MaterialTextBox txtCorreo;
+        private MaterialSkin.Controls.MaterialTextBox txtCode;
+        private MaterialSkin.Controls.MaterialButton btnSendEmail;
+        private MaterialSkin.Controls.MaterialButton btnConfirm;
     }
 }
 

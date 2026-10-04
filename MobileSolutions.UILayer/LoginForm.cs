@@ -71,10 +71,10 @@ namespace MobileSolutions.UILayer
             }
             // Opcional para confirmar visualmente que conectó:
             //MaterialMessageBox.Show(
-             //   "Conexión exitosa a SQL Server (MobileSolutionsDB).",
-             //   "Conectado",
-              //  MessageBoxButtons.OK,
-              //  MessageBoxIcon.Information);
+            //   "Conexión exitosa a SQL Server (MobileSolutionsDB).",
+            //   "Conectado",
+            //  MessageBoxButtons.OK,
+            //  MessageBoxIcon.Information);
 
 
             string username = txtUser.Text.Trim();
@@ -93,6 +93,24 @@ namespace MobileSolutions.UILayer
             {
                 MaterialMessageBox.Show(message, "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void lblForgotMyPassword_Click(object sender, EventArgs e)
+        {
+            txtCorreo.Visible = true;
+            txtCorreo.Enabled = true;
+            btnSendEmail.Visible = true;
+            btnSendEmail.Enabled = true;
+            txtCorreo.Focus();
+        }
+
+        private void btnSendEmail_Click(object sender, EventArgs e)
+        {
+            txtCode.Visible = true;
+            txtCode.Enabled = true;
+            btnConfirm.Visible = true;
+            btnConfirm.Enabled = true;
+            txtCode.Focus();
         }
     }
 }

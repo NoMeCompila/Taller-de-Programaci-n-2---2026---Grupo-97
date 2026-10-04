@@ -118,7 +118,7 @@ namespace MobileSolutions.UILayer
             txtName.HideSelection = true;
             txtName.Hint = "Nombre";
             txtName.LeadingIcon = null;
-            txtName.Location = new Point(179, 39);
+            txtName.Location = new Point(186, 60);
             txtName.Margin = new Padding(3, 2, 3, 2);
             txtName.MaxLength = 32767;
             txtName.MouseState = MaterialSkin.MouseState.OUT;
@@ -150,7 +150,7 @@ namespace MobileSolutions.UILayer
             txtLastname.HideSelection = true;
             txtLastname.Hint = "Apellido";
             txtLastname.LeadingIcon = null;
-            txtLastname.Location = new Point(182, 114);
+            txtLastname.Location = new Point(189, 135);
             txtLastname.Margin = new Padding(3, 2, 3, 2);
             txtLastname.MaxLength = 32767;
             txtLastname.MouseState = MaterialSkin.MouseState.OUT;
@@ -182,7 +182,7 @@ namespace MobileSolutions.UILayer
             txtDNI.HideSelection = true;
             txtDNI.Hint = "DNI";
             txtDNI.LeadingIcon = null;
-            txtDNI.Location = new Point(182, 194);
+            txtDNI.Location = new Point(189, 215);
             txtDNI.Margin = new Padding(3, 2, 3, 2);
             txtDNI.MaxLength = 32767;
             txtDNI.MouseState = MaterialSkin.MouseState.OUT;
@@ -214,7 +214,7 @@ namespace MobileSolutions.UILayer
             txtEmail.HideSelection = true;
             txtEmail.Hint = "Email";
             txtEmail.LeadingIcon = null;
-            txtEmail.Location = new Point(476, 39);
+            txtEmail.Location = new Point(483, 60);
             txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.MaxLength = 32767;
             txtEmail.MouseState = MaterialSkin.MouseState.OUT;
@@ -245,7 +245,7 @@ namespace MobileSolutions.UILayer
             txtPhone.HideSelection = true;
             txtPhone.Hint = "Teléfono";
             txtPhone.LeadingIcon = null;
-            txtPhone.Location = new Point(476, 114);
+            txtPhone.Location = new Point(483, 135);
             txtPhone.Margin = new Padding(3, 2, 3, 2);
             txtPhone.MaxLength = 32767;
             txtPhone.MouseState = MaterialSkin.MouseState.OUT;
@@ -277,7 +277,7 @@ namespace MobileSolutions.UILayer
             txtAddress.HideSelection = true;
             txtAddress.Hint = "Dirección";
             txtAddress.LeadingIcon = null;
-            txtAddress.Location = new Point(476, 194);
+            txtAddress.Location = new Point(483, 215);
             txtAddress.Margin = new Padding(3, 2, 3, 2);
             txtAddress.MaxLength = 32767;
             txtAddress.MouseState = MaterialSkin.MouseState.OUT;
@@ -308,7 +308,7 @@ namespace MobileSolutions.UILayer
             txtNationality.HideSelection = true;
             txtNationality.Hint = "Nacionalidad";
             txtNationality.LeadingIcon = null;
-            txtNationality.Location = new Point(182, 270);
+            txtNationality.Location = new Point(189, 291);
             txtNationality.Margin = new Padding(3, 2, 3, 2);
             txtNationality.MaxLength = 32767;
             txtNationality.MouseState = MaterialSkin.MouseState.OUT;
@@ -339,7 +339,7 @@ namespace MobileSolutions.UILayer
             txtLocality.HideSelection = true;
             txtLocality.Hint = "Localidad";
             txtLocality.LeadingIcon = null;
-            txtLocality.Location = new Point(182, 341);
+            txtLocality.Location = new Point(189, 362);
             txtLocality.Margin = new Padding(3, 2, 3, 2);
             txtLocality.MaxLength = 32767;
             txtLocality.MouseState = MaterialSkin.MouseState.OUT;
@@ -547,7 +547,7 @@ namespace MobileSolutions.UILayer
             btnLoc.Depth = 0;
             btnLoc.HighEmphasis = true;
             btnLoc.Icon = null;
-            btnLoc.Location = new Point(136, 341);
+            btnLoc.Location = new Point(143, 362);
             btnLoc.Margin = new Padding(4);
             btnLoc.MouseState = MaterialSkin.MouseState.HOVER;
             btnLoc.Name = "btnLoc";
@@ -567,7 +567,7 @@ namespace MobileSolutions.UILayer
             btnNat.Depth = 0;
             btnNat.HighEmphasis = true;
             btnNat.Icon = null;
-            btnNat.Location = new Point(136, 270);
+            btnNat.Location = new Point(143, 291);
             btnNat.Margin = new Padding(4);
             btnNat.MouseState = MaterialSkin.MouseState.HOVER;
             btnNat.Name = "btnNat";
@@ -587,7 +587,7 @@ namespace MobileSolutions.UILayer
             btnAddress.Depth = 0;
             btnAddress.HighEmphasis = true;
             btnAddress.Icon = null;
-            btnAddress.Location = new Point(434, 194);
+            btnAddress.Location = new Point(441, 215);
             btnAddress.Margin = new Padding(4);
             btnAddress.MouseState = MaterialSkin.MouseState.HOVER;
             btnAddress.Name = "btnAddress";
@@ -607,7 +607,7 @@ namespace MobileSolutions.UILayer
             btnCel.Depth = 0;
             btnCel.HighEmphasis = true;
             btnCel.Icon = null;
-            btnCel.Location = new Point(434, 114);
+            btnCel.Location = new Point(441, 135);
             btnCel.Margin = new Padding(4);
             btnCel.MouseState = MaterialSkin.MouseState.HOVER;
             btnCel.Name = "btnCel";
@@ -627,7 +627,7 @@ namespace MobileSolutions.UILayer
             btnEmail.Depth = 0;
             btnEmail.HighEmphasis = true;
             btnEmail.Icon = null;
-            btnEmail.Location = new Point(434, 39);
+            btnEmail.Location = new Point(441, 60);
             btnEmail.Margin = new Padding(4);
             btnEmail.MouseState = MaterialSkin.MouseState.HOVER;
             btnEmail.Name = "btnEmail";
@@ -647,7 +647,7 @@ namespace MobileSolutions.UILayer
             btnDni.Depth = 0;
             btnDni.HighEmphasis = true;
             btnDni.Icon = null;
-            btnDni.Location = new Point(136, 194);
+            btnDni.Location = new Point(143, 215);
             btnDni.Margin = new Padding(4);
             btnDni.MouseState = MaterialSkin.MouseState.HOVER;
             btnDni.Name = "btnDni";
@@ -667,7 +667,7 @@ namespace MobileSolutions.UILayer
             btnLastname.Depth = 0;
             btnLastname.HighEmphasis = true;
             btnLastname.Icon = null;
-            btnLastname.Location = new Point(136, 114);
+            btnLastname.Location = new Point(143, 135);
             btnLastname.Margin = new Padding(4);
             btnLastname.MouseState = MaterialSkin.MouseState.HOVER;
             btnLastname.Name = "btnLastname";
@@ -687,7 +687,7 @@ namespace MobileSolutions.UILayer
             btnName.Depth = 0;
             btnName.HighEmphasis = true;
             btnName.Icon = null;
-            btnName.Location = new Point(136, 39);
+            btnName.Location = new Point(143, 60);
             btnName.Margin = new Padding(4);
             btnName.MouseState = MaterialSkin.MouseState.HOVER;
             btnName.Name = "btnName";
