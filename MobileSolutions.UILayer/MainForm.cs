@@ -117,22 +117,24 @@ namespace MobileSolutions.UILayer
             // Role-based access control based on DB profile (with fallback to username)
             if (profileId == 1 || profileName == "administrador" || profileName == "administrator" || normalizedUser == "admin")
             {
-                // Administrator: All 7 tabs visible
-                allowedTabs = new List<TabPage>(_originalTabPages);
-            }
-            else if (profileId == 3 || profileName == "gerente" || normalizedUser == "fer" || normalizedUser == "fcaballe")
-            {
-                // Gerente: Only 6 tabs (Usuarios removed)
+                // Administrator: Only 4 tabs visible (Customer, Product and Sale removed)
                 allowedTabs = _originalTabPages
-                    .Where(tab => tab != tabPage2)
+                    .Where(tab => tab != tabPage3 && tab != tabPage4 && tab != tabPage6)
                     .ToList();
             }
-            else if (profileId == 2 || profileName == "vendedor" || normalizedUser == "nico")
+            else if (profileId == 2 || profileName == "gerente" || profileName == "manager" || normalizedUser == "gerente")
             {
-                // Vendedor: Only 5 tabs (Usuarios and Productos removed)
+                // Gerente: Only 5 tabs visible (Users and Sale removed)
                 allowedTabs = _originalTabPages
-                    .Where(tab => tab != tabPage2 && tab != tabPage4)
+                    .Where(tab => tab != tabPage2 && tab != tabPage6)
                     .ToList();
+            }
+            else if (profileId == 3 || profileName == "vendedor" || profileName == "Seller" || normalizedUser == "vendedor")
+            {
+                // Vendedor: Only 5 tabs (Users and Productos removed)
+                allowedTabs = _originalTabPages
+                   .Where(tab => tab != tabPage2 && tab != tabPage4)
+                   .ToList();
             }
             else
             {
