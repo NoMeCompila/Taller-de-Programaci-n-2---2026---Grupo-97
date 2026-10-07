@@ -61,10 +61,10 @@ namespace MobileSolutions.UILayer
             txtPurchasePrice = new MaterialSkin.Controls.MaterialTextBox2();
             txtSalePrice = new MaterialSkin.Controls.MaterialTextBox2();
             panel4 = new Panel();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
-            iconButton3 = new FontAwesome.Sharp.IconButton();
-            iconBtn = new FontAwesome.Sharp.IconButton();
+            icoBtnUpdate = new FontAwesome.Sharp.IconButton();
+            icoBtnClear = new FontAwesome.Sharp.IconButton();
+            icoBtnDelete = new FontAwesome.Sharp.IconButton();
+            icoBtnSave = new FontAwesome.Sharp.IconButton();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel5 = new Panel();
             materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
@@ -694,94 +694,94 @@ namespace MobileSolutions.UILayer
             panel4.Controls.Add(btnSave);
             panel4.Controls.Add(btnUpdate);
             panel4.Controls.Add(btnClear);
-            panel4.Controls.Add(iconButton2);
-            panel4.Controls.Add(iconButton1);
-            panel4.Controls.Add(iconButton3);
-            panel4.Controls.Add(iconBtn);
+            panel4.Controls.Add(icoBtnUpdate);
+            panel4.Controls.Add(icoBtnClear);
+            panel4.Controls.Add(icoBtnDelete);
+            panel4.Controls.Add(icoBtnSave);
             panel4.Location = new Point(1246, 71);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
             panel4.Size = new Size(334, 287);
             panel4.TabIndex = 56;
             // 
-            // iconButton2
+            // icoBtnUpdate
             // 
-            iconButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            iconButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton2.BackColor = Color.RoyalBlue;
-            iconButton2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton2.ForeColor = SystemColors.Control;
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.Pencil;
-            iconButton2.IconColor = Color.White;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.IconSize = 60;
-            iconButton2.Location = new Point(0, 167);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Size = new Size(150, 120);
-            iconButton2.TabIndex = 46;
-            iconButton2.Text = "BUTTON";
-            iconButton2.TextAlign = ContentAlignment.BottomCenter;
-            iconButton2.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconButton2.UseVisualStyleBackColor = false;
+            icoBtnUpdate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            icoBtnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnUpdate.BackColor = Color.RoyalBlue;
+            icoBtnUpdate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnUpdate.ForeColor = SystemColors.Control;
+            icoBtnUpdate.IconChar = FontAwesome.Sharp.IconChar.Pencil;
+            icoBtnUpdate.IconColor = Color.White;
+            icoBtnUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnUpdate.IconSize = 60;
+            icoBtnUpdate.Location = new Point(0, 167);
+            icoBtnUpdate.Name = "icoBtnUpdate";
+            icoBtnUpdate.Size = new Size(150, 120);
+            icoBtnUpdate.TabIndex = 46;
+            icoBtnUpdate.Text = "BUTTON";
+            icoBtnUpdate.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnUpdate.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnUpdate.UseVisualStyleBackColor = false;
             // 
-            // iconButton1
+            // icoBtnClear
             // 
-            iconButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton1.BackColor = Color.RoyalBlue;
-            iconButton1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton1.ForeColor = SystemColors.Control;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.DeleteLeft;
-            iconButton1.IconColor = Color.White;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 60;
-            iconButton1.Location = new Point(4, 3);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(150, 120);
-            iconButton1.TabIndex = 45;
-            iconButton1.Text = "BUTTON";
-            iconButton1.TextAlign = ContentAlignment.BottomCenter;
-            iconButton1.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconButton1.UseVisualStyleBackColor = false;
+            icoBtnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnClear.BackColor = Color.RoyalBlue;
+            icoBtnClear.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnClear.ForeColor = SystemColors.Control;
+            icoBtnClear.IconChar = FontAwesome.Sharp.IconChar.DeleteLeft;
+            icoBtnClear.IconColor = Color.White;
+            icoBtnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnClear.IconSize = 60;
+            icoBtnClear.Location = new Point(4, 3);
+            icoBtnClear.Name = "icoBtnClear";
+            icoBtnClear.Size = new Size(150, 120);
+            icoBtnClear.TabIndex = 45;
+            icoBtnClear.Text = "BUTTON";
+            icoBtnClear.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnClear.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnClear.UseVisualStyleBackColor = false;
             // 
-            // iconButton3
+            // icoBtnDelete
             // 
-            iconButton3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            iconButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconButton3.BackColor = Color.RoyalBlue;
-            iconButton3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton3.ForeColor = SystemColors.Control;
-            iconButton3.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            iconButton3.IconColor = Color.White;
-            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton3.IconSize = 60;
-            iconButton3.Location = new Point(181, 164);
-            iconButton3.Name = "iconButton3";
-            iconButton3.Size = new Size(150, 120);
-            iconButton3.TabIndex = 47;
-            iconButton3.Text = "BUTTON";
-            iconButton3.TextAlign = ContentAlignment.BottomCenter;
-            iconButton3.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconButton3.UseVisualStyleBackColor = false;
+            icoBtnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            icoBtnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnDelete.BackColor = Color.RoyalBlue;
+            icoBtnDelete.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnDelete.ForeColor = SystemColors.Control;
+            icoBtnDelete.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            icoBtnDelete.IconColor = Color.White;
+            icoBtnDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnDelete.IconSize = 60;
+            icoBtnDelete.Location = new Point(181, 164);
+            icoBtnDelete.Name = "icoBtnDelete";
+            icoBtnDelete.Size = new Size(150, 120);
+            icoBtnDelete.TabIndex = 47;
+            icoBtnDelete.Text = "BUTTON";
+            icoBtnDelete.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnDelete.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnDelete.UseVisualStyleBackColor = false;
             // 
-            // iconBtn
+            // icoBtnSave
             // 
-            iconBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            iconBtn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            iconBtn.BackColor = Color.RoyalBlue;
-            iconBtn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconBtn.ForeColor = SystemColors.Control;
-            iconBtn.IconChar = FontAwesome.Sharp.IconChar.Save;
-            iconBtn.IconColor = Color.White;
-            iconBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconBtn.IconSize = 60;
-            iconBtn.Location = new Point(184, 0);
-            iconBtn.Name = "iconBtn";
-            iconBtn.Size = new Size(150, 120);
-            iconBtn.TabIndex = 44;
-            iconBtn.Text = "BUTTON";
-            iconBtn.TextAlign = ContentAlignment.BottomCenter;
-            iconBtn.TextImageRelation = TextImageRelation.ImageAboveText;
-            iconBtn.UseVisualStyleBackColor = false;
+            icoBtnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            icoBtnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnSave.BackColor = Color.RoyalBlue;
+            icoBtnSave.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnSave.ForeColor = SystemColors.Control;
+            icoBtnSave.IconChar = FontAwesome.Sharp.IconChar.Save;
+            icoBtnSave.IconColor = Color.White;
+            icoBtnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnSave.IconSize = 60;
+            icoBtnSave.Location = new Point(184, 0);
+            icoBtnSave.Name = "icoBtnSave";
+            icoBtnSave.Size = new Size(150, 120);
+            icoBtnSave.TabIndex = 44;
+            icoBtnSave.Text = "BUTTON";
+            icoBtnSave.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnSave.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnSave.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -1016,10 +1016,10 @@ namespace MobileSolutions.UILayer
         private MaterialSkin.Controls.MaterialTextBox2 txtPurchasePrice;
         private MaterialSkin.Controls.MaterialTextBox2 txtSalePrice;
         private Panel panel4;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconBtn;
+        private FontAwesome.Sharp.IconButton icoBtnUpdate;
+        private FontAwesome.Sharp.IconButton icoBtnClear;
+        private FontAwesome.Sharp.IconButton icoBtnDelete;
+        private FontAwesome.Sharp.IconButton icoBtnSave;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel5;
         private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
@@ -1030,5 +1030,6 @@ namespace MobileSolutions.UILayer
         private Panel panel6;
         private MaterialSkin.Controls.MaterialButton btnLogout;
         private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
+        private FontAwesome.Sharp.IconButton icoBtnReactive;
     }
 }
