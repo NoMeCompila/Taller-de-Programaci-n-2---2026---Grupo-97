@@ -167,5 +167,7 @@ SELECT * FROM [User] WHERE status = 0 ORDER BY lastname ASC, name ASC;
 DELETE FROM [User] WHERE dni = '87654321';
 
 SELECT * FROM [User] WHERE username = 'TestUser';
+UPDATE [User] SET email = 'cabafer1@gmail.com' WHERE user_id = 4003;
+
 
 SELECT * FROM [User] WHERE username like '%QA%';

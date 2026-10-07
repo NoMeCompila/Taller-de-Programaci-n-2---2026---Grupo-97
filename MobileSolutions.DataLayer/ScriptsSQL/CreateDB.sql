@@ -73,6 +73,8 @@ CREATE TABLE [User] (
     locality VARCHAR(100) NOT NULL,
     register_date DATETIME2(7) NOT NULL DEFAULT GETDATE(),
     status BIT NOT NULL DEFAULT 1,
+    reset_token VARCHAR(6) NULL,
+    reset_token_expiration DATETIME2 NULL,
 
     CONSTRAINT PK_User PRIMARY KEY (user_id), 
     CONSTRAINT FK_User_Profile FOREIGN KEY (profile_id) REFERENCES Profile(profile_id), 

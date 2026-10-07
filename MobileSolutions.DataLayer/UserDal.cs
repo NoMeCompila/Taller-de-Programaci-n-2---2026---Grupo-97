@@ -465,6 +465,65 @@ namespace MobileSolutions.DataLayer
 
             return null;
         }
+
+        public (bool Success, string? Email) SavePasswordResetOtp(string emailOrUsername, string otpToken)
+        {
+            if (string.IsNullOrWhiteSpace(emailOrUsername) || string.IsNullOrWhiteSpace(otpToken))
+            {
+                return (false, null);
+            }
+
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand(@"
+                UPDATE [User] 
+                SET reset_token = @Token, 
+                    reset_token_expiration = DATEADD(MINUTE, 15, GETDATE()) 
+                OUTPUT INSERTED.email
+                WHERE (email = @EmailOrUser OR username = @EmailOrUser) AND status = 1;", connection))
+            {
+                command.CommandTimeout = 30;
+                command.Parameters.Add(new SqlParameter("@Token", SqlDbType.VarChar, 6) { Value = otpToken });
+                command.Parameters.Add(new SqlParameter("@EmailOrUser", SqlDbType.VarChar, 100) { Value = emailOrUsername.Trim() });
+
+                connection.Open();
+                object? result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return (true, result.ToString());
+                }
+
+                return (false, null);
+            }
+        }
+
+        public bool ResetPasswordWithOtp(string emailOrUsername, string otpToken, string newHashedPassword)
+        {
+            if (string.IsNullOrWhiteSpace(emailOrUsername) || string.IsNullOrWhiteSpace(otpToken) || string.IsNullOrWhiteSpace(newHashedPassword))
+            {
+                return false;
+            }
+
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand(@"
+                UPDATE [User] 
+                SET password = @NewPassword, 
+                    reset_token = NULL, 
+                    reset_token_expiration = NULL 
+                WHERE (email = @EmailOrUser OR username = @EmailOrUser) 
+                  AND reset_token = @Token 
+                  AND reset_token_expiration > GETDATE()
+                  AND status = 1;", connection))
+            {
+                command.CommandTimeout = 30;
+                command.Parameters.Add(new SqlParameter("@NewPassword", SqlDbType.VarChar, 255) { Value = newHashedPassword });
+                command.Parameters.Add(new SqlParameter("@EmailOrUser", SqlDbType.VarChar, 100) { Value = emailOrUsername.Trim() });
+                command.Parameters.Add(new SqlParameter("@Token", SqlDbType.VarChar, 6) { Value = otpToken.Trim() });
+
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+        }
     }
 }
 

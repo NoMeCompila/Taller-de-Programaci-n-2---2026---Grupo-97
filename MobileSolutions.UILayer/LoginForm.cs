@@ -106,11 +106,88 @@ namespace MobileSolutions.UILayer
 
         private void btnSendEmail_Click(object sender, EventArgs e)
         {
+            string email = txtCorreo.Text.Trim();
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MaterialMessageBox.Show("Por favor ingrese su correo electrónico o nombre de usuario.", "Recuperación de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCorreo.Focus();
+                return;
+            }
+
+            var (success, message) = _userService.RequestPasswordReset(email);
+            if (!success)
+            {
+                MaterialMessageBox.Show(message, "Error al Enviar Código", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MaterialMessageBox.Show(message, "Código Enviado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Habilitar campos del paso 2 (código y nueva contraseña)
             txtCode.Visible = true;
             txtCode.Enabled = true;
+            txtNewPassword.Visible = true;
+            txtNewPassword.Enabled = true;
             btnConfirm.Visible = true;
             btnConfirm.Enabled = true;
             txtCode.Focus();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            string email = txtCorreo.Text.Trim();
+            string code = txtCode.Text.Trim();
+            string newPassword = txtNewPassword.Text;
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MaterialMessageBox.Show("Por favor ingrese su correo electrónico o usuario.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCorreo.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                MaterialMessageBox.Show("Por favor ingrese el código de verificación de 6 dígitos.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCode.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(newPassword))
+            {
+                MaterialMessageBox.Show("Por favor ingrese su nueva contraseña.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNewPassword.Focus();
+                return;
+            }
+
+            var (success, message) = _userService.CompletePasswordReset(email, code, newPassword);
+            if (!success)
+            {
+                MaterialMessageBox.Show(message, "Error al Restablecer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MaterialMessageBox.Show(message, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Limpiar y ocultar controles de recuperación
+            txtCorreo.Clear();
+            txtCode.Clear();
+            txtNewPassword.Clear();
+
+            txtCorreo.Visible = false;
+            txtCorreo.Enabled = false;
+            btnSendEmail.Visible = false;
+            btnSendEmail.Enabled = false;
+
+            txtCode.Visible = false;
+            txtCode.Enabled = false;
+            txtNewPassword.Visible = false;
+            txtNewPassword.Enabled = false;
+            btnConfirm.Visible = false;
+            btnConfirm.Enabled = false;
+
+            // Enfocar campo de contraseña principal para inicio de sesión
+            txtPassword.Focus();
         }
     }
 }
