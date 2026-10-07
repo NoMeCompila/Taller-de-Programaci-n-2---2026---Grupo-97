@@ -312,3 +312,20 @@ BEGIN
     ORDER BY b.name ASC, p.name ASC;
 END;
 GO
+
+-- ============================================================================
+-- 9. OBTENER TODAS LAS MARCAS ACTIVAS (sp_GetActiveBrands)
+-- ============================================================================
+CREATE OR ALTER PROCEDURE sp_GetActiveBrands
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        b.brand_id AS brand_id,
+        b.name     AS Nombre
+    FROM Brand AS b
+    WHERE b.status = 1
+    ORDER BY b.name ASC;
+END;
+GO

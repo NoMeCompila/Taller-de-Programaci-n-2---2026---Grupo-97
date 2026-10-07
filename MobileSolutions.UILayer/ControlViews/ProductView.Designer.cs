@@ -28,7 +28,7 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtImageURL = new MaterialSkin.Controls.MaterialTextBox2();
             btnSave = new MaterialSkin.Controls.MaterialButton();
             btnClear = new MaterialSkin.Controls.MaterialButton();
@@ -37,13 +37,6 @@ namespace MobileSolutions.UILayer
             lblProductTitle = new MaterialSkin.Controls.MaterialLabel();
             btnImageURL = new MaterialSkin.Controls.MaterialButton();
             dtgProducts = new DataGridView();
-            ColumnBrand = new DataGridViewLinkColumn();
-            ColumnCode = new DataGridViewLinkColumn();
-            ColumnName = new DataGridViewLinkColumn();
-            ColumnStock = new DataGridViewLinkColumn();
-            ColumnPurchasePrice = new DataGridViewLinkColumn();
-            ColumnSalePrice = new DataGridViewLinkColumn();
-            ColumnImage = new DataGridViewLinkColumn();
             materialCardImage = new MaterialSkin.Controls.MaterialCard();
             picProductImage = new PictureBox();
             picProductTitle = new FontAwesome.Sharp.IconPictureBox();
@@ -61,20 +54,29 @@ namespace MobileSolutions.UILayer
             txtPurchasePrice = new MaterialSkin.Controls.MaterialTextBox2();
             txtSalePrice = new MaterialSkin.Controls.MaterialTextBox2();
             panel4 = new Panel();
+            btnReactivate = new MaterialSkin.Controls.MaterialButton();
+            icoBtnReactivate = new FontAwesome.Sharp.IconButton();
             icoBtnUpdate = new FontAwesome.Sharp.IconButton();
             icoBtnClear = new FontAwesome.Sharp.IconButton();
             icoBtnDelete = new FontAwesome.Sharp.IconButton();
             icoBtnSave = new FontAwesome.Sharp.IconButton();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel5 = new Panel();
-            materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
-            materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
+            txtSearch = new MaterialSkin.Controls.MaterialTextBox2();
+            swtActive = new MaterialSkin.Controls.MaterialSwitch();
             btnSearch = new MaterialSkin.Controls.MaterialButton();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel2 = new Panel();
             panel6 = new Panel();
             lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
             btnLogout = new MaterialSkin.Controls.MaterialButton();
+            ColumnBrand = new DataGridViewTextBoxColumn();
+            ColumnCode = new DataGridViewTextBoxColumn();
+            ColumnName = new DataGridViewTextBoxColumn();
+            ColumnStock = new DataGridViewTextBoxColumn();
+            ColumnPurchasePrice = new DataGridViewTextBoxColumn();
+            ColumnSalePrice = new DataGridViewTextBoxColumn();
+            ColumnImage = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dtgProducts).BeginInit();
             materialCardImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picProductImage).BeginInit();
@@ -249,14 +251,14 @@ namespace MobileSolutions.UILayer
             dtgProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProducts.BackgroundColor = Color.MidnightBlue;
             dtgProducts.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProducts.Columns.AddRange(new DataGridViewColumn[] { ColumnBrand, ColumnCode, ColumnName, ColumnStock, ColumnPurchasePrice, ColumnSalePrice, ColumnImage });
             dtgProducts.Dock = DockStyle.Bottom;
@@ -268,48 +270,6 @@ namespace MobileSolutions.UILayer
             dtgProducts.Size = new Size(1674, 317);
             dtgProducts.TabIndex = 33;
             dtgProducts.CellContentClick += dtgProducts_CellContentClick;
-            // 
-            // ColumnBrand
-            // 
-            ColumnBrand.HeaderText = "Marca";
-            ColumnBrand.MinimumWidth = 6;
-            ColumnBrand.Name = "ColumnBrand";
-            // 
-            // ColumnCode
-            // 
-            ColumnCode.HeaderText = "Código";
-            ColumnCode.MinimumWidth = 6;
-            ColumnCode.Name = "ColumnCode";
-            // 
-            // ColumnName
-            // 
-            ColumnName.HeaderText = "Nombre";
-            ColumnName.MinimumWidth = 6;
-            ColumnName.Name = "ColumnName";
-            // 
-            // ColumnStock
-            // 
-            ColumnStock.HeaderText = "Stock";
-            ColumnStock.MinimumWidth = 6;
-            ColumnStock.Name = "ColumnStock";
-            // 
-            // ColumnPurchasePrice
-            // 
-            ColumnPurchasePrice.HeaderText = "P. Compra";
-            ColumnPurchasePrice.MinimumWidth = 6;
-            ColumnPurchasePrice.Name = "ColumnPurchasePrice";
-            // 
-            // ColumnSalePrice
-            // 
-            ColumnSalePrice.HeaderText = "P. Venta";
-            ColumnSalePrice.MinimumWidth = 6;
-            ColumnSalePrice.Name = "ColumnSalePrice";
-            // 
-            // ColumnImage
-            // 
-            ColumnImage.HeaderText = "Imagen";
-            ColumnImage.MinimumWidth = 6;
-            ColumnImage.Name = "ColumnImage";
             // 
             // materialCardImage
             // 
@@ -690,6 +650,8 @@ namespace MobileSolutions.UILayer
             // panel4
             // 
             panel4.Anchor = AnchorStyles.None;
+            panel4.Controls.Add(btnReactivate);
+            panel4.Controls.Add(icoBtnReactivate);
             panel4.Controls.Add(btnDelete);
             panel4.Controls.Add(btnSave);
             panel4.Controls.Add(btnUpdate);
@@ -703,6 +665,52 @@ namespace MobileSolutions.UILayer
             panel4.Name = "panel4";
             panel4.Size = new Size(334, 287);
             panel4.TabIndex = 56;
+            // 
+            // btnReactivate
+            // 
+            btnReactivate.Anchor = AnchorStyles.None;
+            btnReactivate.AutoSize = false;
+            btnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReactivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnReactivate.Depth = 0;
+            btnReactivate.Enabled = false;
+            btnReactivate.HighEmphasis = true;
+            btnReactivate.Icon = null;
+            btnReactivate.Location = new Point(111, 160);
+            btnReactivate.Margin = new Padding(4);
+            btnReactivate.MouseState = MaterialSkin.MouseState.HOVER;
+            btnReactivate.Name = "btnReactivate";
+            btnReactivate.NoAccentTextColor = Color.Empty;
+            btnReactivate.Size = new Size(114, 35);
+            btnReactivate.TabIndex = 59;
+            btnReactivate.Text = "Reactivar";
+            btnReactivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnReactivate.UseAccentColor = false;
+            btnReactivate.UseVisualStyleBackColor = true;
+            btnReactivate.Visible = false;
+            // 
+            // icoBtnReactivate
+            // 
+            icoBtnReactivate.Anchor = AnchorStyles.None;
+            icoBtnReactivate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnReactivate.BackColor = Color.RoyalBlue;
+            icoBtnReactivate.Enabled = false;
+            icoBtnReactivate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnReactivate.ForeColor = SystemColors.Control;
+            icoBtnReactivate.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            icoBtnReactivate.IconColor = Color.White;
+            icoBtnReactivate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icoBtnReactivate.IconSize = 60;
+            icoBtnReactivate.Location = new Point(99, 79);
+            icoBtnReactivate.Margin = new Padding(2, 3, 2, 3);
+            icoBtnReactivate.Name = "icoBtnReactivate";
+            icoBtnReactivate.Size = new Size(137, 128);
+            icoBtnReactivate.TabIndex = 58;
+            icoBtnReactivate.Text = "BUTTON";
+            icoBtnReactivate.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnReactivate.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnReactivate.UseVisualStyleBackColor = false;
+            icoBtnReactivate.Visible = false;
             // 
             // icoBtnUpdate
             // 
@@ -808,8 +816,8 @@ namespace MobileSolutions.UILayer
             // 
             tableLayoutPanel1.SetColumnSpan(panel5, 3);
             panel5.Controls.Add(dtgProducts);
-            panel5.Controls.Add(materialTextBox21);
-            panel5.Controls.Add(materialSwitch1);
+            panel5.Controls.Add(txtSearch);
+            panel5.Controls.Add(swtActive);
             panel5.Controls.Add(btnSearch);
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(3, 438);
@@ -817,55 +825,55 @@ namespace MobileSolutions.UILayer
             panel5.Size = new Size(1674, 389);
             panel5.TabIndex = 57;
             // 
-            // materialTextBox21
+            // txtSearch
             // 
-            materialTextBox21.Anchor = AnchorStyles.Bottom;
-            materialTextBox21.AnimateReadOnly = false;
-            materialTextBox21.BackgroundImageLayout = ImageLayout.None;
-            materialTextBox21.CharacterCasing = CharacterCasing.Normal;
-            materialTextBox21.Depth = 0;
-            materialTextBox21.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox21.HelperText = "Buscar por...";
-            materialTextBox21.HideSelection = true;
-            materialTextBox21.Hint = "Buscar";
-            materialTextBox21.LeadingIcon = null;
-            materialTextBox21.Location = new Point(666, 9);
-            materialTextBox21.Margin = new Padding(3, 2, 3, 2);
-            materialTextBox21.MaxLength = 32767;
-            materialTextBox21.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox21.Name = "materialTextBox21";
-            materialTextBox21.PasswordChar = '\0';
-            materialTextBox21.PrefixSuffixText = null;
-            materialTextBox21.ReadOnly = false;
-            materialTextBox21.RightToLeft = RightToLeft.No;
-            materialTextBox21.SelectedText = "";
-            materialTextBox21.SelectionLength = 0;
-            materialTextBox21.SelectionStart = 0;
-            materialTextBox21.ShortcutsEnabled = true;
-            materialTextBox21.Size = new Size(304, 48);
-            materialTextBox21.TabIndex = 58;
-            materialTextBox21.TabStop = false;
-            materialTextBox21.TextAlign = HorizontalAlignment.Left;
-            materialTextBox21.TrailingIcon = null;
-            materialTextBox21.UseSystemPasswordChar = false;
+            txtSearch.Anchor = AnchorStyles.Bottom;
+            txtSearch.AnimateReadOnly = false;
+            txtSearch.BackgroundImageLayout = ImageLayout.None;
+            txtSearch.CharacterCasing = CharacterCasing.Normal;
+            txtSearch.Depth = 0;
+            txtSearch.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtSearch.HelperText = "Buscar por...";
+            txtSearch.HideSelection = true;
+            txtSearch.Hint = "Buscar";
+            txtSearch.LeadingIcon = null;
+            txtSearch.Location = new Point(666, 9);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
+            txtSearch.MaxLength = 32767;
+            txtSearch.MouseState = MaterialSkin.MouseState.OUT;
+            txtSearch.Name = "txtSearch";
+            txtSearch.PasswordChar = '\0';
+            txtSearch.PrefixSuffixText = null;
+            txtSearch.ReadOnly = false;
+            txtSearch.RightToLeft = RightToLeft.No;
+            txtSearch.SelectedText = "";
+            txtSearch.SelectionLength = 0;
+            txtSearch.SelectionStart = 0;
+            txtSearch.ShortcutsEnabled = true;
+            txtSearch.Size = new Size(304, 48);
+            txtSearch.TabIndex = 58;
+            txtSearch.TabStop = false;
+            txtSearch.TextAlign = HorizontalAlignment.Left;
+            txtSearch.TrailingIcon = null;
+            txtSearch.UseSystemPasswordChar = false;
             // 
-            // materialSwitch1
+            // swtActive
             // 
-            materialSwitch1.Anchor = AnchorStyles.Bottom;
-            materialSwitch1.AutoSize = true;
-            materialSwitch1.Checked = true;
-            materialSwitch1.CheckState = CheckState.Checked;
-            materialSwitch1.Depth = 0;
-            materialSwitch1.Location = new Point(973, 20);
-            materialSwitch1.Margin = new Padding(0);
-            materialSwitch1.MouseLocation = new Point(-1, -1);
-            materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialSwitch1.Name = "materialSwitch1";
-            materialSwitch1.Ripple = true;
-            materialSwitch1.Size = new Size(102, 37);
-            materialSwitch1.TabIndex = 59;
-            materialSwitch1.Text = "Activo";
-            materialSwitch1.UseVisualStyleBackColor = true;
+            swtActive.Anchor = AnchorStyles.Bottom;
+            swtActive.AutoSize = true;
+            swtActive.Checked = true;
+            swtActive.CheckState = CheckState.Checked;
+            swtActive.Depth = 0;
+            swtActive.Location = new Point(973, 20);
+            swtActive.Margin = new Padding(0);
+            swtActive.MouseLocation = new Point(-1, -1);
+            swtActive.MouseState = MaterialSkin.MouseState.HOVER;
+            swtActive.Name = "swtActive";
+            swtActive.Ripple = true;
+            swtActive.Size = new Size(102, 37);
+            swtActive.TabIndex = 59;
+            swtActive.Text = "Activo";
+            swtActive.UseVisualStyleBackColor = true;
             // 
             // btnSearch
             // 
@@ -958,6 +966,62 @@ namespace MobileSolutions.UILayer
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = false;
             // 
+            // ColumnBrand
+            // 
+            ColumnBrand.HeaderText = "Marca";
+            ColumnBrand.MinimumWidth = 6;
+            ColumnBrand.Name = "ColumnBrand";
+            ColumnBrand.Resizable = DataGridViewTriState.True;
+            ColumnBrand.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnCode
+            // 
+            ColumnCode.HeaderText = "Código";
+            ColumnCode.MinimumWidth = 6;
+            ColumnCode.Name = "ColumnCode";
+            ColumnCode.Resizable = DataGridViewTriState.True;
+            ColumnCode.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnName
+            // 
+            ColumnName.HeaderText = "Nombre";
+            ColumnName.MinimumWidth = 6;
+            ColumnName.Name = "ColumnName";
+            ColumnName.Resizable = DataGridViewTriState.True;
+            ColumnName.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnStock
+            // 
+            ColumnStock.HeaderText = "Stock";
+            ColumnStock.MinimumWidth = 6;
+            ColumnStock.Name = "ColumnStock";
+            ColumnStock.Resizable = DataGridViewTriState.True;
+            ColumnStock.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnPurchasePrice
+            // 
+            ColumnPurchasePrice.HeaderText = "P. Compra";
+            ColumnPurchasePrice.MinimumWidth = 6;
+            ColumnPurchasePrice.Name = "ColumnPurchasePrice";
+            ColumnPurchasePrice.Resizable = DataGridViewTriState.True;
+            ColumnPurchasePrice.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnSalePrice
+            // 
+            ColumnSalePrice.HeaderText = "P. Venta";
+            ColumnSalePrice.MinimumWidth = 6;
+            ColumnSalePrice.Name = "ColumnSalePrice";
+            ColumnSalePrice.Resizable = DataGridViewTriState.True;
+            ColumnSalePrice.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnImage
+            // 
+            ColumnImage.HeaderText = "Imagen";
+            ColumnImage.MinimumWidth = 6;
+            ColumnImage.Name = "ColumnImage";
+            ColumnImage.Resizable = DataGridViewTriState.True;
+            ColumnImage.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // ProductView
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -995,13 +1059,6 @@ namespace MobileSolutions.UILayer
         private PictureBox                               picProductImage;
         private FontAwesome.Sharp.IconPictureBox         picProductTitle;
         private MaterialSkin.Controls.MaterialButton     btnImageURL;
-        private DataGridViewLinkColumn ColumnBrand;
-        private DataGridViewLinkColumn ColumnCode;
-        private DataGridViewLinkColumn ColumnName;
-        private DataGridViewLinkColumn ColumnStock;
-        private DataGridViewLinkColumn ColumnPurchasePrice;
-        private DataGridViewLinkColumn ColumnSalePrice;
-        private DataGridViewLinkColumn ColumnImage;
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private MaterialSkin.Controls.MaterialButton btnBrand;
         private MaterialSkin.Controls.MaterialButton btnProductCode;
@@ -1022,14 +1079,22 @@ namespace MobileSolutions.UILayer
         private FontAwesome.Sharp.IconButton icoBtnSave;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel5;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
-        private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
+        private MaterialSkin.Controls.MaterialTextBox2 txtSearch;
+        private MaterialSkin.Controls.MaterialSwitch swtActive;
         private MaterialSkin.Controls.MaterialButton btnSearch;
         private TableLayoutPanel tableLayoutPanel2;
         private Panel panel2;
         private Panel panel6;
         private MaterialSkin.Controls.MaterialButton btnLogout;
         private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
-        private FontAwesome.Sharp.IconButton icoBtnReactive;
+        private FontAwesome.Sharp.IconButton icoBtnReactivate;
+        private MaterialSkin.Controls.MaterialButton btnReactivate;
+        private DataGridViewTextBoxColumn ColumnBrand;
+        private DataGridViewTextBoxColumn ColumnCode;
+        private DataGridViewTextBoxColumn ColumnName;
+        private DataGridViewTextBoxColumn ColumnStock;
+        private DataGridViewTextBoxColumn ColumnPurchasePrice;
+        private DataGridViewTextBoxColumn ColumnSalePrice;
+        private DataGridViewTextBoxColumn ColumnImage;
     }
 }

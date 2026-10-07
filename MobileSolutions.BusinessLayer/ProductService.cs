@@ -26,6 +26,11 @@ namespace MobileSolutions.BusinessLayer
             return _productDal.GetInactiveProducts();
         }
 
+        public List<Brand> GetActiveBrands()
+        {
+            return _productDal.GetActiveBrands();
+        }
+
         public List<Product> SearchProducts(string? searchTerm)
         {
             return SearchProductsByStatus(searchTerm, isInactiveMode: false);

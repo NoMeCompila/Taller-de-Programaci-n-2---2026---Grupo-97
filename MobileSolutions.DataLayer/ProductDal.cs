@@ -363,5 +363,32 @@ namespace MobileSolutions.DataLayer
                 return rowsAffected > 0 || rowsAffected == -1;
             }
         }
+
+        public List<Brand> GetActiveBrands()
+        {
+            var brands = new List<Brand>();
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_GetActiveBrands", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int ordBrandId = GetOrdinalSafe(reader, "brand_id", "BrandId");
+                    int ordName = GetOrdinalSafe(reader, "Nombre", "name", "Name");
+
+                    while (reader.Read())
+                    {
+                        brands.Add(new Brand
+                        {
+                            BrandId = ordBrandId >= 0 && !reader.IsDBNull(ordBrandId) ? reader.GetInt32(ordBrandId) : 0,
+                            Name = ordName >= 0 && !reader.IsDBNull(ordName) ? reader.GetString(ordName) : string.Empty
+                        });
+                    }
+                }
+            }
+            return brands;
+        }
     }
 }
