@@ -55,38 +55,62 @@ La solución resuelve:
 La solución implementa una **Arquitectura en N-Capas (N-Tier Architecture)** con inversión de dependencias y aislamiento de la capa de datos.
 
 ```
-Taller-de-Programacion-2---2026---Grupo-97/
+Taller-de-Programaci-n-2---2026---Grupo-97/
 │
-├── src/
-│   ├── Grupo97.Domain/                  # Capa de Dominio (Núcleo)
-│   │   ├── Entities/                    # Modelos de entidad del negocio
-│   │   ├── Enums/                       # Enumeraciones de estado y rol
-│   │   ├── Exceptions/                  # Excepciones personalizadas de dominio
-│   │   └── Interfaces/                  # Contratos de repositorios y servicios core
-│   │
-│   ├── Grupo97.Application/             # Capa de Aplicación / Servicios
-│   │   ├── DTOs/                        # Data Transfer Objects (Requests & Responses)
-│   │   ├── Services/                    # Implementación de lógica de orquestación
-│   │   ├── Interfaces/                  # Contratos de servicios de aplicación
-│   │   ├── Mappings/                    # Perfiles de mapeo (AutoMapper o manual)
-│   │   └── Validators/                  # Reglas de validación (FluentValidation)
-│   │
-│   ├── Grupo97.Infrastructure/          # Capa de Infraestructura y Persistencia
-│   │   ├── Data/                        # Contexto DB, DbConnection Factory
-│   │   ├── Repositories/                # Implementación de repositorios (ADO.NET / Dapper)
-│   │   ├── ExternalServices/            # Adaptadores externos (Email, Logging, etc.)
-│   │   └── Scripts/                     # Scripts de creación y migración SQL
-│   │
-│   └── Grupo97.UI / Grupo97.Web/        # Capa de Presentación
-│       ├── Controllers/                 # Controladores MVC / API Endpoints
-│       ├── Middleware/                  # Pipeline de manejo de errores, Auth
-│       ├── Views/ o Pages/              # Interfaz gráfica de usuario
-│       ├── appsettings.json             # Variables de entorno y ConnectionStrings
-│       └── Program.cs                   # Bootstrapper e Inyección de Dependencias
+├── .ai/                                  <-- NUEVA CARPETA CENTRAL DE IA
+│   ├── Context.md                        # Contexto técnico, BD, SPs y arquitectura
+│   ├── Skill.md                          # Habilidades, snippets estándar y flujos de trabajo
+│   └── Agent.md                          # Reglas operativas, rol y restricciones del agente
 │
-└── tests/
-    ├── Grupo97.UnitTests/               # Pruebas unitarias de Dominio y Servicios
-    └── Grupo97.IntegrationTests/        # Pruebas de integración con Base de Datos
+├── .github/                              # Flujos CI/CD o PR templates (opcional)
+│   └── workflows/
+│
+├── database/                             # Scripts DDL y Stored Procedures
+│   ├── schema/
+│   │   └── tables.sql
+│   └── sp/
+│       ├── sp_Ventas.sql
+│       ├── sp_Productos.sql
+│       └── sp_Usuarios.sql
+│
+├── docs/                                 # Documentación funcional y académica
+│   ├── diagramas-uml/
+│   └── manual-usuario/
+│
+├── src/                                  # Código fuente (.NET Windows Forms)
+│   ├── MobileSolutions.sln
+│   │
+│   ├── MobileSolutions.UI/               # Capa de Presentación (Forms, UserControls)
+│   │   ├── Forms/
+│   │   ├── Components/
+│   │   ├── Properties/
+│   │   ├── Program.cs
+│   │   └── MobileSolutions.UI.csproj
+│   │
+│   ├── MobileSolutions.BLL/              # Capa de Lógica de Negocio (Servicios y Validaciones)
+│   │   ├── Services/
+│   │   ├── Validators/
+│   │   └── MobileSolutions.BLL.csproj
+│   │
+│   ├── MobileSolutions.DAL/              # Capa de Acceso a Datos (AdoNet, Repositorios)
+│   │   ├── Contracts/
+│   │   ├── Repositories/
+│   │   ├── Connection/
+│   │   └── MobileSolutions.DAL.csproj
+│   │
+│   └── MobileSolutions.Entities/         # Entidades, DTOs y Enums transversales
+│       ├── Models/
+│       ├── DTOs/
+│       ├── Enums/
+│       └── MobileSolutions.Entities.csproj
+│
+├── tests/                                # Pruebas unitarias y de integración
+│   ├── MobileSolutions.BLL.Tests/
+│   └── MobileSolutions.DAL.Tests/
+│
+├── .gitignore
+├── README.md
+└── LICENSE
 ```
 
 ### 4.1. Patrones de Diseño Implementados
