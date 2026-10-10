@@ -114,26 +114,40 @@ namespace MobileSolutions.UILayer
 
             List<TabPage> allowedTabs;
 
+            bool isVendedor = profileName == "vendedor" || profileName == "seller" ||
+                              normalizedUser == "vendedor" || normalizedUser == "nico" ||
+                              (profileId == 2 && profileName != "gerente" && profileName != "manager") ||
+                              (profileId == 3 && profileName == "vendedor");
+
+            bool isGerente = profileName == "gerente" || profileName == "manager" ||
+                             normalizedUser == "gerente" || normalizedUser == "fer" || normalizedUser == "fcaballe" ||
+                             (profileId == 3 && profileName != "vendedor" && profileName != "seller") ||
+                             (profileId == 2 && profileName == "gerente");
+
+            bool isAdmin = profileName == "administrador" || profileName == "administrator" ||
+                           profileName == "admin" || normalizedUser == "admin" ||
+                           (profileId == 1 && !isVendedor && !isGerente);
+
             // Role-based access control based on DB profile (with fallback to username)
-            if (profileId == 1 || profileName == "administrador" || profileName == "administrator" || normalizedUser == "admin")
+            if (isAdmin)
             {
-                // Administrator: Only 4 tabs visible (Customer, Product and Sale removed)
+                // Administrator
                 allowedTabs = _originalTabPages
                     .Where(tab => tab != tabPage3 && tab != tabPage4 && tab != tabPage6)
                     .ToList();
             }
-            else if (profileId == 2 || profileName == "gerente" || profileName == "manager" || normalizedUser == "gerente")
+            else if (isGerente)
             {
-                // Gerente: Only 5 tabs visible (Users and Sale removed)
+                // Gerente
                 allowedTabs = _originalTabPages
-                    .Where(tab => tab != tabPage2 && tab != tabPage6)
+                    .Where(tab => tab != tabPage2 && tab != tabPage4)
                     .ToList();
             }
-            else if (profileId == 3 || profileName == "vendedor" || profileName == "Seller" || normalizedUser == "vendedor")
+            else if (isVendedor)
             {
-                // Vendedor: Only 5 tabs (Users and Productos removed)
+                // Vendedor: Access to Sales (tabPage6), Customers (tabPage3), Sales History (tabPage7), and Reports (tabPage8)
                 allowedTabs = _originalTabPages
-                   .Where(tab => tab != tabPage2 && tab != tabPage4)
+                   .Where(tab => tab != tabPage2)
                    .ToList();
             }
             else

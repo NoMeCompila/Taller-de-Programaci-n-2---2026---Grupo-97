@@ -335,6 +335,7 @@ namespace MobileSolutions.UILayer
             btnCustomer.Type = MaterialButton.MaterialButtonType.Contained;
             btnCustomer.UseAccentColor = false;
             btnCustomer.UseVisualStyleBackColor = true;
+            btnCustomer.Click += btnCustomer_Click;
             // 
             // txtSeller
             // 

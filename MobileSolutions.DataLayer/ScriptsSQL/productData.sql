@@ -21,6 +21,15 @@ GO
 
 SET NOCOUNT ON;
 
+
+SET IDENTITY_INSERT Brand OFF; -- Si querés dejar que el IDENTITY arranque de 1
+
+INSERT INTO Brand (name, status) VALUES 
+('Motorola', 1),
+('Iphone', 1),
+('Samsung', 1),
+('Huawei', 1);
+
 -- ==============================================================================
 -- Chequeo previo: ¿hay productos cargados en la base?
 -- ==============================================================================
