@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using MaterialSkin.Controls;
+using MobileSolutions.BusinessLayer;
 using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
@@ -21,27 +22,70 @@ namespace MobileSolutions.UILayer
             InitializeComponent();
 
             ConfigurarIconos();
-            CargarTiposDePago();
             CargarClientesMock();
             ConfigurarEventosYValidaciones();
-            CargarClientes();
+            lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            CargarDatosUsuarioActual();
+            //CargarClientes();
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (Visible)
+            {
+                CargarDatosUsuarioActual();
+            }
+        }
+
+        public void SetVendedor(string username)
+        {
+            CargarDatosUsuarioActual();
+        }
+
+        public void CargarDatosUsuarioActual()
+        {
+            string username = SesionActual.Username;
+            string nombre = SesionActual.Name;
+            string apellido = SesionActual.Lastname;
+            string dni = SesionActual.Dni;
+
+            // Fallback: si por alguna razón no se precargaron en SesionActual pero tenemos el username
+            if ((string.IsNullOrWhiteSpace(apellido) || string.IsNullOrWhiteSpace(dni)) && !string.IsNullOrWhiteSpace(username))
+            {
+                try
+                {
+                    var userService = new UserService();
+                    var user = userService.GetUserByUsername(username);
+                    if (user != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(nombre)) nombre = user.Name;
+                        if (string.IsNullOrWhiteSpace(apellido)) apellido = user.Lastname;
+                        if (string.IsNullOrWhiteSpace(dni)) dni = user.Dni;
+                    }
+                }
+                catch
+                {
+                    // Fallback silencioso para no interrumpir el flujo visual
+                }
+            }
+
+            string nombreCompleto = $"{nombre} {apellido}".Trim();
+            lblNomyApeValue.Text = string.IsNullOrWhiteSpace(nombreCompleto) ? "-" : nombreCompleto;
+            lblUserValue.Text = string.IsNullOrWhiteSpace(username) ? "-" : username;
+            lblDniValue.Text = string.IsNullOrWhiteSpace(dni) ? "-" : dni;
         }
 
         private void ConfigurarIconos()
         {
-            btnAddDetail.Icon = IconChar.CartPlus.ToBitmap(Color.White);
-            btnTotalSale.Icon = IconChar.Coins.ToBitmap(Color.White);
-            btnConfirmSale.Icon = IconChar.CircleCheck.ToBitmap(Color.White);
-            btnCancelSale.Icon = IconChar.Trash.ToBitmap(Color.White);
-            btnInvoice.Icon = IconChar.FileInvoiceDollar.ToBitmap(Color.White);
 
-            btnCustomer.Icon = IconChar.UserTag.ToBitmap(Color.White);
-            btnSaleNumber.Icon = IconChar.Barcode.ToBitmap(Color.White);
-            btnPaymentType.Icon = IconChar.MoneyCheckDollar.ToBitmap(Color.White);
-            btnQuantity.Icon = IconChar.LayerGroup.ToBitmap(Color.White);
-            btnUnitaryPrice.Icon = IconChar.DollarSign.ToBitmap(Color.White);
-            btnProductCode.Icon = IconChar.Barcode.ToBitmap(Color.White);
-            btnSeller.Icon = IconChar.UserEdit.ToBitmap(Color.White);
+
+            icoBtnSell.IconChar = IconChar.DollarSign;
+            icoBtnCancel.IconChar = IconChar.Cancel;
+            icoBtnPrint.IconChar = IconChar.Print;
+            btnAddProd.Icon = IconChar.CartPlus.ToBitmap(Color.White);
+            btnAddUser.Icon = IconChar.UserPlus.ToBitmap(Color.White);
+            btnProduct.Icon = IconChar.MobileScreenButton.ToBitmap(Color.White);
 
             picSaleTitle.IconChar = IconChar.Shopify;
             picSaleTitle.IconColor = Color.White;
@@ -49,16 +93,9 @@ namespace MobileSolutions.UILayer
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
 
-            txtSeller.TabStop = false;
-            txtSeller.Enter += (s, e) => this.ActiveControl = null;
         }
 
-        private void CargarTiposDePago()
-        {
-            cmbPaymentType.Items.Clear();
-            cmbPaymentType.Items.AddRange(new object[] { "Efectivo", "Tarjeta Débito", "Tarjeta Crédito", "Transferencia" });
-            cmbPaymentType.SelectedIndex = 0;
-        }
+
 
         private void CargarClientesMock()
         {
@@ -74,46 +111,21 @@ namespace MobileSolutions.UILayer
 
         private void ConfigurarEventosYValidaciones()
         {
-            txtCustomer.TextChanged += txtCustomer_TextChanged;
-            btnInvoice.Click += btnInvoice_Click;
+            txtProducto.TextChanged += txtCustomer_TextChanged;
 
-            txtQuantity.KeyPress += SoloNumeros_KeyPress;
-            txtUnitaryPrice.KeyPress += Precio_KeyPress;
-            txtSaleNumber.KeyPress += SoloAlfanumerico_KeyPress;
-            txtProductCode.KeyPress += SoloAlfanumerico_KeyPress;
-            txtCustomer.KeyPress += Cliente_KeyPress;
+
+            txtSearchClient.KeyPress += SoloAlfanumerico_KeyPress;
+            txtProducto.KeyPress += Cliente_KeyPress;
         }
 
-        public void SetVendedor(string vendedor)
-        {
-            txtSeller.Text = string.IsNullOrWhiteSpace(vendedor) ? "S/N" : vendedor.Trim();
-        }
+
 
         private void txtCustomer_TextChanged(object? sender, EventArgs e)
         {
-            CargarClientes(txtCustomer.Text.Trim());
+            //CargarClientes(txtCustomer.Text.Trim());
         }
 
-        private void CargarClientes(string? filtro = null)
-        {
-            dgvCustomerInfo.Rows.Clear();
 
-            IEnumerable<ClienteInfo> clientes = _clientesMock;
-
-            if (!string.IsNullOrEmpty(filtro))
-            {
-                clientes = clientes.Where(c =>
-                    c.Dni.Contains(filtro, StringComparison.OrdinalIgnoreCase) ||
-                    c.Nombre.Contains(filtro, StringComparison.OrdinalIgnoreCase) ||
-                    c.Apellido.Contains(filtro, StringComparison.OrdinalIgnoreCase) ||
-                    c.Email.Contains(filtro, StringComparison.OrdinalIgnoreCase));
-            }
-
-            foreach (var cliente in clientes)
-            {
-                dgvCustomerInfo.Rows.Add(cliente.Dni, cliente.Nombre, cliente.Apellido, cliente.Email, cliente.Telefono, cliente.Localidad);
-            }
-        }
 
         private void btnInvoice_Click(object? sender, EventArgs e)
         {
@@ -192,6 +204,16 @@ namespace MobileSolutions.UILayer
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlpInputsProducto_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tlpLeft_Paint(object sender, PaintEventArgs e)
         {
 
         }

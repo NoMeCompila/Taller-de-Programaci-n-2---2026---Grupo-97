@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -15,55 +15,71 @@ namespace MobileSolutions.UILayer
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             picSaleTitle = new IconPictureBox();
             lblProductTitle = new MaterialLabel();
             tlpMain = new TableLayoutPanel();
             tlpLeft = new TableLayoutPanel();
-            pnlHeader = new Panel();
-            tlpInputsVenta = new TableLayoutPanel();
-            txtSaleNumber = new MaterialTextBox2();
-            btnSaleNumber = new MaterialButton();
-            cmbPaymentType = new MaterialComboBox();
-            btnPaymentType = new MaterialButton();
-            txtCustomer = new MaterialTextBox2();
-            btnCustomer = new MaterialButton();
-            txtSeller = new MaterialTextBox2();
-            btnSeller = new MaterialButton();
-            dgvCustomerInfo = new DataGridView();
-            colDni = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colApellido = new DataGridViewTextBoxColumn();
-            colEmail = new DataGridViewTextBoxColumn();
-            colTelefono = new DataGridViewTextBoxColumn();
-            colLocalidad = new DataGridViewTextBoxColumn();
             pnlProducto = new Panel();
+            dtgCustomers = new DataGridView();
+            ColumnName = new DataGridViewTextBoxColumn();
+            ColumnLastname = new DataGridViewTextBoxColumn();
+            ColumnDNI = new DataGridViewTextBoxColumn();
+            ColumnPhone = new DataGridViewTextBoxColumn();
             tlpInputsProducto = new TableLayoutPanel();
-            btnAddDetail = new MaterialButton();
-            txtUnitaryPrice = new MaterialTextBox2();
-            btnUnitaryPrice = new MaterialButton();
-            txtQuantity = new MaterialTextBox2();
-            btnQuantity = new MaterialButton();
-            txtProductCode = new MaterialTextBox2();
-            btnProductCode = new MaterialButton();
-            dgvSaleDetails = new DataGridView();
-            colCodigoProducto = new DataGridViewTextBoxColumn();
-            colProducto = new DataGridViewTextBoxColumn();
-            colCantidad = new DataGridViewTextBoxColumn();
-            colPrecioUnitario = new DataGridViewTextBoxColumn();
-            colTotalProducto = new DataGridViewTextBoxColumn();
+            txtDni = new MaterialTextBox2();
+            txtLastname = new MaterialTextBox2();
+            txtName = new MaterialTextBox2();
+            txtSearchClient = new MaterialTextBox2();
+            btnAddUser = new MaterialButton();
+            materialLabel1 = new MaterialLabel();
+            txtTel = new MaterialTextBox2();
+            pnlHeader = new Panel();
+            dtgProducts = new DataGridView();
+            ColumnCode = new DataGridViewTextBoxColumn();
+            ColumnBrand = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            ColumnStock = new DataGridViewTextBoxColumn();
+            ColumnPurchasePrice = new DataGridViewTextBoxColumn();
+            ColumnSalePrice = new DataGridViewTextBoxColumn();
+            tlpInputsVenta = new TableLayoutPanel();
+            btnAddProd = new MaterialButton();
+            txtSubTotal = new MaterialTextBox2();
+            txtStock = new MaterialTextBox2();
+            txtPName = new MaterialTextBox2();
+            txtMarca = new MaterialTextBox2();
+            txtProducto = new MaterialTextBox2();
+            btnProduct = new MaterialButton();
+            txtPVenta = new MaterialTextBox2();
+            txtQtty = new MaterialTextBox2();
+            lblCart = new MaterialLabel();
+            dataGridView1 = new DataGridView();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            SubTotal = new DataGridViewTextBoxColumn();
+            Remove = new DataGridViewButtonColumn();
             pnlResumen = new Panel();
-            tlpResumen = new TableLayoutPanel();
-            lblResumenTitle = new MaterialLabel();
-            lblCantidadItems = new MaterialLabel();
-            lblSubtotal = new MaterialLabel();
-            lblTotalSale = new MaterialLabel();
-            btnTotalSale = new MaterialButton();
-            btnConfirmSale = new MaterialButton();
-            btnCancelSale = new MaterialButton();
-            btnInvoice = new MaterialButton();
+            lblDniValue = new MaterialLabel();
+            lblDni = new MaterialLabel();
+            lblUserValue = new MaterialLabel();
+            lblUser = new MaterialLabel();
+            lblNomyApeValue = new MaterialLabel();
+            lblNomYApe = new MaterialLabel();
+            lblToday = new MaterialLabel();
+            lblDate = new MaterialLabel();
+            btnPrint = new MaterialButton();
+            icoBtnPrint = new IconButton();
+            btnCancel = new MaterialButton();
+            icoBtnCancel = new IconButton();
+            btnSell = new MaterialButton();
+            icoBtnSell = new IconButton();
+            radTrans = new MaterialRadioButton();
+            radEfectivo = new MaterialRadioButton();
+            lblPayType = new MaterialLabel();
+            lblTot = new MaterialLabel();
+            lblResume = new MaterialLabel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -72,14 +88,14 @@ namespace MobileSolutions.UILayer
             ((ISupportInitialize)picSaleTitle).BeginInit();
             tlpMain.SuspendLayout();
             tlpLeft.SuspendLayout();
-            pnlHeader.SuspendLayout();
-            tlpInputsVenta.SuspendLayout();
-            ((ISupportInitialize)dgvCustomerInfo).BeginInit();
             pnlProducto.SuspendLayout();
+            ((ISupportInitialize)dtgCustomers).BeginInit();
             tlpInputsProducto.SuspendLayout();
-            ((ISupportInitialize)dgvSaleDetails).BeginInit();
+            pnlHeader.SuspendLayout();
+            ((ISupportInitialize)dtgProducts).BeginInit();
+            tlpInputsVenta.SuspendLayout();
+            ((ISupportInitialize)dataGridView1).BeginInit();
             pnlResumen.SuspendLayout();
-            tlpResumen.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -138,639 +154,785 @@ namespace MobileSolutions.UILayer
             tlpLeft.BackColor = Color.FromArgb(50, 50, 50);
             tlpLeft.ColumnCount = 1;
             tlpLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpLeft.Controls.Add(pnlHeader, 0, 0);
-            tlpLeft.Controls.Add(pnlProducto, 0, 1);
-            tlpLeft.Dock = DockStyle.Fill;
+            tlpLeft.Controls.Add(pnlProducto, 0, 0);
+            tlpLeft.Controls.Add(pnlHeader, 0, 1);
+            tlpLeft.Controls.Add(lblCart, 0, 2);
+            tlpLeft.Controls.Add(dataGridView1, 0, 3);
             tlpLeft.Location = new Point(19, 11);
             tlpLeft.Name = "tlpLeft";
-            tlpLeft.RowCount = 2;
-            tlpLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 38F));
-            tlpLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 62F));
+            tlpLeft.RowCount = 4;
+            tlpLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 42.0107727F));
+            tlpLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 57.9892273F));
+            tlpLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 57F));
+            tlpLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 161F));
+            tlpLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpLeft.Size = new Size(1180, 776);
             tlpLeft.TabIndex = 0;
+            tlpLeft.Paint += tlpLeft_Paint;
+            // 
+            // pnlProducto
+            // 
+            pnlProducto.Anchor = AnchorStyles.Top;
+            pnlProducto.BackColor = Color.FromArgb(50, 50, 50);
+            pnlProducto.Controls.Add(dtgCustomers);
+            pnlProducto.Controls.Add(tlpInputsProducto);
+            pnlProducto.Location = new Point(3, 3);
+            pnlProducto.Name = "pnlProducto";
+            pnlProducto.Padding = new Padding(8, 8, 8, 6);
+            pnlProducto.Size = new Size(1174, 211);
+            pnlProducto.TabIndex = 1;
+            // 
+            // dtgCustomers
+            // 
+            dtgCustomers.AllowUserToOrderColumns = true;
+            dtgCustomers.Anchor = AnchorStyles.Top;
+            dtgCustomers.BackgroundColor = Color.MidnightBlue;
+            dtgCustomers.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dtgCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgCustomers.Columns.AddRange(new DataGridViewColumn[] { ColumnName, ColumnLastname, ColumnDNI, ColumnPhone });
+            dtgCustomers.GridColor = SystemColors.InactiveCaptionText;
+            dtgCustomers.Location = new Point(5, 77);
+            dtgCustomers.Margin = new Padding(3, 2, 3, 2);
+            dtgCustomers.Name = "dtgCustomers";
+            dtgCustomers.RowHeadersWidth = 51;
+            dtgCustomers.Size = new Size(1158, 152);
+            dtgCustomers.TabIndex = 34;
+            // 
+            // ColumnName
+            // 
+            ColumnName.HeaderText = "Nombre";
+            ColumnName.MinimumWidth = 6;
+            ColumnName.Name = "ColumnName";
+            ColumnName.Resizable = DataGridViewTriState.True;
+            ColumnName.SortMode = DataGridViewColumnSortMode.NotSortable;
+            ColumnName.Width = 277;
+            // 
+            // ColumnLastname
+            // 
+            ColumnLastname.HeaderText = "Apellido";
+            ColumnLastname.MinimumWidth = 6;
+            ColumnLastname.Name = "ColumnLastname";
+            ColumnLastname.Resizable = DataGridViewTriState.True;
+            ColumnLastname.SortMode = DataGridViewColumnSortMode.NotSortable;
+            ColumnLastname.Width = 277;
+            // 
+            // ColumnDNI
+            // 
+            ColumnDNI.HeaderText = "DNI";
+            ColumnDNI.MinimumWidth = 6;
+            ColumnDNI.Name = "ColumnDNI";
+            ColumnDNI.Resizable = DataGridViewTriState.True;
+            ColumnDNI.SortMode = DataGridViewColumnSortMode.NotSortable;
+            ColumnDNI.Width = 276;
+            // 
+            // ColumnPhone
+            // 
+            ColumnPhone.HeaderText = "TelÃ©fono";
+            ColumnPhone.MinimumWidth = 6;
+            ColumnPhone.Name = "ColumnPhone";
+            ColumnPhone.Resizable = DataGridViewTriState.True;
+            ColumnPhone.SortMode = DataGridViewColumnSortMode.NotSortable;
+            ColumnPhone.Width = 277;
+            // 
+            // tlpInputsProducto
+            // 
+            tlpInputsProducto.BackColor = Color.FromArgb(50, 50, 50);
+            tlpInputsProducto.ColumnCount = 6;
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 191F));
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 198F));
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 192F));
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 240F));
+            tlpInputsProducto.Controls.Add(txtDni, 4, 0);
+            tlpInputsProducto.Controls.Add(txtLastname, 3, 0);
+            tlpInputsProducto.Controls.Add(txtName, 2, 0);
+            tlpInputsProducto.Controls.Add(txtSearchClient, 1, 0);
+            tlpInputsProducto.Controls.Add(btnAddUser, 0, 0);
+            tlpInputsProducto.Controls.Add(materialLabel1, 0, 1);
+            tlpInputsProducto.Controls.Add(txtTel, 5, 0);
+            tlpInputsProducto.Dock = DockStyle.Top;
+            tlpInputsProducto.Location = new Point(8, 8);
+            tlpInputsProducto.Name = "tlpInputsProducto";
+            tlpInputsProducto.RowCount = 2;
+            tlpInputsProducto.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
+            tlpInputsProducto.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpInputsProducto.Size = new Size(1158, 64);
+            tlpInputsProducto.TabIndex = 0;
+            tlpInputsProducto.Paint += tlpInputsProducto_Paint;
+            // 
+            // txtDni
+            // 
+            txtDni.AnimateReadOnly = false;
+            txtDni.BackgroundImageLayout = ImageLayout.None;
+            txtDni.CharacterCasing = CharacterCasing.Normal;
+            txtDni.Depth = 0;
+            txtDni.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtDni.HideSelection = true;
+            txtDni.Hint = "DNI";
+            txtDni.LeadingIcon = null;
+            txtDni.Location = new Point(730, 10);
+            txtDni.Margin = new Padding(4, 10, 4, 5);
+            txtDni.MaxLength = 100;
+            txtDni.MouseState = MaterialSkin.MouseState.OUT;
+            txtDni.Name = "txtDni";
+            txtDni.PasswordChar = '\0';
+            txtDni.PrefixSuffixText = null;
+            txtDni.ReadOnly = false;
+            txtDni.RightToLeft = RightToLeft.No;
+            txtDni.SelectedText = "";
+            txtDni.SelectionLength = 0;
+            txtDni.SelectionStart = 0;
+            txtDni.ShortcutsEnabled = true;
+            txtDni.Size = new Size(182, 48);
+            txtDni.TabIndex = 10;
+            txtDni.TabStop = false;
+            txtDni.TextAlign = HorizontalAlignment.Left;
+            txtDni.TrailingIcon = null;
+            txtDni.UseSystemPasswordChar = false;
+            // 
+            // txtLastname
+            // 
+            txtLastname.AnimateReadOnly = false;
+            txtLastname.BackgroundImageLayout = ImageLayout.None;
+            txtLastname.CharacterCasing = CharacterCasing.Normal;
+            txtLastname.Depth = 0;
+            txtLastname.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtLastname.HideSelection = true;
+            txtLastname.Hint = "Apellido";
+            txtLastname.LeadingIcon = null;
+            txtLastname.Location = new Point(532, 10);
+            txtLastname.Margin = new Padding(4, 10, 4, 5);
+            txtLastname.MaxLength = 100;
+            txtLastname.MouseState = MaterialSkin.MouseState.OUT;
+            txtLastname.Name = "txtLastname";
+            txtLastname.PasswordChar = '\0';
+            txtLastname.PrefixSuffixText = null;
+            txtLastname.ReadOnly = false;
+            txtLastname.RightToLeft = RightToLeft.No;
+            txtLastname.SelectedText = "";
+            txtLastname.SelectionLength = 0;
+            txtLastname.SelectionStart = 0;
+            txtLastname.ShortcutsEnabled = true;
+            txtLastname.Size = new Size(189, 48);
+            txtLastname.TabIndex = 9;
+            txtLastname.TabStop = false;
+            txtLastname.TextAlign = HorizontalAlignment.Left;
+            txtLastname.TrailingIcon = null;
+            txtLastname.UseSystemPasswordChar = false;
+            // 
+            // txtName
+            // 
+            txtName.AnimateReadOnly = false;
+            txtName.BackgroundImageLayout = ImageLayout.None;
+            txtName.CharacterCasing = CharacterCasing.Normal;
+            txtName.Depth = 0;
+            txtName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtName.HideSelection = true;
+            txtName.Hint = "Nombre";
+            txtName.LeadingIcon = null;
+            txtName.Location = new Point(341, 10);
+            txtName.Margin = new Padding(4, 10, 4, 5);
+            txtName.MaxLength = 100;
+            txtName.MouseState = MaterialSkin.MouseState.OUT;
+            txtName.Name = "txtName";
+            txtName.PasswordChar = '\0';
+            txtName.PrefixSuffixText = null;
+            txtName.ReadOnly = false;
+            txtName.RightToLeft = RightToLeft.No;
+            txtName.SelectedText = "";
+            txtName.SelectionLength = 0;
+            txtName.SelectionStart = 0;
+            txtName.ShortcutsEnabled = true;
+            txtName.Size = new Size(183, 48);
+            txtName.TabIndex = 8;
+            txtName.TabStop = false;
+            txtName.TextAlign = HorizontalAlignment.Left;
+            txtName.TrailingIcon = null;
+            txtName.UseSystemPasswordChar = false;
+            // 
+            // txtSearchClient
+            // 
+            txtSearchClient.AnimateReadOnly = false;
+            txtSearchClient.BackgroundImageLayout = ImageLayout.None;
+            txtSearchClient.CharacterCasing = CharacterCasing.Normal;
+            txtSearchClient.Depth = 0;
+            txtSearchClient.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtSearchClient.HideSelection = true;
+            txtSearchClient.Hint = "Buscar Cliente";
+            txtSearchClient.LeadingIcon = null;
+            txtSearchClient.Location = new Point(55, 10);
+            txtSearchClient.Margin = new Padding(4, 10, 4, 5);
+            txtSearchClient.MaxLength = 100;
+            txtSearchClient.MouseState = MaterialSkin.MouseState.OUT;
+            txtSearchClient.Name = "txtSearchClient";
+            txtSearchClient.PasswordChar = '\0';
+            txtSearchClient.PrefixSuffixText = null;
+            txtSearchClient.ReadOnly = false;
+            txtSearchClient.RightToLeft = RightToLeft.No;
+            txtSearchClient.SelectedText = "";
+            txtSearchClient.SelectionLength = 0;
+            txtSearchClient.SelectionStart = 0;
+            txtSearchClient.ShortcutsEnabled = true;
+            txtSearchClient.Size = new Size(230, 48);
+            txtSearchClient.TabIndex = 1;
+            txtSearchClient.TabStop = false;
+            txtSearchClient.TextAlign = HorizontalAlignment.Left;
+            txtSearchClient.TrailingIcon = null;
+            txtSearchClient.UseSystemPasswordChar = false;
+            // 
+            // btnAddUser
+            // 
+            btnAddUser.AutoSize = false;
+            btnAddUser.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAddUser.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnAddUser.Depth = 0;
+            btnAddUser.Dock = DockStyle.Fill;
+            btnAddUser.HighEmphasis = true;
+            btnAddUser.Icon = null;
+            btnAddUser.Location = new Point(4, 6);
+            btnAddUser.Margin = new Padding(4, 6, 4, 6);
+            btnAddUser.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAddUser.Name = "btnAddUser";
+            btnAddUser.NoAccentTextColor = Color.Empty;
+            btnAddUser.Size = new Size(43, 52);
+            btnAddUser.TabIndex = 6;
+            btnAddUser.Type = MaterialButton.MaterialButtonType.Contained;
+            btnAddUser.UseAccentColor = false;
+            btnAddUser.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(3, 64);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(45, 19);
+            materialLabel1.TabIndex = 7;
+            materialLabel1.Text = "materialLabel1";
+            // 
+            // txtTel
+            // 
+            txtTel.AnimateReadOnly = false;
+            txtTel.BackgroundImageLayout = ImageLayout.None;
+            txtTel.CharacterCasing = CharacterCasing.Normal;
+            txtTel.Depth = 0;
+            txtTel.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtTel.HideSelection = true;
+            txtTel.Hint = "TelÃ©fono";
+            txtTel.LeadingIcon = null;
+            txtTel.Location = new Point(922, 10);
+            txtTel.Margin = new Padding(4, 10, 4, 5);
+            txtTel.MaxLength = 100;
+            txtTel.MouseState = MaterialSkin.MouseState.OUT;
+            txtTel.Name = "txtTel";
+            txtTel.PasswordChar = '\0';
+            txtTel.PrefixSuffixText = null;
+            txtTel.ReadOnly = false;
+            txtTel.RightToLeft = RightToLeft.No;
+            txtTel.SelectedText = "";
+            txtTel.SelectionLength = 0;
+            txtTel.SelectionStart = 0;
+            txtTel.ShortcutsEnabled = true;
+            txtTel.Size = new Size(189, 48);
+            txtTel.TabIndex = 11;
+            txtTel.TabStop = false;
+            txtTel.TextAlign = HorizontalAlignment.Left;
+            txtTel.TrailingIcon = null;
+            txtTel.UseSystemPasswordChar = false;
             // 
             // pnlHeader
             // 
+            pnlHeader.Anchor = AnchorStyles.Top;
             pnlHeader.BackColor = Color.FromArgb(50, 50, 50);
+            pnlHeader.Controls.Add(dtgProducts);
             pnlHeader.Controls.Add(tlpInputsVenta);
-            pnlHeader.Controls.Add(dgvCustomerInfo);
-            pnlHeader.Dock = DockStyle.Fill;
-            pnlHeader.Location = new Point(3, 3);
+            pnlHeader.Location = new Point(3, 237);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Padding = new Padding(8, 8, 8, 6);
-            pnlHeader.Size = new Size(1174, 288);
+            pnlHeader.Size = new Size(1174, 298);
             pnlHeader.TabIndex = 0;
+            // 
+            // dtgProducts
+            // 
+            dtgProducts.AllowUserToOrderColumns = true;
+            dtgProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgProducts.BackgroundColor = Color.MidnightBlue;
+            dtgProducts.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dtgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgProducts.Columns.AddRange(new DataGridViewColumn[] { ColumnCode, ColumnBrand, dataGridViewTextBoxColumn1, ColumnStock, ColumnPurchasePrice, ColumnSalePrice });
+            dtgProducts.Dock = DockStyle.Bottom;
+            dtgProducts.GridColor = SystemColors.InactiveCaptionText;
+            dtgProducts.Location = new Point(8, 79);
+            dtgProducts.Margin = new Padding(3, 2, 3, 2);
+            dtgProducts.Name = "dtgProducts";
+            dtgProducts.RowHeadersWidth = 51;
+            dtgProducts.Size = new Size(1158, 213);
+            dtgProducts.TabIndex = 34;
+            // 
+            // ColumnCode
+            // 
+            ColumnCode.HeaderText = "CÃ³digo";
+            ColumnCode.MinimumWidth = 6;
+            ColumnCode.Name = "ColumnCode";
+            ColumnCode.Resizable = DataGridViewTriState.True;
+            ColumnCode.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnBrand
+            // 
+            ColumnBrand.HeaderText = "Marca";
+            ColumnBrand.MinimumWidth = 6;
+            ColumnBrand.Name = "ColumnBrand";
+            ColumnBrand.Resizable = DataGridViewTriState.True;
+            ColumnBrand.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Resizable = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn1.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnStock
+            // 
+            ColumnStock.HeaderText = "Stock";
+            ColumnStock.MinimumWidth = 6;
+            ColumnStock.Name = "ColumnStock";
+            ColumnStock.Resizable = DataGridViewTriState.True;
+            ColumnStock.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnPurchasePrice
+            // 
+            ColumnPurchasePrice.HeaderText = "P. Compra";
+            ColumnPurchasePrice.MinimumWidth = 6;
+            ColumnPurchasePrice.Name = "ColumnPurchasePrice";
+            ColumnPurchasePrice.Resizable = DataGridViewTriState.True;
+            ColumnPurchasePrice.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnSalePrice
+            // 
+            ColumnSalePrice.HeaderText = "P. Venta";
+            ColumnSalePrice.MinimumWidth = 6;
+            ColumnSalePrice.Name = "ColumnSalePrice";
+            ColumnSalePrice.Resizable = DataGridViewTriState.True;
+            ColumnSalePrice.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // tlpInputsVenta
             // 
             tlpInputsVenta.BackColor = Color.FromArgb(50, 50, 50);
-            tlpInputsVenta.ColumnCount = 8;
+            tlpInputsVenta.ColumnCount = 9;
             tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
             tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 115F));
             tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 87F));
             tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 131F));
             tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpInputsVenta.Controls.Add(txtSaleNumber, 5, 0);
-            tlpInputsVenta.Controls.Add(btnSaleNumber, 4, 0);
-            tlpInputsVenta.Controls.Add(cmbPaymentType, 3, 0);
-            tlpInputsVenta.Controls.Add(btnPaymentType, 2, 0);
-            tlpInputsVenta.Controls.Add(txtCustomer, 1, 0);
-            tlpInputsVenta.Controls.Add(btnCustomer, 0, 0);
-            tlpInputsVenta.Controls.Add(txtSeller, 7, 0);
-            tlpInputsVenta.Controls.Add(btnSeller, 6, 0);
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 139F));
+            tlpInputsVenta.Controls.Add(btnAddProd, 8, 0);
+            tlpInputsVenta.Controls.Add(txtSubTotal, 7, 0);
+            tlpInputsVenta.Controls.Add(txtStock, 4, 0);
+            tlpInputsVenta.Controls.Add(txtPName, 3, 0);
+            tlpInputsVenta.Controls.Add(txtMarca, 2, 0);
+            tlpInputsVenta.Controls.Add(txtProducto, 1, 0);
+            tlpInputsVenta.Controls.Add(btnProduct, 0, 0);
+            tlpInputsVenta.Controls.Add(txtPVenta, 5, 0);
+            tlpInputsVenta.Controls.Add(txtQtty, 6, 0);
             tlpInputsVenta.Dock = DockStyle.Top;
             tlpInputsVenta.Location = new Point(8, 8);
             tlpInputsVenta.Name = "tlpInputsVenta";
             tlpInputsVenta.RowCount = 1;
             tlpInputsVenta.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
-            tlpInputsVenta.Size = new Size(1158, 64);
+            tlpInputsVenta.Size = new Size(1158, 60);
             tlpInputsVenta.TabIndex = 0;
             // 
-            // txtSaleNumber
+            // btnAddProd
             // 
-            txtSaleNumber.AnimateReadOnly = false;
-            txtSaleNumber.BackgroundImageLayout = ImageLayout.None;
-            txtSaleNumber.CharacterCasing = CharacterCasing.Normal;
-            txtSaleNumber.Depth = 0;
-            txtSaleNumber.Dock = DockStyle.Fill;
-            txtSaleNumber.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtSaleNumber.HideSelection = true;
-            txtSaleNumber.Hint = "Número de Venta";
-            txtSaleNumber.LeadingIcon = null;
-            txtSaleNumber.Location = new Point(656, 11);
-            txtSaleNumber.Margin = new Padding(4, 11, 4, 5);
-            txtSaleNumber.MaxLength = 100;
-            txtSaleNumber.MouseState = MaterialSkin.MouseState.OUT;
-            txtSaleNumber.Name = "txtSaleNumber";
-            txtSaleNumber.PasswordChar = '\0';
-            txtSaleNumber.PrefixSuffixText = null;
-            txtSaleNumber.ReadOnly = true;
-            txtSaleNumber.RightToLeft = RightToLeft.No;
-            txtSaleNumber.SelectedText = "";
-            txtSaleNumber.SelectionLength = 0;
-            txtSaleNumber.SelectionStart = 0;
-            txtSaleNumber.ShortcutsEnabled = true;
-            txtSaleNumber.Size = new Size(219, 48);
-            txtSaleNumber.TabIndex = 3;
-            txtSaleNumber.TabStop = false;
-            txtSaleNumber.TextAlign = HorizontalAlignment.Left;
-            txtSaleNumber.TrailingIcon = null;
-            txtSaleNumber.UseSystemPasswordChar = false;
+            btnAddProd.AutoSize = false;
+            btnAddProd.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAddProd.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnAddProd.Depth = 0;
+            btnAddProd.Dock = DockStyle.Fill;
+            btnAddProd.HighEmphasis = true;
+            btnAddProd.Icon = null;
+            btnAddProd.Location = new Point(1022, 6);
+            btnAddProd.Margin = new Padding(4, 6, 4, 6);
+            btnAddProd.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAddProd.Name = "btnAddProd";
+            btnAddProd.NoAccentTextColor = Color.Empty;
+            btnAddProd.Size = new Size(132, 52);
+            btnAddProd.TabIndex = 15;
+            btnAddProd.Text = "agregar";
+            btnAddProd.Type = MaterialButton.MaterialButtonType.Contained;
+            btnAddProd.UseAccentColor = false;
+            btnAddProd.UseVisualStyleBackColor = true;
             // 
-            // btnSaleNumber
+            // txtSubTotal
             // 
-            btnSaleNumber.AutoSize = false;
-            btnSaleNumber.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSaleNumber.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnSaleNumber.Depth = 0;
-            btnSaleNumber.Dock = DockStyle.Fill;
-            btnSaleNumber.HighEmphasis = true;
-            btnSaleNumber.Icon = null;
-            btnSaleNumber.Location = new Point(605, 6);
-            btnSaleNumber.Margin = new Padding(4, 6, 4, 6);
-            btnSaleNumber.MouseState = MaterialSkin.MouseState.HOVER;
-            btnSaleNumber.Name = "btnSaleNumber";
-            btnSaleNumber.NoAccentTextColor = Color.Empty;
-            btnSaleNumber.Size = new Size(43, 52);
-            btnSaleNumber.TabIndex = 2;
-            btnSaleNumber.Type = MaterialButton.MaterialButtonType.Contained;
-            btnSaleNumber.UseAccentColor = false;
-            btnSaleNumber.UseVisualStyleBackColor = true;
+            txtSubTotal.AnimateReadOnly = true;
+            txtSubTotal.BackgroundImageLayout = ImageLayout.None;
+            txtSubTotal.CharacterCasing = CharacterCasing.Normal;
+            txtSubTotal.Depth = 0;
+            txtSubTotal.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtSubTotal.HideSelection = true;
+            txtSubTotal.Hint = "SubTot";
+            txtSubTotal.LeadingIcon = null;
+            txtSubTotal.Location = new Point(871, 10);
+            txtSubTotal.Margin = new Padding(4, 10, 4, 5);
+            txtSubTotal.MaxLength = 100;
+            txtSubTotal.MouseState = MaterialSkin.MouseState.OUT;
+            txtSubTotal.Name = "txtSubTotal";
+            txtSubTotal.PasswordChar = '\0';
+            txtSubTotal.PrefixSuffixText = null;
+            txtSubTotal.ReadOnly = false;
+            txtSubTotal.RightToLeft = RightToLeft.No;
+            txtSubTotal.SelectedText = "";
+            txtSubTotal.SelectionLength = 0;
+            txtSubTotal.SelectionStart = 0;
+            txtSubTotal.ShortcutsEnabled = true;
+            txtSubTotal.Size = new Size(130, 48);
+            txtSubTotal.TabIndex = 14;
+            txtSubTotal.TabStop = false;
+            txtSubTotal.TextAlign = HorizontalAlignment.Left;
+            txtSubTotal.TrailingIcon = null;
+            txtSubTotal.UseSystemPasswordChar = false;
             // 
-            // cmbPaymentType
+            // txtStock
             // 
-            cmbPaymentType.AutoResize = false;
-            cmbPaymentType.BackColor = Color.White;
-            cmbPaymentType.Depth = 0;
-            cmbPaymentType.Dock = DockStyle.Fill;
-            cmbPaymentType.DrawMode = DrawMode.OwnerDrawVariable;
-            cmbPaymentType.DropDownHeight = 217;
-            cmbPaymentType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbPaymentType.DropDownWidth = 250;
-            cmbPaymentType.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            cmbPaymentType.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbPaymentType.Hint = "Tipo de Pago";
-            cmbPaymentType.IntegralHeight = false;
-            cmbPaymentType.ItemHeight = 43;
-            cmbPaymentType.Location = new Point(401, 10);
-            cmbPaymentType.Margin = new Padding(4, 10, 4, 5);
-            cmbPaymentType.MaxDropDownItems = 5;
-            cmbPaymentType.MouseState = MaterialSkin.MouseState.OUT;
-            cmbPaymentType.Name = "cmbPaymentType";
-            cmbPaymentType.Size = new Size(196, 49);
-            cmbPaymentType.StartIndex = 0;
-            cmbPaymentType.TabIndex = 1;
-            cmbPaymentType.TabStop = false;
+            txtStock.AnimateReadOnly = false;
+            txtStock.BackgroundImageLayout = ImageLayout.None;
+            txtStock.CharacterCasing = CharacterCasing.Normal;
+            txtStock.Depth = 0;
+            txtStock.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtStock.HideSelection = true;
+            txtStock.Hint = "Stock";
+            txtStock.LeadingIcon = null;
+            txtStock.Location = new Point(502, 10);
+            txtStock.Margin = new Padding(4, 10, 4, 5);
+            txtStock.MaxLength = 100;
+            txtStock.MouseState = MaterialSkin.MouseState.OUT;
+            txtStock.Name = "txtStock";
+            txtStock.PasswordChar = '\0';
+            txtStock.PrefixSuffixText = null;
+            txtStock.ReadOnly = false;
+            txtStock.RightToLeft = RightToLeft.No;
+            txtStock.SelectedText = "";
+            txtStock.SelectionLength = 0;
+            txtStock.SelectionStart = 0;
+            txtStock.ShortcutsEnabled = true;
+            txtStock.Size = new Size(79, 48);
+            txtStock.TabIndex = 11;
+            txtStock.TabStop = false;
+            txtStock.TextAlign = HorizontalAlignment.Left;
+            txtStock.TrailingIcon = null;
+            txtStock.UseSystemPasswordChar = false;
             // 
-            // btnPaymentType
+            // txtPName
             // 
-            btnPaymentType.AutoSize = false;
-            btnPaymentType.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnPaymentType.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnPaymentType.Depth = 0;
-            btnPaymentType.Dock = DockStyle.Fill;
-            btnPaymentType.HighEmphasis = true;
-            btnPaymentType.Icon = null;
-            btnPaymentType.Location = new Point(350, 6);
-            btnPaymentType.Margin = new Padding(4, 6, 4, 6);
-            btnPaymentType.MouseState = MaterialSkin.MouseState.HOVER;
-            btnPaymentType.Name = "btnPaymentType";
-            btnPaymentType.NoAccentTextColor = Color.Empty;
-            btnPaymentType.Size = new Size(43, 52);
-            btnPaymentType.TabIndex = 4;
-            btnPaymentType.Type = MaterialButton.MaterialButtonType.Contained;
-            btnPaymentType.UseAccentColor = false;
-            btnPaymentType.UseVisualStyleBackColor = true;
+            txtPName.AnimateReadOnly = false;
+            txtPName.BackgroundImageLayout = ImageLayout.None;
+            txtPName.CharacterCasing = CharacterCasing.Normal;
+            txtPName.Depth = 0;
+            txtPName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPName.HideSelection = true;
+            txtPName.Hint = "Nombre";
+            txtPName.LeadingIcon = null;
+            txtPName.Location = new Point(366, 10);
+            txtPName.Margin = new Padding(4, 10, 4, 5);
+            txtPName.MaxLength = 100;
+            txtPName.MouseState = MaterialSkin.MouseState.OUT;
+            txtPName.Name = "txtPName";
+            txtPName.PasswordChar = '\0';
+            txtPName.PrefixSuffixText = null;
+            txtPName.ReadOnly = false;
+            txtPName.RightToLeft = RightToLeft.No;
+            txtPName.SelectedText = "";
+            txtPName.SelectionLength = 0;
+            txtPName.SelectionStart = 0;
+            txtPName.ShortcutsEnabled = true;
+            txtPName.Size = new Size(128, 48);
+            txtPName.TabIndex = 10;
+            txtPName.TabStop = false;
+            txtPName.TextAlign = HorizontalAlignment.Left;
+            txtPName.TrailingIcon = null;
+            txtPName.UseSystemPasswordChar = false;
             // 
-            // txtCustomer
+            // txtMarca
             // 
-            txtCustomer.AnimateReadOnly = false;
-            txtCustomer.BackgroundImageLayout = ImageLayout.None;
-            txtCustomer.CharacterCasing = CharacterCasing.Normal;
-            txtCustomer.Depth = 0;
-            txtCustomer.Dock = DockStyle.Fill;
-            txtCustomer.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtCustomer.HideSelection = true;
-            txtCustomer.Hint = "Cliente (DNI / Email)";
-            txtCustomer.LeadingIcon = null;
-            txtCustomer.Location = new Point(55, 10);
-            txtCustomer.Margin = new Padding(4, 10, 4, 5);
-            txtCustomer.MaxLength = 100;
-            txtCustomer.MouseState = MaterialSkin.MouseState.OUT;
-            txtCustomer.Name = "txtCustomer";
-            txtCustomer.PasswordChar = '\0';
-            txtCustomer.PrefixSuffixText = null;
-            txtCustomer.ReadOnly = false;
-            txtCustomer.RightToLeft = RightToLeft.No;
-            txtCustomer.SelectedText = "";
-            txtCustomer.SelectionLength = 0;
-            txtCustomer.SelectionStart = 0;
-            txtCustomer.ShortcutsEnabled = true;
-            txtCustomer.Size = new Size(287, 48);
-            txtCustomer.TabIndex = 0;
-            txtCustomer.TabStop = false;
-            txtCustomer.TextAlign = HorizontalAlignment.Left;
-            txtCustomer.TrailingIcon = null;
-            txtCustomer.UseSystemPasswordChar = false;
+            txtMarca.AnimateReadOnly = false;
+            txtMarca.BackgroundImageLayout = ImageLayout.None;
+            txtMarca.CharacterCasing = CharacterCasing.Normal;
+            txtMarca.Depth = 0;
+            txtMarca.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtMarca.HideSelection = true;
+            txtMarca.Hint = "Marca";
+            txtMarca.LeadingIcon = null;
+            txtMarca.Location = new Point(251, 10);
+            txtMarca.Margin = new Padding(4, 10, 4, 5);
+            txtMarca.MaxLength = 100;
+            txtMarca.MouseState = MaterialSkin.MouseState.OUT;
+            txtMarca.Name = "txtMarca";
+            txtMarca.PasswordChar = '\0';
+            txtMarca.PrefixSuffixText = null;
+            txtMarca.ReadOnly = false;
+            txtMarca.RightToLeft = RightToLeft.No;
+            txtMarca.SelectedText = "";
+            txtMarca.SelectionLength = 0;
+            txtMarca.SelectionStart = 0;
+            txtMarca.ShortcutsEnabled = true;
+            txtMarca.Size = new Size(107, 48);
+            txtMarca.TabIndex = 9;
+            txtMarca.TabStop = false;
+            txtMarca.TextAlign = HorizontalAlignment.Left;
+            txtMarca.TrailingIcon = null;
+            txtMarca.UseSystemPasswordChar = false;
             // 
-            // btnCustomer
+            // txtProducto
             // 
-            btnCustomer.AutoSize = false;
-            btnCustomer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnCustomer.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnCustomer.Depth = 0;
-            btnCustomer.Dock = DockStyle.Fill;
-            btnCustomer.HighEmphasis = true;
-            btnCustomer.Icon = null;
-            btnCustomer.Location = new Point(4, 6);
-            btnCustomer.Margin = new Padding(4, 6, 4, 6);
-            btnCustomer.MouseState = MaterialSkin.MouseState.HOVER;
-            btnCustomer.Name = "btnCustomer";
-            btnCustomer.NoAccentTextColor = Color.Empty;
-            btnCustomer.Size = new Size(43, 52);
-            btnCustomer.TabIndex = 5;
-            btnCustomer.Type = MaterialButton.MaterialButtonType.Contained;
-            btnCustomer.UseAccentColor = false;
-            btnCustomer.UseVisualStyleBackColor = true;
-            btnCustomer.Click += btnCustomer_Click;
+            txtProducto.AnimateReadOnly = false;
+            txtProducto.BackgroundImageLayout = ImageLayout.None;
+            txtProducto.CharacterCasing = CharacterCasing.Normal;
+            txtProducto.Depth = 0;
+            txtProducto.Dock = DockStyle.Fill;
+            txtProducto.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtProducto.HideSelection = true;
+            txtProducto.Hint = "Buscar Producto";
+            txtProducto.LeadingIcon = null;
+            txtProducto.Location = new Point(55, 10);
+            txtProducto.Margin = new Padding(4, 10, 4, 5);
+            txtProducto.MaxLength = 100;
+            txtProducto.MouseState = MaterialSkin.MouseState.OUT;
+            txtProducto.Name = "txtProducto";
+            txtProducto.PasswordChar = '\0';
+            txtProducto.PrefixSuffixText = null;
+            txtProducto.ReadOnly = false;
+            txtProducto.RightToLeft = RightToLeft.No;
+            txtProducto.SelectedText = "";
+            txtProducto.SelectionLength = 0;
+            txtProducto.SelectionStart = 0;
+            txtProducto.ShortcutsEnabled = true;
+            txtProducto.Size = new Size(188, 48);
+            txtProducto.TabIndex = 0;
+            txtProducto.TabStop = false;
+            txtProducto.TextAlign = HorizontalAlignment.Left;
+            txtProducto.TrailingIcon = null;
+            txtProducto.UseSystemPasswordChar = false;
             // 
-            // txtSeller
+            // btnProduct
             // 
-            txtSeller.AnimateReadOnly = false;
-            txtSeller.BackgroundImageLayout = ImageLayout.None;
-            txtSeller.CharacterCasing = CharacterCasing.Normal;
-            txtSeller.Depth = 0;
-            txtSeller.Dock = DockStyle.Fill;
-            txtSeller.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtSeller.HideSelection = true;
-            txtSeller.Hint = "Vendedor";
-            txtSeller.LeadingIcon = null;
-            txtSeller.Location = new Point(934, 10);
-            txtSeller.Margin = new Padding(4, 10, 4, 5);
-            txtSeller.MaxLength = 100;
-            txtSeller.MouseState = MaterialSkin.MouseState.OUT;
-            txtSeller.Name = "txtSeller";
-            txtSeller.PasswordChar = '\0';
-            txtSeller.PrefixSuffixText = null;
-            txtSeller.ReadOnly = true;
-            txtSeller.RightToLeft = RightToLeft.No;
-            txtSeller.SelectedText = "";
-            txtSeller.SelectionLength = 0;
-            txtSeller.SelectionStart = 0;
-            txtSeller.ShortcutsEnabled = true;
-            txtSeller.Size = new Size(220, 48);
-            txtSeller.TabIndex = 6;
-            txtSeller.TabStop = false;
-            txtSeller.TextAlign = HorizontalAlignment.Left;
-            txtSeller.TrailingIcon = null;
-            txtSeller.UseSystemPasswordChar = false;
+            btnProduct.AutoSize = false;
+            btnProduct.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnProduct.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnProduct.Depth = 0;
+            btnProduct.Dock = DockStyle.Fill;
+            btnProduct.HighEmphasis = true;
+            btnProduct.Icon = null;
+            btnProduct.Location = new Point(4, 6);
+            btnProduct.Margin = new Padding(4, 6, 4, 6);
+            btnProduct.MouseState = MaterialSkin.MouseState.HOVER;
+            btnProduct.Name = "btnProduct";
+            btnProduct.NoAccentTextColor = Color.Empty;
+            btnProduct.Size = new Size(43, 52);
+            btnProduct.TabIndex = 5;
+            btnProduct.Type = MaterialButton.MaterialButtonType.Contained;
+            btnProduct.UseAccentColor = false;
+            btnProduct.UseVisualStyleBackColor = true;
+            btnProduct.Click += btnCustomer_Click;
             // 
-            // btnSeller
+            // txtPVenta
             // 
-            btnSeller.AutoSize = false;
-            btnSeller.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSeller.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnSeller.Depth = 0;
-            btnSeller.Dock = DockStyle.Fill;
-            btnSeller.HighEmphasis = true;
-            btnSeller.Icon = null;
-            btnSeller.Location = new Point(883, 6);
-            btnSeller.Margin = new Padding(4, 6, 4, 6);
-            btnSeller.MouseState = MaterialSkin.MouseState.HOVER;
-            btnSeller.Name = "btnSeller";
-            btnSeller.NoAccentTextColor = Color.Empty;
-            btnSeller.Size = new Size(43, 52);
-            btnSeller.TabIndex = 7;
-            btnSeller.Type = MaterialButton.MaterialButtonType.Contained;
-            btnSeller.UseAccentColor = false;
-            btnSeller.UseVisualStyleBackColor = true;
+            txtPVenta.AnimateReadOnly = false;
+            txtPVenta.BackgroundImageLayout = ImageLayout.None;
+            txtPVenta.CharacterCasing = CharacterCasing.Normal;
+            txtPVenta.Depth = 0;
+            txtPVenta.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtPVenta.HideSelection = true;
+            txtPVenta.Hint = "Precio";
+            txtPVenta.LeadingIcon = null;
+            txtPVenta.Location = new Point(589, 10);
+            txtPVenta.Margin = new Padding(4, 10, 4, 5);
+            txtPVenta.MaxLength = 100;
+            txtPVenta.MouseState = MaterialSkin.MouseState.OUT;
+            txtPVenta.Name = "txtPVenta";
+            txtPVenta.PasswordChar = '\0';
+            txtPVenta.PrefixSuffixText = null;
+            txtPVenta.ReadOnly = false;
+            txtPVenta.RightToLeft = RightToLeft.No;
+            txtPVenta.SelectedText = "";
+            txtPVenta.SelectionLength = 0;
+            txtPVenta.SelectionStart = 0;
+            txtPVenta.ShortcutsEnabled = true;
+            txtPVenta.Size = new Size(130, 48);
+            txtPVenta.TabIndex = 12;
+            txtPVenta.TabStop = false;
+            txtPVenta.TextAlign = HorizontalAlignment.Left;
+            txtPVenta.TrailingIcon = null;
+            txtPVenta.UseSystemPasswordChar = false;
             // 
-            // dgvCustomerInfo
+            // txtQtty
             // 
-            dgvCustomerInfo.AllowUserToAddRows = false;
-            dgvCustomerInfo.AllowUserToDeleteRows = false;
-            dgvCustomerInfo.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(58, 58, 58);
-            dgvCustomerInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvCustomerInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvCustomerInfo.BackgroundColor = Color.FromArgb(50, 50, 50);
-            dgvCustomerInfo.BorderStyle = BorderStyle.None;
-            dgvCustomerInfo.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvCustomerInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvCustomerInfo.ColumnHeadersHeight = 38;
-            dgvCustomerInfo.Columns.AddRange(new DataGridViewColumn[] { colDni, colNombre, colApellido, colEmail, colTelefono, colLocalidad });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(50, 50, 50);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(21, 101, 192);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvCustomerInfo.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvCustomerInfo.Dock = DockStyle.Fill;
-            dgvCustomerInfo.EnableHeadersVisualStyles = false;
-            dgvCustomerInfo.GridColor = Color.FromArgb(70, 70, 70);
-            dgvCustomerInfo.Location = new Point(8, 8);
-            dgvCustomerInfo.MultiSelect = false;
-            dgvCustomerInfo.Name = "dgvCustomerInfo";
-            dgvCustomerInfo.ReadOnly = true;
-            dgvCustomerInfo.RowHeadersVisible = false;
-            dgvCustomerInfo.RowHeadersWidth = 51;
-            dgvCustomerInfo.RowTemplate.Height = 32;
-            dgvCustomerInfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCustomerInfo.Size = new Size(1158, 274);
-            dgvCustomerInfo.TabIndex = 1;
+            txtQtty.AnimateReadOnly = true;
+            txtQtty.BackgroundImageLayout = ImageLayout.None;
+            txtQtty.CharacterCasing = CharacterCasing.Normal;
+            txtQtty.Depth = 0;
+            txtQtty.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtQtty.HideSelection = true;
+            txtQtty.Hint = "Cant.";
+            txtQtty.LeadingIcon = null;
+            txtQtty.Location = new Point(740, 10);
+            txtQtty.Margin = new Padding(4, 10, 4, 5);
+            txtQtty.MaxLength = 100;
+            txtQtty.MouseState = MaterialSkin.MouseState.OUT;
+            txtQtty.Name = "txtQtty";
+            txtQtty.PasswordChar = '\0';
+            txtQtty.PrefixSuffixText = null;
+            txtQtty.ReadOnly = false;
+            txtQtty.RightToLeft = RightToLeft.No;
+            txtQtty.SelectedText = "";
+            txtQtty.SelectionLength = 0;
+            txtQtty.SelectionStart = 0;
+            txtQtty.ShortcutsEnabled = true;
+            txtQtty.Size = new Size(123, 48);
+            txtQtty.TabIndex = 13;
+            txtQtty.TabStop = false;
+            txtQtty.TextAlign = HorizontalAlignment.Left;
+            txtQtty.TrailingIcon = null;
+            txtQtty.UseSystemPasswordChar = false;
             // 
-            // colDni
+            // lblCart
             // 
-            colDni.HeaderText = "DNI";
-            colDni.MinimumWidth = 6;
-            colDni.Name = "colDni";
-            colDni.ReadOnly = true;
+            lblCart.Anchor = AnchorStyles.None;
+            lblCart.AutoSize = true;
+            lblCart.Depth = 0;
+            lblCart.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCart.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblCart.Location = new Point(520, 565);
+            lblCart.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCart.Name = "lblCart";
+            lblCart.Size = new Size(139, 41);
+            lblCart.TabIndex = 2;
+            lblCart.Text = "CARRITO";
             // 
-            // colNombre
+            // dataGridView1
             // 
-            colNombre.HeaderText = "Nombre";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.Anchor = AnchorStyles.None;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.MidnightBlue;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn7, SubTotal, Remove });
+            dataGridView1.GridColor = SystemColors.InactiveCaptionText;
+            dataGridView1.Location = new Point(3, 616);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(1174, 158);
+            dataGridView1.TabIndex = 35;
             // 
-            // colApellido
+            // dataGridViewTextBoxColumn2
             // 
-            colApellido.HeaderText = "Apellido";
-            colApellido.MinimumWidth = 6;
-            colApellido.Name = "colApellido";
-            colApellido.ReadOnly = true;
+            dataGridViewTextBoxColumn2.HeaderText = "CÃ³digo";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Resizable = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn2.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // colEmail
+            // dataGridViewTextBoxColumn3
             // 
-            colEmail.HeaderText = "Email";
-            colEmail.MinimumWidth = 6;
-            colEmail.Name = "colEmail";
-            colEmail.ReadOnly = true;
+            dataGridViewTextBoxColumn3.HeaderText = "Marca";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Resizable = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn3.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // colTelefono
+            // dataGridViewTextBoxColumn4
             // 
-            colTelefono.HeaderText = "Teléfono";
-            colTelefono.MinimumWidth = 6;
-            colTelefono.Name = "colTelefono";
-            colTelefono.ReadOnly = true;
+            dataGridViewTextBoxColumn4.HeaderText = "Nombre";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Resizable = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn4.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // colLocalidad
+            // dataGridViewTextBoxColumn5
             // 
-            colLocalidad.HeaderText = "Localidad";
-            colLocalidad.MinimumWidth = 6;
-            colLocalidad.Name = "colLocalidad";
-            colLocalidad.ReadOnly = true;
+            dataGridViewTextBoxColumn5.HeaderText = "Cantidad";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Resizable = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn5.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // pnlProducto
+            // dataGridViewTextBoxColumn7
             // 
-            pnlProducto.BackColor = Color.FromArgb(50, 50, 50);
-            pnlProducto.Controls.Add(tlpInputsProducto);
-            pnlProducto.Controls.Add(dgvSaleDetails);
-            pnlProducto.Dock = DockStyle.Fill;
-            pnlProducto.Location = new Point(3, 297);
-            pnlProducto.Name = "pnlProducto";
-            pnlProducto.Padding = new Padding(8, 8, 8, 6);
-            pnlProducto.Size = new Size(1174, 476);
-            pnlProducto.TabIndex = 1;
+            dataGridViewTextBoxColumn7.HeaderText = "P. Venta";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn7.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // tlpInputsProducto
+            // SubTotal
             // 
-            tlpInputsProducto.BackColor = Color.FromArgb(50, 50, 50);
-            tlpInputsProducto.ColumnCount = 7;
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14F));
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22F));
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
-            tlpInputsProducto.Controls.Add(btnAddDetail, 6, 0);
-            tlpInputsProducto.Controls.Add(txtUnitaryPrice, 5, 0);
-            tlpInputsProducto.Controls.Add(btnUnitaryPrice, 4, 0);
-            tlpInputsProducto.Controls.Add(txtQuantity, 3, 0);
-            tlpInputsProducto.Controls.Add(btnQuantity, 2, 0);
-            tlpInputsProducto.Controls.Add(txtProductCode, 1, 0);
-            tlpInputsProducto.Controls.Add(btnProductCode, 0, 0);
-            tlpInputsProducto.Dock = DockStyle.Top;
-            tlpInputsProducto.Location = new Point(8, 8);
-            tlpInputsProducto.Name = "tlpInputsProducto";
-            tlpInputsProducto.RowCount = 1;
-            tlpInputsProducto.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
-            tlpInputsProducto.Size = new Size(1158, 64);
-            tlpInputsProducto.TabIndex = 0;
+            SubTotal.HeaderText = "Sub Total";
+            SubTotal.Name = "SubTotal";
             // 
-            // btnAddDetail
+            // Remove
             // 
-            btnAddDetail.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnAddDetail.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnAddDetail.Depth = 0;
-            btnAddDetail.Dock = DockStyle.Fill;
-            btnAddDetail.HighEmphasis = true;
-            btnAddDetail.Icon = null;
-            btnAddDetail.Location = new Point(1041, 6);
-            btnAddDetail.Margin = new Padding(4, 6, 4, 6);
-            btnAddDetail.MouseState = MaterialSkin.MouseState.HOVER;
-            btnAddDetail.Name = "btnAddDetail";
-            btnAddDetail.NoAccentTextColor = Color.Empty;
-            btnAddDetail.Size = new Size(113, 52);
-            btnAddDetail.TabIndex = 4;
-            btnAddDetail.Text = "Agregar";
-            btnAddDetail.Type = MaterialButton.MaterialButtonType.Contained;
-            btnAddDetail.UseAccentColor = false;
-            btnAddDetail.UseVisualStyleBackColor = true;
-            // 
-            // txtUnitaryPrice
-            // 
-            txtUnitaryPrice.AnimateReadOnly = false;
-            txtUnitaryPrice.BackgroundImageLayout = ImageLayout.None;
-            txtUnitaryPrice.CharacterCasing = CharacterCasing.Normal;
-            txtUnitaryPrice.Depth = 0;
-            txtUnitaryPrice.Dock = DockStyle.Fill;
-            txtUnitaryPrice.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtUnitaryPrice.HideSelection = true;
-            txtUnitaryPrice.Hint = "Precio Unitario";
-            txtUnitaryPrice.LeadingIcon = null;
-            txtUnitaryPrice.Location = new Point(839, 10);
-            txtUnitaryPrice.Margin = new Padding(4, 10, 4, 5);
-            txtUnitaryPrice.MaxLength = 100;
-            txtUnitaryPrice.MouseState = MaterialSkin.MouseState.OUT;
-            txtUnitaryPrice.Name = "txtUnitaryPrice";
-            txtUnitaryPrice.PasswordChar = '\0';
-            txtUnitaryPrice.PrefixSuffixText = null;
-            txtUnitaryPrice.ReadOnly = false;
-            txtUnitaryPrice.RightToLeft = RightToLeft.No;
-            txtUnitaryPrice.SelectedText = "";
-            txtUnitaryPrice.SelectionLength = 0;
-            txtUnitaryPrice.SelectionStart = 0;
-            txtUnitaryPrice.ShortcutsEnabled = true;
-            txtUnitaryPrice.Size = new Size(194, 48);
-            txtUnitaryPrice.TabIndex = 3;
-            txtUnitaryPrice.TabStop = false;
-            txtUnitaryPrice.TextAlign = HorizontalAlignment.Left;
-            txtUnitaryPrice.TrailingIcon = null;
-            txtUnitaryPrice.UseSystemPasswordChar = false;
-            // 
-            // btnUnitaryPrice
-            // 
-            btnUnitaryPrice.AutoSize = false;
-            btnUnitaryPrice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnUnitaryPrice.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnUnitaryPrice.Depth = 0;
-            btnUnitaryPrice.Dock = DockStyle.Fill;
-            btnUnitaryPrice.HighEmphasis = true;
-            btnUnitaryPrice.Icon = null;
-            btnUnitaryPrice.Location = new Point(788, 6);
-            btnUnitaryPrice.Margin = new Padding(4, 6, 4, 6);
-            btnUnitaryPrice.MouseState = MaterialSkin.MouseState.HOVER;
-            btnUnitaryPrice.Name = "btnUnitaryPrice";
-            btnUnitaryPrice.NoAccentTextColor = Color.Empty;
-            btnUnitaryPrice.Size = new Size(43, 52);
-            btnUnitaryPrice.TabIndex = 5;
-            btnUnitaryPrice.Type = MaterialButton.MaterialButtonType.Contained;
-            btnUnitaryPrice.UseAccentColor = false;
-            btnUnitaryPrice.UseVisualStyleBackColor = true;
-            // 
-            // txtQuantity
-            // 
-            txtQuantity.AnimateReadOnly = false;
-            txtQuantity.BackgroundImageLayout = ImageLayout.None;
-            txtQuantity.CharacterCasing = CharacterCasing.Normal;
-            txtQuantity.Depth = 0;
-            txtQuantity.Dock = DockStyle.Fill;
-            txtQuantity.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtQuantity.HideSelection = true;
-            txtQuantity.Hint = "Cantidad";
-            txtQuantity.LeadingIcon = null;
-            txtQuantity.Location = new Point(659, 15);
-            txtQuantity.Margin = new Padding(4, 15, 4, 5);
-            txtQuantity.MaxLength = 100;
-            txtQuantity.MouseState = MaterialSkin.MouseState.OUT;
-            txtQuantity.Name = "txtQuantity";
-            txtQuantity.PasswordChar = '\0';
-            txtQuantity.PrefixSuffixText = null;
-            txtQuantity.ReadOnly = false;
-            txtQuantity.RightToLeft = RightToLeft.No;
-            txtQuantity.SelectedText = "";
-            txtQuantity.SelectionLength = 0;
-            txtQuantity.SelectionStart = 0;
-            txtQuantity.ShortcutsEnabled = true;
-            txtQuantity.Size = new Size(121, 48);
-            txtQuantity.TabIndex = 2;
-            txtQuantity.TabStop = false;
-            txtQuantity.TextAlign = HorizontalAlignment.Left;
-            txtQuantity.TrailingIcon = null;
-            txtQuantity.UseSystemPasswordChar = false;
-            // 
-            // btnQuantity
-            // 
-            btnQuantity.AutoSize = false;
-            btnQuantity.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnQuantity.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnQuantity.Depth = 0;
-            btnQuantity.Dock = DockStyle.Fill;
-            btnQuantity.HighEmphasis = true;
-            btnQuantity.Icon = null;
-            btnQuantity.Location = new Point(608, 6);
-            btnQuantity.Margin = new Padding(4, 6, 4, 6);
-            btnQuantity.MouseState = MaterialSkin.MouseState.HOVER;
-            btnQuantity.Name = "btnQuantity";
-            btnQuantity.NoAccentTextColor = Color.Empty;
-            btnQuantity.Size = new Size(43, 52);
-            btnQuantity.TabIndex = 6;
-            btnQuantity.Type = MaterialButton.MaterialButtonType.Contained;
-            btnQuantity.UseAccentColor = false;
-            btnQuantity.UseVisualStyleBackColor = true;
-            // 
-            // txtProductCode
-            // 
-            txtProductCode.AnimateReadOnly = false;
-            txtProductCode.BackgroundImageLayout = ImageLayout.None;
-            txtProductCode.CharacterCasing = CharacterCasing.Normal;
-            txtProductCode.Depth = 0;
-            txtProductCode.Dock = DockStyle.Fill;
-            txtProductCode.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtProductCode.HideSelection = true;
-            txtProductCode.Hint = "Código de Producto";
-            txtProductCode.LeadingIcon = null;
-            txtProductCode.Location = new Point(55, 10);
-            txtProductCode.Margin = new Padding(4, 10, 4, 5);
-            txtProductCode.MaxLength = 100;
-            txtProductCode.MouseState = MaterialSkin.MouseState.OUT;
-            txtProductCode.Name = "txtProductCode";
-            txtProductCode.PasswordChar = '\0';
-            txtProductCode.PrefixSuffixText = null;
-            txtProductCode.ReadOnly = false;
-            txtProductCode.RightToLeft = RightToLeft.No;
-            txtProductCode.SelectedText = "";
-            txtProductCode.SelectionLength = 0;
-            txtProductCode.SelectionStart = 0;
-            txtProductCode.ShortcutsEnabled = true;
-            txtProductCode.Size = new Size(545, 48);
-            txtProductCode.TabIndex = 1;
-            txtProductCode.TabStop = false;
-            txtProductCode.TextAlign = HorizontalAlignment.Left;
-            txtProductCode.TrailingIcon = null;
-            txtProductCode.UseSystemPasswordChar = false;
-            // 
-            // btnProductCode
-            // 
-            btnProductCode.AutoSize = false;
-            btnProductCode.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnProductCode.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnProductCode.Depth = 0;
-            btnProductCode.Dock = DockStyle.Fill;
-            btnProductCode.HighEmphasis = true;
-            btnProductCode.Icon = null;
-            btnProductCode.Location = new Point(4, 6);
-            btnProductCode.Margin = new Padding(4, 6, 4, 6);
-            btnProductCode.MouseState = MaterialSkin.MouseState.HOVER;
-            btnProductCode.Name = "btnProductCode";
-            btnProductCode.NoAccentTextColor = Color.Empty;
-            btnProductCode.Size = new Size(43, 52);
-            btnProductCode.TabIndex = 6;
-            btnProductCode.Type = MaterialButton.MaterialButtonType.Contained;
-            btnProductCode.UseAccentColor = false;
-            btnProductCode.UseVisualStyleBackColor = true;
-            // 
-            // dgvSaleDetails
-            // 
-            dgvSaleDetails.AllowUserToAddRows = false;
-            dgvSaleDetails.AllowUserToDeleteRows = false;
-            dgvSaleDetails.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(58, 58, 58);
-            dgvSaleDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dgvSaleDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvSaleDetails.BackgroundColor = Color.FromArgb(50, 50, 50);
-            dgvSaleDetails.BorderStyle = BorderStyle.None;
-            dgvSaleDetails.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(13, 71, 161);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvSaleDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dgvSaleDetails.ColumnHeadersHeight = 38;
-            dgvSaleDetails.Columns.AddRange(new DataGridViewColumn[] { colCodigoProducto, colProducto, colCantidad, colPrecioUnitario, colTotalProducto });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 50);
-            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(21, 101, 192);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvSaleDetails.DefaultCellStyle = dataGridViewCellStyle6;
-            dgvSaleDetails.Dock = DockStyle.Fill;
-            dgvSaleDetails.EnableHeadersVisualStyles = false;
-            dgvSaleDetails.GridColor = Color.FromArgb(70, 70, 70);
-            dgvSaleDetails.Location = new Point(8, 8);
-            dgvSaleDetails.MultiSelect = false;
-            dgvSaleDetails.Name = "dgvSaleDetails";
-            dgvSaleDetails.ReadOnly = true;
-            dgvSaleDetails.RowHeadersVisible = false;
-            dgvSaleDetails.RowHeadersWidth = 51;
-            dgvSaleDetails.RowTemplate.Height = 32;
-            dgvSaleDetails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSaleDetails.Size = new Size(1158, 462);
-            dgvSaleDetails.TabIndex = 1;
-            // 
-            // colCodigoProducto
-            // 
-            colCodigoProducto.FillWeight = 15F;
-            colCodigoProducto.HeaderText = "Código";
-            colCodigoProducto.MinimumWidth = 6;
-            colCodigoProducto.Name = "colCodigoProducto";
-            colCodigoProducto.ReadOnly = true;
-            // 
-            // colProducto
-            // 
-            colProducto.FillWeight = 35F;
-            colProducto.HeaderText = "Producto";
-            colProducto.MinimumWidth = 6;
-            colProducto.Name = "colProducto";
-            colProducto.ReadOnly = true;
-            // 
-            // colCantidad
-            // 
-            colCantidad.FillWeight = 15F;
-            colCantidad.HeaderText = "Cantidad";
-            colCantidad.MinimumWidth = 6;
-            colCantidad.Name = "colCantidad";
-            colCantidad.ReadOnly = true;
-            // 
-            // colPrecioUnitario
-            // 
-            colPrecioUnitario.FillWeight = 20F;
-            colPrecioUnitario.HeaderText = "Precio Unitario";
-            colPrecioUnitario.MinimumWidth = 6;
-            colPrecioUnitario.Name = "colPrecioUnitario";
-            colPrecioUnitario.ReadOnly = true;
-            // 
-            // colTotalProducto
-            // 
-            colTotalProducto.FillWeight = 15F;
-            colTotalProducto.HeaderText = "Total";
-            colTotalProducto.MinimumWidth = 6;
-            colTotalProducto.Name = "colTotalProducto";
-            colTotalProducto.ReadOnly = true;
+            Remove.HeaderText = "Eliminar";
+            Remove.Name = "Remove";
+            Remove.Resizable = DataGridViewTriState.True;
+            Remove.SortMode = DataGridViewColumnSortMode.Automatic;
+            Remove.Text = "Eliminar";
             // 
             // pnlResumen
             // 
             pnlResumen.BackColor = Color.FromArgb(45, 45, 45);
-            pnlResumen.Controls.Add(tlpResumen);
+            pnlResumen.Controls.Add(lblDniValue);
+            pnlResumen.Controls.Add(lblDni);
+            pnlResumen.Controls.Add(lblUserValue);
+            pnlResumen.Controls.Add(lblUser);
+            pnlResumen.Controls.Add(lblNomyApeValue);
+            pnlResumen.Controls.Add(lblNomYApe);
+            pnlResumen.Controls.Add(lblToday);
+            pnlResumen.Controls.Add(lblDate);
+            pnlResumen.Controls.Add(btnPrint);
+            pnlResumen.Controls.Add(icoBtnPrint);
+            pnlResumen.Controls.Add(btnCancel);
+            pnlResumen.Controls.Add(icoBtnCancel);
+            pnlResumen.Controls.Add(btnSell);
+            pnlResumen.Controls.Add(icoBtnSell);
+            pnlResumen.Controls.Add(radTrans);
+            pnlResumen.Controls.Add(radEfectivo);
+            pnlResumen.Controls.Add(lblPayType);
+            pnlResumen.Controls.Add(lblTot);
+            pnlResumen.Controls.Add(lblResume);
             pnlResumen.Dock = DockStyle.Fill;
             pnlResumen.Location = new Point(1205, 11);
             pnlResumen.Name = "pnlResumen";
@@ -778,175 +940,314 @@ namespace MobileSolutions.UILayer
             pnlResumen.Size = new Size(456, 776);
             pnlResumen.TabIndex = 1;
             // 
-            // tlpResumen
+            // lblDniValue
             // 
-            tlpResumen.BackColor = Color.FromArgb(45, 45, 45);
-            tlpResumen.ColumnCount = 1;
-            tlpResumen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpResumen.Controls.Add(lblResumenTitle, 0, 0);
-            tlpResumen.Controls.Add(lblCantidadItems, 0, 1);
-            tlpResumen.Controls.Add(lblSubtotal, 0, 2);
-            tlpResumen.Controls.Add(lblTotalSale, 0, 3);
-            tlpResumen.Controls.Add(btnTotalSale, 0, 4);
-            tlpResumen.Controls.Add(btnConfirmSale, 0, 6);
-            tlpResumen.Controls.Add(btnCancelSale, 0, 7);
-            tlpResumen.Controls.Add(btnInvoice, 0, 8);
-            tlpResumen.Dock = DockStyle.Fill;
-            tlpResumen.Location = new Point(16, 12);
-            tlpResumen.Name = "tlpResumen";
-            tlpResumen.RowCount = 9;
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 41F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 127F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Absolute, 292F));
-            tlpResumen.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpResumen.Size = new Size(424, 748);
-            tlpResumen.TabIndex = 0;
+            lblDniValue.Anchor = AnchorStyles.Top;
+            lblDniValue.AutoSize = true;
+            lblDniValue.Depth = 0;
+            lblDniValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDniValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblDniValue.Location = new Point(257, 245);
+            lblDniValue.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDniValue.Name = "lblDniValue";
+            lblDniValue.Size = new Size(105, 29);
+            lblDniValue.TabIndex = 60;
+            lblDniValue.Text = "00000000";
             // 
-            // lblResumenTitle
+            // lblDni
             // 
-            lblResumenTitle.Depth = 0;
-            lblResumenTitle.Dock = DockStyle.Fill;
-            lblResumenTitle.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblResumenTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblResumenTitle.ForeColor = Color.FromArgb(178, 235, 242);
-            lblResumenTitle.Location = new Point(3, 0);
-            lblResumenTitle.MouseState = MaterialSkin.MouseState.HOVER;
-            lblResumenTitle.Name = "lblResumenTitle";
-            lblResumenTitle.Size = new Size(418, 48);
-            lblResumenTitle.TabIndex = 0;
-            lblResumenTitle.Text = "RESUMEN DE VENTA";
-            lblResumenTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblDni.Anchor = AnchorStyles.Top;
+            lblDni.AutoSize = true;
+            lblDni.Depth = 0;
+            lblDni.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDni.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblDni.Location = new Point(105, 245);
+            lblDni.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(47, 29);
+            lblDni.TabIndex = 59;
+            lblDni.Text = "DNI:";
             // 
-            // lblCantidadItems
+            // lblUserValue
             // 
-            lblCantidadItems.Depth = 0;
-            lblCantidadItems.Dock = DockStyle.Top;
-            lblCantidadItems.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblCantidadItems.ForeColor = Color.White;
-            lblCantidadItems.Location = new Point(3, 48);
-            lblCantidadItems.MouseState = MaterialSkin.MouseState.HOVER;
-            lblCantidadItems.Name = "lblCantidadItems";
-            lblCantidadItems.Size = new Size(418, 38);
-            lblCantidadItems.TabIndex = 1;
-            lblCantidadItems.Text = "Productos: 0";
-            lblCantidadItems.TextAlign = ContentAlignment.MiddleCenter;
+            lblUserValue.Anchor = AnchorStyles.Top;
+            lblUserValue.AutoSize = true;
+            lblUserValue.Depth = 0;
+            lblUserValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblUserValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblUserValue.Location = new Point(257, 194);
+            lblUserValue.MouseState = MaterialSkin.MouseState.HOVER;
+            lblUserValue.Name = "lblUserValue";
+            lblUserValue.Size = new Size(50, 29);
+            lblUserValue.TabIndex = 58;
+            lblUserValue.Text = "User";
             // 
-            // lblSubtotal
+            // lblUser
             // 
-            lblSubtotal.Depth = 0;
-            lblSubtotal.Dock = DockStyle.Top;
-            lblSubtotal.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblSubtotal.ForeColor = Color.White;
-            lblSubtotal.Location = new Point(3, 86);
-            lblSubtotal.MouseState = MaterialSkin.MouseState.HOVER;
-            lblSubtotal.Name = "lblSubtotal";
-            lblSubtotal.Size = new Size(418, 41);
-            lblSubtotal.TabIndex = 2;
-            lblSubtotal.Text = "Subtotal: $ 0.00";
-            lblSubtotal.TextAlign = ContentAlignment.MiddleCenter;
+            lblUser.Anchor = AnchorStyles.Top;
+            lblUser.AutoSize = true;
+            lblUser.Depth = 0;
+            lblUser.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblUser.Location = new Point(105, 194);
+            lblUser.MouseState = MaterialSkin.MouseState.HOVER;
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(89, 29);
+            lblUser.TabIndex = 57;
+            lblUser.Text = "Usuario:";
             // 
-            // lblTotalSale
+            // lblNomyApeValue
             // 
-            lblTotalSale.Depth = 0;
-            lblTotalSale.Dock = DockStyle.Bottom;
-            lblTotalSale.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblTotalSale.ForeColor = Color.FromArgb(178, 235, 242);
-            lblTotalSale.Location = new Point(3, 136);
-            lblTotalSale.MouseState = MaterialSkin.MouseState.HOVER;
-            lblTotalSale.Name = "lblTotalSale";
-            lblTotalSale.Size = new Size(418, 56);
-            lblTotalSale.TabIndex = 3;
-            lblTotalSale.Text = "$ 0.00";
-            lblTotalSale.TextAlign = ContentAlignment.MiddleCenter;
+            lblNomyApeValue.Anchor = AnchorStyles.Top;
+            lblNomyApeValue.AutoSize = true;
+            lblNomyApeValue.Depth = 0;
+            lblNomyApeValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblNomyApeValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblNomyApeValue.Location = new Point(257, 149);
+            lblNomyApeValue.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNomyApeValue.Name = "lblNomyApeValue";
+            lblNomyApeValue.Size = new Size(177, 29);
+            lblNomyApeValue.TabIndex = 56;
+            lblNomyApeValue.Text = "Name Lastname";
             // 
-            // btnTotalSale
+            // lblNomYApe
             // 
-            btnTotalSale.AutoSize = false;
-            btnTotalSale.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnTotalSale.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnTotalSale.Depth = 0;
-            btnTotalSale.Dock = DockStyle.Top;
-            btnTotalSale.HighEmphasis = true;
-            btnTotalSale.Icon = null;
-            btnTotalSale.Location = new Point(4, 196);
-            btnTotalSale.Margin = new Padding(4);
-            btnTotalSale.MouseState = MaterialSkin.MouseState.HOVER;
-            btnTotalSale.Name = "btnTotalSale";
-            btnTotalSale.NoAccentTextColor = Color.Empty;
-            btnTotalSale.Size = new Size(416, 42);
-            btnTotalSale.TabIndex = 4;
-            btnTotalSale.Text = "Total de Venta";
-            btnTotalSale.Type = MaterialButton.MaterialButtonType.Contained;
-            btnTotalSale.UseAccentColor = false;
-            btnTotalSale.UseVisualStyleBackColor = true;
+            lblNomYApe.Anchor = AnchorStyles.Top;
+            lblNomYApe.AutoSize = true;
+            lblNomYApe.Depth = 0;
+            lblNomYApe.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblNomYApe.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblNomYApe.Location = new Point(105, 149);
+            lblNomYApe.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNomYApe.Name = "lblNomYApe";
+            lblNomYApe.Size = new Size(111, 29);
+            lblNomYApe.TabIndex = 55;
+            lblNomYApe.Text = "Vendedor:";
             // 
-            // btnConfirmSale
+            // lblToday
             // 
-            btnConfirmSale.AutoSize = false;
-            btnConfirmSale.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnConfirmSale.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnConfirmSale.Depth = 0;
-            btnConfirmSale.Dock = DockStyle.Top;
-            btnConfirmSale.HighEmphasis = true;
-            btnConfirmSale.Icon = null;
-            btnConfirmSale.Location = new Point(4, 375);
-            btnConfirmSale.Margin = new Padding(4);
-            btnConfirmSale.MouseState = MaterialSkin.MouseState.HOVER;
-            btnConfirmSale.Name = "btnConfirmSale";
-            btnConfirmSale.NoAccentTextColor = Color.Empty;
-            btnConfirmSale.Size = new Size(416, 42);
-            btnConfirmSale.TabIndex = 6;
-            btnConfirmSale.Text = "Confirmar Venta";
-            btnConfirmSale.Type = MaterialButton.MaterialButtonType.Contained;
-            btnConfirmSale.UseAccentColor = false;
-            btnConfirmSale.UseVisualStyleBackColor = true;
+            lblToday.Anchor = AnchorStyles.Top;
+            lblToday.AutoSize = true;
+            lblToday.Depth = 0;
+            lblToday.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblToday.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblToday.Location = new Point(105, 99);
+            lblToday.MouseState = MaterialSkin.MouseState.HOVER;
+            lblToday.Name = "lblToday";
+            lblToday.Size = new Size(72, 29);
+            lblToday.TabIndex = 54;
+            lblToday.Text = "Fecha:";
             // 
-            // btnCancelSale
+            // lblDate
             // 
-            btnCancelSale.AutoSize = false;
-            btnCancelSale.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnCancelSale.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnCancelSale.Depth = 0;
-            btnCancelSale.Dock = DockStyle.Top;
-            btnCancelSale.HighEmphasis = true;
-            btnCancelSale.Icon = null;
-            btnCancelSale.Location = new Point(4, 428);
-            btnCancelSale.Margin = new Padding(4);
-            btnCancelSale.MouseState = MaterialSkin.MouseState.HOVER;
-            btnCancelSale.Name = "btnCancelSale";
-            btnCancelSale.NoAccentTextColor = Color.Empty;
-            btnCancelSale.Size = new Size(416, 42);
-            btnCancelSale.TabIndex = 7;
-            btnCancelSale.Text = "Cancelar Venta";
-            btnCancelSale.Type = MaterialButton.MaterialButtonType.Contained;
-            btnCancelSale.UseAccentColor = false;
-            btnCancelSale.UseVisualStyleBackColor = true;
+            lblDate.Anchor = AnchorStyles.Top;
+            lblDate.AutoSize = true;
+            lblDate.Depth = 0;
+            lblDate.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDate.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblDate.Location = new Point(257, 99);
+            lblDate.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(99, 29);
+            lblDate.TabIndex = 53;
+            lblDate.Text = "00/00/00";
             // 
-            // btnInvoice
+            // btnPrint
             // 
-            btnInvoice.AutoSize = false;
-            btnInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnInvoice.Density = MaterialButton.MaterialButtonDensity.Default;
-            btnInvoice.Depth = 0;
-            btnInvoice.Dock = DockStyle.Top;
-            btnInvoice.HighEmphasis = true;
-            btnInvoice.Icon = null;
-            btnInvoice.Location = new Point(4, 720);
-            btnInvoice.Margin = new Padding(4);
-            btnInvoice.MouseState = MaterialSkin.MouseState.HOVER;
-            btnInvoice.Name = "btnInvoice";
-            btnInvoice.NoAccentTextColor = Color.Empty;
-            btnInvoice.Size = new Size(416, 24);
-            btnInvoice.TabIndex = 5;
-            btnInvoice.Text = "Descargar Factura";
-            btnInvoice.Type = MaterialButton.MaterialButtonType.Contained;
-            btnInvoice.UseAccentColor = false;
-            btnInvoice.UseVisualStyleBackColor = true;
+            btnPrint.Anchor = AnchorStyles.None;
+            btnPrint.AutoSize = false;
+            btnPrint.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPrint.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnPrint.Depth = 0;
+            btnPrint.HighEmphasis = true;
+            btnPrint.Icon = null;
+            btnPrint.Location = new Point(156, 724);
+            btnPrint.Margin = new Padding(4);
+            btnPrint.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPrint.Name = "btnPrint";
+            btnPrint.NoAccentTextColor = Color.Empty;
+            btnPrint.Size = new Size(126, 33);
+            btnPrint.TabIndex = 51;
+            btnPrint.Text = "Imprimir Ticket";
+            btnPrint.Type = MaterialButton.MaterialButtonType.Contained;
+            btnPrint.UseAccentColor = false;
+            btnPrint.UseVisualStyleBackColor = true;
+            // 
+            // icoBtnPrint
+            // 
+            icoBtnPrint.Anchor = AnchorStyles.None;
+            icoBtnPrint.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnPrint.BackColor = Color.RoyalBlue;
+            icoBtnPrint.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnPrint.ForeColor = SystemColors.Control;
+            icoBtnPrint.IconChar = IconChar.Pencil;
+            icoBtnPrint.IconColor = Color.White;
+            icoBtnPrint.IconFont = IconFont.Auto;
+            icoBtnPrint.IconSize = 60;
+            icoBtnPrint.Location = new Point(146, 646);
+            icoBtnPrint.Name = "icoBtnPrint";
+            icoBtnPrint.Size = new Size(150, 120);
+            icoBtnPrint.TabIndex = 52;
+            icoBtnPrint.Text = "BUTTON";
+            icoBtnPrint.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnPrint.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnPrint.UseVisualStyleBackColor = false;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Anchor = AnchorStyles.None;
+            btnCancel.AutoSize = false;
+            btnCancel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancel.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnCancel.Depth = 0;
+            btnCancel.HighEmphasis = true;
+            btnCancel.Icon = null;
+            btnCancel.Location = new Point(257, 580);
+            btnCancel.Margin = new Padding(4);
+            btnCancel.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCancel.Name = "btnCancel";
+            btnCancel.NoAccentTextColor = Color.Empty;
+            btnCancel.Size = new Size(126, 33);
+            btnCancel.TabIndex = 49;
+            btnCancel.Text = "Cancelar Venta";
+            btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
+            btnCancel.UseAccentColor = false;
+            btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // icoBtnCancel
+            // 
+            icoBtnCancel.Anchor = AnchorStyles.None;
+            icoBtnCancel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnCancel.BackColor = Color.RoyalBlue;
+            icoBtnCancel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnCancel.ForeColor = SystemColors.Control;
+            icoBtnCancel.IconChar = IconChar.Pencil;
+            icoBtnCancel.IconColor = Color.White;
+            icoBtnCancel.IconFont = IconFont.Auto;
+            icoBtnCancel.IconSize = 60;
+            icoBtnCancel.Location = new Point(244, 502);
+            icoBtnCancel.Name = "icoBtnCancel";
+            icoBtnCancel.Size = new Size(150, 120);
+            icoBtnCancel.TabIndex = 50;
+            icoBtnCancel.Text = "BUTTON";
+            icoBtnCancel.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnCancel.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnCancel.UseVisualStyleBackColor = false;
+            // 
+            // btnSell
+            // 
+            btnSell.Anchor = AnchorStyles.None;
+            btnSell.AutoSize = false;
+            btnSell.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSell.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnSell.Depth = 0;
+            btnSell.HighEmphasis = true;
+            btnSell.Icon = null;
+            btnSell.Location = new Point(64, 580);
+            btnSell.Margin = new Padding(4);
+            btnSell.MouseState = MaterialSkin.MouseState.HOVER;
+            btnSell.Name = "btnSell";
+            btnSell.NoAccentTextColor = Color.Empty;
+            btnSell.Size = new Size(126, 33);
+            btnSell.TabIndex = 47;
+            btnSell.Text = "vender";
+            btnSell.Type = MaterialButton.MaterialButtonType.Contained;
+            btnSell.UseAccentColor = false;
+            btnSell.UseVisualStyleBackColor = true;
+            // 
+            // icoBtnSell
+            // 
+            icoBtnSell.Anchor = AnchorStyles.None;
+            icoBtnSell.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            icoBtnSell.BackColor = Color.RoyalBlue;
+            icoBtnSell.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icoBtnSell.ForeColor = SystemColors.Control;
+            icoBtnSell.IconChar = IconChar.Pencil;
+            icoBtnSell.IconColor = Color.White;
+            icoBtnSell.IconFont = IconFont.Auto;
+            icoBtnSell.IconSize = 60;
+            icoBtnSell.Location = new Point(54, 502);
+            icoBtnSell.Name = "icoBtnSell";
+            icoBtnSell.Size = new Size(150, 120);
+            icoBtnSell.TabIndex = 48;
+            icoBtnSell.Text = "BUTTON";
+            icoBtnSell.TextAlign = ContentAlignment.BottomCenter;
+            icoBtnSell.TextImageRelation = TextImageRelation.ImageAboveText;
+            icoBtnSell.UseVisualStyleBackColor = false;
+            // 
+            // radTrans
+            // 
+            radTrans.AutoSize = true;
+            radTrans.Depth = 0;
+            radTrans.Location = new Point(156, 443);
+            radTrans.Margin = new Padding(0);
+            radTrans.MouseLocation = new Point(-1, -1);
+            radTrans.MouseState = MaterialSkin.MouseState.HOVER;
+            radTrans.Name = "radTrans";
+            radTrans.Ripple = true;
+            radTrans.Size = new Size(133, 37);
+            radTrans.TabIndex = 7;
+            radTrans.TabStop = true;
+            radTrans.Text = "Transferencia";
+            radTrans.UseVisualStyleBackColor = true;
+            // 
+            // radEfectivo
+            // 
+            radEfectivo.AutoSize = true;
+            radEfectivo.Depth = 0;
+            radEfectivo.Location = new Point(173, 406);
+            radEfectivo.Margin = new Padding(0);
+            radEfectivo.MouseLocation = new Point(-1, -1);
+            radEfectivo.MouseState = MaterialSkin.MouseState.HOVER;
+            radEfectivo.Name = "radEfectivo";
+            radEfectivo.Ripple = true;
+            radEfectivo.Size = new Size(92, 37);
+            radEfectivo.TabIndex = 6;
+            radEfectivo.TabStop = true;
+            radEfectivo.Text = "Efectivo";
+            radEfectivo.UseVisualStyleBackColor = true;
+            // 
+            // lblPayType
+            // 
+            lblPayType.Anchor = AnchorStyles.Top;
+            lblPayType.AutoSize = true;
+            lblPayType.Depth = 0;
+            lblPayType.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblPayType.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblPayType.Location = new Point(131, 348);
+            lblPayType.MouseState = MaterialSkin.MouseState.HOVER;
+            lblPayType.Name = "lblPayType";
+            lblPayType.Size = new Size(198, 41);
+            lblPayType.TabIndex = 5;
+            lblPayType.Text = "Tipo de Pago";
+            // 
+            // lblTot
+            // 
+            lblTot.Anchor = AnchorStyles.Top;
+            lblTot.AutoSize = true;
+            lblTot.Depth = 0;
+            lblTot.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblTot.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblTot.Location = new Point(79, 292);
+            lblTot.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTot.Name = "lblTot";
+            lblTot.Size = new Size(315, 41);
+            lblTot.TabIndex = 4;
+            lblTot.Text = "Total A Pagar: $ 0.00";
+            // 
+            // lblResume
+            // 
+            lblResume.Anchor = AnchorStyles.Top;
+            lblResume.AutoSize = true;
+            lblResume.Depth = 0;
+            lblResume.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblResume.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblResume.Location = new Point(74, 21);
+            lblResume.MouseState = MaterialSkin.MouseState.HOVER;
+            lblResume.Name = "lblResume";
+            lblResume.Size = new Size(320, 41);
+            lblResume.TabIndex = 3;
+            lblResume.Text = "RESUMEN DE VENTA";
             // 
             // tableLayoutPanel1
             // 
@@ -1029,15 +1330,17 @@ namespace MobileSolutions.UILayer
             ((ISupportInitialize)picSaleTitle).EndInit();
             tlpMain.ResumeLayout(false);
             tlpLeft.ResumeLayout(false);
-            pnlHeader.ResumeLayout(false);
-            tlpInputsVenta.ResumeLayout(false);
-            ((ISupportInitialize)dgvCustomerInfo).EndInit();
+            tlpLeft.PerformLayout();
             pnlProducto.ResumeLayout(false);
+            ((ISupportInitialize)dtgCustomers).EndInit();
             tlpInputsProducto.ResumeLayout(false);
             tlpInputsProducto.PerformLayout();
-            ((ISupportInitialize)dgvSaleDetails).EndInit();
+            pnlHeader.ResumeLayout(false);
+            ((ISupportInitialize)dtgProducts).EndInit();
+            tlpInputsVenta.ResumeLayout(false);
+            ((ISupportInitialize)dataGridView1).EndInit();
             pnlResumen.ResumeLayout(false);
-            tlpResumen.ResumeLayout(false);
+            pnlResumen.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -1053,50 +1356,69 @@ namespace MobileSolutions.UILayer
         private TableLayoutPanel tlpLeft;
         private Panel pnlHeader;
         private TableLayoutPanel tlpInputsVenta;
-        private MaterialButton btnCustomer;
-        private MaterialTextBox2 txtCustomer;
-        private MaterialButton btnPaymentType;
-        private MaterialComboBox cmbPaymentType;
-        private MaterialButton btnSaleNumber;
-        private MaterialTextBox2 txtSaleNumber;
-        private MaterialButton btnSeller;
-        private MaterialTextBox2 txtSeller;
-        private DataGridView dgvCustomerInfo;
-        private DataGridViewTextBoxColumn colDni;
-        private DataGridViewTextBoxColumn colNombre;
-        private DataGridViewTextBoxColumn colApellido;
-        private DataGridViewTextBoxColumn colEmail;
-        private DataGridViewTextBoxColumn colTelefono;
-        private DataGridViewTextBoxColumn colLocalidad;
+        private MaterialButton btnProduct;
+        private MaterialTextBox2 txtProducto;
         private Panel pnlProducto;
-        private TableLayoutPanel tlpInputsProducto;
-        private MaterialButton btnProductCode;
-        private MaterialTextBox2 txtProductCode;
-        private MaterialButton btnQuantity;
-        private MaterialTextBox2 txtQuantity;
-        private MaterialButton btnUnitaryPrice;
-        private MaterialTextBox2 txtUnitaryPrice;
-        private MaterialButton btnAddDetail;
-        private DataGridView dgvSaleDetails;
-        private DataGridViewTextBoxColumn colCodigoProducto;
-        private DataGridViewTextBoxColumn colProducto;
-        private DataGridViewTextBoxColumn colCantidad;
-        private DataGridViewTextBoxColumn colPrecioUnitario;
-        private DataGridViewTextBoxColumn colTotalProducto;
         private Panel pnlResumen;
-        private TableLayoutPanel tlpResumen;
-        private MaterialLabel lblResumenTitle;
-        private MaterialLabel lblCantidadItems;
-        private MaterialLabel lblSubtotal;
-        private MaterialLabel lblTotalSale;
-        private MaterialButton btnTotalSale;
-        private MaterialButton btnInvoice;
-        private MaterialButton btnConfirmSale;
-        private MaterialButton btnCancelSale;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel1;
         private Panel panel2;
         private MaterialLabel lblCurrentUser;
         private MaterialButton btnLogout;
+        private TableLayoutPanel tlpInputsProducto;
+        private MaterialTextBox2 txtSearchClient;
+        private MaterialButton btnAddUser;
+        private DataGridView dtgCustomers;
+        private MaterialLabel materialLabel1;
+        private MaterialTextBox2 txtName;
+        private MaterialTextBox2 txtLastname;
+        private MaterialTextBox2 txtDni;
+        private DataGridViewTextBoxColumn ColumnName;
+        private DataGridViewTextBoxColumn ColumnLastname;
+        private DataGridViewTextBoxColumn ColumnDNI;
+        private DataGridViewTextBoxColumn ColumnPhone;
+        private MaterialTextBox2 txtTel;
+        private DataGridView dtgProducts;
+        private DataGridViewTextBoxColumn ColumnCode;
+        private DataGridViewTextBoxColumn ColumnBrand;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn ColumnStock;
+        private DataGridViewTextBoxColumn ColumnPurchasePrice;
+        private DataGridViewTextBoxColumn ColumnSalePrice;
+        private DataGridView dataGridView1;
+        private MaterialTextBox2 txtMarca;
+        private MaterialTextBox2 txtStock;
+        private MaterialTextBox2 txtPName;
+        private MaterialTextBox2 txtQtty;
+        private MaterialTextBox2 txtPVenta;
+        private MaterialButton btnAddProd;
+        private MaterialTextBox2 txtSubTotal;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn SubTotal;
+        private DataGridViewButtonColumn Remove;
+        private MaterialLabel lblCart;
+        private MaterialLabel lblResume;
+        private MaterialLabel lblTot;
+        private MaterialRadioButton radTrans;
+        private MaterialRadioButton radEfectivo;
+        private MaterialLabel lblPayType;
+        private MaterialButton btnPrint;
+        private IconButton icoBtnPrint;
+        private MaterialButton btnCancel;
+        private IconButton icoBtnCancel;
+        private MaterialButton btnSell;
+        private IconButton icoBtnSell;
+        private MaterialLabel lblDate;
+        private MaterialLabel lblDniValue;
+        private MaterialLabel lblDni;
+        private MaterialLabel lblUserValue;
+        private MaterialLabel lblUser;
+        private MaterialLabel lblNomyApeValue;
+        private MaterialLabel lblNomYApe;
+        private MaterialLabel lblToday;
     }
 }

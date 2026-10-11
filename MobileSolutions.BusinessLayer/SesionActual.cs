@@ -12,6 +12,8 @@ namespace MobileSolutions.BusinessLayer
         public static string ProfileName { get; private set; } = string.Empty;
         public static string Username { get; private set; } = string.Empty;
         public static string Name { get; private set; } = string.Empty;
+        public static string Lastname { get; private set; } = string.Empty;
+        public static string Dni { get; private set; } = string.Empty;
 
         public static bool IsAuthenticated => UserId > 0;
 
@@ -26,6 +28,8 @@ namespace MobileSolutions.BusinessLayer
             ProfileName = user.ProfileName;
             Username = user.Username;
             Name = user.Name;
+            Lastname = user.Lastname;
+            Dni = user.Dni;
         }
 
         /// <summary>
@@ -39,6 +43,8 @@ namespace MobileSolutions.BusinessLayer
             ProfileName = string.Empty;
             Username = string.Empty;
             Name = string.Empty;
+            Lastname = string.Empty;
+            Dni = string.Empty;
         }
     }
 }
