@@ -14,6 +14,7 @@ namespace MobileSolutions.UILayer
     public partial class SaleView : UserControl, ILogoutSupport
     {
         public event EventHandler? LogoutRequested;
+        public event EventHandler? NavigateToCustomerRequested;
 
         private List<ClienteInfo> _clientesMock = new();
 
@@ -111,11 +112,40 @@ namespace MobileSolutions.UILayer
 
         private void ConfigurarEventosYValidaciones()
         {
+            btnAddUser.Click += BtnAddUser_Click;
             txtProducto.TextChanged += txtCustomer_TextChanged;
 
 
             txtSearchClient.KeyPress += SoloAlfanumerico_KeyPress;
             txtProducto.KeyPress += Cliente_KeyPress;
+        }
+
+        private void BtnAddUser_Click(object? sender, EventArgs e)
+        {
+            if (NavigateToCustomerRequested != null)
+            {
+                NavigateToCustomerRequested.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+            // Fallback: Redirección automática buscando el TabControl contenedor
+            Control? parent = this.Parent;
+            while (parent != null)
+            {
+                if (parent is TabControl tabControl)
+                {
+                    foreach (TabPage page in tabControl.TabPages)
+                    {
+                        if (page.Controls.OfType<CustomerView>().Any() ||
+                            page.Text.Equals("Clientes", StringComparison.OrdinalIgnoreCase))
+                        {
+                            tabControl.SelectedTab = page;
+                            return;
+                        }
+                    }
+                }
+                parent = parent.Parent;
+            }
         }
 
 

@@ -45,8 +45,15 @@ namespace MobileSolutions.UILayer
             // 3. Display personalized welcome banner in HomeView
             homeView1.SetCurrentUser(_currentUser);
 
-            // 4. Set current seller on the Sale view
+            // 4. Set current seller on the Sale view and wire navigation
             saleView1.SetVendedor(_currentUser);
+            saleView1.NavigateToCustomerRequested += (s, e) =>
+            {
+                if (materialTabControl1.TabPages.Contains(tabPage3))
+                {
+                    materialTabControl1.SelectedTab = tabPage3;
+                }
+            };
 
             // 5. Wire decoupled logout events from child views
             WireLogoutEvents(this);
