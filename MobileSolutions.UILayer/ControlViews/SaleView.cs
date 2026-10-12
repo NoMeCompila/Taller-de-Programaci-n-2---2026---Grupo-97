@@ -81,9 +81,9 @@ namespace MobileSolutions.UILayer
         {
 
 
-            icoBtnSell.IconChar = IconChar.DollarSign;
+            icoBtnSell.IconChar = IconChar.Donate;
             icoBtnCancel.IconChar = IconChar.Cancel;
-            icoBtnPrint.IconChar = IconChar.Print;
+            icoBtnPrint.IconChar = IconChar.FilePdf;
             btnAddProd.Icon = IconChar.CartPlus.ToBitmap(Color.White);
             btnAddUser.Icon = IconChar.UserPlus.ToBitmap(Color.White);
             btnProduct.Icon = IconChar.MobileScreenButton.ToBitmap(Color.White);

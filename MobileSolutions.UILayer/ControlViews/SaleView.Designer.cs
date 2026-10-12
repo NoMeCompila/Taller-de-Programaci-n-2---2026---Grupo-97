@@ -12,9 +12,9 @@ namespace MobileSolutions.UILayer
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             picSaleTitle = new IconPictureBox();
             lblProductTitle = new MaterialLabel();
             tlpMain = new TableLayoutPanel();
@@ -188,14 +188,14 @@ namespace MobileSolutions.UILayer
             dtgCustomers.Anchor = AnchorStyles.Top;
             dtgCustomers.BackgroundColor = Color.MidnightBlue;
             dtgCustomers.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dtgCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dtgCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgCustomers.Columns.AddRange(new DataGridViewColumn[] { ColumnName, ColumnLastname, ColumnDNI, ColumnPhone });
             dtgCustomers.GridColor = SystemColors.InactiveCaptionText;
@@ -469,14 +469,14 @@ namespace MobileSolutions.UILayer
             dtgProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProducts.BackgroundColor = Color.MidnightBlue;
             dtgProducts.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = SystemColors.Control;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dtgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dtgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProducts.Columns.AddRange(new DataGridViewColumn[] { ColumnCode, ColumnBrand, dataGridViewTextBoxColumn1, ColumnStock, ColumnPurchasePrice, ColumnSalePrice });
             dtgProducts.Dock = DockStyle.Bottom;
@@ -840,14 +840,14 @@ namespace MobileSolutions.UILayer
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.MidnightBlue;
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn7, SubTotal, Remove });
             dataGridView1.GridColor = SystemColors.InactiveCaptionText;
@@ -1080,7 +1080,7 @@ namespace MobileSolutions.UILayer
             icoBtnPrint.BackColor = Color.RoyalBlue;
             icoBtnPrint.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             icoBtnPrint.ForeColor = SystemColors.Control;
-            icoBtnPrint.IconChar = IconChar.Pencil;
+            icoBtnPrint.IconChar = IconChar.FilePdf;
             icoBtnPrint.IconColor = Color.White;
             icoBtnPrint.IconFont = IconFont.Auto;
             icoBtnPrint.IconSize = 60;
@@ -1121,7 +1121,7 @@ namespace MobileSolutions.UILayer
             icoBtnCancel.BackColor = Color.RoyalBlue;
             icoBtnCancel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             icoBtnCancel.ForeColor = SystemColors.Control;
-            icoBtnCancel.IconChar = IconChar.Pencil;
+            icoBtnCancel.IconChar = IconChar.Cancel;
             icoBtnCancel.IconColor = Color.White;
             icoBtnCancel.IconFont = IconFont.Auto;
             icoBtnCancel.IconSize = 60;
@@ -1162,7 +1162,7 @@ namespace MobileSolutions.UILayer
             icoBtnSell.BackColor = Color.RoyalBlue;
             icoBtnSell.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             icoBtnSell.ForeColor = SystemColors.Control;
-            icoBtnSell.IconChar = IconChar.Pencil;
+            icoBtnSell.IconChar = IconChar.Donate;
             icoBtnSell.IconColor = Color.White;
             icoBtnSell.IconFont = IconFont.Auto;
             icoBtnSell.IconSize = 60;
