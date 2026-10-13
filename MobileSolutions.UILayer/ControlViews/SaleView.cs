@@ -69,9 +69,29 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        public void SetSeller(string username)
+        public void SetSeller(User? user = null)
         {
-            LoadCurrentUserData();
+            CargarDatosUsuarioActual();
+        }
+
+        public void SetSeller(string? username)
+        {
+            CargarDatosUsuarioActual();
+        }
+
+        public void SetVendedor(User? user = null)
+        {
+            CargarDatosUsuarioActual();
+        }
+
+        public void SetVendedor(string? username)
+        {
+            CargarDatosUsuarioActual();
+        }
+
+        public void LoadCurrentUserData()
+        {
+            CargarDatosUsuarioActual();
         }
 
         #region Configuración Visual y Grillas
@@ -170,6 +190,7 @@ namespace MobileSolutions.UILayer
             txtQtty.TextChanged += txtQtty_TextChanged;
 
             // Acciones principales
+            btnAddUser.Click += (s, e) => NavigateToCustomerRequested?.Invoke(this, EventArgs.Empty);
             btnAddProd.Click += btnAddProd_Click;
             btnSell.Click += btnSell_Click;
             icoBtnSell.Click += btnSell_Click;
@@ -190,7 +211,7 @@ namespace MobileSolutions.UILayer
             string lastName = CurrentSession.Lastname;
             string dni = CurrentSession.Dni;
 
-            if ((string.IsNullOrWhiteSpace(apellido) || string.IsNullOrWhiteSpace(dni)) && !string.IsNullOrWhiteSpace(username))
+            if ((string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(dni)) && !string.IsNullOrWhiteSpace(username))
             {
                 try
                 {
@@ -469,7 +490,7 @@ namespace MobileSolutions.UILayer
                 return;
             }
 
-            if (!SesionActual.IsAuthenticated || SesionActual.UserId <= 0)
+            if (!CurrentSession.IsAuthenticated || CurrentSession.UserId <= 0)
             {
                 MaterialMessageBox.Show("No se encontró una sesión de vendedor válida.", "Sesión Inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -499,7 +520,7 @@ namespace MobileSolutions.UILayer
                 var nuevaVenta = new SaleHeader
                 {
                     CustomerId = _selectedCustomerId,
-                    UserId = SesionActual.UserId,
+                    UserId = CurrentSession.UserId,
                     PaymentTypeId = radTrans.Checked ? 1 : 2, // 1: Transferencia, 2: Efectivo
                     Details = _cartItems.ToList()
                 };
