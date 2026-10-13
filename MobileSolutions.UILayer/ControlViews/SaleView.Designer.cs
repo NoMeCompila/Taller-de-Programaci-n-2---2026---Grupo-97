@@ -1112,7 +1112,7 @@ namespace MobileSolutions.UILayer
             icoBtnPrint.BackColor = Color.RoyalBlue;
             icoBtnPrint.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             icoBtnPrint.ForeColor = SystemColors.Control;
-            icoBtnPrint.IconChar = IconChar.Pencil;
+            icoBtnPrint.IconChar = IconChar.FilePdf;
             icoBtnPrint.IconColor = Color.White;
             icoBtnPrint.IconFont = IconFont.Auto;
             icoBtnPrint.IconSize = 60;
@@ -1153,7 +1153,7 @@ namespace MobileSolutions.UILayer
             icoBtnCancel.BackColor = Color.RoyalBlue;
             icoBtnCancel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             icoBtnCancel.ForeColor = SystemColors.Control;
-            icoBtnCancel.IconChar = IconChar.Pencil;
+            icoBtnCancel.IconChar = IconChar.Cancel;
             icoBtnCancel.IconColor = Color.White;
             icoBtnCancel.IconFont = IconFont.Auto;
             icoBtnCancel.IconSize = 60;
@@ -1194,7 +1194,7 @@ namespace MobileSolutions.UILayer
             icoBtnSell.BackColor = Color.RoyalBlue;
             icoBtnSell.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             icoBtnSell.ForeColor = SystemColors.Control;
-            icoBtnSell.IconChar = IconChar.Pencil;
+            icoBtnSell.IconChar = IconChar.Donate;
             icoBtnSell.IconColor = Color.White;
             icoBtnSell.IconFont = IconFont.Auto;
             icoBtnSell.IconSize = 60;

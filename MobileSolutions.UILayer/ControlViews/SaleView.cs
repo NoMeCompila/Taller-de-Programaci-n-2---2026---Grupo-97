@@ -15,6 +15,7 @@ namespace MobileSolutions.UILayer
     public partial class SaleView : UserControl, ILogoutSupport
     {
         public event EventHandler? LogoutRequested;
+        public event EventHandler? NavigateToCustomerRequested;
 
         // Servicios de la arquitectura
         private readonly SaleService _saleService;
