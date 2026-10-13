@@ -61,16 +61,16 @@ namespace MobileSolutions.UILayer
 
             _userService = new UserService();
 
-            ConfigBasicsRestrictions();
-            dtgUsersConfig();
+            ConfigureBasicRestrictions();
+            ConfigureUsersGrid();
             InitializeSearchBehavior();
             InitializeStatusSwitch();
             dtgUsers.CellClick += dtgUsers_CellClick;
-            fillActiveUsers();
-            LimpiarFormulario();
+            FillActiveUsers();
+            ClearForm();
         }
 
-        private void dtgUsersConfig()
+        private void ConfigureUsersGrid()
         {
             // Evita que el DataGridView autogenere columnas extras a la derecha
             dtgUsers.AutoGenerateColumns = false;
@@ -105,18 +105,18 @@ namespace MobileSolutions.UILayer
         }
 
 
-        public void fillActiveUsers()
+        public void FillActiveUsers()
         {
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                List<User> usuarios = swtActive.Checked
+                List<User> users = swtActive.Checked
                     ? _userService.GetActiveUsers()
                     : _userService.GetInactiveUsers();
 
                 // Enlazamos la lista fuertemente tipada
                 dtgUsers.DataSource = null; // Limpia enlace previo para forzar refresco
-                dtgUsers.DataSource = usuarios;
+                dtgUsers.DataSource = users;
             }
             catch (Exception ex)
             {
@@ -132,10 +132,10 @@ namespace MobileSolutions.UILayer
         }
         private void UserView_Load(object sender, EventArgs e)
         {
-            fillActiveUsers();
+            FillActiveUsers();
         }
 
-        private void ConfigBasicsRestrictions()
+        private void ConfigureBasicRestrictions()
         {
             // Restringir el DateTimePicker para que la fecha máxima sea hoy.
             dtpBirth.MaxDate = DateTime.Now.Date;
@@ -197,10 +197,10 @@ namespace MobileSolutions.UILayer
                 Cursor.Current = Cursors.WaitCursor;
 
                 // 1. Construir entidad fuertemente tipada desde el formulario
-                User nuevoUsuario = ObtenerUsuarioDesdeFormulario();
+                User newUser = GetUserFromForm();
 
                 // 2. Invocar la Capa de Negocio (BLL)
-                var (success, message) = _userService.CreateUser(nuevoUsuario);
+                var (success, message) = _userService.CreateUser(newUser);
 
                 if (success)
                 {
@@ -212,10 +212,10 @@ namespace MobileSolutions.UILayer
                         MessageBoxIcon.Information);
 
                     // 4. Refrescar la grilla para mostrar el nuevo registro
-                    fillActiveUsers();
+                    FillActiveUsers();
 
                     // 5. Limpiar el formulario y restablecer controles
-                    LimpiarFormulario();
+                    ClearForm();
                 }
                 else
                 {
@@ -357,10 +357,10 @@ namespace MobileSolutions.UILayer
             return true;
         }
 
-        private User ObtenerUsuarioDesdeFormulario()
+        private User GetUserFromForm()
         {
             // Determinar Sexo seleccionado
-            string sexo = materialRadioButton6.Checked ? "Masculino" : (materialRadioButton9.Checked ? "Femenino" : "Otro");
+            string sex = materialRadioButton6.Checked ? "Masculino" : (materialRadioButton9.Checked ? "Femenino" : "Otro");
 
             // Determinar Perfil seleccionado (1: Administrador, 2: Gerente, 3: Vendedor)
             int profileId = 1;
@@ -385,7 +385,7 @@ namespace MobileSolutions.UILayer
                 Name = txtName.Text.Trim(),
                 Lastname = txtLastname.Text.Trim(),
                 Dni = txtDNI.Text.Trim(),
-                Sex = sexo,
+                Sex = sex,
                 Username = txtUsername.Text.Trim(),
                 Password = string.IsNullOrWhiteSpace(txtPassword.Text) ? null : txtPassword.Text,
                 Email = txtEmail.Text.Trim(),
@@ -406,23 +406,23 @@ namespace MobileSolutions.UILayer
                 return;
             }
 
-            DataGridViewRow fila = dtgUsers.Rows[e.RowIndex];
+            DataGridViewRow row = dtgUsers.Rows[e.RowIndex];
 
             // Validación contra filas nuevas o no vinculadas
-            if (fila.IsNewRow || fila.DataBoundItem == null)
+            if (row.IsNewRow || row.DataBoundItem == null)
             {
                 return;
             }
 
             // Mapeo seguro utilizando el objeto de negocio enlazado
-            if (fila.DataBoundItem is User usuarioSeleccionado)
+            if (row.DataBoundItem is User selectedUser)
             {
-                MapearUsuarioAControles(usuarioSeleccionado);
-                ActualizarEstadoBotones(modoEdicion: true);
+                MapUserToControls(selectedUser);
+                UpdateButtonsState(isEditMode: true);
             }
         }
 
-        private void MapearUsuarioAControles(User user)
+        private void MapUserToControls(User user)
         {
             _selectedUserId = user.UserId;
 
@@ -458,7 +458,7 @@ namespace MobileSolutions.UILayer
             materialRadioButton3.Checked = string.Equals(user.ProfileName, "Vendedor", StringComparison.OrdinalIgnoreCase);
         }
 
-        private void ActualizarEstadoBotones(bool modoEdicion)
+        private void UpdateButtonsState(bool isEditMode)
         {
             bool showActiveButtons = swtActive.Checked;
 
@@ -469,19 +469,19 @@ namespace MobileSolutions.UILayer
             btnClear.Enabled = showActiveButtons;
 
             icoBtnSave.Visible = showActiveButtons;
-            icoBtnSave.Enabled = showActiveButtons && !modoEdicion;
+            icoBtnSave.Enabled = showActiveButtons && !isEditMode;
             btnSave.Visible = showActiveButtons;
-            btnSave.Enabled = showActiveButtons && !modoEdicion;
+            btnSave.Enabled = showActiveButtons && !isEditMode;
 
             icoBtnUpdate.Visible = showActiveButtons;
-            icoBtnUpdate.Enabled = showActiveButtons && modoEdicion;
+            icoBtnUpdate.Enabled = showActiveButtons && isEditMode;
             btnUpdate.Visible = showActiveButtons;
-            btnUpdate.Enabled = showActiveButtons && modoEdicion;
+            btnUpdate.Enabled = showActiveButtons && isEditMode;
 
             iconBtnDelete.Visible = showActiveButtons;
-            iconBtnDelete.Enabled = showActiveButtons && modoEdicion;
+            iconBtnDelete.Enabled = showActiveButtons && isEditMode;
             btnDelete.Visible = showActiveButtons;
-            btnDelete.Enabled = showActiveButtons && modoEdicion;
+            btnDelete.Enabled = showActiveButtons && isEditMode;
 
             // Botones de reactivación (usuarios inactivos)
             icoBtnReactivate.Visible = !showActiveButtons;
@@ -490,7 +490,7 @@ namespace MobileSolutions.UILayer
             btnReactivate.Enabled = !showActiveButtons;
         }
 
-        private void LimpiarFormulario()
+        private void ClearForm()
         {
             _selectedUserId = 0;
 
@@ -512,7 +512,7 @@ namespace MobileSolutions.UILayer
             materialRadioButton1.Checked = true; // Administrador
 
             dtgUsers.ClearSelection();
-            ActualizarEstadoBotones(modoEdicion: false);
+            UpdateButtonsState(isEditMode: false);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -537,10 +537,10 @@ namespace MobileSolutions.UILayer
                 Cursor.Current = Cursors.WaitCursor;
 
                 // 1. Construir entidad fuertemente tipada desde el formulario con el Id seleccionado
-                User usuarioModificado = ObtenerUsuarioDesdeFormulario();
+                User modifiedUser = GetUserFromForm();
 
                 // 2. Invocar la Capa de Negocio (BLL)
-                var (success, message) = _userService.UpdateUser(usuarioModificado);
+                var (success, message) = _userService.UpdateUser(modifiedUser);
 
                 if (success)
                 {
@@ -552,10 +552,10 @@ namespace MobileSolutions.UILayer
                         MessageBoxIcon.Information);
 
                     // 4. Refrescar la grilla para mostrar los cambios
-                    fillActiveUsers();
+                    FillActiveUsers();
 
                     // 5. Limpiar el formulario y restablecer controles
-                    LimpiarFormulario();
+                    ClearForm();
                 }
                 else
                 {
@@ -620,10 +620,10 @@ namespace MobileSolutions.UILayer
                         MessageBoxIcon.Information);
 
                     // Refrescar grilla de usuarios activos
-                    fillActiveUsers();
+                    FillActiveUsers();
 
                     // Limpiar formulario y restablecer estado de botones
-                    LimpiarFormulario();
+                    ClearForm();
                 }
                 else
                 {
@@ -650,7 +650,7 @@ namespace MobileSolutions.UILayer
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            LimpiarFormulario();
+            ClearForm();
         }
 
         private void lblProfile_Click(object sender, EventArgs e)
@@ -759,7 +759,7 @@ namespace MobileSolutions.UILayer
         {
             // Asegurar texto y visibilidad inicial segun el estado del switch
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
-            ActualizarEstadoBotones(modoEdicion: _selectedUserId > 0);
+            UpdateButtonsState(isEditMode: _selectedUserId > 0);
             swtActive.CheckedChanged += swtActive_CheckedChanged;
 
             // Enlazar eventos de reactivacion
@@ -770,10 +770,10 @@ namespace MobileSolutions.UILayer
         private void swtActive_CheckedChanged(object? sender, EventArgs e)
         {
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
-            ActualizarEstadoBotones(modoEdicion: _selectedUserId > 0);
+            UpdateButtonsState(isEditMode: _selectedUserId > 0);
             txtSearch.Clear();
-            LimpiarFormulario();
-            fillActiveUsers();
+            ClearForm();
+            FillActiveUsers();
         }
 
         private void btnReactivate_Click(object? sender, EventArgs e)
@@ -798,10 +798,10 @@ namespace MobileSolutions.UILayer
                 if (success)
                 {
                     // Refrescar grilla de usuarios inactivos
-                    fillActiveUsers();
+                    FillActiveUsers();
 
                     // Limpiar campos del formulario
-                    LimpiarFormulario();
+                    ClearForm();
 
                     // Notificacion visual de exito solicitada
                     MaterialMessageBox.Show(

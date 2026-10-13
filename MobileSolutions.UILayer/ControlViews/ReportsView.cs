@@ -31,55 +31,55 @@ namespace MobileSolutions.UILayer
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
         }
 
-        private bool _reporteInyectado = false;
+        private bool _reportInjected = false;
 
         protected override void OnVisibleChanged(EventArgs e)
         {
             base.OnVisibleChanged(e);
-            if (this.Visible && !_reporteInyectado)
+            if (this.Visible && !_reportInjected)
             {
-                CargarReporteSegunPerfil();
+                LoadReportByProfile();
             }
         }
 
-        private void CargarReporteSegunPerfil()
+        private void LoadReportByProfile()
         {
-            int perfilActual = MobileSolutions.BusinessLayer.SesionActual.ProfileId;
-            UserControl reporteAutorizado = null;
+            int currentProfile = MobileSolutions.BusinessLayer.CurrentSession.ProfileId;
+            UserControl? authorizedReport = null;
 
-            switch (perfilActual)
+            switch (currentProfile)
             {
                 case 1:
-                    reporteAutorizado = new AdminReportControl();
+                    authorizedReport = new AdminReportControl();
                     break;
                 case 2:
-                    reporteAutorizado = new ManagerReportControl();
+                    authorizedReport = new ManagerReportControl();
                     break;
                 case 3:
-                    reporteAutorizado = new SellerReportControl();
+                    authorizedReport = new SellerReportControl();
                     break;
                 default:
                     // Perfil no reconocido: se deja el diseño original del panel (ícono + texto "Perfil No Autorizado")
                     return;
             }
 
-            if (reporteAutorizado != null)
+            if (authorizedReport != null)
             {
-                if (reporteAutorizado is ILogoutSupport logoutSupport)
+                if (authorizedReport is ILogoutSupport logoutSupport)
                 {
                     logoutSupport.LogoutRequested += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
                 }
 
-                string currentUsername = !string.IsNullOrWhiteSpace(MobileSolutions.BusinessLayer.SesionActual.Username)
-                    ? MobileSolutions.BusinessLayer.SesionActual.Username
+                string currentUsername = !string.IsNullOrWhiteSpace(MobileSolutions.BusinessLayer.CurrentSession.Username)
+                    ? MobileSolutions.BusinessLayer.CurrentSession.Username
                     : "admin";
 
-                MainForm.SetCurrentUserInLabels(reporteAutorizado, currentUsername);
+                MainForm.SetCurrentUserInLabels(authorizedReport, currentUsername);
 
-                reporteAutorizado.Dock = DockStyle.Fill;
+                authorizedReport.Dock = DockStyle.Fill;
                 pnlContainer.Controls.Clear();
-                pnlContainer.Controls.Add(reporteAutorizado);
-                _reporteInyectado = true;
+                pnlContainer.Controls.Add(authorizedReport);
+                _reportInjected = true;
             }
         }
     }

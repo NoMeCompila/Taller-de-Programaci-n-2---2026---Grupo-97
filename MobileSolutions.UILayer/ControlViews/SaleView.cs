@@ -16,17 +16,17 @@ namespace MobileSolutions.UILayer
         public event EventHandler? LogoutRequested;
         public event EventHandler? NavigateToCustomerRequested;
 
-        private List<ClienteInfo> _clientesMock = new();
+        private List<CustomerInfo> _mockCustomers = new();
 
         public SaleView()
         {
             InitializeComponent();
 
-            ConfigurarIconos();
-            CargarClientesMock();
-            ConfigurarEventosYValidaciones();
+            ConfigureIcons();
+            LoadMockCustomers();
+            ConfigureEventsAndValidations();
             lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            CargarDatosUsuarioActual();
+            LoadCurrentUserData();
             //CargarClientes();
         }
 
@@ -35,24 +35,26 @@ namespace MobileSolutions.UILayer
             base.OnVisibleChanged(e);
             if (Visible)
             {
-                CargarDatosUsuarioActual();
+                LoadCurrentUserData();
             }
         }
 
-        public void SetVendedor(string username)
+        public void SetSeller(string username)
         {
-            CargarDatosUsuarioActual();
+            LoadCurrentUserData();
         }
 
-        public void CargarDatosUsuarioActual()
-        {
-            string username = SesionActual.Username;
-            string nombre = SesionActual.Name;
-            string apellido = SesionActual.Lastname;
-            string dni = SesionActual.Dni;
+        public void SetVendedor(string username) => SetSeller(username);
 
-            // Fallback: si por alguna razón no se precargaron en SesionActual pero tenemos el username
-            if ((string.IsNullOrWhiteSpace(apellido) || string.IsNullOrWhiteSpace(dni)) && !string.IsNullOrWhiteSpace(username))
+        public void LoadCurrentUserData()
+        {
+            string username = CurrentSession.Username;
+            string name = CurrentSession.Name;
+            string lastName = CurrentSession.Lastname;
+            string dni = CurrentSession.Dni;
+
+            // Fallback: si por alguna razón no se precargaron en CurrentSession pero tenemos el username
+            if ((string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(dni)) && !string.IsNullOrWhiteSpace(username))
             {
                 try
                 {
@@ -60,8 +62,8 @@ namespace MobileSolutions.UILayer
                     var user = userService.GetUserByUsername(username);
                     if (user != null)
                     {
-                        if (string.IsNullOrWhiteSpace(nombre)) nombre = user.Name;
-                        if (string.IsNullOrWhiteSpace(apellido)) apellido = user.Lastname;
+                        if (string.IsNullOrWhiteSpace(name)) name = user.Name;
+                        if (string.IsNullOrWhiteSpace(lastName)) lastName = user.Lastname;
                         if (string.IsNullOrWhiteSpace(dni)) dni = user.Dni;
                     }
                 }
@@ -71,16 +73,14 @@ namespace MobileSolutions.UILayer
                 }
             }
 
-            string nombreCompleto = $"{nombre} {apellido}".Trim();
-            lblNomyApeValue.Text = string.IsNullOrWhiteSpace(nombreCompleto) ? "-" : nombreCompleto;
+            string fullName = $"{name} {lastName}".Trim();
+            lblNomyApeValue.Text = string.IsNullOrWhiteSpace(fullName) ? "-" : fullName;
             lblUserValue.Text = string.IsNullOrWhiteSpace(username) ? "-" : username;
             lblDniValue.Text = string.IsNullOrWhiteSpace(dni) ? "-" : dni;
         }
 
-        private void ConfigurarIconos()
+        private void ConfigureIcons()
         {
-
-
             icoBtnSell.IconChar = IconChar.Donate;
             icoBtnCancel.IconChar = IconChar.Cancel;
             icoBtnPrint.IconChar = IconChar.FilePdf;
@@ -93,31 +93,27 @@ namespace MobileSolutions.UILayer
 
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
-
         }
 
-
-
-        private void CargarClientesMock()
+        private void LoadMockCustomers()
         {
-            _clientesMock = new List<ClienteInfo>
+            _mockCustomers = new List<CustomerInfo>
             {
-                new ClienteInfo { Dni = "30112233", Nombre = "María", Apellido = "López", Email = "maria.lopez@mail.com", Telefono = "3515550101", Localidad = "Córdoba" },
-                new ClienteInfo { Dni = "28445566", Nombre = "Carlos", Apellido = "Gómez", Email = "carlos.gomez@mail.com", Telefono = "3515550102", Localidad = "Córdoba" },
-                new ClienteInfo { Dni = "31223344", Nombre = "Ana", Apellido = "Martínez", Email = "ana.martinez@mail.com", Telefono = "3515550103", Localidad = "La Calera" },
-                new ClienteInfo { Dni = "27778899", Nombre = "Luis", Apellido = "Fernández", Email = "luis.fernandez@mail.com", Telefono = "3515550104", Localidad = "Villa María" },
-                new ClienteInfo { Dni = "33556677", Nombre = "Julia", Apellido = "Rodríguez", Email = "julia.rodriguez@mail.com", Telefono = "3515550105", Localidad = "Córdoba" }
+                new CustomerInfo { Dni = "30112233", Name = "María", LastName = "López", Email = "maria.lopez@mail.com", Phone = "3515550101", Location = "Córdoba" },
+                new CustomerInfo { Dni = "28445566", Name = "Carlos", LastName = "Gómez", Email = "carlos.gomez@mail.com", Phone = "3515550102", Location = "Córdoba" },
+                new CustomerInfo { Dni = "31223344", Name = "Ana", LastName = "Martínez", Email = "ana.martinez@mail.com", Phone = "3515550103", Location = "La Calera" },
+                new CustomerInfo { Dni = "27778899", Name = "Luis", LastName = "Fernández", Email = "luis.fernandez@mail.com", Phone = "3515550104", Location = "Villa María" },
+                new CustomerInfo { Dni = "33556677", Name = "Julia", LastName = "Rodríguez", Email = "julia.rodriguez@mail.com", Phone = "3515550105", Location = "Córdoba" }
             };
         }
 
-        private void ConfigurarEventosYValidaciones()
+        private void ConfigureEventsAndValidations()
         {
             btnAddUser.Click += BtnAddUser_Click;
-            txtProducto.TextChanged += txtCustomer_TextChanged;
+            txtProducto.TextChanged += TxtCustomer_TextChanged;
 
-
-            txtSearchClient.KeyPress += SoloAlfanumerico_KeyPress;
-            txtProducto.KeyPress += Cliente_KeyPress;
+            txtSearchClient.KeyPress += OnlyAlphanumeric_KeyPress;
+            txtProducto.KeyPress += Customer_KeyPress;
         }
 
         private void BtnAddUser_Click(object? sender, EventArgs e)
@@ -148,14 +144,10 @@ namespace MobileSolutions.UILayer
             }
         }
 
-
-
-        private void txtCustomer_TextChanged(object? sender, EventArgs e)
+        private void TxtCustomer_TextChanged(object? sender, EventArgs e)
         {
-            //CargarClientes(txtCustomer.Text.Trim());
+            //LoadCustomers(txtCustomer.Text.Trim());
         }
-
-
 
         private void btnInvoice_Click(object? sender, EventArgs e)
         {
@@ -166,7 +158,7 @@ namespace MobileSolutions.UILayer
                 MessageBoxIcon.Information);
         }
 
-        private void SoloNumeros_KeyPress(object? sender, KeyPressEventArgs e)
+        private void OnlyNumbers_KeyPress(object? sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -174,7 +166,7 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        private void Precio_KeyPress(object? sender, KeyPressEventArgs e)
+        private void Price_KeyPress(object? sender, KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar))
                 return;
@@ -182,17 +174,17 @@ namespace MobileSolutions.UILayer
             if (char.IsDigit(e.KeyChar))
                 return;
 
-            char separador = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-            bool esSeparador = e.KeyChar == '.' || e.KeyChar == ',';
+            char separator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+            bool isSeparator = e.KeyChar == '.' || e.KeyChar == ',';
 
-            if (esSeparador)
+            if (isSeparator)
             {
                 var textBox = (MaterialTextBox2)sender!;
                 if (textBox.Text.Contains('.') || textBox.Text.Contains(','))
                 {
                     e.Handled = true;
                 }
-                else if (separador == '.')
+                else if (separator == '.')
                 {
                     e.KeyChar = '.';
                 }
@@ -206,7 +198,7 @@ namespace MobileSolutions.UILayer
             e.Handled = true;
         }
 
-        private void SoloAlfanumerico_KeyPress(object? sender, KeyPressEventArgs e)
+        private void OnlyAlphanumeric_KeyPress(object? sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
             {
@@ -214,7 +206,7 @@ namespace MobileSolutions.UILayer
             }
         }
 
-        private void Cliente_KeyPress(object? sender, KeyPressEventArgs e)
+        private void Customer_KeyPress(object? sender, KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar))
                 return;
@@ -227,35 +219,15 @@ namespace MobileSolutions.UILayer
 
             e.Handled = true;
         }
-
-        private void lblProductTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCustomer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tlpInputsProducto_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tlpLeft_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 
-    public class ClienteInfo
+    public class CustomerInfo
     {
         public string Dni { get; set; } = string.Empty;
-        public string Nombre { get; set; } = string.Empty;
-        public string Apellido { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string Telefono { get; set; } = string.Empty;
-        public string Localidad { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
     }
 }

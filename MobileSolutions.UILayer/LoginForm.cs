@@ -84,7 +84,7 @@ namespace MobileSolutions.UILayer
 
             if (success && user != null)
             {
-                MobileSolutions.BusinessLayer.SesionActual.IniciarSesion(user);
+                MobileSolutions.BusinessLayer.CurrentSession.StartSession(user);
                 MainForm mainForm = new MainForm(user.Username);
                 mainForm.Show();
                 this.Hide();

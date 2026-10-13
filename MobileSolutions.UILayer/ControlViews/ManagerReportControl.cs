@@ -20,10 +20,10 @@ namespace MobileSolutions.UILayer
     {
         public event EventHandler? LogoutRequested;
 
-        private static readonly Color FondoPrincipal = Color.FromArgb(50, 50, 50);
-        private static readonly Color FondoTarjeta = Color.FromArgb(60, 60, 60);
-        private static readonly Color FondoCabeceraTabla = Color.FromArgb(13, 71, 161);
-        private static readonly Color ColorSeleccionTabla = Color.FromArgb(21, 101, 192);
+        private static readonly Color MainBackground = Color.FromArgb(50, 50, 50);
+        private static readonly Color CardBackground = Color.FromArgb(60, 60, 60);
+        private static readonly Color TableHeaderBackground = Color.FromArgb(13, 71, 161);
+        private static readonly Color TableSelectionColor = Color.FromArgb(21, 101, 192);
 
         private DataGridView dgvStockAlerts;
         private DataGridView dgvTopSellers;
@@ -33,37 +33,37 @@ namespace MobileSolutions.UILayer
             InitializeComponent();
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
-            ConfigurarLayout();
+            ConfigureLayout();
         }
 
-        private void ConfigurarLayout()
+        private void ConfigureLayout()
         {
-            BackColor = FondoPrincipal;
+            BackColor = MainBackground;
 
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.DollarSign, "Ingresos Totales", "$0.00"), 0, 0);
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.ChartLine, "Ganancia Neta", "$0.00"), 1, 0);
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Percent, "Margen Promedio", "0%"), 2, 0);
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.BoxOpen, "Unidades Vendidas", "0"), 3, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.DollarSign, "Ingresos Totales", "$0.00"), 0, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.ChartLine, "Ganancia Neta", "$0.00"), 1, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.Percent, "Margen Promedio", "0%"), 2, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.BoxOpen, "Unidades Vendidas", "0"), 3, 0);
 
-            var chartTop5 = CrearCartesianTop5();
+            var chartTop5 = CreateTop5CartesianChart();
             chartTop5.Dock = DockStyle.Fill;
             chartTop5.Margin = new Padding(8);
             pnlTopProductos.Controls.Add(chartTop5);
             pnlTopProductos.Controls.SetChildIndex(chartTop5, 0);
 
-            var chartMarcas = CrearPieMarcas();
+            var chartMarcas = CreateBrandsPieChart();
             chartMarcas.Dock = DockStyle.Fill;
             chartMarcas.Margin = new Padding(8);
             pnlMarcas.Controls.Add(chartMarcas);
             pnlMarcas.Controls.SetChildIndex(chartMarcas, 0);
 
-            dgvStockAlerts = CrearDgvStockAlerts();
+            dgvStockAlerts = CreateStockAlertsGrid();
             dgvStockAlerts.Dock = DockStyle.Fill;
             dgvStockAlerts.Margin = new Padding(8);
             pnlStockAlerts.Controls.Add(dgvStockAlerts);
             pnlStockAlerts.Controls.SetChildIndex(dgvStockAlerts, 0);
 
-            dgvTopSellers = CrearDgvTopSellers();
+            dgvTopSellers = CreateTopSellersGrid();
             dgvTopSellers.Dock = DockStyle.Fill;
             dgvTopSellers.Margin = new Padding(8);
             pnlTopSellers.Controls.Add(dgvTopSellers);
@@ -72,12 +72,12 @@ namespace MobileSolutions.UILayer
 
         #region KPIs
 
-        private Panel CrearTarjetaKpi(IconChar icono, string titulo, string valor)
+        private Panel CreateKpiCard(IconChar icon, string title, string value)
         {
             var card = new Panel
             {
                 Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
+                BackColor = CardBackground,
                 Margin = new Padding(6),
                 Padding = new Padding(12, 10, 12, 10)
             };
@@ -96,39 +96,39 @@ namespace MobileSolutions.UILayer
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 
-            var picIcono = new IconPictureBox
+            var picIcon = new IconPictureBox
             {
                 Dock = DockStyle.Fill,
                 BackColor = Color.Transparent,
-                IconChar = icono,
+                IconChar = icon,
                 IconColor = Color.White,
                 IconFont = IconFont.Auto,
                 IconSize = 34
             };
 
-            var lblTitulo = new MaterialLabel
+            var lblTitle = new MaterialLabel
             {
                 Dock = DockStyle.Fill,
                 AutoSize = false,
-                Text = titulo,
+                Text = title,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ForeColor = Color.FromArgb(190, 190, 190),
                 Font = new Font("Roboto", 12F, FontStyle.Regular)
             };
 
-            var lblValor = new MaterialLabel
+            var lblValue = new MaterialLabel
             {
                 Dock = DockStyle.Fill,
                 AutoSize = false,
-                Text = valor,
+                Text = value,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ForeColor = Color.White,
                 Font = new Font("Roboto", 20F, FontStyle.Bold)
             };
 
-            layout.Controls.Add(picIcono, 0, 0);
-            layout.Controls.Add(lblTitulo, 0, 1);
-            layout.Controls.Add(lblValor, 0, 2);
+            layout.Controls.Add(picIcon, 0, 0);
+            layout.Controls.Add(lblTitle, 0, 1);
+            layout.Controls.Add(lblValue, 0, 2);
 
             card.Controls.Add(layout);
             return card;
@@ -136,14 +136,14 @@ namespace MobileSolutions.UILayer
 
         #endregion
 
-        #region Gráficos
+        #region Charts
 
-        private CartesianChart CrearCartesianTop5()
+        private CartesianChart CreateTop5CartesianChart()
         {
             var chart = new CartesianChart
             {
                 Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
+                BackColor = CardBackground,
                 Background = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(60, 60, 60)),
                 LegendLocation = LegendLocation.Right,
 
@@ -205,12 +205,12 @@ namespace MobileSolutions.UILayer
             return chart;
         }
 
-        private PieChart CrearPieMarcas()
+        private PieChart CreateBrandsPieChart()
         {
             var chart = new PieChart
             {
                 Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
+                BackColor = CardBackground,
                 LegendLocation = LegendLocation.Right,
                 Series = new SeriesCollection
                 {
@@ -233,34 +233,34 @@ namespace MobileSolutions.UILayer
 
         #endregion
 
-        #region Tablas
+        #region Tables
 
-        private DataGridView CrearDgvStockAlerts()
+        private DataGridView CreateStockAlertsGrid()
         {
-            var dgv = CrearDataGridViewBase();
-            AgregarColumna(dgv, "Producto", "Producto");
-            AgregarColumna(dgv, "StockActual", "Stock Actual");
-            AgregarColumna(dgv, "StockMinimo", "Stock Mínimo");
-            AgregarColumna(dgv, "Estado", "Estado");
+            var dgv = CreateBaseDataGridView();
+            AddColumn(dgv, "Producto", "Producto");
+            AddColumn(dgv, "StockActual", "Stock Actual");
+            AddColumn(dgv, "StockMinimo", "Stock Mínimo");
+            AddColumn(dgv, "Estado", "Estado");
             return dgv;
         }
 
-        private DataGridView CrearDgvTopSellers()
+        private DataGridView CreateTopSellersGrid()
         {
-            var dgv = CrearDataGridViewBase();
-            AgregarColumna(dgv, "Producto", "Producto");
-            AgregarColumna(dgv, "Marca", "Marca");
-            AgregarColumna(dgv, "Unidades", "Unidades");
-            AgregarColumna(dgv, "Ingresos", "Ingresos");
+            var dgv = CreateBaseDataGridView();
+            AddColumn(dgv, "Producto", "Producto");
+            AddColumn(dgv, "Marca", "Marca");
+            AddColumn(dgv, "Unidades", "Unidades");
+            AddColumn(dgv, "Ingresos", "Ingresos");
             return dgv;
         }
 
-        private DataGridView CrearDataGridViewBase()
+        private DataGridView CreateBaseDataGridView()
         {
             var dgv = new DataGridView
             {
                 Dock = DockStyle.Fill,
-                BackgroundColor = FondoPrincipal,
+                BackgroundColor = MainBackground,
                 ForeColor = Color.White,
                 BorderStyle = BorderStyle.None,
                 CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal,
@@ -280,16 +280,16 @@ namespace MobileSolutions.UILayer
             dgv.ColumnHeadersHeight = 38;
             dgv.RowTemplate.Height = 34;
 
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = FondoCabeceraTabla;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = TableHeaderBackground;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = FondoCabeceraTabla;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = TableHeaderBackground;
             dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Roboto", 10F, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgv.DefaultCellStyle.BackColor = FondoPrincipal;
+            dgv.DefaultCellStyle.BackColor = MainBackground;
             dgv.DefaultCellStyle.ForeColor = Color.White;
-            dgv.DefaultCellStyle.SelectionBackColor = ColorSeleccionTabla;
+            dgv.DefaultCellStyle.SelectionBackColor = TableSelectionColor;
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
             dgv.DefaultCellStyle.Font = new Font("Roboto", 10F, FontStyle.Regular);
             dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -299,12 +299,12 @@ namespace MobileSolutions.UILayer
             return dgv;
         }
 
-        private void AgregarColumna(DataGridView dgv, string nombre, string encabezado)
+        private void AddColumn(DataGridView dgv, string name, string headerText)
         {
             dgv.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = nombre,
-                HeaderText = encabezado,
+                Name = name,
+                HeaderText = headerText,
                 ReadOnly = true,
                 SortMode = DataGridViewColumnSortMode.NotSortable
             });

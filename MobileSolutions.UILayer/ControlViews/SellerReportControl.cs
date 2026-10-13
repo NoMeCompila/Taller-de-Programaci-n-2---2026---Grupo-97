@@ -21,41 +21,41 @@ namespace MobileSolutions.UILayer
     {
         public event EventHandler? LogoutRequested;
 
-        private static readonly Color FondoPrincipal = Color.FromArgb(50, 50, 50);
-        private static readonly Color FondoTarjeta = Color.FromArgb(60, 60, 60);
-        private static readonly Color ColorSubtituloPositivo = Color.FromArgb(102, 187, 106);
-        private static readonly Color ColorSeparadorEjes = Color.FromArgb(75, 75, 75);
+        private static readonly Color MainBackground = Color.FromArgb(50, 50, 50);
+        private static readonly Color CardBackground = Color.FromArgb(60, 60, 60);
+        private static readonly Color PositiveSubtitleColor = Color.FromArgb(102, 187, 106);
+        private static readonly Color AxisSeparatorColor = Color.FromArgb(75, 75, 75);
 
         public SellerReportControl()
         {
             InitializeComponent();
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
-            ConfigurarLayout();
+            ConfigureLayout();
         }
 
-        private void ConfigurarLayout()
+        private void ConfigureLayout()
         {
-            BackColor = FondoPrincipal;
+            BackColor = MainBackground;
 
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Wallet, "Facturación Mes", "$23,680.00", "+12% vs. mes anterior"), 0, 0);
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Receipt, "Volumen de Ventas", "35 tickets"), 1, 0);
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.HandHoldingUsd, "Ticket Promedio", "$676.57"), 2, 0);
-            tlpKpis.Controls.Add(CrearTarjetaKpi(IconChar.Trophy, "Venta Más Alta", "$1,800.00"), 3, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.Wallet, "Facturación Mes", "$23,680.00", "+12% vs. mes anterior"), 0, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.Receipt, "Volumen de Ventas", "35 tickets"), 1, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.HandHoldingUsd, "Ticket Promedio", "$676.57"), 2, 0);
+            tlpKpis.Controls.Add(CreateKpiCard(IconChar.Trophy, "Venta Más Alta", "$1,800.00"), 3, 0);
 
-            var chartEvolucion = CrearChartEvolucionMensual();
+            var chartEvolucion = CreateMonthlyEvolutionChart();
             chartEvolucion.Dock = DockStyle.Fill;
             chartEvolucion.Margin = new Padding(8);
             pnlEvolucion.Controls.Add(chartEvolucion);
             pnlEvolucion.Controls.SetChildIndex(chartEvolucion, 0);
 
-            var chartTopProductos = CrearChartTopProductos();
+            var chartTopProductos = CreateTopProductsChart();
             chartTopProductos.Dock = DockStyle.Fill;
             chartTopProductos.Margin = new Padding(8);
             pnlTopProductos.Controls.Add(chartTopProductos);
             pnlTopProductos.Controls.SetChildIndex(chartTopProductos, 0);
 
-            var chartMarcas = CrearPieMarcas();
+            var chartMarcas = CreateBrandsPieChart();
             chartMarcas.Dock = DockStyle.Fill;
             chartMarcas.Margin = new Padding(8);
             pnlMarcas.Controls.Add(chartMarcas);
@@ -64,12 +64,12 @@ namespace MobileSolutions.UILayer
 
         #region KPIs
 
-        private Panel CrearTarjetaKpi(IconChar icono, string titulo, string valor, string? subtitulo = null)
+        private Panel CreateKpiCard(IconChar icon, string title, string value, string? subtitle = null)
         {
             var card = new Panel
             {
                 Dock = DockStyle.Fill,
-                BackColor = FondoTarjeta,
+                BackColor = CardBackground,
                 Margin = new Padding(6),
                 Padding = new Padding(12, 10, 12, 10)
             };
@@ -89,50 +89,50 @@ namespace MobileSolutions.UILayer
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 
-            var picIcono = new IconPictureBox
+            var picIcon = new IconPictureBox
             {
                 Dock = DockStyle.Fill,
                 BackColor = Color.Transparent,
-                IconChar = icono,
+                IconChar = icon,
                 IconColor = Color.White,
                 IconFont = IconFont.Auto,
                 IconSize = 34
             };
 
-            var lblTitulo = new MaterialLabel
+            var lblTitle = new MaterialLabel
             {
                 Dock = DockStyle.Fill,
                 AutoSize = false,
-                Text = titulo,
+                Text = title,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ForeColor = Color.FromArgb(190, 190, 190),
                 Font = new Font("Roboto", 12F, FontStyle.Regular)
             };
 
-            var lblValor = new MaterialLabel
+            var lblValue = new MaterialLabel
             {
                 Dock = DockStyle.Fill,
                 AutoSize = false,
-                Text = valor,
+                Text = value,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ForeColor = Color.White,
                 Font = new Font("Roboto", 20F, FontStyle.Bold)
             };
 
-            var lblSubtitulo = new MaterialLabel
+            var lblSubtitle = new MaterialLabel
             {
                 Dock = DockStyle.Fill,
                 AutoSize = false,
-                Text = subtitulo ?? string.Empty,
+                Text = subtitle ?? string.Empty,
                 TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = ColorSubtituloPositivo,
+                ForeColor = PositiveSubtitleColor,
                 Font = new Font("Roboto", 9F, FontStyle.Regular)
             };
 
-            layout.Controls.Add(picIcono, 0, 0);
-            layout.Controls.Add(lblTitulo, 0, 1);
-            layout.Controls.Add(lblValor, 0, 2);
-            layout.Controls.Add(lblSubtitulo, 0, 3);
+            layout.Controls.Add(picIcon, 0, 0);
+            layout.Controls.Add(lblTitle, 0, 1);
+            layout.Controls.Add(lblValue, 0, 2);
+            layout.Controls.Add(lblSubtitle, 0, 3);
 
             card.Controls.Add(layout);
             return card;
@@ -142,11 +142,11 @@ namespace MobileSolutions.UILayer
 
         #region Evolución Temporal
 
-        private CartesianChart CrearChartEvolucionMensual()
+        private CartesianChart CreateMonthlyEvolutionChart()
         {
             var chart = new CartesianChart
             {
-                BackColor = FondoTarjeta,
+                BackColor = CardBackground,
                 Background = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(60, 60, 60)),
                 LegendLocation = LegendLocation.Right
             };
@@ -233,11 +233,11 @@ namespace MobileSolutions.UILayer
 
         #region Distribución Analítica
 
-        private CartesianChart CrearChartTopProductos()
+        private CartesianChart CreateTopProductsChart()
         {
             var chart = new CartesianChart
             {
-                BackColor = FondoTarjeta,
+                BackColor = CardBackground,
                 Background = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(60, 60, 60)),
                 LegendLocation = LegendLocation.Right
             };
@@ -304,11 +304,11 @@ namespace MobileSolutions.UILayer
             return chart;
         }
 
-        private PieChart CrearPieMarcas()
+        private PieChart CreateBrandsPieChart()
         {
             var chart = new PieChart
             {
-                BackColor = FondoTarjeta,
+                BackColor = CardBackground,
                 LegendLocation = LegendLocation.Right,
                 InnerRadius = 40
             };

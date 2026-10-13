@@ -5,7 +5,7 @@ namespace MobileSolutions.BusinessLayer
     /// <summary>
     /// Estado de la sesión activa (singleton estático).
     /// </summary>
-    public static class SesionActual
+    public static class CurrentSession
     {
         public static int UserId { get; private set; }
         public static int ProfileId { get; private set; }
@@ -21,7 +21,7 @@ namespace MobileSolutions.BusinessLayer
         /// Puebla la sesión con el usuario autenticado.
         /// Lo invoca LoginForm tras validar credenciales.
         /// </summary>
-        public static void IniciarSesion(User user)
+        public static void StartSession(User user)
         {
             UserId = user.UserId;
             ProfileId = user.ProfileId;
@@ -36,7 +36,7 @@ namespace MobileSolutions.BusinessLayer
         /// Restablece la sesión a sus valores por defecto (0 / string.Empty).
         /// Debe invocarse al cerrar sesión.
         /// </summary>
-        public static void LimpiarSesion()
+        public static void ClearSession()
         {
             UserId = 0;
             ProfileId = 0;

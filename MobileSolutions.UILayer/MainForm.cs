@@ -116,24 +116,24 @@ namespace MobileSolutions.UILayer
             materialTabControl1.TabPages.Clear();
 
             string normalizedUser = username.Trim().ToLowerInvariant();
-            int profileId = MobileSolutions.BusinessLayer.SesionActual.ProfileId;
-            string profileName = MobileSolutions.BusinessLayer.SesionActual.ProfileName.Trim().ToLowerInvariant();
+            int profileId = MobileSolutions.BusinessLayer.CurrentSession.ProfileId;
+            string profileName = MobileSolutions.BusinessLayer.CurrentSession.ProfileName.Trim().ToLowerInvariant();
 
             List<TabPage> allowedTabs;
 
-            bool isVendedor = profileName == "vendedor" || profileName == "seller" ||
-                              normalizedUser == "vendedor" || normalizedUser == "nico" ||
-                              (profileId == 2 && profileName != "gerente" && profileName != "manager") ||
-                              (profileId == 3 && profileName == "vendedor");
+            bool isSeller = profileName == "vendedor" || profileName == "seller" ||
+                            normalizedUser == "vendedor" || normalizedUser == "nico" ||
+                            (profileId == 2 && profileName != "gerente" && profileName != "manager") ||
+                            (profileId == 3 && profileName == "vendedor");
 
-            bool isGerente = profileName == "gerente" || profileName == "manager" ||
+            bool isManager = profileName == "gerente" || profileName == "manager" ||
                              normalizedUser == "gerente" || normalizedUser == "fer" || normalizedUser == "fcaballe" ||
                              (profileId == 3 && profileName != "vendedor" && profileName != "seller") ||
                              (profileId == 2 && profileName == "gerente");
 
             bool isAdmin = profileName == "administrador" || profileName == "administrator" ||
                            profileName == "admin" || normalizedUser == "admin" ||
-                           (profileId == 1 && !isVendedor && !isGerente);
+                           (profileId == 1 && !isSeller && !isManager);
 
             // Role-based access control based on DB profile (with fallback to username)
             if (isAdmin)
@@ -143,14 +143,14 @@ namespace MobileSolutions.UILayer
                     .Where(tab => tab != tabPage3 && tab != tabPage4 && tab != tabPage6)
                     .ToList();
             }
-            else if (isGerente)
+            else if (isManager)
             {
                 // Gerente
                 allowedTabs = _originalTabPages
                     .Where(tab => tab != tabPage2 && tab != tabPage4)
                     .ToList();
             }
-            else if (isVendedor)
+            else if (isSeller)
             {
                 // Vendedor: Access to Sales (tabPage6), Customers (tabPage3), Sales History (tabPage7), and Reports (tabPage8)
                 allowedTabs = _originalTabPages
@@ -229,19 +229,19 @@ namespace MobileSolutions.UILayer
             }
 
             // 1. Limpiar estado de sesión
-            MobileSolutions.BusinessLayer.SesionActual.LimpiarSesion();
+            MobileSolutions.BusinessLayer.CurrentSession.ClearSession();
 
             // 2. Marcar estado de logout
             IsLoggingOut = true;
 
             // 3. Ejecutar el ejecutable para reiniciar la aplicación mostrando el Login
-            EjecutarReinicioAplicacion();
+            ExecuteApplicationRestart();
 
             // 4. Terminar de forma inmediata el proceso actual para evitar residuos en memoria
             Environment.Exit(0);
         }
 
-        private void EjecutarReinicioAplicacion()
+        private void ExecuteApplicationRestart()
         {
             try
             {

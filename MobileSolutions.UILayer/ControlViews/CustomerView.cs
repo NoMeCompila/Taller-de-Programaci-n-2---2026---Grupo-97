@@ -56,26 +56,26 @@ namespace MobileSolutions.UILayer
 
             _customerService = new CustomerService();
 
-            ConfigBasicsRestrictions();
-            dtgCustomersConfig();
+            ConfigureBasicRestrictions();
+            ConfigureCustomersGrid();
             InitializeSearchBehavior();
             InitializeStatusSwitch();
             dtgCustomers.CellClick += dtgCustomers_CellClick;
-            fillActiveCustomers();
-            LimpiarFormulario();
+            FillActiveCustomers();
+            ClearForm();
         }
 
         private void CustomerView_Load(object sender, EventArgs e)
         {
-            fillActiveCustomers();
+            FillActiveCustomers();
         }
 
-        private void ConfigBasicsRestrictions()
+        private void ConfigureBasicRestrictions()
         {
             dtpBirth.MaxDate = DateTime.Now.Date;
         }
 
-        private void dtgCustomersConfig()
+        private void ConfigureCustomersGrid()
         {
             dtgCustomers.AutoGenerateColumns = false;
 
@@ -106,17 +106,17 @@ namespace MobileSolutions.UILayer
             ColumnLocality.DataPropertyName = nameof(Customer.Locality);
         }
 
-        public void fillActiveCustomers()
+        public void FillActiveCustomers()
         {
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                List<Customer> clientes = swtActive.Checked
+                List<Customer> customers = swtActive.Checked
                     ? _customerService.GetActiveCustomers()
                     : _customerService.GetInactiveCustomers();
 
                 dtgCustomers.DataSource = null;
-                dtgCustomers.DataSource = clientes;
+                dtgCustomers.DataSource = customers;
             }
             catch (Exception ex)
             {
@@ -181,8 +181,8 @@ namespace MobileSolutions.UILayer
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                Customer nuevoCliente = ObtenerClienteDesdeFormulario();
-                var (success, message) = _customerService.CreateCustomer(nuevoCliente);
+                Customer newCustomer = GetCustomerFromForm();
+                var (success, message) = _customerService.CreateCustomer(newCustomer);
 
                 if (success)
                 {
@@ -192,8 +192,8 @@ namespace MobileSolutions.UILayer
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
-                    fillActiveCustomers();
-                    LimpiarFormulario();
+                    FillActiveCustomers();
+                    ClearForm();
                 }
                 else
                 {
@@ -239,8 +239,8 @@ namespace MobileSolutions.UILayer
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                Customer clienteModificado = ObtenerClienteDesdeFormulario();
-                var (success, message) = _customerService.UpdateCustomer(clienteModificado);
+                Customer modifiedCustomer = GetCustomerFromForm();
+                var (success, message) = _customerService.UpdateCustomer(modifiedCustomer);
 
                 if (success)
                 {
@@ -250,8 +250,8 @@ namespace MobileSolutions.UILayer
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
-                    fillActiveCustomers();
-                    LimpiarFormulario();
+                    FillActiveCustomers();
+                    ClearForm();
                 }
                 else
                 {
@@ -313,8 +313,8 @@ namespace MobileSolutions.UILayer
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
-                    fillActiveCustomers();
-                    LimpiarFormulario();
+                    FillActiveCustomers();
+                    ClearForm();
                 }
                 else
                 {
@@ -359,8 +359,8 @@ namespace MobileSolutions.UILayer
 
                 if (success)
                 {
-                    fillActiveCustomers();
-                    LimpiarFormulario();
+                    FillActiveCustomers();
+                    ClearForm();
 
                     MaterialMessageBox.Show(
                         "Cliente Reactivado Exitosamente",
@@ -393,7 +393,7 @@ namespace MobileSolutions.UILayer
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            LimpiarFormulario();
+            ClearForm();
         }
 
         #endregion
@@ -464,9 +464,9 @@ namespace MobileSolutions.UILayer
             return true;
         }
 
-        private Customer ObtenerClienteDesdeFormulario()
+        private Customer GetCustomerFromForm()
         {
-            string sexo = radMale.Checked ? "Masculino" : (radFemale.Checked ? "Femenino" : "Otro");
+            string sex = radMale.Checked ? "Masculino" : (radFemale.Checked ? "Femenino" : "Otro");
 
             return new Customer
             {
@@ -474,7 +474,7 @@ namespace MobileSolutions.UILayer
                 Name = txtName.Text.Trim(),
                 Lastname = txtLastname.Text.Trim(),
                 Dni = txtDNI.Text.Trim(),
-                Sex = sexo,
+                Sex = sex,
                 Email = txtEmail.Text.Trim(),
                 Phone = string.IsNullOrWhiteSpace(txtPhone.Text) ? null : txtPhone.Text.Trim(),
                 Address = string.IsNullOrWhiteSpace(txtAddress.Text) ? null : txtAddress.Text.Trim(),
@@ -491,21 +491,21 @@ namespace MobileSolutions.UILayer
                 return;
             }
 
-            DataGridViewRow fila = dtgCustomers.Rows[e.RowIndex];
+            DataGridViewRow row = dtgCustomers.Rows[e.RowIndex];
 
-            if (fila.IsNewRow || fila.DataBoundItem == null)
+            if (row.IsNewRow || row.DataBoundItem == null)
             {
                 return;
             }
 
-            if (fila.DataBoundItem is Customer clienteSeleccionado)
+            if (row.DataBoundItem is Customer selectedCustomer)
             {
-                MapearClienteAControles(clienteSeleccionado);
-                ActualizarEstadoBotones(modoEdicion: true);
+                MapCustomerToControls(selectedCustomer);
+                UpdateButtonsState(isEditMode: true);
             }
         }
 
-        private void MapearClienteAControles(Customer customer)
+        private void MapCustomerToControls(Customer customer)
         {
             _selectedCustomerId = customer.CustomerId;
 
@@ -532,7 +532,7 @@ namespace MobileSolutions.UILayer
             radOther.Checked = string.Equals(customer.Sex, "Otro", StringComparison.OrdinalIgnoreCase);
         }
 
-        private void ActualizarEstadoBotones(bool modoEdicion)
+        private void UpdateButtonsState(bool isEditMode)
         {
             bool showActiveButtons = swtActive.Checked;
 
@@ -542,19 +542,19 @@ namespace MobileSolutions.UILayer
             btnClear.Enabled = showActiveButtons;
 
             icoBtnSave.Visible = showActiveButtons;
-            icoBtnSave.Enabled = showActiveButtons && !modoEdicion;
+            icoBtnSave.Enabled = showActiveButtons && !isEditMode;
             btnSave.Visible = showActiveButtons;
-            btnSave.Enabled = showActiveButtons && !modoEdicion;
+            btnSave.Enabled = showActiveButtons && !isEditMode;
 
             icoBtnUpdate.Visible = showActiveButtons;
-            icoBtnUpdate.Enabled = showActiveButtons && modoEdicion;
+            icoBtnUpdate.Enabled = showActiveButtons && isEditMode;
             btnUpdate.Visible = showActiveButtons;
-            btnUpdate.Enabled = showActiveButtons && modoEdicion;
+            btnUpdate.Enabled = showActiveButtons && isEditMode;
 
             icoBtnDelete.Visible = showActiveButtons;
-            icoBtnDelete.Enabled = showActiveButtons && modoEdicion;
+            icoBtnDelete.Enabled = showActiveButtons && isEditMode;
             btnDelete.Visible = showActiveButtons;
-            btnDelete.Enabled = showActiveButtons && modoEdicion;
+            btnDelete.Enabled = showActiveButtons && isEditMode;
 
             icoBtnReactivate.Visible = !showActiveButtons;
             icoBtnReactivate.Enabled = !showActiveButtons;
@@ -562,7 +562,7 @@ namespace MobileSolutions.UILayer
             btnReactivate.Enabled = !showActiveButtons;
         }
 
-        private void LimpiarFormulario()
+        private void ClearForm()
         {
             _selectedCustomerId = 0;
 
@@ -579,7 +579,7 @@ namespace MobileSolutions.UILayer
             radMale.Checked = true; // Masculino por defecto
 
             dtgCustomers.ClearSelection();
-            ActualizarEstadoBotones(modoEdicion: false);
+            UpdateButtonsState(isEditMode: false);
         }
 
         #endregion
@@ -659,7 +659,7 @@ namespace MobileSolutions.UILayer
         private void InitializeStatusSwitch()
         {
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
-            ActualizarEstadoBotones(modoEdicion: _selectedCustomerId > 0);
+            UpdateButtonsState(isEditMode: _selectedCustomerId > 0);
             swtActive.CheckedChanged += swtActive_CheckedChanged;
 
             btnReactivate.Click += btnReactivate_Click;
@@ -669,10 +669,10 @@ namespace MobileSolutions.UILayer
         private void swtActive_CheckedChanged(object? sender, EventArgs e)
         {
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
-            ActualizarEstadoBotones(modoEdicion: _selectedCustomerId > 0);
+            UpdateButtonsState(isEditMode: _selectedCustomerId > 0);
             txtSearch.Clear();
-            LimpiarFormulario();
-            fillActiveCustomers();
+            ClearForm();
+            FillActiveCustomers();
         }
 
         #endregion

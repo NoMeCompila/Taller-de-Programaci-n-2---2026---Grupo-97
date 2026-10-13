@@ -14,12 +14,12 @@ namespace MobileSolutions.UILayer
         public SalesHistoryView()
         {
             InitializeComponent();
-            ConfigurarIconos();
-            CargarDatosDummy();
+            ConfigureIcons();
+            LoadDummyData();
             Load += (s, e) => splitContainer.SplitterDistance = (int)(splitContainer.Height * 0.6);
         }
 
-        private void ConfigurarIconos()
+        private void ConfigureIcons()
         {
             btnSearch.Icon = IconChar.Search.ToBitmap(Color.White);
             btnClear.Icon = IconChar.Eraser.ToBitmap(Color.White);
@@ -29,15 +29,15 @@ namespace MobileSolutions.UILayer
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
         }
 
-        private void CargarDatosDummy()
+        private void LoadDummyData()
         {
-            var iconoPdf = IconChar.FilePdf.ToBitmap(Color.White, 24);
+            var pdfIcon = IconChar.FilePdf.ToBitmap(Color.White, 24);
 
             dgvSales.Rows.Clear();
-            dgvSales.Rows.Add("FV-0001", "05/09/2026", "María López", "nico", "Efectivo", "$2,180.00", iconoPdf);
-            dgvSales.Rows.Add("FV-0002", "06/09/2026", "Carlos Gómez", "fer", "Tarjeta Crédito", "$1,400.00", iconoPdf);
-            dgvSales.Rows.Add("FV-0003", "08/09/2026", "Ana Martínez", "nico", "Débito", "$3,160.00", iconoPdf);
-            dgvSales.Rows.Add("FV-0004", "09/09/2026", "Luis Fernández", "fer", "Efectivo", "$1,060.00", iconoPdf);
+            dgvSales.Rows.Add("FV-0001", "05/09/2026", "María López", "nico", "Efectivo", "$2,180.00", pdfIcon);
+            dgvSales.Rows.Add("FV-0002", "06/09/2026", "Carlos Gómez", "fer", "Tarjeta Crédito", "$1,400.00", pdfIcon);
+            dgvSales.Rows.Add("FV-0003", "08/09/2026", "Ana Martínez", "nico", "Débito", "$3,160.00", pdfIcon);
+            dgvSales.Rows.Add("FV-0004", "09/09/2026", "Luis Fernández", "fer", "Efectivo", "$1,060.00", pdfIcon);
 
             dgvSaleDetails.Rows.Clear();
             dgvSaleDetails.Rows.Add("CEL-014", "iPhone 14 128GB", 2, "$900.00", "$1,800.00");

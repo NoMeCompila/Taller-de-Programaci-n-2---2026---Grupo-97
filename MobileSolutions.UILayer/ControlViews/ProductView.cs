@@ -58,18 +58,18 @@ namespace MobileSolutions.UILayer
 
             _productService = new ProductService();
 
-            dtgProductsConfig();
+            ConfigureProductsGrid();
             InitializeSearchBehavior();
             InitializeStatusSwitch();
             dtgProducts.CellClick += dtgProducts_CellClick;
             btnSearch.Click += btnSearch_Click;
             btnImageURL.Click += btnImageURL_Click;
             LoadBrands();
-            fillActiveProducts();
-            LimpiarFormulario();
+            FillActiveProducts();
+            ClearForm();
         }
 
-        private void dtgProductsConfig()
+        private void ConfigureProductsGrid()
         {
             // Evita que el DataGridView autogenere columnas extras a la derecha
             dtgProducts.AutoGenerateColumns = false;
@@ -98,18 +98,18 @@ namespace MobileSolutions.UILayer
             ColumnImage.DataPropertyName = nameof(Product.Image);
         }
 
-        public void fillActiveProducts()
+        public void FillActiveProducts()
         {
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                List<Product> productos = swtActive.Checked
+                List<Product> products = swtActive.Checked
                     ? _productService.GetActiveProducts()
                     : _productService.GetInactiveProducts();
 
                 // Enlazamos la lista fuertemente tipada
                 dtgProducts.DataSource = null; // Limpia enlace previo para forzar refresco
-                dtgProducts.DataSource = productos;
+                dtgProducts.DataSource = products;
             }
             catch (Exception ex)
             {
@@ -131,12 +131,12 @@ namespace MobileSolutions.UILayer
                 _brands.Clear();
                 cmbBrand.Items.Clear();
 
-                List<Brand> marcas = _productService.GetActiveBrands();
+                List<Brand> brands = _productService.GetActiveBrands();
 
-                foreach (Brand marca in marcas)
+                foreach (Brand brand in brands)
                 {
-                    _brands.Add(marca);
-                    cmbBrand.Items.Add(marca.Name);
+                    _brands.Add(brand);
+                    cmbBrand.Items.Add(brand.Name);
                 }
 
                 cmbBrand.SelectedIndex = -1;
@@ -228,7 +228,7 @@ namespace MobileSolutions.UILayer
             e.Handled = true;
         }
 
-        // ──-──────────────────────────────────────────
+        // ──-        // ─────────────────────────────────────────────
         //  Previsualización de imagen
         // ─────────────────────────────────────────────
 
@@ -238,10 +238,10 @@ namespace MobileSolutions.UILayer
         /// </summary>
         private void txtImageURL_Leave(object sender, EventArgs e)
         {
-            CargarPreviewImagen(txtImageURL.Text);
+            LoadImagePreview(txtImageURL.Text);
         }
 
-        private void CargarPreviewImagen(string? inputRaw)
+        private void LoadImagePreview(string? inputRaw)
         {
             string input = (inputRaw ?? string.Empty).Trim();
 
@@ -293,7 +293,7 @@ namespace MobileSolutions.UILayer
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     txtImageURL.Text = dialog.FileName;
-                    CargarPreviewImagen(txtImageURL.Text);
+                    LoadImagePreview(txtImageURL.Text);
                 }
             }
         }
@@ -314,10 +314,10 @@ namespace MobileSolutions.UILayer
                 Cursor.Current = Cursors.WaitCursor;
 
                 // 1. Construir entidad fuertemente tipada desde el formulario
-                Product nuevoProducto = ObtenerProductoDesdeFormulario();
+                Product newProduct = GetProductFromForm();
 
                 // 2. Invocar la Capa de Negocio (BLL)
-                var (success, message) = _productService.CreateProduct(nuevoProducto);
+                var (success, message) = _productService.CreateProduct(newProduct);
 
                 if (success)
                 {
@@ -329,10 +329,10 @@ namespace MobileSolutions.UILayer
                         MessageBoxIcon.Information);
 
                     // 4. Refrescar la grilla para mostrar el nuevo registro
-                    fillActiveProducts();
+                    FillActiveProducts();
 
                     // 5. Limpiar el formulario y restablecer controles
-                    LimpiarFormulario();
+                    ClearForm();
                 }
                 else
                 {
@@ -427,7 +427,7 @@ namespace MobileSolutions.UILayer
             return true;
         }
 
-        private Product ObtenerProductoDesdeFormulario()
+        private Product GetProductFromForm()
         {
             string purchaseText = txtPurchasePrice.Text.Replace(',', '.');
             decimal purchasePrice = decimal.TryParse(purchaseText, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal parsedPurchase)
@@ -464,23 +464,23 @@ namespace MobileSolutions.UILayer
                 return;
             }
 
-            DataGridViewRow fila = dtgProducts.Rows[e.RowIndex];
+            DataGridViewRow row = dtgProducts.Rows[e.RowIndex];
 
             // Validación contra filas nuevas o no vinculadas
-            if (fila.IsNewRow || fila.DataBoundItem == null)
+            if (row.IsNewRow || row.DataBoundItem == null)
             {
                 return;
             }
 
             // Mapeo seguro utilizando el objeto de negocio enlazado
-            if (fila.DataBoundItem is Product productoSeleccionado)
+            if (row.DataBoundItem is Product selectedProduct)
             {
-                MapearProductoAControles(productoSeleccionado);
-                ActualizarEstadoBotones(modoEdicion: true);
+                MapProductToControls(selectedProduct);
+                UpdateButtonsState(isEditMode: true);
             }
         }
 
-        private void MapearProductoAControles(Product product)
+        private void MapProductToControls(Product product)
         {
             _selectedProductId = product.ProductId;
 
@@ -506,10 +506,10 @@ namespace MobileSolutions.UILayer
             txtImageURL.Text = product.Image ?? string.Empty;
 
             // Previsualización de la imagen asociada al producto
-            CargarPreviewImagen(product.Image);
+            LoadImagePreview(product.Image);
         }
 
-        private void ActualizarEstadoBotones(bool modoEdicion)
+        private void UpdateButtonsState(bool isEditMode)
         {
             bool showActiveButtons = swtActive.Checked;
 
@@ -520,28 +520,28 @@ namespace MobileSolutions.UILayer
             btnClear.Enabled = showActiveButtons;
 
             icoBtnSave.Visible = showActiveButtons;
-            icoBtnSave.Enabled = showActiveButtons && !modoEdicion;
+            icoBtnSave.Enabled = showActiveButtons && !isEditMode;
             btnSave.Visible = showActiveButtons;
-            btnSave.Enabled = showActiveButtons && !modoEdicion;
+            btnSave.Enabled = showActiveButtons && !isEditMode;
 
             icoBtnUpdate.Visible = showActiveButtons;
-            icoBtnUpdate.Enabled = showActiveButtons && modoEdicion;
+            icoBtnUpdate.Enabled = showActiveButtons && isEditMode;
             btnUpdate.Visible = showActiveButtons;
-            btnUpdate.Enabled = showActiveButtons && modoEdicion;
+            btnUpdate.Enabled = showActiveButtons && isEditMode;
 
             icoBtnDelete.Visible = showActiveButtons;
-            icoBtnDelete.Enabled = showActiveButtons && modoEdicion;
+            icoBtnDelete.Enabled = showActiveButtons && isEditMode;
             btnDelete.Visible = showActiveButtons;
-            btnDelete.Enabled = showActiveButtons && modoEdicion;
+            btnDelete.Enabled = showActiveButtons && isEditMode;
 
             // Botones de reactivación (productos inactivos)
             icoBtnReactivate.Visible = !showActiveButtons;
-            icoBtnReactivate.Enabled = !showActiveButtons && modoEdicion;
+            icoBtnReactivate.Enabled = !showActiveButtons && isEditMode;
             btnReactivate.Visible = !showActiveButtons;
-            btnReactivate.Enabled = !showActiveButtons && modoEdicion;
+            btnReactivate.Enabled = !showActiveButtons && isEditMode;
         }
 
-        private void LimpiarFormulario()
+        private void ClearForm()
         {
             _selectedProductId = 0;
 
@@ -561,7 +561,7 @@ namespace MobileSolutions.UILayer
             picProductImage.Image = null;
 
             dtgProducts.ClearSelection();
-            ActualizarEstadoBotones(modoEdicion: false);
+            UpdateButtonsState(isEditMode: false);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -586,10 +586,10 @@ namespace MobileSolutions.UILayer
                 Cursor.Current = Cursors.WaitCursor;
 
                 // 1. Construir entidad fuertemente tipada desde el formulario con el Id seleccionado
-                Product productoModificado = ObtenerProductoDesdeFormulario();
+                Product modifiedProduct = GetProductFromForm();
 
                 // 2. Invocar la Capa de Negocio (BLL)
-                var (success, message) = _productService.UpdateProduct(productoModificado);
+                var (success, message) = _productService.UpdateProduct(modifiedProduct);
 
                 if (success)
                 {
@@ -601,10 +601,10 @@ namespace MobileSolutions.UILayer
                         MessageBoxIcon.Information);
 
                     // 4. Refrescar la grilla para mostrar los cambios
-                    fillActiveProducts();
+                    FillActiveProducts();
 
                     // 5. Limpiar el formulario y restablecer controles
-                    LimpiarFormulario();
+                    ClearForm();
                 }
                 else
                 {
@@ -669,10 +669,10 @@ namespace MobileSolutions.UILayer
                         MessageBoxIcon.Information);
 
                     // Refrescar grilla de productos activos
-                    fillActiveProducts();
+                    FillActiveProducts();
 
                     // Limpiar formulario y restablecer estado de botones
-                    LimpiarFormulario();
+                    ClearForm();
                 }
                 else
                 {
@@ -699,7 +699,7 @@ namespace MobileSolutions.UILayer
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            LimpiarFormulario();
+            ClearForm();
         }
 
         // ─────────────────────────────────────────────
@@ -786,7 +786,7 @@ namespace MobileSolutions.UILayer
         {
             // Asegurar texto y visibilidad inicial segun el estado del switch
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
-            ActualizarEstadoBotones(modoEdicion: _selectedProductId > 0);
+            UpdateButtonsState(isEditMode: _selectedProductId > 0);
             swtActive.CheckedChanged += swtActive_CheckedChanged;
 
             // Enlazar eventos de reactivacion
@@ -797,10 +797,10 @@ namespace MobileSolutions.UILayer
         private void swtActive_CheckedChanged(object? sender, EventArgs e)
         {
             swtActive.Text = swtActive.Checked ? "Activos" : "Inactivos";
-            ActualizarEstadoBotones(modoEdicion: _selectedProductId > 0);
+            UpdateButtonsState(isEditMode: _selectedProductId > 0);
             txtSearch.Clear();
-            LimpiarFormulario();
-            fillActiveProducts();
+            ClearForm();
+            FillActiveProducts();
         }
 
         private void btnReactivate_Click(object? sender, EventArgs e)
@@ -825,10 +825,10 @@ namespace MobileSolutions.UILayer
                 if (success)
                 {
                     // Refrescar grilla de productos inactivos
-                    fillActiveProducts();
+                    FillActiveProducts();
 
                     // Limpiar campos del formulario
-                    LimpiarFormulario();
+                    ClearForm();
 
                     // Notificacion visual de exito solicitada
                     MaterialMessageBox.Show(
