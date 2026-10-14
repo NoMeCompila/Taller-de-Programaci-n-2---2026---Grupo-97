@@ -29,6 +29,8 @@ namespace MobileSolutions.UILayer
 
         // Estado en memoria de la venta
         private int _selectedCustomerId = 0;
+        private Customer? _selectedCustomer = null;
+        private bool _isCustomerLocked = false;
         private Product? _selectedProduct = null;
         private readonly List<SaleDetail> _cartItems = new();
         private int _lastCreatedSaleId = 0;
@@ -203,6 +205,7 @@ namespace MobileSolutions.UILayer
 
             // Acciones principales
             btnAddUser.Click += (s, e) => NavigateToCustomerRequested?.Invoke(this, EventArgs.Empty);
+            btnCheckCustomer.Click += btnCheckCustomer_Click;
             btnAddProd.Click += btnAddProd_Click;
             btnSell.Click += btnSell_Click;
             icoBtnSell.Click += btnSell_Click;
@@ -346,16 +349,63 @@ namespace MobileSolutions.UILayer
 
         private void dtgCustomers_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
+            if (_isCustomerLocked) return;
             if (e.RowIndex < 0 || e.RowIndex >= dtgCustomers.Rows.Count) return;
 
             var fila = dtgCustomers.Rows[e.RowIndex];
             if (fila.DataBoundItem is Customer cliente)
             {
+                _selectedCustomer = cliente;
                 _selectedCustomerId = cliente.CustomerId;
                 txtName.Text = cliente.Name;
                 txtLastname.Text = cliente.Lastname;
                 txtDni.Text = cliente.Dni;
                 txtTel.Text = cliente.Phone ?? string.Empty;
+            }
+        }
+
+        private void btnCheckCustomer_Click(object? sender, EventArgs e)
+        {
+            if (_isCustomerLocked)
+            {
+                // Si ya está bloqueado, al hacer clic se desbloquea para permitir cambiar de cliente
+                DesbloquearSeleccionCliente();
+                return;
+            }
+
+            if (_selectedCustomer == null || _selectedCustomerId <= 0)
+            {
+                MaterialMessageBox.Show("Debe seleccionar un cliente de la lista antes de confirmar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Bloquear y filtrar la grilla al cliente confirmado
+            _isCustomerLocked = true;
+            btnCheckCustomer.BackColor = Color.ForestGreen;
+            txtSearchClient.Enabled = false;
+            btnAddUser.Enabled = false;
+
+            // Filtrar DataGridView para mostrar únicamente el registro elegido
+            dtgCustomers.DataSource = null;
+            dtgCustomers.DataSource = new List<Customer> { _selectedCustomer };
+            dtgCustomers.ClearSelection();
+        }
+
+        private void DesbloquearSeleccionCliente()
+        {
+            _isCustomerLocked = false;
+            btnCheckCustomer.BackColor = Color.FromArgb(13, 71, 161);
+            txtSearchClient.Enabled = true;
+            btnAddUser.Enabled = true;
+
+            // Restaurar listado de clientes
+            if (!string.IsNullOrWhiteSpace(txtSearchClient.Text))
+            {
+                EjecutarBusquedaClientes();
+            }
+            else
+            {
+                CargarClientesActivos();
             }
         }
 
@@ -623,12 +673,14 @@ namespace MobileSolutions.UILayer
 
         private void LimpiarSeleccionCliente()
         {
+            _selectedCustomer = null;
             _selectedCustomerId = 0;
             txtName.Clear();
             txtLastname.Clear();
             txtDni.Clear();
             txtTel.Clear();
             txtSearchClient.Clear();
+            DesbloquearSeleccionCliente();
             dtgCustomers.ClearSelection();
         }
 

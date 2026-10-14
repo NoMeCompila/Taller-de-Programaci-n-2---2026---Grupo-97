@@ -32,6 +32,7 @@ namespace MobileSolutions.UILayer
             txtSearchClient = new MaterialTextBox2();
             btnAddUser = new MaterialButton();
             txtTel = new MaterialTextBox2();
+            btnCheckCustomer = new IconButton();
             pnlHeader = new Panel();
             dtgProducts = new DataGridView();
             ColumnCode = new DataGridViewTextBoxColumn();
@@ -247,19 +248,21 @@ namespace MobileSolutions.UILayer
             // tlpInputsProducto
             // 
             tlpInputsProducto.BackColor = Color.FromArgb(50, 50, 50);
-            tlpInputsProducto.ColumnCount = 6;
+            tlpInputsProducto.ColumnCount = 7;
             tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
             tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
             tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 191F));
             tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 198F));
             tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 192F));
-            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 240F));
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 220F));
+            tlpInputsProducto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
             tlpInputsProducto.Controls.Add(txtDni, 4, 0);
             tlpInputsProducto.Controls.Add(txtLastname, 3, 0);
             tlpInputsProducto.Controls.Add(txtName, 2, 0);
             tlpInputsProducto.Controls.Add(txtSearchClient, 1, 0);
             tlpInputsProducto.Controls.Add(btnAddUser, 0, 0);
             tlpInputsProducto.Controls.Add(txtTel, 5, 0);
+            tlpInputsProducto.Controls.Add(btnCheckCustomer, 6, 0);
             tlpInputsProducto.Dock = DockStyle.Top;
             tlpInputsProducto.Location = new Point(8, 8);
             tlpInputsProducto.Name = "tlpInputsProducto";
@@ -278,7 +281,7 @@ namespace MobileSolutions.UILayer
             txtDni.HideSelection = true;
             txtDni.Hint = "DNI";
             txtDni.LeadingIcon = null;
-            txtDni.Location = new Point(730, 10);
+            txtDni.Location = new Point(699, 10);
             txtDni.Margin = new Padding(4, 10, 4, 5);
             txtDni.MaxLength = 100;
             txtDni.MouseState = MaterialSkin.MouseState.OUT;
@@ -308,7 +311,7 @@ namespace MobileSolutions.UILayer
             txtLastname.HideSelection = true;
             txtLastname.Hint = "Apellido";
             txtLastname.LeadingIcon = null;
-            txtLastname.Location = new Point(532, 10);
+            txtLastname.Location = new Point(501, 10);
             txtLastname.Margin = new Padding(4, 10, 4, 5);
             txtLastname.MaxLength = 100;
             txtLastname.MouseState = MaterialSkin.MouseState.OUT;
@@ -338,7 +341,7 @@ namespace MobileSolutions.UILayer
             txtName.HideSelection = true;
             txtName.Hint = "Nombre";
             txtName.LeadingIcon = null;
-            txtName.Location = new Point(341, 10);
+            txtName.Location = new Point(310, 10);
             txtName.Margin = new Padding(4, 10, 4, 5);
             txtName.MaxLength = 100;
             txtName.MouseState = MaterialSkin.MouseState.OUT;
@@ -418,7 +421,7 @@ namespace MobileSolutions.UILayer
             txtTel.HideSelection = true;
             txtTel.Hint = "Teléfono";
             txtTel.LeadingIcon = null;
-            txtTel.Location = new Point(922, 10);
+            txtTel.Location = new Point(891, 10);
             txtTel.Margin = new Padding(4, 10, 4, 5);
             txtTel.MaxLength = 100;
             txtTel.MouseState = MaterialSkin.MouseState.OUT;
@@ -437,6 +440,24 @@ namespace MobileSolutions.UILayer
             txtTel.TextAlign = HorizontalAlignment.Left;
             txtTel.TrailingIcon = null;
             txtTel.UseSystemPasswordChar = false;
+            // 
+            // btnCheckCustomer
+            // 
+            btnCheckCustomer.BackColor = Color.FromArgb(13, 71, 161);
+            btnCheckCustomer.Dock = DockStyle.Fill;
+            btnCheckCustomer.FlatAppearance.BorderSize = 0;
+            btnCheckCustomer.FlatStyle = FlatStyle.Flat;
+            btnCheckCustomer.ForeColor = Color.White;
+            btnCheckCustomer.IconChar = IconChar.Check;
+            btnCheckCustomer.IconColor = Color.White;
+            btnCheckCustomer.IconFont = IconFont.Auto;
+            btnCheckCustomer.IconSize = 28;
+            btnCheckCustomer.Location = new Point(1111, 6);
+            btnCheckCustomer.Margin = new Padding(4, 6, 4, 6);
+            btnCheckCustomer.Name = "btnCheckCustomer";
+            btnCheckCustomer.Size = new Size(43, 52);
+            btnCheckCustomer.TabIndex = 12;
+            btnCheckCustomer.UseVisualStyleBackColor = false;
             // 
             // pnlHeader
             // 
@@ -1444,6 +1465,7 @@ namespace MobileSolutions.UILayer
         private DataGridViewTextBoxColumn ColumnDNI;
         private DataGridViewTextBoxColumn ColumnPhone;
         private MaterialTextBox2 txtTel;
+        private IconButton btnCheckCustomer;
         private DataGridView dtgProducts;
         private DataGridViewTextBoxColumn ColumnCode;
         private DataGridViewTextBoxColumn ColumnBrand;
