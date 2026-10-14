@@ -45,6 +45,30 @@ namespace MobileSolutions.BusinessLayer
                 : _saleDal.SearchActiveSales(cleanSearchTerm);
         }
 
+        public List<SaleHeader> GetSalesHistory(
+            DateTime? startDate,
+            DateTime? endDate,
+            string? saleNumber,
+            string? clientName,
+            int? filterSellerId)
+        {
+            if (startDate.HasValue && endDate.HasValue && startDate.Value.Date > endDate.Value.Date)
+            {
+                throw new ArgumentException("La fecha 'Desde' no puede ser posterior a la fecha 'Hasta'.");
+            }
+
+            int? targetUserId = filterSellerId;
+
+            // Restricción por rol: Si es Vendedor, forzar estrictamente su propio UserId
+            if (CurrentSession.IsAuthenticated &&
+                CurrentSession.ProfileName.Equals("Vendedor", StringComparison.OrdinalIgnoreCase))
+            {
+                targetUserId = CurrentSession.UserId;
+            }
+
+            return _saleDal.SearchSalesHistory(startDate, endDate, saleNumber, clientName, targetUserId);
+        }
+
         public List<SaleDetail> GetSaleDetailsBySaleId(int saleId)
         {
             if (saleId <= 0)
