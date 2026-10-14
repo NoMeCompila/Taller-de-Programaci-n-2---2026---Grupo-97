@@ -16,6 +16,7 @@ namespace MobileSolutions.UILayer
     {
         public event EventHandler? LogoutRequested;
         public event EventHandler? NavigateToCustomerRequested;
+        public event EventHandler? NavigateToProductRequested;
 
         // Servicios de la arquitectura
         private readonly SaleService _saleService;
@@ -208,6 +209,7 @@ namespace MobileSolutions.UILayer
 
             // Acciones principales
             btnAddUser.Click += (s, e) => NavigateToCustomerRequested?.Invoke(this, EventArgs.Empty);
+            btnProduct.Click += (s, e) => NavigateToProductRequested?.Invoke(this, EventArgs.Empty);
             btnCheckCustomer.Click += btnCheckCustomer_Click;
             btnAddProd.Click += btnAddProd_Click;
             btnSell.Click += btnSell_Click;

@@ -54,6 +54,13 @@ namespace MobileSolutions.UILayer
                     materialTabControl1.SelectedTab = tabPage3;
                 }
             };
+            saleView1.NavigateToProductRequested += (s, e) =>
+            {
+                if (materialTabControl1.TabPages.Contains(tabPage4))
+                {
+                    materialTabControl1.SelectedTab = tabPage4;
+                }
+            };
 
             // 5. Wire decoupled logout events from child views
             WireLogoutEvents(this);
