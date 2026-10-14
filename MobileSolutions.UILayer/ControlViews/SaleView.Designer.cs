@@ -61,16 +61,17 @@ namespace MobileSolutions.UILayer
             SubTotal = new DataGridViewTextBoxColumn();
             Remove = new DataGridViewButtonColumn();
             pnlResumen = new Panel();
-            lblDniValue = new MaterialLabel();
-            lblDni = new MaterialLabel();
-            lblUserValue = new MaterialLabel();
-            lblUser = new MaterialLabel();
-            lblNomyApeValue = new MaterialLabel();
-            lblNomYApe = new MaterialLabel();
-            lblToday = new MaterialLabel();
-            lblDate = new MaterialLabel();
+            tlpSummaryBox = new TableLayoutPanel();
             lblSaleNumber = new MaterialLabel();
             lblSaleNumberValue = new MaterialLabel();
+            lblToday = new MaterialLabel();
+            lblDate = new MaterialLabel();
+            lblNomYApe = new MaterialLabel();
+            lblNomyApeValue = new MaterialLabel();
+            lblUser = new MaterialLabel();
+            lblUserValue = new MaterialLabel();
+            lblDni = new MaterialLabel();
+            lblDniValue = new MaterialLabel();
             btnPrint = new MaterialButton();
             icoBtnPrint = new IconButton();
             btnCancel = new MaterialButton();
@@ -99,6 +100,7 @@ namespace MobileSolutions.UILayer
             tlpInputsVenta.SuspendLayout();
             ((ISupportInitialize)dataGridView1).BeginInit();
             pnlResumen.SuspendLayout();
+            tlpSummaryBox.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -913,16 +915,7 @@ namespace MobileSolutions.UILayer
             // pnlResumen
             // 
             pnlResumen.BackColor = Color.FromArgb(45, 45, 45);
-            pnlResumen.Controls.Add(lblDniValue);
-            pnlResumen.Controls.Add(lblDni);
-            pnlResumen.Controls.Add(lblUserValue);
-            pnlResumen.Controls.Add(lblUser);
-            pnlResumen.Controls.Add(lblNomyApeValue);
-            pnlResumen.Controls.Add(lblNomYApe);
-            pnlResumen.Controls.Add(lblToday);
-            pnlResumen.Controls.Add(lblDate);
-            pnlResumen.Controls.Add(lblSaleNumber);
-            pnlResumen.Controls.Add(lblSaleNumberValue);
+            pnlResumen.Controls.Add(tlpSummaryBox);
             pnlResumen.Controls.Add(btnPrint);
             pnlResumen.Controls.Add(icoBtnPrint);
             pnlResumen.Controls.Add(btnCancel);
@@ -942,145 +935,189 @@ namespace MobileSolutions.UILayer
             pnlResumen.Size = new Size(456, 776);
             pnlResumen.TabIndex = 1;
             // 
-            // lblDniValue
+            // tlpSummaryBox
             // 
-            lblDniValue.Anchor = AnchorStyles.Top;
-            lblDniValue.AutoSize = true;
-            lblDniValue.Depth = 0;
-            lblDniValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblDniValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblDniValue.Location = new Point(178, 247);
-            lblDniValue.MouseState = MaterialSkin.MouseState.HOVER;
-            lblDniValue.Name = "lblDniValue";
-            lblDniValue.Size = new Size(105, 29);
-            lblDniValue.TabIndex = 60;
-            lblDniValue.Text = "00000000";
-            // 
-            // lblDni
-            // 
-            lblDni.Anchor = AnchorStyles.Top;
-            lblDni.AutoSize = true;
-            lblDni.Depth = 0;
-            lblDni.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblDni.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblDni.Location = new Point(64, 247);
-            lblDni.MouseState = MaterialSkin.MouseState.HOVER;
-            lblDni.Name = "lblDni";
-            lblDni.Size = new Size(47, 29);
-            lblDni.TabIndex = 59;
-            lblDni.Text = "DNI:";
-            // 
-            // lblUserValue
-            // 
-            lblUserValue.Anchor = AnchorStyles.Top;
-            lblUserValue.AutoSize = true;
-            lblUserValue.Depth = 0;
-            lblUserValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblUserValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblUserValue.Location = new Point(178, 196);
-            lblUserValue.MouseState = MaterialSkin.MouseState.HOVER;
-            lblUserValue.Name = "lblUserValue";
-            lblUserValue.Size = new Size(50, 29);
-            lblUserValue.TabIndex = 58;
-            lblUserValue.Text = "User";
-            // 
-            // lblUser
-            // 
-            lblUser.Anchor = AnchorStyles.Top;
-            lblUser.AutoSize = true;
-            lblUser.Depth = 0;
-            lblUser.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblUser.Location = new Point(64, 196);
-            lblUser.MouseState = MaterialSkin.MouseState.HOVER;
-            lblUser.Name = "lblUser";
-            lblUser.Size = new Size(89, 29);
-            lblUser.TabIndex = 57;
-            lblUser.Text = "Usuario:";
-            // 
-            // lblNomyApeValue
-            // 
-            lblNomyApeValue.Anchor = AnchorStyles.Top;
-            lblNomyApeValue.AutoSize = true;
-            lblNomyApeValue.Depth = 0;
-            lblNomyApeValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblNomyApeValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblNomyApeValue.Location = new Point(181, 151);
-            lblNomyApeValue.MouseState = MaterialSkin.MouseState.HOVER;
-            lblNomyApeValue.Name = "lblNomyApeValue";
-            lblNomyApeValue.Size = new Size(177, 29);
-            lblNomyApeValue.TabIndex = 56;
-            lblNomyApeValue.Text = "Name Lastname";
-            // 
-            // lblNomYApe
-            // 
-            lblNomYApe.Anchor = AnchorStyles.Top;
-            lblNomYApe.AutoSize = true;
-            lblNomYApe.Depth = 0;
-            lblNomYApe.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblNomYApe.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblNomYApe.Location = new Point(64, 151);
-            lblNomYApe.MouseState = MaterialSkin.MouseState.HOVER;
-            lblNomYApe.Name = "lblNomYApe";
-            lblNomYApe.Size = new Size(111, 29);
-            lblNomYApe.TabIndex = 55;
-            lblNomYApe.Text = "Vendedor:";
-            // 
-            // lblToday
-            // 
-            lblToday.Anchor = AnchorStyles.Top;
-            lblToday.AutoSize = true;
-            lblToday.Depth = 0;
-            lblToday.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblToday.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblToday.Location = new Point(64, 101);
-            lblToday.MouseState = MaterialSkin.MouseState.HOVER;
-            lblToday.Name = "lblToday";
-            lblToday.Size = new Size(72, 29);
-            lblToday.TabIndex = 54;
-            lblToday.Text = "Fecha:";
-            // 
-            // lblDate
-            // 
-            lblDate.Anchor = AnchorStyles.Top;
-            lblDate.AutoSize = true;
-            lblDate.Depth = 0;
-            lblDate.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblDate.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblDate.Location = new Point(181, 101);
-            lblDate.MouseState = MaterialSkin.MouseState.HOVER;
-            lblDate.Name = "lblDate";
-            lblDate.Size = new Size(99, 29);
-            lblDate.TabIndex = 53;
-            lblDate.Text = "00/00/00";
+            tlpSummaryBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tlpSummaryBox.BackColor = Color.FromArgb(40, 40, 40);
+            tlpSummaryBox.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tlpSummaryBox.ColumnCount = 2;
+            tlpSummaryBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38F));
+            tlpSummaryBox.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62F));
+            tlpSummaryBox.Controls.Add(lblSaleNumber, 0, 0);
+            tlpSummaryBox.Controls.Add(lblSaleNumberValue, 1, 0);
+            tlpSummaryBox.Controls.Add(lblToday, 0, 1);
+            tlpSummaryBox.Controls.Add(lblDate, 1, 1);
+            tlpSummaryBox.Controls.Add(lblNomYApe, 0, 2);
+            tlpSummaryBox.Controls.Add(lblNomyApeValue, 1, 2);
+            tlpSummaryBox.Controls.Add(lblUser, 0, 3);
+            tlpSummaryBox.Controls.Add(lblUserValue, 1, 3);
+            tlpSummaryBox.Controls.Add(lblDni, 0, 4);
+            tlpSummaryBox.Controls.Add(lblDniValue, 1, 4);
+            tlpSummaryBox.Location = new Point(18, 52);
+            tlpSummaryBox.Name = "tlpSummaryBox";
+            tlpSummaryBox.RowCount = 5;
+            tlpSummaryBox.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tlpSummaryBox.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tlpSummaryBox.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tlpSummaryBox.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tlpSummaryBox.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tlpSummaryBox.Size = new Size(420, 225);
+            tlpSummaryBox.TabIndex = 2;
             // 
             // lblSaleNumber
             // 
-            lblSaleNumber.Anchor = AnchorStyles.Top;
-            lblSaleNumber.AutoSize = true;
             lblSaleNumber.Depth = 0;
+            lblSaleNumber.Dock = DockStyle.Fill;
             lblSaleNumber.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblSaleNumber.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblSaleNumber.Location = new Point(64, 64);
+            lblSaleNumber.Location = new Point(9, 1);
+            lblSaleNumber.Margin = new Padding(8, 0, 3, 0);
             lblSaleNumber.MouseState = MaterialSkin.MouseState.HOVER;
             lblSaleNumber.Name = "lblSaleNumber";
-            lblSaleNumber.Size = new Size(101, 29);
+            lblSaleNumber.Size = new Size(147, 43);
             lblSaleNumber.TabIndex = 61;
-            lblSaleNumber.Text = "N° Venta:";
+            lblSaleNumber.Text = "N° Venta";
+            lblSaleNumber.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblSaleNumberValue
             // 
-            lblSaleNumberValue.Anchor = AnchorStyles.Top;
-            lblSaleNumberValue.AutoSize = true;
+            lblSaleNumberValue.AutoEllipsis = true;
             lblSaleNumberValue.Depth = 0;
+            lblSaleNumberValue.Dock = DockStyle.Fill;
             lblSaleNumberValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblSaleNumberValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblSaleNumberValue.Location = new Point(181, 64);
+            lblSaleNumberValue.Location = new Point(168, 1);
+            lblSaleNumberValue.Margin = new Padding(8, 0, 3, 0);
             lblSaleNumberValue.MouseState = MaterialSkin.MouseState.HOVER;
             lblSaleNumberValue.Name = "lblSaleNumberValue";
-            lblSaleNumberValue.Size = new Size(8, 29);
+            lblSaleNumberValue.Size = new Size(248, 43);
             lblSaleNumberValue.TabIndex = 62;
             lblSaleNumberValue.Text = "-";
+            lblSaleNumberValue.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblToday
+            // 
+            lblToday.Depth = 0;
+            lblToday.Dock = DockStyle.Fill;
+            lblToday.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblToday.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblToday.Location = new Point(9, 45);
+            lblToday.Margin = new Padding(8, 0, 3, 0);
+            lblToday.MouseState = MaterialSkin.MouseState.HOVER;
+            lblToday.Name = "lblToday";
+            lblToday.Size = new Size(147, 43);
+            lblToday.TabIndex = 54;
+            lblToday.Text = "Fecha";
+            lblToday.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblDate
+            // 
+            lblDate.AutoEllipsis = true;
+            lblDate.Depth = 0;
+            lblDate.Dock = DockStyle.Fill;
+            lblDate.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDate.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblDate.Location = new Point(168, 45);
+            lblDate.Margin = new Padding(8, 0, 3, 0);
+            lblDate.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(248, 43);
+            lblDate.TabIndex = 53;
+            lblDate.Text = "00/00/00";
+            lblDate.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblNomYApe
+            // 
+            lblNomYApe.Depth = 0;
+            lblNomYApe.Dock = DockStyle.Fill;
+            lblNomYApe.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblNomYApe.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblNomYApe.Location = new Point(9, 89);
+            lblNomYApe.Margin = new Padding(8, 0, 3, 0);
+            lblNomYApe.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNomYApe.Name = "lblNomYApe";
+            lblNomYApe.Size = new Size(147, 43);
+            lblNomYApe.TabIndex = 55;
+            lblNomYApe.Text = "Vendedor";
+            lblNomYApe.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblNomyApeValue
+            // 
+            lblNomyApeValue.AutoEllipsis = true;
+            lblNomyApeValue.Depth = 0;
+            lblNomyApeValue.Dock = DockStyle.Fill;
+            lblNomyApeValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblNomyApeValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblNomyApeValue.Location = new Point(168, 89);
+            lblNomyApeValue.Margin = new Padding(8, 0, 3, 0);
+            lblNomyApeValue.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNomyApeValue.Name = "lblNomyApeValue";
+            lblNomyApeValue.Size = new Size(248, 43);
+            lblNomyApeValue.TabIndex = 56;
+            lblNomyApeValue.Text = "Name Lastname";
+            lblNomyApeValue.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblUser
+            // 
+            lblUser.Depth = 0;
+            lblUser.Dock = DockStyle.Fill;
+            lblUser.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblUser.Location = new Point(9, 133);
+            lblUser.Margin = new Padding(8, 0, 3, 0);
+            lblUser.MouseState = MaterialSkin.MouseState.HOVER;
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(147, 43);
+            lblUser.TabIndex = 57;
+            lblUser.Text = "Usuario";
+            lblUser.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblUserValue
+            // 
+            lblUserValue.AutoEllipsis = true;
+            lblUserValue.Depth = 0;
+            lblUserValue.Dock = DockStyle.Fill;
+            lblUserValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblUserValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblUserValue.Location = new Point(168, 133);
+            lblUserValue.Margin = new Padding(8, 0, 3, 0);
+            lblUserValue.MouseState = MaterialSkin.MouseState.HOVER;
+            lblUserValue.Name = "lblUserValue";
+            lblUserValue.Size = new Size(248, 43);
+            lblUserValue.TabIndex = 58;
+            lblUserValue.Text = "User";
+            lblUserValue.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblDni
+            // 
+            lblDni.Depth = 0;
+            lblDni.Dock = DockStyle.Fill;
+            lblDni.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDni.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblDni.Location = new Point(9, 177);
+            lblDni.Margin = new Padding(8, 0, 3, 0);
+            lblDni.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(147, 47);
+            lblDni.TabIndex = 59;
+            lblDni.Text = "DNI";
+            lblDni.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblDniValue
+            // 
+            lblDniValue.AutoEllipsis = true;
+            lblDniValue.Depth = 0;
+            lblDniValue.Dock = DockStyle.Fill;
+            lblDniValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblDniValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblDniValue.Location = new Point(168, 177);
+            lblDniValue.Margin = new Padding(8, 0, 3, 0);
+            lblDniValue.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDniValue.Name = "lblDniValue";
+            lblDniValue.Size = new Size(248, 47);
+            lblDniValue.TabIndex = 60;
+            lblDniValue.Text = "00000000";
+            lblDniValue.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnPrint
             // 
@@ -1386,6 +1423,7 @@ namespace MobileSolutions.UILayer
             ((ISupportInitialize)dataGridView1).EndInit();
             pnlResumen.ResumeLayout(false);
             pnlResumen.PerformLayout();
+            tlpSummaryBox.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -1468,5 +1506,6 @@ namespace MobileSolutions.UILayer
         private MaterialLabel lblSaleNumber;
         private MaterialLabel lblSaleNumberValue;
         private MaterialLabel lblTotalAmount;
+        private TableLayoutPanel tlpSummaryBox;
     }
 }
