@@ -179,8 +179,7 @@ namespace MobileSolutions.UILayer
             dataGridViewTextBoxColumn5.DataPropertyName = nameof(SaleDetail.Quantity);
             dataGridViewTextBoxColumn7.DataPropertyName = nameof(SaleDetail.UnitPrice);
             SubTotal.DataPropertyName = nameof(SaleDetail.Subtotal);
-            Remove.UseColumnTextForButtonValue = true;
-            Remove.Text = "Eliminar";
+            Remove.UseColumnTextForButtonValue = false;
         }
 
         private void ConfigurarEventosControles()
@@ -189,6 +188,7 @@ namespace MobileSolutions.UILayer
             dtgCustomers.CellClick += dtgCustomers_CellClick;
             dtgProducts.CellClick += dtgProducts_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellPainting += dataGridView1_CellPainting;
 
             // Restricción de edición exclusiva para cantidad
             txtName.ReadOnly = true;
@@ -513,6 +513,22 @@ namespace MobileSolutions.UILayer
             {
                 _cartItems.RemoveAt(e.RowIndex);
                 RefrescarCarrito();
+            }
+        }
+
+        private void dataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dataGridView1.Columns[e.ColumnIndex] == Remove)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
+
+                // Dibujar icono de basura (TrashAlt) en color rojo dentro del botón
+                using var trashIcon = IconChar.TrashAlt.ToBitmap(Color.Crimson, 18);
+                int x = e.CellBounds.Left + (e.CellBounds.Width - trashIcon.Width) / 2;
+                int y = e.CellBounds.Top + (e.CellBounds.Height - trashIcon.Height) / 2;
+                e.Graphics?.DrawImage(trashIcon, new Point(x, y));
+
+                e.Handled = true;
             }
         }
 
