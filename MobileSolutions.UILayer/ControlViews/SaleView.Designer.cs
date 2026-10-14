@@ -548,15 +548,15 @@ namespace MobileSolutions.UILayer
             // 
             tlpInputsVenta.BackColor = Color.FromArgb(50, 50, 50);
             tlpInputsVenta.ColumnCount = 9;
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 51F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 115F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 87F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 105F));
             tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 131F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 139F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 105F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22F));
+            tlpInputsVenta.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
             tlpInputsVenta.Controls.Add(btnAddProd, 8, 0);
             tlpInputsVenta.Controls.Add(txtSubTotal, 7, 0);
             tlpInputsVenta.Controls.Add(txtStock, 4, 0);
@@ -570,25 +570,25 @@ namespace MobileSolutions.UILayer
             tlpInputsVenta.Location = new Point(8, 8);
             tlpInputsVenta.Name = "tlpInputsVenta";
             tlpInputsVenta.RowCount = 1;
-            tlpInputsVenta.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
-            tlpInputsVenta.Size = new Size(1158, 60);
+            tlpInputsVenta.RowStyles.Add(new RowStyle(SizeType.Absolute, 54F));
+            tlpInputsVenta.Size = new Size(1158, 54);
             tlpInputsVenta.TabIndex = 0;
             // 
             // btnAddProd
             // 
             btnAddProd.AutoSize = false;
             btnAddProd.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnAddProd.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnAddProd.Density = MaterialButton.MaterialButtonDensity.Dense;
             btnAddProd.Depth = 0;
             btnAddProd.Dock = DockStyle.Fill;
             btnAddProd.HighEmphasis = true;
             btnAddProd.Icon = null;
-            btnAddProd.Location = new Point(1022, 6);
-            btnAddProd.Margin = new Padding(4, 6, 4, 6);
+            btnAddProd.Location = new Point(1039, 4);
+            btnAddProd.Margin = new Padding(3, 4, 3, 4);
             btnAddProd.MouseState = MaterialSkin.MouseState.HOVER;
             btnAddProd.Name = "btnAddProd";
             btnAddProd.NoAccentTextColor = Color.Empty;
-            btnAddProd.Size = new Size(132, 52);
+            btnAddProd.Size = new Size(116, 46);
             btnAddProd.TabIndex = 15;
             btnAddProd.Text = "agregar";
             btnAddProd.Type = MaterialButton.MaterialButtonType.Contained;
@@ -605,8 +605,8 @@ namespace MobileSolutions.UILayer
             txtSubTotal.HideSelection = true;
             txtSubTotal.Hint = "SubTot";
             txtSubTotal.LeadingIcon = null;
-            txtSubTotal.Location = new Point(871, 10);
-            txtSubTotal.Margin = new Padding(4, 10, 4, 5);
+            txtSubTotal.Location = new Point(871, 4);
+            txtSubTotal.Margin = new Padding(3, 4, 3, 3);
             txtSubTotal.MaxLength = 100;
             txtSubTotal.MouseState = MaterialSkin.MouseState.OUT;
             txtSubTotal.Name = "txtSubTotal";
@@ -635,8 +635,8 @@ namespace MobileSolutions.UILayer
             txtStock.HideSelection = true;
             txtStock.Hint = "Stock";
             txtStock.LeadingIcon = null;
-            txtStock.Location = new Point(502, 10);
-            txtStock.Margin = new Padding(4, 10, 4, 5);
+            txtStock.Location = new Point(518, 4);
+            txtStock.Margin = new Padding(3, 4, 3, 3);
             txtStock.MaxLength = 100;
             txtStock.MouseState = MaterialSkin.MouseState.OUT;
             txtStock.Name = "txtStock";
@@ -648,7 +648,7 @@ namespace MobileSolutions.UILayer
             txtStock.SelectionLength = 0;
             txtStock.SelectionStart = 0;
             txtStock.ShortcutsEnabled = true;
-            txtStock.Size = new Size(79, 48);
+            txtStock.Size = new Size(74, 48);
             txtStock.TabIndex = 11;
             txtStock.TabStop = false;
             txtStock.TextAlign = HorizontalAlignment.Left;
@@ -665,8 +665,8 @@ namespace MobileSolutions.UILayer
             txtPName.HideSelection = true;
             txtPName.Hint = "Nombre";
             txtPName.LeadingIcon = null;
-            txtPName.Location = new Point(366, 10);
-            txtPName.Margin = new Padding(4, 10, 4, 5);
+            txtPName.Location = new Point(366, 4);
+            txtPName.Margin = new Padding(3, 4, 3, 3);
             txtPName.MaxLength = 100;
             txtPName.MouseState = MaterialSkin.MouseState.OUT;
             txtPName.Name = "txtPName";
@@ -695,8 +695,8 @@ namespace MobileSolutions.UILayer
             txtMarca.HideSelection = true;
             txtMarca.Hint = "Marca";
             txtMarca.LeadingIcon = null;
-            txtMarca.Location = new Point(251, 10);
-            txtMarca.Margin = new Padding(4, 10, 4, 5);
+            txtMarca.Location = new Point(261, 4);
+            txtMarca.Margin = new Padding(3, 4, 3, 3);
             txtMarca.MaxLength = 100;
             txtMarca.MouseState = MaterialSkin.MouseState.OUT;
             txtMarca.Name = "txtMarca";
@@ -708,7 +708,7 @@ namespace MobileSolutions.UILayer
             txtMarca.SelectionLength = 0;
             txtMarca.SelectionStart = 0;
             txtMarca.ShortcutsEnabled = true;
-            txtMarca.Size = new Size(107, 48);
+            txtMarca.Size = new Size(99, 48);
             txtMarca.TabIndex = 9;
             txtMarca.TabStop = false;
             txtMarca.TextAlign = HorizontalAlignment.Left;
@@ -726,8 +726,8 @@ namespace MobileSolutions.UILayer
             txtProducto.HideSelection = true;
             txtProducto.Hint = "Buscar Producto";
             txtProducto.LeadingIcon = null;
-            txtProducto.Location = new Point(55, 10);
-            txtProducto.Margin = new Padding(4, 10, 4, 5);
+            txtProducto.Location = new Point(48, 4);
+            txtProducto.Margin = new Padding(3, 4, 3, 3);
             txtProducto.MaxLength = 100;
             txtProducto.MouseState = MaterialSkin.MouseState.OUT;
             txtProducto.Name = "txtProducto";
@@ -739,7 +739,7 @@ namespace MobileSolutions.UILayer
             txtProducto.SelectionLength = 0;
             txtProducto.SelectionStart = 0;
             txtProducto.ShortcutsEnabled = true;
-            txtProducto.Size = new Size(188, 48);
+            txtProducto.Size = new Size(207, 48);
             txtProducto.TabIndex = 0;
             txtProducto.TabStop = false;
             txtProducto.TextAlign = HorizontalAlignment.Left;
@@ -750,17 +750,17 @@ namespace MobileSolutions.UILayer
             // 
             btnProduct.AutoSize = false;
             btnProduct.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnProduct.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnProduct.Density = MaterialButton.MaterialButtonDensity.Dense;
             btnProduct.Depth = 0;
             btnProduct.Dock = DockStyle.Fill;
             btnProduct.HighEmphasis = true;
             btnProduct.Icon = null;
-            btnProduct.Location = new Point(4, 6);
-            btnProduct.Margin = new Padding(4, 6, 4, 6);
+            btnProduct.Location = new Point(3, 4);
+            btnProduct.Margin = new Padding(3, 4, 3, 4);
             btnProduct.MouseState = MaterialSkin.MouseState.HOVER;
             btnProduct.Name = "btnProduct";
             btnProduct.NoAccentTextColor = Color.Empty;
-            btnProduct.Size = new Size(43, 52);
+            btnProduct.Size = new Size(39, 46);
             btnProduct.TabIndex = 5;
             btnProduct.Type = MaterialButton.MaterialButtonType.Contained;
             btnProduct.UseAccentColor = false;
@@ -776,8 +776,8 @@ namespace MobileSolutions.UILayer
             txtPVenta.HideSelection = true;
             txtPVenta.Hint = "Precio";
             txtPVenta.LeadingIcon = null;
-            txtPVenta.Location = new Point(589, 10);
-            txtPVenta.Margin = new Padding(4, 10, 4, 5);
+            txtPVenta.Location = new Point(598, 4);
+            txtPVenta.Margin = new Padding(3, 4, 3, 3);
             txtPVenta.MaxLength = 100;
             txtPVenta.MouseState = MaterialSkin.MouseState.OUT;
             txtPVenta.Name = "txtPVenta";
@@ -806,8 +806,8 @@ namespace MobileSolutions.UILayer
             txtQtty.HideSelection = true;
             txtQtty.Hint = "Cant.";
             txtQtty.LeadingIcon = null;
-            txtQtty.Location = new Point(740, 10);
-            txtQtty.Margin = new Padding(4, 10, 4, 5);
+            txtQtty.Location = new Point(766, 4);
+            txtQtty.Margin = new Padding(3, 4, 3, 3);
             txtQtty.MaxLength = 100;
             txtQtty.MouseState = MaterialSkin.MouseState.OUT;
             txtQtty.Name = "txtQtty";
@@ -819,7 +819,7 @@ namespace MobileSolutions.UILayer
             txtQtty.SelectionLength = 0;
             txtQtty.SelectionStart = 0;
             txtQtty.ShortcutsEnabled = true;
-            txtQtty.Size = new Size(123, 48);
+            txtQtty.Size = new Size(99, 48);
             txtQtty.TabIndex = 13;
             txtQtty.TabStop = false;
             txtQtty.TextAlign = HorizontalAlignment.Left;
