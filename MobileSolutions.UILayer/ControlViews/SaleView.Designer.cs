@@ -31,7 +31,6 @@ namespace MobileSolutions.UILayer
             txtName = new MaterialTextBox2();
             txtSearchClient = new MaterialTextBox2();
             btnAddUser = new MaterialButton();
-            materialLabel1 = new MaterialLabel();
             txtTel = new MaterialTextBox2();
             pnlHeader = new Panel();
             dtgProducts = new DataGridView();
@@ -260,14 +259,12 @@ namespace MobileSolutions.UILayer
             tlpInputsProducto.Controls.Add(txtName, 2, 0);
             tlpInputsProducto.Controls.Add(txtSearchClient, 1, 0);
             tlpInputsProducto.Controls.Add(btnAddUser, 0, 0);
-            tlpInputsProducto.Controls.Add(materialLabel1, 0, 1);
             tlpInputsProducto.Controls.Add(txtTel, 5, 0);
             tlpInputsProducto.Dock = DockStyle.Top;
             tlpInputsProducto.Location = new Point(8, 8);
             tlpInputsProducto.Name = "tlpInputsProducto";
-            tlpInputsProducto.RowCount = 2;
+            tlpInputsProducto.RowCount = 1;
             tlpInputsProducto.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
-            tlpInputsProducto.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpInputsProducto.Size = new Size(1158, 64);
             tlpInputsProducto.TabIndex = 0;
             // 
@@ -410,18 +407,6 @@ namespace MobileSolutions.UILayer
             btnAddUser.Type = MaterialButton.MaterialButtonType.Contained;
             btnAddUser.UseAccentColor = false;
             btnAddUser.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(3, 64);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(45, 19);
-            materialLabel1.TabIndex = 7;
-            materialLabel1.Text = "materialLabel1";
             // 
             // txtTel
             // 
@@ -1416,7 +1401,6 @@ namespace MobileSolutions.UILayer
             pnlProducto.ResumeLayout(false);
             ((ISupportInitialize)dtgCustomers).EndInit();
             tlpInputsProducto.ResumeLayout(false);
-            tlpInputsProducto.PerformLayout();
             pnlHeader.ResumeLayout(false);
             ((ISupportInitialize)dtgProducts).EndInit();
             tlpInputsVenta.ResumeLayout(false);
@@ -1452,7 +1436,6 @@ namespace MobileSolutions.UILayer
         private MaterialTextBox2 txtSearchClient;
         private MaterialButton btnAddUser;
         private DataGridView dtgCustomers;
-        private MaterialLabel materialLabel1;
         private MaterialTextBox2 txtName;
         private MaterialTextBox2 txtLastname;
         private MaterialTextBox2 txtDni;
