@@ -1100,6 +1100,7 @@ namespace MobileSolutions.UILayer
             btnPrint.Type = MaterialButton.MaterialButtonType.Contained;
             btnPrint.UseAccentColor = false;
             btnPrint.UseVisualStyleBackColor = true;
+            btnPrint.Click += btnPrint_Click_1;
             // 
             // icoBtnPrint
             // 
@@ -1149,7 +1150,7 @@ namespace MobileSolutions.UILayer
             icoBtnCancel.BackColor = Color.RoyalBlue;
             icoBtnCancel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             icoBtnCancel.ForeColor = SystemColors.Control;
-            icoBtnCancel.IconChar = IconChar.Cancel;
+            icoBtnCancel.IconChar = IconChar.CreativeCommonsNc;
             icoBtnCancel.IconColor = Color.White;
             icoBtnCancel.IconFont = IconFont.Auto;
             icoBtnCancel.IconSize = 60;

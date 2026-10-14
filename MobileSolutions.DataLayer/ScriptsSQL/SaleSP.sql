@@ -540,3 +540,7 @@ WHERE name LIKE 'sp_%Sale%'
 ORDER BY name;
 GO
 
+INSERT INTO PaymentType (description, status)
+VALUES 
+    ('Efectivo', 1),
+    ('Transferencia', 1);

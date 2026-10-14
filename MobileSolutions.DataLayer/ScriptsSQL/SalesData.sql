@@ -359,3 +359,6 @@ GO
 PRINT 'Script SalesData.sql ejecutado correctamente.';
 PRINT 'Las restricciones, FKs, unicidades y SPs fueron validados.';
 GO
+
+
+Select * from PaymentType;

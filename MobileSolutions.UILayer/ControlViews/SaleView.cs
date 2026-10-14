@@ -98,9 +98,9 @@ namespace MobileSolutions.UILayer
 
         private void ConfigurarIconos()
         {
-            icoBtnSell.IconChar = IconChar.DollarSign;
-            icoBtnCancel.IconChar = IconChar.Cancel;
-            icoBtnPrint.IconChar = IconChar.Print;
+            icoBtnSell.IconChar = IconChar.Donate;
+            icoBtnCancel.IconChar = IconChar.CreativeCommonsNc;
+            icoBtnPrint.IconChar = IconChar.FilePdf;
             btnAddProd.Icon = IconChar.CartPlus.ToBitmap(Color.White);
             btnAddUser.Icon = IconChar.UserPlus.ToBitmap(Color.White);
             btnProduct.Icon = IconChar.MobileScreenButton.ToBitmap(Color.White);
@@ -671,5 +671,10 @@ namespace MobileSolutions.UILayer
         }
 
         #endregion
+
+        private void btnPrint_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
