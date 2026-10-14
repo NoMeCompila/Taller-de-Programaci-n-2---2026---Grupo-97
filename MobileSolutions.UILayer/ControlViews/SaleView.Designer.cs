@@ -81,6 +81,7 @@ namespace MobileSolutions.UILayer
             radEfectivo = new MaterialRadioButton();
             lblPayType = new MaterialLabel();
             lblTot = new MaterialLabel();
+            lblTotalAmount = new MaterialLabel();
             lblResume = new MaterialLabel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
@@ -932,6 +933,7 @@ namespace MobileSolutions.UILayer
             pnlResumen.Controls.Add(radEfectivo);
             pnlResumen.Controls.Add(lblPayType);
             pnlResumen.Controls.Add(lblTot);
+            pnlResumen.Controls.Add(lblTotalAmount);
             pnlResumen.Controls.Add(lblResume);
             pnlResumen.Dock = DockStyle.Fill;
             pnlResumen.Location = new Point(1205, 11);
@@ -947,7 +949,7 @@ namespace MobileSolutions.UILayer
             lblDniValue.Depth = 0;
             lblDniValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblDniValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblDniValue.Location = new Point(156, 245);
+            lblDniValue.Location = new Point(178, 247);
             lblDniValue.MouseState = MaterialSkin.MouseState.HOVER;
             lblDniValue.Name = "lblDniValue";
             lblDniValue.Size = new Size(105, 29);
@@ -961,7 +963,7 @@ namespace MobileSolutions.UILayer
             lblDni.Depth = 0;
             lblDni.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblDni.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblDni.Location = new Point(42, 245);
+            lblDni.Location = new Point(64, 247);
             lblDni.MouseState = MaterialSkin.MouseState.HOVER;
             lblDni.Name = "lblDni";
             lblDni.Size = new Size(47, 29);
@@ -975,7 +977,7 @@ namespace MobileSolutions.UILayer
             lblUserValue.Depth = 0;
             lblUserValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblUserValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblUserValue.Location = new Point(156, 194);
+            lblUserValue.Location = new Point(178, 196);
             lblUserValue.MouseState = MaterialSkin.MouseState.HOVER;
             lblUserValue.Name = "lblUserValue";
             lblUserValue.Size = new Size(50, 29);
@@ -989,7 +991,7 @@ namespace MobileSolutions.UILayer
             lblUser.Depth = 0;
             lblUser.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblUser.Location = new Point(42, 194);
+            lblUser.Location = new Point(64, 196);
             lblUser.MouseState = MaterialSkin.MouseState.HOVER;
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(89, 29);
@@ -1003,7 +1005,7 @@ namespace MobileSolutions.UILayer
             lblNomyApeValue.Depth = 0;
             lblNomyApeValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblNomyApeValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblNomyApeValue.Location = new Point(159, 149);
+            lblNomyApeValue.Location = new Point(181, 151);
             lblNomyApeValue.MouseState = MaterialSkin.MouseState.HOVER;
             lblNomyApeValue.Name = "lblNomyApeValue";
             lblNomyApeValue.Size = new Size(177, 29);
@@ -1017,7 +1019,7 @@ namespace MobileSolutions.UILayer
             lblNomYApe.Depth = 0;
             lblNomYApe.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblNomYApe.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblNomYApe.Location = new Point(42, 149);
+            lblNomYApe.Location = new Point(64, 151);
             lblNomYApe.MouseState = MaterialSkin.MouseState.HOVER;
             lblNomYApe.Name = "lblNomYApe";
             lblNomYApe.Size = new Size(111, 29);
@@ -1031,7 +1033,7 @@ namespace MobileSolutions.UILayer
             lblToday.Depth = 0;
             lblToday.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblToday.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblToday.Location = new Point(42, 99);
+            lblToday.Location = new Point(64, 101);
             lblToday.MouseState = MaterialSkin.MouseState.HOVER;
             lblToday.Name = "lblToday";
             lblToday.Size = new Size(72, 29);
@@ -1045,7 +1047,7 @@ namespace MobileSolutions.UILayer
             lblDate.Depth = 0;
             lblDate.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblDate.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblDate.Location = new Point(159, 99);
+            lblDate.Location = new Point(181, 101);
             lblDate.MouseState = MaterialSkin.MouseState.HOVER;
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(99, 29);
@@ -1059,7 +1061,7 @@ namespace MobileSolutions.UILayer
             lblSaleNumber.Depth = 0;
             lblSaleNumber.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblSaleNumber.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblSaleNumber.Location = new Point(42, 62);
+            lblSaleNumber.Location = new Point(64, 64);
             lblSaleNumber.MouseState = MaterialSkin.MouseState.HOVER;
             lblSaleNumber.Name = "lblSaleNumber";
             lblSaleNumber.Size = new Size(101, 29);
@@ -1073,7 +1075,7 @@ namespace MobileSolutions.UILayer
             lblSaleNumberValue.Depth = 0;
             lblSaleNumberValue.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblSaleNumberValue.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblSaleNumberValue.Location = new Point(159, 62);
+            lblSaleNumberValue.Location = new Point(181, 64);
             lblSaleNumberValue.MouseState = MaterialSkin.MouseState.HOVER;
             lblSaleNumberValue.Name = "lblSaleNumberValue";
             lblSaleNumberValue.Size = new Size(8, 29);
@@ -1208,7 +1210,7 @@ namespace MobileSolutions.UILayer
             // 
             radTrans.AutoSize = true;
             radTrans.Depth = 0;
-            radTrans.Location = new Point(229, 427);
+            radTrans.Location = new Point(230, 441);
             radTrans.Margin = new Padding(0);
             radTrans.MouseLocation = new Point(-1, -1);
             radTrans.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1224,7 +1226,7 @@ namespace MobileSolutions.UILayer
             // 
             radEfectivo.AutoSize = true;
             radEfectivo.Depth = 0;
-            radEfectivo.Location = new Point(98, 427);
+            radEfectivo.Location = new Point(99, 441);
             radEfectivo.Margin = new Padding(0);
             radEfectivo.MouseLocation = new Point(-1, -1);
             radEfectivo.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1243,7 +1245,7 @@ namespace MobileSolutions.UILayer
             lblPayType.Depth = 0;
             lblPayType.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblPayType.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            lblPayType.Location = new Point(115, 386);
+            lblPayType.Location = new Point(116, 400);
             lblPayType.MouseState = MaterialSkin.MouseState.HOVER;
             lblPayType.Name = "lblPayType";
             lblPayType.Size = new Size(206, 41);
@@ -1257,12 +1259,26 @@ namespace MobileSolutions.UILayer
             lblTot.Depth = 0;
             lblTot.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblTot.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            lblTot.Location = new Point(74, 316);
+            lblTot.Location = new Point(116, 294);
             lblTot.MouseState = MaterialSkin.MouseState.HOVER;
             lblTot.Name = "lblTot";
-            lblTot.Size = new Size(315, 41);
+            lblTot.Size = new Size(206, 41);
             lblTot.TabIndex = 4;
-            lblTot.Text = "Total A Pagar: $ 0.00";
+            lblTot.Text = "Total A Pagar";
+            // 
+            // lblTotalAmount
+            // 
+            lblTotalAmount.Anchor = AnchorStyles.Top;
+            lblTotalAmount.AutoSize = true;
+            lblTotalAmount.Depth = 0;
+            lblTotalAmount.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblTotalAmount.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblTotalAmount.Location = new Point(116, 347);
+            lblTotalAmount.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTotalAmount.Name = "lblTotalAmount";
+            lblTotalAmount.Size = new Size(94, 41);
+            lblTotalAmount.TabIndex = 6;
+            lblTotalAmount.Text = "$ 0.00";
             // 
             // lblResume
             // 
@@ -1271,7 +1287,7 @@ namespace MobileSolutions.UILayer
             lblResume.Depth = 0;
             lblResume.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblResume.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            lblResume.Location = new Point(74, 21);
+            lblResume.Location = new Point(74, 7);
             lblResume.MouseState = MaterialSkin.MouseState.HOVER;
             lblResume.Name = "lblResume";
             lblResume.Size = new Size(320, 41);
@@ -1451,5 +1467,6 @@ namespace MobileSolutions.UILayer
         private MaterialLabel lblToday;
         private MaterialLabel lblSaleNumber;
         private MaterialLabel lblSaleNumberValue;
+        private MaterialLabel lblTotalAmount;
     }
 }

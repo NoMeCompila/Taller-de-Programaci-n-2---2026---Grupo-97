@@ -463,7 +463,7 @@ namespace MobileSolutions.UILayer
         private void ActualizarTotalVenta()
         {
             decimal total = _cartItems.Sum(i => i.Subtotal);
-            lblTot.Text = $"Total A Pagar: $ {total:N2}";
+            lblTotalAmount.Text = $"$ {total:N2}";
         }
 
         private void LimpiarInputsProducto()
