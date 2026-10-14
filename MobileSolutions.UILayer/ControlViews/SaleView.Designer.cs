@@ -285,7 +285,7 @@ namespace MobileSolutions.UILayer
             txtDni.Name = "txtDni";
             txtDni.PasswordChar = '\0';
             txtDni.PrefixSuffixText = null;
-            txtDni.ReadOnly = false;
+            txtDni.ReadOnly = true;
             txtDni.RightToLeft = RightToLeft.No;
             txtDni.SelectedText = "";
             txtDni.SelectionLength = 0;
@@ -315,7 +315,7 @@ namespace MobileSolutions.UILayer
             txtLastname.Name = "txtLastname";
             txtLastname.PasswordChar = '\0';
             txtLastname.PrefixSuffixText = null;
-            txtLastname.ReadOnly = false;
+            txtLastname.ReadOnly = true;
             txtLastname.RightToLeft = RightToLeft.No;
             txtLastname.SelectedText = "";
             txtLastname.SelectionLength = 0;
@@ -345,7 +345,7 @@ namespace MobileSolutions.UILayer
             txtName.Name = "txtName";
             txtName.PasswordChar = '\0';
             txtName.PrefixSuffixText = null;
-            txtName.ReadOnly = false;
+            txtName.ReadOnly = true;
             txtName.RightToLeft = RightToLeft.No;
             txtName.SelectedText = "";
             txtName.SelectionLength = 0;
@@ -425,7 +425,7 @@ namespace MobileSolutions.UILayer
             txtTel.Name = "txtTel";
             txtTel.PasswordChar = '\0';
             txtTel.PrefixSuffixText = null;
-            txtTel.ReadOnly = false;
+            txtTel.ReadOnly = true;
             txtTel.RightToLeft = RightToLeft.No;
             txtTel.SelectedText = "";
             txtTel.SelectionLength = 0;
@@ -591,7 +591,7 @@ namespace MobileSolutions.UILayer
             txtSubTotal.Name = "txtSubTotal";
             txtSubTotal.PasswordChar = '\0';
             txtSubTotal.PrefixSuffixText = null;
-            txtSubTotal.ReadOnly = false;
+            txtSubTotal.ReadOnly = true;
             txtSubTotal.RightToLeft = RightToLeft.No;
             txtSubTotal.SelectedText = "";
             txtSubTotal.SelectionLength = 0;
@@ -621,7 +621,7 @@ namespace MobileSolutions.UILayer
             txtStock.Name = "txtStock";
             txtStock.PasswordChar = '\0';
             txtStock.PrefixSuffixText = null;
-            txtStock.ReadOnly = false;
+            txtStock.ReadOnly = true;
             txtStock.RightToLeft = RightToLeft.No;
             txtStock.SelectedText = "";
             txtStock.SelectionLength = 0;
@@ -651,7 +651,7 @@ namespace MobileSolutions.UILayer
             txtPName.Name = "txtPName";
             txtPName.PasswordChar = '\0';
             txtPName.PrefixSuffixText = null;
-            txtPName.ReadOnly = false;
+            txtPName.ReadOnly = true;
             txtPName.RightToLeft = RightToLeft.No;
             txtPName.SelectedText = "";
             txtPName.SelectionLength = 0;
@@ -681,7 +681,7 @@ namespace MobileSolutions.UILayer
             txtMarca.Name = "txtMarca";
             txtMarca.PasswordChar = '\0';
             txtMarca.PrefixSuffixText = null;
-            txtMarca.ReadOnly = false;
+            txtMarca.ReadOnly = true;
             txtMarca.RightToLeft = RightToLeft.No;
             txtMarca.SelectedText = "";
             txtMarca.SelectionLength = 0;
@@ -762,7 +762,7 @@ namespace MobileSolutions.UILayer
             txtPVenta.Name = "txtPVenta";
             txtPVenta.PasswordChar = '\0';
             txtPVenta.PrefixSuffixText = null;
-            txtPVenta.ReadOnly = false;
+            txtPVenta.ReadOnly = true;
             txtPVenta.RightToLeft = RightToLeft.No;
             txtPVenta.SelectedText = "";
             txtPVenta.SelectionLength = 0;

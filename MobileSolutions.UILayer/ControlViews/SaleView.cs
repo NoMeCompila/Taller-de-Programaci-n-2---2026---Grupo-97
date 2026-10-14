@@ -185,6 +185,18 @@ namespace MobileSolutions.UILayer
             dtgProducts.CellClick += dtgProducts_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
 
+            // Restricción de edición exclusiva para cantidad
+            txtName.ReadOnly = true;
+            txtLastname.ReadOnly = true;
+            txtDni.ReadOnly = true;
+            txtTel.ReadOnly = true;
+            txtMarca.ReadOnly = true;
+            txtPName.ReadOnly = true;
+            txtStock.ReadOnly = true;
+            txtPVenta.ReadOnly = true;
+            txtSubTotal.ReadOnly = true;
+            txtQtty.ReadOnly = false;
+
             // Restricción y cálculo de cantidad en vivo
             txtQtty.KeyPress += SoloNumeros_KeyPress;
             txtQtty.TextChanged += txtQtty_TextChanged;
