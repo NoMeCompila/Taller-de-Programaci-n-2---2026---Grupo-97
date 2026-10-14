@@ -357,6 +357,92 @@ namespace MobileSolutions.DataLayer
             return sales;
         }
 
+        public List<SaleHeader> SearchSalesHistory(
+            DateTime? startDate,
+            DateTime? endDate,
+            string? saleNumber,
+            string? clientName,
+            int? userId)
+        {
+            var sales = new List<SaleHeader>();
+
+            using (SqlConnection connection = _dbConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand("sp_SearchSalesHistory", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = 30;
+
+                command.Parameters.Add(new SqlParameter("@StartDate", SqlDbType.Date)
+                {
+                    Value = (object?)startDate?.Date ?? DBNull.Value
+                });
+
+                command.Parameters.Add(new SqlParameter("@EndDate", SqlDbType.Date)
+                {
+                    Value = (object?)endDate?.Date ?? DBNull.Value
+                });
+
+                command.Parameters.Add(new SqlParameter("@SaleNumber", SqlDbType.NVarChar, 50)
+                {
+                    Value = string.IsNullOrWhiteSpace(saleNumber) ? DBNull.Value : saleNumber.Trim()
+                });
+
+                command.Parameters.Add(new SqlParameter("@ClientName", SqlDbType.NVarChar, 100)
+                {
+                    Value = string.IsNullOrWhiteSpace(clientName) ? DBNull.Value : clientName.Trim()
+                });
+
+                command.Parameters.Add(new SqlParameter("@UserId", SqlDbType.Int)
+                {
+                    Value = userId.HasValue && userId.Value > 0 ? userId.Value : DBNull.Value
+                });
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int ordSaleId = GetOrdinalSafe(reader, "sale_id", "SaleId");
+                    int ordSaleNumber = GetOrdinalSafe(reader, "sale_number", "SaleNumber");
+                    int ordSaleDate = GetOrdinalSafe(reader, "sale_date", "SaleDate");
+                    int ordTotalSale = GetOrdinalSafe(reader, "total_sale", "TotalSale");
+                    int ordStatus = GetOrdinalSafe(reader, "status", "Status");
+                    int ordPaymentTypeId = GetOrdinalSafe(reader, "payment_type_id", "PaymentTypeId");
+                    int ordPaymentType = GetOrdinalSafe(reader, "payment_type", "PaymentType");
+                    int ordCustomerId = GetOrdinalSafe(reader, "customer_id", "CustomerId");
+                    int ordCustomerDni = GetOrdinalSafe(reader, "customer_dni", "dni");
+                    int ordCustomerName = GetOrdinalSafe(reader, "customer_name", "name");
+                    int ordCustomerLastname = GetOrdinalSafe(reader, "customer_lastname", "lastname");
+                    int ordUserId = GetOrdinalSafe(reader, "user_id", "UserId");
+                    int ordUserUsername = GetOrdinalSafe(reader, "user_username", "username");
+                    int ordSellerName = GetOrdinalSafe(reader, "seller_name");
+                    int ordSellerLastname = GetOrdinalSafe(reader, "seller_lastname");
+
+                    while (reader.Read())
+                    {
+                        sales.Add(MapSaleHeaderFromReader(
+                            reader,
+                            ordSaleId,
+                            ordSaleNumber,
+                            ordSaleDate,
+                            ordTotalSale,
+                            ordStatus,
+                            ordPaymentTypeId,
+                            ordPaymentType,
+                            ordCustomerId,
+                            ordCustomerDni,
+                            ordCustomerName,
+                            ordCustomerLastname,
+                            ordUserId,
+                            ordUserUsername,
+                            ordSellerName,
+                            ordSellerLastname));
+                    }
+                }
+            }
+
+            return sales;
+        }
+
         public List<SaleDetail> GetSaleDetailsBySaleId(int saleId)
         {
             var details = new List<SaleDetail>();

@@ -93,9 +93,9 @@ namespace MobileSolutions.UILayer
             tlpPrincipal.BackColor = Color.FromArgb(50, 50, 50);
             tlpPrincipal.ColumnCount = 1;
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpPrincipal.Controls.Add(splitContainer, 0, 2);
+            tlpPrincipal.Controls.Add(splitContainer, 0, 1);
             tlpPrincipal.Controls.Add(flpFiltros, 0, 0);
-            tlpPrincipal.Dock = DockStyle.Bottom;
+            tlpPrincipal.Dock = DockStyle.Fill;
             tlpPrincipal.Location = new Point(0, 168);
             tlpPrincipal.Margin = new Padding(3, 2, 3, 2);
             tlpPrincipal.Name = "tlpPrincipal";
@@ -262,7 +262,7 @@ namespace MobileSolutions.UILayer
             lblDetailTitle.TabIndex = 0;
             lblDetailTitle.Text = "Detalle del comprobante seleccionado";
             lblDetailTitle.TextAlign = ContentAlignment.MiddleLeft;
-            lblDetailTitle.Click += lblDetailTitle_Click;
+            // lblDetailTitle.Click not wired
             // 
             // dgvSaleDetails
             // 
@@ -470,14 +470,12 @@ namespace MobileSolutions.UILayer
             cboFilterSeller.Hint = "Vendedor";
             cboFilterSeller.IntegralHeight = false;
             cboFilterSeller.ItemHeight = 43;
-            cboFilterSeller.Items.AddRange(new object[] { "Todos", "nico", "fer", "admin" });
             cboFilterSeller.Location = new Point(745, 12);
             cboFilterSeller.Margin = new Padding(5, 12, 5, 12);
             cboFilterSeller.MaxDropDownItems = 4;
             cboFilterSeller.MouseState = MaterialSkin.MouseState.OUT;
             cboFilterSeller.Name = "cboFilterSeller";
             cboFilterSeller.Size = new Size(154, 49);
-            cboFilterSeller.StartIndex = 0;
             cboFilterSeller.TabIndex = 4;
             cboFilterSeller.TabStop = false;
             // 

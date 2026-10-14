@@ -1,4 +1,4 @@
-﻿USE MobileSolutionsDB;
+USE MobileSolutionsDB;
 GO
 
 -- ============================================================================
@@ -220,7 +220,63 @@ END;
 GO
 
 -- ============================================================================
--- 7. CREAR VENTA (CABECERA + DETALLES + DESCUENTO DE STOCK)
+-- 7. BUSCAR HISTORIAL DE VENTAS CON FILTROS COMBINADOS (sp_SearchSalesHistory)
+-- ============================================================================
+CREATE OR ALTER PROCEDURE sp_SearchSalesHistory
+    @StartDate  DATE           = NULL,
+    @EndDate    DATE           = NULL,
+    @SaleNumber NVARCHAR(50)   = NULL,
+    @ClientName NVARCHAR(100)  = NULL,
+    @UserId     INT            = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SET @SaleNumber = NULLIF(LTRIM(RTRIM(@SaleNumber)), '');
+    SET @ClientName = NULLIF(LTRIM(RTRIM(@ClientName)), '');
+
+    DECLARE @EndDateTime DATETIME = NULL;
+    IF @EndDate IS NOT NULL
+        SET @EndDateTime = DATEADD(SECOND, -1, DATEADD(DAY, 1, CAST(@EndDate AS DATETIME)));
+
+    SELECT 
+        sh.sale_id          AS sale_id,
+        sh.sale_number      AS sale_number,
+        sh.sale_date        AS sale_date,
+        sh.total_sale       AS total_sale,
+        sh.status           AS status,
+        sh.payment_type_id  AS payment_type_id,
+        pt.description      AS payment_type,
+        sh.customer_id      AS customer_id,
+        c.dni               AS customer_dni,
+        c.name              AS customer_name,
+        c.lastname         AS customer_lastname,
+        sh.user_id          AS user_id,
+        u.username          AS user_username,
+        u.name              AS seller_name,
+        u.lastname         AS seller_lastname
+    FROM SaleHeader AS sh
+    INNER JOIN Customer AS c ON c.customer_id = sh.customer_id
+    INNER JOIN [User]   AS u ON u.user_id     = sh.user_id
+    INNER JOIN PaymentType AS pt ON pt.payment_type_id = sh.payment_type_id
+    WHERE 
+        sh.status = 1
+        AND (@StartDate IS NULL OR sh.sale_date >= CAST(@StartDate AS DATETIME))
+        AND (@EndDateTime IS NULL OR sh.sale_date <= @EndDateTime)
+        AND (@SaleNumber IS NULL OR sh.sale_number LIKE '%' + @SaleNumber + '%')
+        AND (
+            @ClientName IS NULL
+            OR c.dni      LIKE '%' + @ClientName + '%'
+            OR c.name     LIKE '%' + @ClientName + '%'
+            OR c.lastname LIKE '%' + @ClientName + '%'
+        )
+        AND (@UserId IS NULL OR sh.user_id = @UserId)
+    ORDER BY sh.sale_date DESC, sh.sale_id DESC;
+END;
+GO
+
+-- ============================================================================
+-- 8. CREAR VENTA (CABECERA + DETALLES + DESCUENTO DE STOCK)
 --    - Genera sale_number: NV-000X-00000001 (correlativo por vendedor)
 --    - Transaccional: todo o nada
 --    - Valida stock suficiente antes de descontar
@@ -383,7 +439,7 @@ END;
 GO
 
 -- ============================================================================
--- 8. CANCELAR VENTA (status = 0 + DEVOLVER STOCK)
+-- 9. CANCELAR VENTA (status = 0 + DEVOLVER STOCK)
 --    Diferencia con DELETE: no borra, anula y repone stock
 -- ============================================================================
 CREATE OR ALTER PROCEDURE sp_CancelSale
@@ -442,7 +498,7 @@ END;
 GO
 
 -- ============================================================================
--- 9. REACTIVAR VENTA (status = 1 + VOLVER A DESCONTAR STOCK)
+-- 10. REACTIVAR VENTA (status = 1 + VOLVER A DESCONTAR STOCK)
 --    Valida que haya stock suficiente para TODOS los ítems antes de reactivar
 -- ============================================================================
 CREATE OR ALTER PROCEDURE sp_ReactivateSale
