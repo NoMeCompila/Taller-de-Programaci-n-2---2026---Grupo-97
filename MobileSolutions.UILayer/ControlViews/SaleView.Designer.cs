@@ -51,6 +51,8 @@ namespace MobileSolutions.UILayer
             btnProduct = new MaterialButton();
             txtPVenta = new MaterialTextBox2();
             txtQtty = new MaterialTextBox2();
+            flpCartHeader = new FlowLayoutPanel();
+            picCart = new IconPictureBox();
             lblCart = new MaterialLabel();
             dataGridView1 = new DataGridView();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
@@ -98,6 +100,8 @@ namespace MobileSolutions.UILayer
             pnlHeader.SuspendLayout();
             ((ISupportInitialize)dtgProducts).BeginInit();
             tlpInputsVenta.SuspendLayout();
+            flpCartHeader.SuspendLayout();
+            ((ISupportInitialize)picCart).BeginInit();
             ((ISupportInitialize)dataGridView1).BeginInit();
             pnlResumen.SuspendLayout();
             tlpSummaryBox.SuspendLayout();
@@ -160,7 +164,7 @@ namespace MobileSolutions.UILayer
             tlpLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpLeft.Controls.Add(pnlProducto, 0, 0);
             tlpLeft.Controls.Add(pnlHeader, 0, 1);
-            tlpLeft.Controls.Add(lblCart, 0, 2);
+            tlpLeft.Controls.Add(flpCartHeader, 0, 2);
             tlpLeft.Controls.Add(dataGridView1, 0, 3);
             tlpLeft.Location = new Point(19, 11);
             tlpLeft.Name = "tlpLeft";
@@ -826,18 +830,47 @@ namespace MobileSolutions.UILayer
             txtQtty.TrailingIcon = null;
             txtQtty.UseSystemPasswordChar = false;
             // 
+            // flpCartHeader
+            // 
+            flpCartHeader.Anchor = AnchorStyles.None;
+            flpCartHeader.AutoSize = true;
+            flpCartHeader.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flpCartHeader.Controls.Add(picCart);
+            flpCartHeader.Controls.Add(lblCart);
+            flpCartHeader.Location = new Point(497, 564);
+            flpCartHeader.Margin = new Padding(0);
+            flpCartHeader.Name = "flpCartHeader";
+            flpCartHeader.Size = new Size(186, 43);
+            flpCartHeader.TabIndex = 2;
+            flpCartHeader.WrapContents = false;
+            // 
+            // picCart
+            // 
+            picCart.BackColor = Color.FromArgb(50, 50, 50);
+            picCart.IconChar = IconChar.CartShopping;
+            picCart.IconColor = Color.White;
+            picCart.IconFont = IconFont.Auto;
+            picCart.IconSize = 36;
+            picCart.Location = new Point(3, 4);
+            picCart.Margin = new Padding(3, 4, 8, 3);
+            picCart.Name = "picCart";
+            picCart.Size = new Size(36, 36);
+            picCart.TabIndex = 0;
+            picCart.TabStop = false;
+            // 
             // lblCart
             // 
-            lblCart.Anchor = AnchorStyles.None;
+            lblCart.Anchor = AnchorStyles.Left;
             lblCart.AutoSize = true;
             lblCart.Depth = 0;
             lblCart.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblCart.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            lblCart.Location = new Point(520, 565);
+            lblCart.Location = new Point(47, 1);
+            lblCart.Margin = new Padding(0);
             lblCart.MouseState = MaterialSkin.MouseState.HOVER;
             lblCart.Name = "lblCart";
             lblCart.Size = new Size(139, 41);
-            lblCart.TabIndex = 2;
+            lblCart.TabIndex = 1;
             lblCart.Text = "CARRITO";
             // 
             // dataGridView1
@@ -1425,6 +1458,9 @@ namespace MobileSolutions.UILayer
             pnlHeader.ResumeLayout(false);
             ((ISupportInitialize)dtgProducts).EndInit();
             tlpInputsVenta.ResumeLayout(false);
+            flpCartHeader.ResumeLayout(false);
+            flpCartHeader.PerformLayout();
+            ((ISupportInitialize)picCart).EndInit();
             ((ISupportInitialize)dataGridView1).EndInit();
             pnlResumen.ResumeLayout(false);
             pnlResumen.PerformLayout();
@@ -1488,6 +1524,8 @@ namespace MobileSolutions.UILayer
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn SubTotal;
         private DataGridViewButtonColumn Remove;
+        private FlowLayoutPanel flpCartHeader;
+        private IconPictureBox picCart;
         private MaterialLabel lblCart;
         private MaterialLabel lblResume;
         private MaterialLabel lblTot;

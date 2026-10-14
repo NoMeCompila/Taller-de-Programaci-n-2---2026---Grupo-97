@@ -110,6 +110,9 @@ namespace MobileSolutions.UILayer
             picSaleTitle.IconChar = IconChar.Shopify;
             picSaleTitle.IconColor = Color.White;
 
+            picCart.IconChar = IconChar.ShoppingCart;
+            picCart.IconColor = Color.White;
+
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
         }
