@@ -470,14 +470,12 @@ namespace MobileSolutions.UILayer
             cboFilterSeller.Hint = "Vendedor";
             cboFilterSeller.IntegralHeight = false;
             cboFilterSeller.ItemHeight = 43;
-            cboFilterSeller.Items.AddRange(new object[] { "Todos", "nico", "fer", "admin" });
             cboFilterSeller.Location = new Point(745, 12);
             cboFilterSeller.Margin = new Padding(5, 12, 5, 12);
             cboFilterSeller.MaxDropDownItems = 4;
             cboFilterSeller.MouseState = MaterialSkin.MouseState.OUT;
             cboFilterSeller.Name = "cboFilterSeller";
             cboFilterSeller.Size = new Size(154, 49);
-            cboFilterSeller.StartIndex = 0;
             cboFilterSeller.TabIndex = 4;
             cboFilterSeller.TabStop = false;
             // 

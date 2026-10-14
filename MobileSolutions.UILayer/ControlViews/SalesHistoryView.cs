@@ -61,6 +61,16 @@ namespace MobileSolutions.UILayer
             dgvSales.CellContentClick += DgvSales_CellContentClick;
         }
 
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (Visible)
+            {
+                InitializeViewControls();
+                ExecuteSearch();
+            }
+        }
+
         private void SalesHistoryView_Load(object? sender, EventArgs e)
         {
             splitContainer.SplitterDistance = Math.Max(120, (int)(splitContainer.Height * 0.6));
@@ -137,6 +147,9 @@ namespace MobileSolutions.UILayer
 
                 cboFilterSeller.SelectedIndex = 0;
             }
+
+            cboFilterSeller.Invalidate();
+            cboFilterSeller.Refresh();
         }
 
         private void BtnSearch_Click(object? sender, EventArgs e)
