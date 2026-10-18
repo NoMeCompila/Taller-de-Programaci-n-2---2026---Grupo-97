@@ -31,6 +31,9 @@ namespace MobileSolutions.UILayer
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             imageList1 = new ImageList(components);
+            tabPage9 = new TabPage();
+            backupView1 = new BackupView();
+            btnBackup = new FontAwesome.Sharp.IconButton();
             tabPage8 = new TabPage();
             reportsView1 = new ReportsView();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
@@ -52,6 +55,7 @@ namespace MobileSolutions.UILayer
             tabPage1 = new TabPage();
             homeView1 = new HomeView();
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            tabPage9.SuspendLayout();
             tabPage8.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage6.SuspendLayout();
@@ -68,6 +72,47 @@ namespace MobileSolutions.UILayer
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
+            // tabPage9
+            // 
+            tabPage9.Controls.Add(backupView1);
+            tabPage9.Location = new Point(4, 24);
+            tabPage9.Margin = new Padding(3, 4, 3, 4);
+            tabPage9.Name = "tabPage9";
+            tabPage9.Size = new Size(1558, 845);
+            tabPage9.TabIndex = 8;
+            tabPage9.Text = "Backup";
+            tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // backupView1
+            // 
+            backupView1.BackColor = Color.FromArgb(50, 50, 50);
+            backupView1.Dock = DockStyle.Fill;
+            backupView1.Location = new Point(0, 0);
+            backupView1.Margin = new Padding(3, 2, 3, 2);
+            backupView1.Name = "backupView1";
+            backupView1.Size = new Size(1558, 845);
+            backupView1.TabIndex = 0;
+            // 
+            // btnBackup
+            // 
+            btnBackup.FlatAppearance.BorderSize = 0;
+            btnBackup.FlatStyle = FlatStyle.Flat;
+            btnBackup.ForeColor = Color.White;
+            btnBackup.IconChar = FontAwesome.Sharp.IconChar.Database;
+            btnBackup.IconColor = Color.White;
+            btnBackup.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnBackup.IconSize = 24;
+            btnBackup.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBackup.Location = new Point(3, 48);
+            btnBackup.Name = "btnBackup";
+            btnBackup.Size = new Size(180, 40);
+            btnBackup.TabIndex = 1;
+            btnBackup.Text = "Backup";
+            btnBackup.TextAlign = ContentAlignment.MiddleLeft;
+            btnBackup.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBackup.UseVisualStyleBackColor = true;
+            btnBackup.Click += btnBackup_Click;
+            // 
             // tabPage8
             // 
             tabPage8.Controls.Add(reportsView1);
@@ -75,7 +120,7 @@ namespace MobileSolutions.UILayer
             tabPage8.Location = new Point(4, 24);
             tabPage8.Margin = new Padding(3, 4, 3, 4);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1542, 806);
+            tabPage8.Size = new Size(1558, 845);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Reportes";
             tabPage8.UseVisualStyleBackColor = true;
@@ -86,7 +131,7 @@ namespace MobileSolutions.UILayer
             reportsView1.Location = new Point(0, 0);
             reportsView1.Margin = new Padding(3, 2, 3, 2);
             reportsView1.Name = "reportsView1";
-            reportsView1.Size = new Size(1542, 806);
+            reportsView1.Size = new Size(1558, 845);
             reportsView1.TabIndex = 4;
             // 
             // materialLabel8
@@ -108,7 +153,7 @@ namespace MobileSolutions.UILayer
             tabPage7.Location = new Point(4, 24);
             tabPage7.Margin = new Padding(3, 4, 3, 4);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1666, 852);
+            tabPage7.Size = new Size(1558, 845);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Historial De Ventas";
             tabPage7.UseVisualStyleBackColor = true;
@@ -120,7 +165,7 @@ namespace MobileSolutions.UILayer
             salesHistoryView2.Location = new Point(0, 0);
             salesHistoryView2.Margin = new Padding(3, 2, 3, 2);
             salesHistoryView2.Name = "salesHistoryView2";
-            salesHistoryView2.Size = new Size(1666, 852);
+            salesHistoryView2.Size = new Size(1558, 845);
             salesHistoryView2.TabIndex = 4;
             // 
             // materialLabel7
@@ -142,7 +187,7 @@ namespace MobileSolutions.UILayer
             tabPage6.Location = new Point(4, 24);
             tabPage6.Margin = new Padding(3, 4, 3, 4);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1666, 852);
+            tabPage6.Size = new Size(1558, 845);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Venta";
             tabPage6.UseVisualStyleBackColor = true;
@@ -154,7 +199,7 @@ namespace MobileSolutions.UILayer
             saleView1.Location = new Point(0, 0);
             saleView1.Margin = new Padding(3, 2, 3, 2);
             saleView1.Name = "saleView1";
-            saleView1.Size = new Size(1666, 852);
+            saleView1.Size = new Size(1558, 845);
             saleView1.TabIndex = 4;
             // 
             // materialLabel6
@@ -175,7 +220,7 @@ namespace MobileSolutions.UILayer
             tabPage4.Controls.Add(materialLabel4);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1666, 852);
+            tabPage4.Size = new Size(1558, 845);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Productos";
             tabPage4.UseVisualStyleBackColor = true;
@@ -186,7 +231,7 @@ namespace MobileSolutions.UILayer
             productView1.Location = new Point(0, 0);
             productView1.Margin = new Padding(3, 2, 3, 2);
             productView1.Name = "productView1";
-            productView1.Size = new Size(1666, 852);
+            productView1.Size = new Size(1558, 845);
             productView1.TabIndex = 4;
             // 
             // materialLabel4
@@ -208,7 +253,7 @@ namespace MobileSolutions.UILayer
             tabPage3.Location = new Point(4, 24);
             tabPage3.Margin = new Padding(3, 4, 3, 4);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1666, 852);
+            tabPage3.Size = new Size(1558, 845);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Clientes";
             tabPage3.UseVisualStyleBackColor = true;
@@ -219,7 +264,7 @@ namespace MobileSolutions.UILayer
             customerView1.Location = new Point(0, 0);
             customerView1.Margin = new Padding(3, 2, 3, 2);
             customerView1.Name = "customerView1";
-            customerView1.Size = new Size(1666, 852);
+            customerView1.Size = new Size(1558, 845);
             customerView1.TabIndex = 4;
             // 
             // materialLabel2
@@ -242,7 +287,7 @@ namespace MobileSolutions.UILayer
             tabPage2.Margin = new Padding(3, 4, 3, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3, 2, 3, 2);
-            tabPage2.Size = new Size(1666, 852);
+            tabPage2.Size = new Size(1558, 845);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Usuarios";
             tabPage2.UseVisualStyleBackColor = true;
@@ -253,7 +298,7 @@ namespace MobileSolutions.UILayer
             userView1.Location = new Point(3, 2);
             userView1.Margin = new Padding(2);
             userView1.Name = "userView1";
-            userView1.Size = new Size(1660, 848);
+            userView1.Size = new Size(1552, 841);
             userView1.TabIndex = 3;
             // 
             // materialLabel3
@@ -275,7 +320,7 @@ namespace MobileSolutions.UILayer
             tabPage1.Margin = new Padding(3, 4, 3, 4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(1542, 806);
+            tabPage1.Size = new Size(1558, 845);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Home";
             tabPage1.UseVisualStyleBackColor = true;
@@ -286,7 +331,7 @@ namespace MobileSolutions.UILayer
             homeView1.Location = new Point(3, 2);
             homeView1.Margin = new Padding(3, 4, 3, 4);
             homeView1.Name = "homeView1";
-            homeView1.Size = new Size(1536, 802);
+            homeView1.Size = new Size(1552, 841);
             homeView1.TabIndex = 0;
             // 
             // materialTabControl1
@@ -298,6 +343,7 @@ namespace MobileSolutions.UILayer
             materialTabControl1.Controls.Add(tabPage6);
             materialTabControl1.Controls.Add(tabPage7);
             materialTabControl1.Controls.Add(tabPage8);
+            materialTabControl1.Controls.Add(tabPage9);
             materialTabControl1.Depth = 0;
             materialTabControl1.Dock = DockStyle.Fill;
             materialTabControl1.Location = new Point(3, 48);
@@ -306,14 +352,16 @@ namespace MobileSolutions.UILayer
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1550, 834);
+            materialTabControl1.Size = new Size(1566, 873);
             materialTabControl1.TabIndex = 0;
+            materialTabControl1.SelectedIndexChanged += materialTabControl1_SelectedIndexChanged;
             // 
             // MainForm
             // 
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(1556, 884);
+            ClientSize = new Size(1572, 923);
             Controls.Add(materialTabControl1);
+            Controls.Add(btnBackup);
             DrawerTabControl = materialTabControl1;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -324,6 +372,7 @@ namespace MobileSolutions.UILayer
             Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mobile Solutions";
+            tabPage9.ResumeLayout(false);
             tabPage8.ResumeLayout(false);
             tabPage8.PerformLayout();
             tabPage7.ResumeLayout(false);
@@ -343,6 +392,9 @@ namespace MobileSolutions.UILayer
 
         #endregion
         private ImageList imageList1;
+        private TabPage tabPage9;
+        private BackupView backupView1;
+        private FontAwesome.Sharp.IconButton btnBackup;
         private TabPage tabPage8;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private TabPage tabPage7;

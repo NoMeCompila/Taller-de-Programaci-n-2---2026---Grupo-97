@@ -90,6 +90,7 @@ namespace MobileSolutions.UILayer
             imageList1.Images.Add("venta", IconChar.CashRegister.ToBitmap(iconColor, 24));
             imageList1.Images.Add("historial", IconChar.History.ToBitmap(iconColor, 24));
             imageList1.Images.Add("reportes", IconChar.ChartBar.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("backup", IconChar.Database.ToBitmap(iconColor, 24));
 
             materialTabControl1.ImageList = imageList1;
 
@@ -101,6 +102,7 @@ namespace MobileSolutions.UILayer
             tabPage6.ImageKey = "venta";
             tabPage7.ImageKey = "historial";
             tabPage8.ImageKey = "reportes";
+            tabPage9.ImageKey = "backup";
 
             // 3. Cache original tab list in memory in exact canonical order
             _originalTabPages.Clear();
@@ -111,6 +113,7 @@ namespace MobileSolutions.UILayer
             _originalTabPages.Add(tabPage6); // Venta
             _originalTabPages.Add(tabPage7); // Historial De Ventas
             _originalTabPages.Add(tabPage8); // Reportes
+            _originalTabPages.Add(tabPage9); // Backup
 
             this.DrawerShowIconsWhenHidden = true;
         }
@@ -142,6 +145,9 @@ namespace MobileSolutions.UILayer
                            profileName == "admin" || normalizedUser == "admin" ||
                            (profileId == 1 && !isSeller && !isManager);
 
+            btnBackup.Visible = isAdmin;
+            btnBackup.TabStop = isAdmin;
+
             // Role-based access control based on DB profile (with fallback to username)
             if (isAdmin)
             {
@@ -154,14 +160,14 @@ namespace MobileSolutions.UILayer
             {
                 // Gerente
                 allowedTabs = _originalTabPages
-                    .Where(tab => tab != tabPage2 && tab != tabPage4)
+                    .Where(tab => tab != tabPage2 && tab != tabPage4 && tab != tabPage9)
                     .ToList();
             }
             else if (isSeller)
             {
                 // Vendedor: Access to Sales (tabPage6), Customers (tabPage3), Sales History (tabPage7), and Reports (tabPage8)
                 allowedTabs = _originalTabPages
-                   .Where(tab => tab != tabPage2)
+                   .Where(tab => tab != tabPage2 && tab != tabPage9)
                    .ToList();
             }
             else
@@ -183,6 +189,40 @@ namespace MobileSolutions.UILayer
             // Bind filtered tabs to MaterialSkin drawer
             this.DrawerTabControl = materialTabControl1;
             materialTabControl1.ResumeLayout(true);
+        }
+
+        private void btnBackup_Click(object? sender, EventArgs e)
+        {
+            LoadBackupView();
+            if (materialTabControl1.TabPages.Contains(tabPage9))
+            {
+                materialTabControl1.SelectedTab = tabPage9;
+            }
+        }
+
+        private void materialTabControl1_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (materialTabControl1.SelectedTab == tabPage9)
+            {
+                LoadBackupView();
+            }
+        }
+
+        private void LoadBackupView()
+        {
+            tabPage9.SuspendLayout();
+            tabPage9.Controls.Clear();
+
+            backupView1 = new BackupView
+            {
+                Dock = DockStyle.Fill,
+                Name = "backupView1"
+            };
+            backupView1.LogoutRequested += HandleLogoutRequested;
+            SetCurrentUserInLabels(backupView1, _currentUser);
+
+            tabPage9.Controls.Add(backupView1);
+            tabPage9.ResumeLayout(true);
         }
  
         private void WireLogoutEvents(Control parent)

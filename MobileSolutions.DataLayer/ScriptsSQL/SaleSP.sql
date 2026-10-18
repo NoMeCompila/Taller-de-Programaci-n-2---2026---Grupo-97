@@ -14,22 +14,21 @@ GO
 
 -- 1. TABLE VALUED PARAMETER PARA DETALLES DE VENTA
 -- ============================================================================
-IF TYPE_ID('dbo.SaleDetailType') IS NOT NULL
-    DROP TYPE dbo.SaleDetailType;
-GO
-
-CREATE TYPE dbo.SaleDetailType AS TABLE
-(
-    product_id  INT             NOT NULL,
-    quantity    INT             NOT NULL,
-    price       DECIMAL(18, 2)  NOT NULL
-);
+IF TYPE_ID('dbo.SaleDetailType') IS NULL
+BEGIN
+    CREATE TYPE dbo.SaleDetailType AS TABLE
+    (
+        product_id  INT             NOT NULL,
+        quantity    INT             NOT NULL,
+        price       DECIMAL(18, 2)  NOT NULL
+    );
+END;
 GO
 
 -- ============================================================================
 -- 2. OBTENER VENTAS ACTIVAS (sp_GetActiveSales)
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_GetActiveSales
+CREATE OR ALTER PROCEDURE dbo.sp_GetActiveSales
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -62,7 +61,7 @@ GO
 -- ============================================================================
 -- 3. OBTENER VENTAS INACTIVAS/CANCELADAS (sp_GetInactiveSales)
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_GetInactiveSales
+CREATE OR ALTER PROCEDURE dbo.sp_GetInactiveSales
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -95,7 +94,7 @@ GO
 -- ============================================================================
 -- 4. OBTENER DETALLES DE UNA VENTA (sp_GetSaleDetailsBySaleId)
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_GetSaleDetailsBySaleId
+CREATE OR ALTER PROCEDURE dbo.sp_GetSaleDetailsBySaleId
     @sale_id INT
 AS
 BEGIN
@@ -134,7 +133,7 @@ GO
 -- ============================================================================
 -- 5. BUSCAR VENTAS ACTIVAS CON FILTRO DINÁMICO (sp_SearchActiveSales)
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_SearchActiveSales
+CREATE OR ALTER PROCEDURE dbo.sp_SearchActiveSales
     @SearchTerm NVARCHAR(100) = NULL
 AS
 BEGIN
@@ -178,7 +177,7 @@ GO
 -- ============================================================================
 -- 6. BUSCAR VENTAS INACTIVAS CON FILTRO DINÁMICO (sp_SearchInactiveSales)
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_SearchInactiveSales
+CREATE OR ALTER PROCEDURE dbo.sp_SearchInactiveSales
     @SearchTerm NVARCHAR(100) = NULL
 AS
 BEGIN
@@ -222,7 +221,7 @@ GO
 -- ============================================================================
 -- 7. BUSCAR HISTORIAL DE VENTAS CON FILTROS COMBINADOS (sp_SearchSalesHistory)
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_SearchSalesHistory
+CREATE OR ALTER PROCEDURE dbo.sp_SearchSalesHistory
     @StartDate  DATE           = NULL,
     @EndDate    DATE           = NULL,
     @SaleNumber NVARCHAR(50)   = NULL,
@@ -281,7 +280,7 @@ GO
 --    - Transaccional: todo o nada
 --    - Valida stock suficiente antes de descontar
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_CreateSale
+CREATE OR ALTER PROCEDURE dbo.sp_CreateSale
     @payment_type_id    INT,
     @customer_id        INT,
     @user_id            INT,
@@ -442,7 +441,7 @@ GO
 -- 9. CANCELAR VENTA (status = 0 + DEVOLVER STOCK)
 --    Diferencia con DELETE: no borra, anula y repone stock
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_CancelSale
+CREATE OR ALTER PROCEDURE dbo.sp_CancelSale
     @sale_id INT
 AS
 BEGIN
@@ -501,7 +500,7 @@ GO
 -- 10. REACTIVAR VENTA (status = 1 + VOLVER A DESCONTAR STOCK)
 --    Valida que haya stock suficiente para TODOS los ítems antes de reactivar
 -- ============================================================================
-CREATE OR ALTER PROCEDURE sp_ReactivateSale
+CREATE OR ALTER PROCEDURE dbo.sp_ReactivateSale
     @sale_id INT
 AS
 BEGIN
@@ -596,7 +595,10 @@ WHERE name LIKE 'sp_%Sale%'
 ORDER BY name;
 GO
 
-INSERT INTO PaymentType (description, status)
-VALUES 
-    ('Efectivo', 1),
-    ('Transferencia', 1);
+IF NOT EXISTS (SELECT 1 FROM PaymentType WHERE description = 'Efectivo')
+    INSERT INTO PaymentType (description, status) VALUES ('Efectivo', 1);
+
+IF NOT EXISTS (SELECT 1 FROM PaymentType WHERE description = 'Transferencia')
+    INSERT INTO PaymentType (description, status) VALUES ('Transferencia', 1);
+
+SELECT * FROM SaleHeader;
