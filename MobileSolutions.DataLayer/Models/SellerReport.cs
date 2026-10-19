@@ -20,9 +20,7 @@ namespace MobileSolutions.BusinessLayer.Models
         public string ProductCode { get; set; } = string.Empty;
         public string ProductName { get; set; } = string.Empty;
         public int UnitsSold { get; set; }
-        public string DisplayText => string.IsNullOrWhiteSpace(ProductCode)
-            ? $"{ProductName} ({UnitsSold} u.)"
-            : $"[{ProductCode}] {ProductName} ({UnitsSold} u.)";
+        public string DisplayText => ProductName;
     }
 
     public class BrandRankingItem
@@ -30,7 +28,7 @@ namespace MobileSolutions.BusinessLayer.Models
         public int BrandId { get; set; }
         public string BrandName { get; set; } = string.Empty;
         public int UnitsSold { get; set; }
-        public string DisplayText => $"{BrandName} ({UnitsSold} u.)";
+        public string DisplayText => BrandName;
     }
 
     public class DailySalesPoint

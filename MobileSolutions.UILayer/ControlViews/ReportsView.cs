@@ -40,6 +40,10 @@ namespace MobileSolutions.UILayer
             {
                 LoadReportByProfile();
             }
+            else if (this.Visible && pnlContainer.Controls.Count > 0 && pnlContainer.Controls[0] is SellerReportControl sellerReport)
+            {
+                sellerReport.RefreshReportData();
+            }
         }
 
         private void LoadReportByProfile()

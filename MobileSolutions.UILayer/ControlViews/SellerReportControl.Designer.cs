@@ -13,7 +13,7 @@ namespace MobileSolutions.UILayer
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de componentes
+        #region CÃ³digo generado por el DiseÃ±ador de componentes
 
         private void InitializeComponent()
         {
@@ -107,11 +107,13 @@ namespace MobileSolutions.UILayer
             // tlpKpis
             // 
             tlpKpis.BackColor = Color.FromArgb(50, 50, 50);
-            tlpKpis.ColumnCount = 4;
-            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.ColumnCount = 6;
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.66667F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.66667F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.66667F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.66667F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.66667F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.66667F));
             tlpKpis.Dock = DockStyle.Fill;
             tlpKpis.Location = new Point(0, 0);
             tlpKpis.Name = "tlpKpis";
@@ -145,7 +147,7 @@ namespace MobileSolutions.UILayer
             lblEvolucionTitle.Padding = new Padding(8, 0, 0, 0);
             lblEvolucionTitle.Size = new Size(1620, 32);
             lblEvolucionTitle.TabIndex = 0;
-            lblEvolucionTitle.Text = "Evolución de Ventas Diarias";
+            lblEvolucionTitle.Text = "EvoluciÃ³n de Ventas Diarias";
             lblEvolucionTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tlpDistribucion

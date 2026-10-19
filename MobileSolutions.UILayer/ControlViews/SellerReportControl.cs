@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
@@ -13,6 +15,8 @@ using WpfBrushes = System.Windows.Media.Brushes;
 using WpfColor = System.Windows.Media.Color;
 using WpfFontFamily = System.Windows.Media.FontFamily;
 
+using MobileSolutions.BusinessLayer;
+using MobileSolutions.BusinessLayer.Models;
 using MobileSolutions.UILayer.Contracts;
 
 namespace MobileSolutions.UILayer
@@ -21,14 +25,23 @@ namespace MobileSolutions.UILayer
     {
         public event EventHandler? LogoutRequested;
 
+        private readonly SellerReportService _sellerReportService;
+
         private static readonly Color MainBackground = Color.FromArgb(50, 50, 50);
         private static readonly Color CardBackground = Color.FromArgb(60, 60, 60);
+        private static readonly Color ComboBackground = Color.FromArgb(45, 45, 45);
         private static readonly Color PositiveSubtitleColor = Color.FromArgb(102, 187, 106);
-        private static readonly Color AxisSeparatorColor = Color.FromArgb(75, 75, 75);
+        private static readonly Color NegativeSubtitleColor = Color.FromArgb(239, 83, 80);
+        private static readonly Color NeutralSubtitleColor = Color.FromArgb(180, 180, 180);
+
+        private CartesianChart? _chartEvolucion;
+        private CartesianChart? _chartTopProductos;
+        private PieChart? _chartMarcas;
 
         public SellerReportControl()
         {
             InitializeComponent();
+            _sellerReportService = new SellerReportService();
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
             ConfigureLayout();
@@ -37,41 +50,188 @@ namespace MobileSolutions.UILayer
         private void ConfigureLayout()
         {
             BackColor = MainBackground;
+            RefreshReportData();
+        }
 
-            tlpKpis.Controls.Add(CreateKpiCard(IconChar.Wallet, "Facturación Mes", "$23,680.00", "+12% vs. mes anterior"), 0, 0);
-            tlpKpis.Controls.Add(CreateKpiCard(IconChar.Receipt, "Volumen de Ventas", "35 tickets"), 1, 0);
-            tlpKpis.Controls.Add(CreateKpiCard(IconChar.HandHoldingUsd, "Ticket Promedio", "$676.57"), 2, 0);
-            tlpKpis.Controls.Add(CreateKpiCard(IconChar.Trophy, "Venta Más Alta", "$1,800.00"), 3, 0);
+        public void RefreshReportData()
+        {
+            SellerReport report;
 
-            var chartEvolucion = CreateMonthlyEvolutionChart();
-            chartEvolucion.Dock = DockStyle.Fill;
-            chartEvolucion.Margin = new Padding(8);
-            pnlEvolucion.Controls.Add(chartEvolucion);
-            pnlEvolucion.Controls.SetChildIndex(chartEvolucion, 0);
+            try
+            {
+                report = _sellerReportService.GetSellerPerformanceReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"No se pudieron cargar las métricas del vendedor: {ex.Message}",
+                    "Error al cargar reporte",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
-            var chartTopProductos = CreateTopProductsChart();
-            chartTopProductos.Dock = DockStyle.Fill;
-            chartTopProductos.Margin = new Padding(8);
-            pnlTopProductos.Controls.Add(chartTopProductos);
-            pnlTopProductos.Controls.SetChildIndex(chartTopProductos, 0);
+                report = new SellerReport();
+            }
 
-            var chartMarcas = CreateBrandsPieChart();
-            chartMarcas.Dock = DockStyle.Fill;
-            chartMarcas.Margin = new Padding(8);
-            pnlMarcas.Controls.Add(chartMarcas);
-            pnlMarcas.Controls.SetChildIndex(chartMarcas, 0);
+            RenderKpiCards(report);
+            RenderCharts(report);
         }
 
         #region KPIs
 
-        private Panel CreateKpiCard(IconChar icon, string title, string value, string? subtitle = null)
+        private void RenderKpiCards(SellerReport report)
+        {
+            tlpKpis.SuspendLayout();
+            tlpKpis.Controls.Clear();
+
+            var kpi = report.KpiSummary ?? new SellerKpiSummary();
+
+            var (revenueSubtitle, revenueSubtitleColor) = FormatMonthComparisonSubtitle(
+                kpi.TotalRevenue,
+                kpi.PreviousMonthRevenue);
+
+            string paymentBreakdownSubtitle =
+                $"Efec: {FormatCurrency(kpi.CashTotal)} | Transf: {FormatCurrency(kpi.TransferTotal)}";
+
+            string avgTicketSubtitle = kpi.TotalSalesCount > 0
+                ? "Promedio por venta activa"
+                : "Sin ventas registradas";
+
+            string maxSaleSubtitle = kpi.TotalSalesCount > 0
+                ? "Mayor ticket del mes"
+                : "Sin ventas registradas";
+
+            bool hasMostSoldProducts = report.MostSoldProducts != null && report.MostSoldProducts.Count > 0;
+            var mostSoldProductItems = hasMostSoldProducts
+                ? report.MostSoldProducts!.Select(p => p.DisplayText).ToList()
+                : new List<string> { "Sin ventas en el mes" };
+            string mostSoldProductHeader = hasMostSoldProducts
+                ? $"▲ Más ({report.MostSoldProducts!.Count}) — {report.MostSoldProducts[0].UnitsSold} u.:"
+                : "▲ Más (0):";
+
+            bool hasLeastSoldProducts = report.LeastSoldProducts != null && report.LeastSoldProducts.Count > 0;
+            var leastSoldProductItems = hasLeastSoldProducts
+                ? report.LeastSoldProducts!.Select(p => p.DisplayText).ToList()
+                : new List<string> { "Sin productos activos" };
+            string leastSoldProductHeader = hasLeastSoldProducts
+                ? $"▼ Menos ({report.LeastSoldProducts!.Count}) — {report.LeastSoldProducts[0].UnitsSold} u.:"
+                : "▼ Menos (0):";
+
+            bool hasMostSoldBrands = report.MostSoldBrands != null && report.MostSoldBrands.Count > 0;
+            var mostSoldBrandItems = hasMostSoldBrands
+                ? report.MostSoldBrands!.Select(b => b.DisplayText).ToList()
+                : new List<string> { "Sin ventas en el mes" };
+            string mostSoldBrandHeader = hasMostSoldBrands
+                ? $"▲ Más ({report.MostSoldBrands!.Count}) — {report.MostSoldBrands[0].UnitsSold} u.:"
+                : "▲ Más (0):";
+
+            bool hasLeastSoldBrands = report.LeastSoldBrands != null && report.LeastSoldBrands.Count > 0;
+            var leastSoldBrandItems = hasLeastSoldBrands
+                ? report.LeastSoldBrands!.Select(b => b.DisplayText).ToList()
+                : new List<string> { "Sin marcas activas" };
+            string leastSoldBrandHeader = hasLeastSoldBrands
+                ? $"▼ Menos ({report.LeastSoldBrands!.Count}) — {report.LeastSoldBrands[0].UnitsSold} u.:"
+                : "▼ Menos (0):";
+
+            tlpKpis.Controls.Add(
+                CreateKpiCard(
+                    IconChar.Wallet,
+                    "Total Recaudado",
+                    FormatCurrency(kpi.TotalRevenue),
+                    revenueSubtitle,
+                    revenueSubtitleColor),
+                0, 0);
+
+            tlpKpis.Controls.Add(
+                CreateKpiCard(
+                    IconChar.Receipt,
+                    "Total de Ventas",
+                    $"{kpi.TotalSalesCount} {(kpi.TotalSalesCount == 1 ? "venta" : "ventas")}",
+                    paymentBreakdownSubtitle,
+                    NeutralSubtitleColor),
+                1, 0);
+
+            tlpKpis.Controls.Add(
+                CreateKpiCard(
+                    IconChar.HandHoldingUsd,
+                    "Ticket Promedio",
+                    FormatCurrency(kpi.AverageTicket),
+                    avgTicketSubtitle,
+                    NeutralSubtitleColor),
+                2, 0);
+
+            tlpKpis.Controls.Add(
+                CreateKpiCard(
+                    IconChar.Trophy,
+                    "Venta Más Alta",
+                    FormatCurrency(kpi.MaxSale),
+                    maxSaleSubtitle,
+                    NeutralSubtitleColor),
+                3, 0);
+
+            tlpKpis.Controls.Add(
+                CreateExtremesKpiCard(
+                    IconChar.MobileScreenButton,
+                    "Ranking Celulares",
+                    mostSoldProductHeader,
+                    mostSoldProductItems,
+                    leastSoldProductHeader,
+                    leastSoldProductItems),
+                4, 0);
+
+            tlpKpis.Controls.Add(
+                CreateExtremesKpiCard(
+                    IconChar.Tags,
+                    "Ranking Marcas",
+                    mostSoldBrandHeader,
+                    mostSoldBrandItems,
+                    leastSoldBrandHeader,
+                    leastSoldBrandItems),
+                5, 0);
+
+            tlpKpis.ResumeLayout();
+        }
+
+        private static string FormatCurrency(decimal amount)
+        {
+            return string.Format(CultureInfo.InvariantCulture, "${0:N2}", amount);
+        }
+
+        private static (string Text, Color Color) FormatMonthComparisonSubtitle(decimal currentRevenue, decimal previousRevenue)
+        {
+            if (previousRevenue <= 0m)
+            {
+                if (currentRevenue > 0m)
+                {
+                    return ("+100% vs. mes anterior", PositiveSubtitleColor);
+                }
+
+                return ("0% vs. mes anterior", NeutralSubtitleColor);
+            }
+
+            decimal variation = ((currentRevenue - previousRevenue) / previousRevenue) * 100m;
+            string sign = variation >= 0m ? "+" : string.Empty;
+            Color color = variation > 0m
+                ? PositiveSubtitleColor
+                : variation < 0m
+                    ? NegativeSubtitleColor
+                    : NeutralSubtitleColor;
+
+            return ($"{sign}{variation:0.#}% vs. mes anterior", color);
+        }
+
+        private Panel CreateKpiCard(
+            IconChar icon,
+            string title,
+            string value,
+            string? subtitle = null,
+            Color? subtitleColor = null)
         {
             var card = new Panel
             {
                 Dock = DockStyle.Fill,
                 BackColor = CardBackground,
                 Margin = new Padding(6),
-                Padding = new Padding(12, 10, 12, 10)
+                Padding = new Padding(10, 8, 10, 8)
             };
 
             var layout = new TableLayoutPanel
@@ -83,8 +243,8 @@ namespace MobileSolutions.UILayer
                 Margin = Padding.Empty
             };
 
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
@@ -96,7 +256,7 @@ namespace MobileSolutions.UILayer
                 IconChar = icon,
                 IconColor = Color.White,
                 IconFont = IconFont.Auto,
-                IconSize = 34
+                IconSize = 30
             };
 
             var lblTitle = new MaterialLabel
@@ -106,27 +266,29 @@ namespace MobileSolutions.UILayer
                 Text = title,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ForeColor = Color.FromArgb(190, 190, 190),
-                Font = new Font("Roboto", 12F, FontStyle.Regular)
+                Font = new Font("Roboto", 11F, FontStyle.Regular)
             };
 
-            var lblValue = new MaterialLabel
+            var lblValue = new Label
             {
                 Dock = DockStyle.Fill,
                 AutoSize = false,
                 Text = value,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ForeColor = Color.White,
-                Font = new Font("Roboto", 20F, FontStyle.Bold)
+                BackColor = Color.Transparent,
+                Font = new Font("Roboto", 16F, FontStyle.Bold)
             };
 
-            var lblSubtitle = new MaterialLabel
+            var lblSubtitle = new Label
             {
                 Dock = DockStyle.Fill,
                 AutoSize = false,
                 Text = subtitle ?? string.Empty,
                 TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = PositiveSubtitleColor,
-                Font = new Font("Roboto", 9F, FontStyle.Regular)
+                ForeColor = subtitleColor ?? PositiveSubtitleColor,
+                BackColor = Color.Transparent,
+                Font = new Font("Roboto", 8.5F, FontStyle.Regular)
             };
 
             layout.Controls.Add(picIcon, 0, 0);
@@ -138,11 +300,203 @@ namespace MobileSolutions.UILayer
             return card;
         }
 
+        private Panel CreateExtremesKpiCard(
+            IconChar icon,
+            string title,
+            string mostSoldHeader,
+            IReadOnlyList<string> mostSoldItems,
+            string leastSoldHeader,
+            IReadOnlyList<string> leastSoldItems)
+        {
+            var card = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = CardBackground,
+                Margin = new Padding(6),
+                Padding = new Padding(8, 6, 8, 6)
+            };
+
+            var layout = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 1,
+                RowCount = 3,
+                BackColor = Color.Transparent,
+                Margin = Padding.Empty
+            };
+
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+
+            var headerPanel = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 2,
+                RowCount = 1,
+                BackColor = Color.Transparent,
+                Margin = Padding.Empty
+            };
+            headerPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 28F));
+            headerPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            headerPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+
+            var picIcon = new IconPictureBox
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.Transparent,
+                IconChar = icon,
+                IconColor = Color.White,
+                IconFont = IconFont.Auto,
+                IconSize = 22
+            };
+
+            var lblTitle = new Label
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = false,
+                Text = title,
+                TextAlign = ContentAlignment.MiddleLeft,
+                ForeColor = Color.White,
+                BackColor = Color.Transparent,
+                Font = new Font("Roboto", 10F, FontStyle.Bold)
+            };
+
+            headerPanel.Controls.Add(picIcon, 0, 0);
+            headerPanel.Controls.Add(lblTitle, 1, 0);
+
+            var mostRow = CreateExtremeComboRow(
+                mostSoldHeader,
+                PositiveSubtitleColor,
+                mostSoldItems);
+
+            var leastRow = CreateExtremeComboRow(
+                leastSoldHeader,
+                NegativeSubtitleColor,
+                leastSoldItems);
+
+            layout.Controls.Add(headerPanel, 0, 0);
+            layout.Controls.Add(mostRow, 0, 1);
+            layout.Controls.Add(leastRow, 0, 2);
+
+            card.Controls.Add(layout);
+            return card;
+        }
+
+        private static Panel CreateExtremeComboRow(
+            string labelText,
+            Color labelColor,
+            IReadOnlyList<string> items)
+        {
+            var container = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 1,
+                RowCount = 2,
+                BackColor = Color.Transparent,
+                Margin = new Padding(0, 2, 0, 2)
+            };
+
+            container.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
+            container.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            container.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+
+            var lbl = new Label
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = false,
+                Text = labelText,
+                TextAlign = ContentAlignment.BottomLeft,
+                ForeColor = labelColor,
+                BackColor = Color.Transparent,
+                Font = new Font("Roboto", 8F, FontStyle.Bold)
+            };
+
+            var comboFont = new Font("Roboto", 8.5F, FontStyle.Regular);
+            int maxItemWidth = 220;
+
+            foreach (var item in items)
+            {
+                int textWidth = TextRenderer.MeasureText(item, comboFont).Width + 32;
+                if (textWidth > maxItemWidth)
+                {
+                    maxItemWidth = textWidth;
+                }
+            }
+
+            var cbo = new ComboBox
+            {
+                Dock = DockStyle.Fill,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = ComboBackground,
+                ForeColor = Color.White,
+                Font = comboFont,
+                IntegralHeight = false,
+                MaxDropDownItems = 8,
+                DropDownWidth = maxItemWidth
+            };
+
+            foreach (var item in items)
+            {
+                cbo.Items.Add(item);
+            }
+
+            if (cbo.Items.Count > 0)
+            {
+                cbo.SelectedIndex = 0;
+            }
+
+            container.Controls.Add(lbl, 0, 0);
+            container.Controls.Add(cbo, 0, 1);
+            return container;
+        }
+
         #endregion
 
-        #region Evolución Temporal
+        #region Gráficos (LiveCharts)
 
-        private CartesianChart CreateMonthlyEvolutionChart()
+        private void RenderCharts(SellerReport report)
+        {
+            if (_chartEvolucion != null)
+            {
+                pnlEvolucion.Controls.Remove(_chartEvolucion);
+                _chartEvolucion.Dispose();
+            }
+
+            _chartEvolucion = CreateMonthlyEvolutionChart(report.DailyEvolution);
+            _chartEvolucion.Dock = DockStyle.Fill;
+            _chartEvolucion.Margin = new Padding(8);
+            pnlEvolucion.Controls.Add(_chartEvolucion);
+            pnlEvolucion.Controls.SetChildIndex(_chartEvolucion, 0);
+
+            if (_chartTopProductos != null)
+            {
+                pnlTopProductos.Controls.Remove(_chartTopProductos);
+                _chartTopProductos.Dispose();
+            }
+
+            _chartTopProductos = CreateTopProductsChart(report.Top5Products);
+            _chartTopProductos.Dock = DockStyle.Fill;
+            _chartTopProductos.Margin = new Padding(8);
+            pnlTopProductos.Controls.Add(_chartTopProductos);
+            pnlTopProductos.Controls.SetChildIndex(_chartTopProductos, 0);
+
+            if (_chartMarcas != null)
+            {
+                pnlMarcas.Controls.Remove(_chartMarcas);
+                _chartMarcas.Dispose();
+            }
+
+            _chartMarcas = CreateBrandsPieChart(report.BrandDistribution);
+            _chartMarcas.Dock = DockStyle.Fill;
+            _chartMarcas.Margin = new Padding(8);
+            pnlMarcas.Controls.Add(_chartMarcas);
+            pnlMarcas.Controls.SetChildIndex(_chartMarcas, 0);
+        }
+
+        private CartesianChart CreateMonthlyEvolutionChart(List<DailySalesPoint>? dailyPoints)
         {
             var chart = new CartesianChart
             {
@@ -151,15 +505,34 @@ namespace MobileSolutions.UILayer
                 LegendLocation = LegendLocation.Right
             };
 
+            DateTime now = DateTime.Now;
+            int daysInMonth = DateTime.DaysInMonth(now.Year, now.Month);
+
+            var revenueByDay = (dailyPoints ?? new List<DailySalesPoint>())
+                .GroupBy(p => p.Day)
+                .ToDictionary(g => g.Key, g => (double)g.Sum(x => x.Revenue));
+
+            var dailyValues = new ChartValues<double>();
+            var dayLabels = new string[daysInMonth];
+            double maxRevenue = 0;
+
+            for (int day = 1; day <= daysInMonth; day++)
+            {
+                dayLabels[day - 1] = day.ToString(CultureInfo.InvariantCulture);
+                double val = revenueByDay.TryGetValue(day, out double rev) ? rev : 0d;
+                dailyValues.Add(val);
+                if (val > maxRevenue)
+                {
+                    maxRevenue = val;
+                }
+            }
+
+            double yAxisMax = maxRevenue > 0 ? Math.Ceiling(maxRevenue * 1.15) : 1000;
+
             var lineSeries = new LineSeries
             {
                 Title = "Facturación diaria",
-                Values = new ChartValues<double>
-                {
-                    780, 0, 420, 960, 540, 1150, 1420, 880, 620, 1310,
-                    1180, 1340, 1510, 1680, 1290, 760, 1630, 1750, 1360, 990,
-                    1210, 1460, 1800, 1560, 1120, 1480, 1610, 1700, 1420, 1580, 1320
-                },
+                Values = dailyValues,
                 LineSmoothness = 0.35,
                 PointGeometrySize = 5,
                 PointGeometry = DefaultGeometries.Circle,
@@ -178,23 +551,18 @@ namespace MobileSolutions.UILayer
                 new LiveCharts.Wpf.Axis
                 {
                     Title = "Días del mes",
-                    Labels = new[]
-                    {
-                        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-                        "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"
-                    },
+                    Labels = dayLabels,
                     Foreground = WpfBrushes.White,
                     ShowLabels = true,
-                    MinValue = 1,
-                    MaxValue = 31,
+                    MinValue = 0,
+                    MaxValue = daysInMonth - 1,
                     FontFamily = new WpfFontFamily("Roboto"),
                     FontSize = 11,
                     Separator = new Separator
                     {
                         Stroke = new System.Windows.Media.SolidColorBrush(WpfColor.FromArgb(120, 75, 75, 75)),
                         StrokeThickness = 1,
-                        Step = 3
+                        Step = 2
                     }
                 }
             };
@@ -205,12 +573,12 @@ namespace MobileSolutions.UILayer
                 {
                     Title = "Facturación ($)",
                     MinValue = 0,
-                    MaxValue = 2000,
+                    MaxValue = yAxisMax,
                     Foreground = WpfBrushes.White,
                     ShowLabels = true,
                     FontFamily = new WpfFontFamily("Roboto"),
                     FontSize = 11,
-                    LabelFormatter = value => value.ToString("$0"),
+                    LabelFormatter = value => value.ToString("$#,##0", CultureInfo.InvariantCulture),
                     Separator = new Separator
                     {
                         Stroke = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(75, 75, 75)),
@@ -229,25 +597,59 @@ namespace MobileSolutions.UILayer
             return chart;
         }
 
-        #endregion
+        private static string FormatProductChartLabel(string productName)
+        {
+            if (string.IsNullOrWhiteSpace(productName))
+            {
+                return "Sin nombre";
+            }
 
-        #region Distribución Analítica
+            string clean = productName.Trim();
+            if (clean.Length <= 14)
+            {
+                return clean;
+            }
 
-        private CartesianChart CreateTopProductsChart()
+            string[] words = clean.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (words.Length >= 2)
+            {
+                int splitIndex = words.Length >= 3 ? words.Length - 1 : 1;
+                string firstLine = string.Join(" ", words.Take(splitIndex));
+                string secondLine = string.Join(" ", words.Skip(splitIndex));
+                return $"{firstLine}\n{secondLine}";
+            }
+
+            return clean;
+        }
+
+        private CartesianChart CreateTopProductsChart(List<ProductRankingItem>? topProducts)
         {
             var chart = new CartesianChart
             {
                 BackColor = CardBackground,
                 Background = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(60, 60, 60)),
-                LegendLocation = LegendLocation.Right
+                LegendLocation = LegendLocation.None
             };
+
+            var validProducts = topProducts != null && topProducts.Count > 0
+                ? topProducts
+                : new List<ProductRankingItem>
+                {
+                    new ProductRankingItem { ProductName = "Sin ventas", UnitsSold = 0 }
+                };
+
+            var unitValues = new ChartValues<double>(validProducts.Select(p => (double)p.UnitsSold));
+            var labels = validProducts.Select(p => FormatProductChartLabel(p.ProductName)).ToArray();
+            double maxUnits = validProducts.Max(p => (double)p.UnitsSold);
+            double yAxisMax = maxUnits > 0 ? Math.Ceiling(maxUnits * 1.2) : 5;
 
             chart.Series = new SeriesCollection
             {
                 new ColumnSeries
                 {
                     Title = "Unidades",
-                    Values = new ChartValues<double> { 12, 10, 8, 5, 4 },
+                    Values = unitValues,
+                    MaxColumnWidth = 42,
                     Fill = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(66, 165, 245)),
                     Foreground = WpfBrushes.White,
                     FontFamily = new WpfFontFamily("Roboto"),
@@ -260,11 +662,11 @@ namespace MobileSolutions.UILayer
                 new LiveCharts.Wpf.Axis
                 {
                     Title = "Productos",
-                    Labels = new[] { "iPhone 14", "Galaxy A14", "iPhone 11", "Moto E3", "Huawei Nova 15" },
+                    Labels = labels,
                     Foreground = WpfBrushes.White,
                     ShowLabels = true,
                     FontFamily = new WpfFontFamily("Roboto"),
-                    FontSize = 11,
+                    FontSize = 10,
                     Separator = new Separator
                     {
                         Stroke = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(75, 75, 75)),
@@ -280,12 +682,12 @@ namespace MobileSolutions.UILayer
                 {
                     Title = "Unidades",
                     MinValue = 0,
-                    MaxValue = 15,
+                    MaxValue = yAxisMax,
                     Foreground = WpfBrushes.White,
                     ShowLabels = true,
                     FontFamily = new WpfFontFamily("Roboto"),
                     FontSize = 11,
-                    LabelFormatter = value => value.ToString("0"),
+                    LabelFormatter = value => value.ToString("0", CultureInfo.InvariantCulture),
                     Separator = new Separator
                     {
                         Stroke = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(75, 75, 75)),
@@ -294,17 +696,10 @@ namespace MobileSolutions.UILayer
                 }
             };
 
-            var legend = chart.DefaultLegend as DefaultLegend;
-            if (legend != null)
-            {
-                legend.Foreground = WpfBrushes.White;
-                legend.FontFamily = new WpfFontFamily("Roboto");
-            }
-
             return chart;
         }
 
-        private PieChart CreateBrandsPieChart()
+        private PieChart CreateBrandsPieChart(List<BrandRankingItem>? brandDistribution)
         {
             var chart = new PieChart
             {
@@ -313,35 +708,50 @@ namespace MobileSolutions.UILayer
                 InnerRadius = 40
             };
 
-            chart.Series = new SeriesCollection
+            WpfColor[] palette =
             {
-                new PieSeries
-                {
-                    Title = "Apple",
-                    Values = new ChartValues<double> { 51 },
-                    Fill = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(66, 165, 245)),
-                    Foreground = WpfBrushes.White,
-                    FontFamily = new WpfFontFamily("Roboto")
-                },
-                new PieSeries
-                {
-                    Title = "Samsung",
-                    Values = new ChartValues<double> { 26 },
-                    Fill = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(38, 198, 218))
-                },
-                new PieSeries
-                {
-                    Title = "Motorola",
-                    Values = new ChartValues<double> { 13 },
-                    Fill = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(77, 182, 172))
-                },
-                new PieSeries
-                {
-                    Title = "Huawei",
-                    Values = new ChartValues<double> { 10 },
-                    Fill = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(171, 71, 188))
-                }
+                WpfColor.FromRgb(66, 165, 245),
+                WpfColor.FromRgb(38, 198, 218),
+                WpfColor.FromRgb(77, 182, 172),
+                WpfColor.FromRgb(171, 71, 188),
+                WpfColor.FromRgb(255, 167, 38),
+                WpfColor.FromRgb(239, 83, 80)
             };
+
+            var seriesCollection = new SeriesCollection();
+
+            if (brandDistribution != null && brandDistribution.Count > 0)
+            {
+                for (int i = 0; i < brandDistribution.Count; i++)
+                {
+                    var item = brandDistribution[i];
+                    var color = palette[i % palette.Length];
+
+                    seriesCollection.Add(new PieSeries
+                    {
+                        Title = item.BrandName,
+                        Values = new ChartValues<double> { item.UnitsSold },
+                        Fill = new System.Windows.Media.SolidColorBrush(color),
+                        Foreground = WpfBrushes.White,
+                        FontFamily = new WpfFontFamily("Roboto"),
+                        DataLabels = true
+                    });
+                }
+            }
+            else
+            {
+                seriesCollection.Add(new PieSeries
+                {
+                    Title = "Sin ventas",
+                    Values = new ChartValues<double> { 1 },
+                    Fill = new System.Windows.Media.SolidColorBrush(WpfColor.FromRgb(95, 95, 95)),
+                    Foreground = WpfBrushes.White,
+                    FontFamily = new WpfFontFamily("Roboto"),
+                    DataLabels = false
+                });
+            }
+
+            chart.Series = seriesCollection;
 
             var legend = chart.DefaultLegend as DefaultLegend;
             if (legend != null)
