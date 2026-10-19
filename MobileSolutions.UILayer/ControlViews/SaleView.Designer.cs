@@ -192,6 +192,7 @@ namespace MobileSolutions.UILayer
             // dtgCustomers
             // 
             dtgCustomers.AllowUserToOrderColumns = true;
+            dtgCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCustomers.BackgroundColor = Color.MidnightBlue;
             dtgCustomers.BorderStyle = BorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -220,7 +221,6 @@ namespace MobileSolutions.UILayer
             ColumnName.Name = "ColumnName";
             ColumnName.Resizable = DataGridViewTriState.True;
             ColumnName.SortMode = DataGridViewColumnSortMode.NotSortable;
-            ColumnName.Width = 277;
             // 
             // ColumnLastname
             // 
@@ -229,7 +229,6 @@ namespace MobileSolutions.UILayer
             ColumnLastname.Name = "ColumnLastname";
             ColumnLastname.Resizable = DataGridViewTriState.True;
             ColumnLastname.SortMode = DataGridViewColumnSortMode.NotSortable;
-            ColumnLastname.Width = 277;
             // 
             // ColumnDNI
             // 
@@ -238,7 +237,6 @@ namespace MobileSolutions.UILayer
             ColumnDNI.Name = "ColumnDNI";
             ColumnDNI.Resizable = DataGridViewTriState.True;
             ColumnDNI.SortMode = DataGridViewColumnSortMode.NotSortable;
-            ColumnDNI.Width = 276;
             // 
             // ColumnPhone
             // 
@@ -247,7 +245,6 @@ namespace MobileSolutions.UILayer
             ColumnPhone.Name = "ColumnPhone";
             ColumnPhone.Resizable = DataGridViewTriState.True;
             ColumnPhone.SortMode = DataGridViewColumnSortMode.NotSortable;
-            ColumnPhone.Width = 277;
             // 
             // tlpInputsProducto
             // 

@@ -200,3 +200,10 @@ ALTER TABLE [User] DROP CONSTRAINT CHK_User_Birth;
 ALTER TABLE [User] 
 ADD CONSTRAINT CHK_User_Birth CHECK (birth <= DATEADD(year, -18, CAST(GETDATE() AS DATE)));
 
+-- Altero la tabla User para agregar las columnas reset_token y reset_token_expiration
+ALTER TABLE [User]
+ADD 
+    reset_token VARCHAR(6) NULL,
+    reset_token_expiration DATETIME2 NULL;
+    
+
