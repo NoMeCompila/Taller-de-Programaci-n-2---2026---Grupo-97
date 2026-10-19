@@ -39,7 +39,7 @@ namespace MobileSolutions.BusinessLayer.Models
         public decimal Revenue { get; set; }
     }
 
-    public class SellerReportData
+    public class SellerReport
     {
         public SellerKpiSummary KpiSummary { get; set; } = new();
         public List<ProductRankingItem> MostSoldProducts { get; set; } = new();
