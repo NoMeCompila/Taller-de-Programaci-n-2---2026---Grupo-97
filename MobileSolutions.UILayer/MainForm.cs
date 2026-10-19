@@ -145,9 +145,6 @@ namespace MobileSolutions.UILayer
                            profileName == "admin" || normalizedUser == "admin" ||
                            (profileId == 1 && !isSeller && !isManager);
 
-            btnBackup.Visible = isAdmin;
-            btnBackup.TabStop = isAdmin;
-
             // Role-based access control based on DB profile (with fallback to username)
             if (isAdmin)
             {
@@ -191,40 +188,6 @@ namespace MobileSolutions.UILayer
             materialTabControl1.ResumeLayout(true);
         }
 
-        private void btnBackup_Click(object? sender, EventArgs e)
-        {
-            LoadBackupView();
-            if (materialTabControl1.TabPages.Contains(tabPage9))
-            {
-                materialTabControl1.SelectedTab = tabPage9;
-            }
-        }
-
-        private void materialTabControl1_SelectedIndexChanged(object? sender, EventArgs e)
-        {
-            if (materialTabControl1.SelectedTab == tabPage9)
-            {
-                LoadBackupView();
-            }
-        }
-
-        private void LoadBackupView()
-        {
-            tabPage9.SuspendLayout();
-            tabPage9.Controls.Clear();
-
-            backupView1 = new BackupView
-            {
-                Dock = DockStyle.Fill,
-                Name = "backupView1"
-            };
-            backupView1.LogoutRequested += HandleLogoutRequested;
-            SetCurrentUserInLabels(backupView1, _currentUser);
-
-            tabPage9.Controls.Add(backupView1);
-            tabPage9.ResumeLayout(true);
-        }
- 
         private void WireLogoutEvents(Control parent)
         {
             foreach (Control control in parent.Controls)

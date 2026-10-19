@@ -33,7 +33,7 @@ namespace MobileSolutions.UILayer
             imageList1 = new ImageList(components);
             tabPage9 = new TabPage();
             backupView1 = new BackupView();
-            btnBackup = new FontAwesome.Sharp.IconButton();
+            materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             tabPage8 = new TabPage();
             reportsView1 = new ReportsView();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
@@ -75,6 +75,7 @@ namespace MobileSolutions.UILayer
             // tabPage9
             // 
             tabPage9.Controls.Add(backupView1);
+            tabPage9.Controls.Add(materialLabel9);
             tabPage9.Location = new Point(4, 24);
             tabPage9.Margin = new Padding(3, 4, 3, 4);
             tabPage9.Name = "tabPage9";
@@ -85,33 +86,24 @@ namespace MobileSolutions.UILayer
             // 
             // backupView1
             // 
-            backupView1.BackColor = Color.FromArgb(50, 50, 50);
             backupView1.Dock = DockStyle.Fill;
             backupView1.Location = new Point(0, 0);
             backupView1.Margin = new Padding(3, 2, 3, 2);
             backupView1.Name = "backupView1";
             backupView1.Size = new Size(1558, 845);
-            backupView1.TabIndex = 0;
+            backupView1.TabIndex = 4;
             // 
-            // btnBackup
+            // materialLabel9
             // 
-            btnBackup.FlatAppearance.BorderSize = 0;
-            btnBackup.FlatStyle = FlatStyle.Flat;
-            btnBackup.ForeColor = Color.White;
-            btnBackup.IconChar = FontAwesome.Sharp.IconChar.Database;
-            btnBackup.IconColor = Color.White;
-            btnBackup.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnBackup.IconSize = 24;
-            btnBackup.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBackup.Location = new Point(3, 48);
-            btnBackup.Name = "btnBackup";
-            btnBackup.Size = new Size(180, 40);
-            btnBackup.TabIndex = 1;
-            btnBackup.Text = "Backup";
-            btnBackup.TextAlign = ContentAlignment.MiddleLeft;
-            btnBackup.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnBackup.UseVisualStyleBackColor = true;
-            btnBackup.Click += btnBackup_Click;
+            materialLabel9.AutoSize = true;
+            materialLabel9.Depth = 0;
+            materialLabel9.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel9.Location = new Point(490, 318);
+            materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel9.Name = "materialLabel9";
+            materialLabel9.Size = new Size(55, 19);
+            materialLabel9.TabIndex = 3;
+            materialLabel9.Text = "Backup";
             // 
             // tabPage8
             // 
@@ -354,14 +346,12 @@ namespace MobileSolutions.UILayer
             materialTabControl1.SelectedIndex = 0;
             materialTabControl1.Size = new Size(1566, 873);
             materialTabControl1.TabIndex = 0;
-            materialTabControl1.SelectedIndexChanged += materialTabControl1_SelectedIndexChanged;
             // 
             // MainForm
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(1572, 923);
             Controls.Add(materialTabControl1);
-            Controls.Add(btnBackup);
             DrawerTabControl = materialTabControl1;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -373,6 +363,7 @@ namespace MobileSolutions.UILayer
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mobile Solutions";
             tabPage9.ResumeLayout(false);
+            tabPage9.PerformLayout();
             tabPage8.ResumeLayout(false);
             tabPage8.PerformLayout();
             tabPage7.ResumeLayout(false);
@@ -394,7 +385,7 @@ namespace MobileSolutions.UILayer
         private ImageList imageList1;
         private TabPage tabPage9;
         private BackupView backupView1;
-        private FontAwesome.Sharp.IconButton btnBackup;
+        private MaterialSkin.Controls.MaterialLabel materialLabel9;
         private TabPage tabPage8;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private TabPage tabPage7;
