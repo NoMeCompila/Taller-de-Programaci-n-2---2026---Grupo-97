@@ -119,7 +119,7 @@ namespace MobileSolutions.UILayer
             btnTabBackup.Cursor = Cursors.Hand;
             btnTabBackup.FlatAppearance.BorderSize = 0;
             btnTabBackup.FlatStyle = FlatStyle.Flat;
-            btnTabBackup.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            btnTabBackup.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             btnTabBackup.ForeColor = Color.White;
             btnTabBackup.Location = new Point(1, 18);
             btnTabBackup.Name = "btnTabBackup";
@@ -134,7 +134,7 @@ namespace MobileSolutions.UILayer
             btnTabRestore.Cursor = Cursors.Hand;
             btnTabRestore.FlatAppearance.BorderSize = 0;
             btnTabRestore.FlatStyle = FlatStyle.Flat;
-            btnTabRestore.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            btnTabRestore.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             btnTabRestore.ForeColor = Color.FromArgb(210, 210, 210);
             btnTabRestore.Location = new Point(230, 18);
             btnTabRestore.Name = "btnTabRestore";
@@ -147,13 +147,13 @@ namespace MobileSolutions.UILayer
             // 
             lblStep1Title.AutoSize = true;
             lblStep1Title.BackColor = Color.Transparent;
-            lblStep1Title.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStep1Title.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStep1Title.ForeColor = Color.White;
             lblStep1Title.Location = new Point(20, 80);
             lblStep1Title.Name = "lblStep1Title";
-            lblStep1Title.Size = new Size(202, 19);
+            lblStep1Title.Size = new Size(267, 18);
             lblStep1Title.TabIndex = 2;
-            lblStep1Title.Text = "Paso 1: Primer Administrador";
+            lblStep1Title.Text = "Paso 1: Credenciales del Administrador";
             // 
             // txtAdmin1User
             // 
@@ -179,7 +179,6 @@ namespace MobileSolutions.UILayer
             txtAdmin1User.ShortcutsEnabled = true;
             txtAdmin1User.Size = new Size(390, 48);
             txtAdmin1User.TabIndex = 3;
-            txtAdmin1User.TabStop = true;
             txtAdmin1User.TextAlign = HorizontalAlignment.Left;
             txtAdmin1User.TrailingIcon = null;
             txtAdmin1User.UseSystemPasswordChar = false;
@@ -191,7 +190,7 @@ namespace MobileSolutions.UILayer
             picStep1UserCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
             picStep1UserCheck.IconColor = Color.FromArgb(76, 175, 80);
             picStep1UserCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picStep1UserCheck.IconSize = 20;
+            picStep1UserCheck.IconSize = 22;
             picStep1UserCheck.Location = new Point(418, 126);
             picStep1UserCheck.Name = "picStep1UserCheck";
             picStep1UserCheck.Size = new Size(22, 22);
@@ -223,7 +222,6 @@ namespace MobileSolutions.UILayer
             txtAdmin1Password.ShortcutsEnabled = true;
             txtAdmin1Password.Size = new Size(390, 48);
             txtAdmin1Password.TabIndex = 5;
-            txtAdmin1Password.TabStop = true;
             txtAdmin1Password.TextAlign = HorizontalAlignment.Left;
             txtAdmin1Password.TrailingIcon = null;
             txtAdmin1Password.UseSystemPasswordChar = true;
@@ -235,7 +233,7 @@ namespace MobileSolutions.UILayer
             picStep1PassCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
             picStep1PassCheck.IconColor = Color.FromArgb(76, 175, 80);
             picStep1PassCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picStep1PassCheck.IconSize = 20;
+            picStep1PassCheck.IconSize = 22;
             picStep1PassCheck.Location = new Point(418, 188);
             picStep1PassCheck.Name = "picStep1PassCheck";
             picStep1PassCheck.Size = new Size(22, 22);
@@ -249,7 +247,7 @@ namespace MobileSolutions.UILayer
             btnConfirmStep1.Cursor = Cursors.Hand;
             btnConfirmStep1.FlatAppearance.BorderSize = 0;
             btnConfirmStep1.FlatStyle = FlatStyle.Flat;
-            btnConfirmStep1.Font = new Font("Roboto", 13F, FontStyle.Regular, GraphicsUnit.Pixel);
+            btnConfirmStep1.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Pixel);
             btnConfirmStep1.ForeColor = Color.White;
             btnConfirmStep1.Location = new Point(310, 236);
             btnConfirmStep1.Name = "btnConfirmStep1";
@@ -265,7 +263,7 @@ namespace MobileSolutions.UILayer
             picStep1ConfirmCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
             picStep1ConfirmCheck.IconColor = Color.FromArgb(76, 175, 80);
             picStep1ConfirmCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picStep1ConfirmCheck.IconSize = 20;
+            picStep1ConfirmCheck.IconSize = 22;
             picStep1ConfirmCheck.Location = new Point(418, 243);
             picStep1ConfirmCheck.Name = "picStep1ConfirmCheck";
             picStep1ConfirmCheck.Size = new Size(22, 22);
@@ -277,11 +275,11 @@ namespace MobileSolutions.UILayer
             // 
             lblStep1Completed.AutoSize = true;
             lblStep1Completed.BackColor = Color.Transparent;
-            lblStep1Completed.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStep1Completed.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStep1Completed.ForeColor = Color.FromArgb(76, 175, 80);
             lblStep1Completed.Location = new Point(368, 274);
             lblStep1Completed.Name = "lblStep1Completed";
-            lblStep1Completed.Size = new Size(68, 14);
+            lblStep1Completed.Size = new Size(63, 13);
             lblStep1Completed.TabIndex = 9;
             lblStep1Completed.Text = "Completado";
             lblStep1Completed.Visible = false;
@@ -290,13 +288,13 @@ namespace MobileSolutions.UILayer
             // 
             lblStep2Title.AutoSize = true;
             lblStep2Title.BackColor = Color.Transparent;
-            lblStep2Title.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStep2Title.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStep2Title.ForeColor = Color.White;
             lblStep2Title.Location = new Point(20, 310);
             lblStep2Title.Name = "lblStep2Title";
-            lblStep2Title.Size = new Size(375, 19);
+            lblStep2Title.Size = new Size(229, 18);
             lblStep2Title.TabIndex = 10;
-            lblStep2Title.Text = "Paso 2: Segundo Administrador (Autorización Cruzada)";
+            lblStep2Title.Text = "Paso 2: Credenciales del Gerente";
             // 
             // txtAdmin2User
             // 
@@ -323,7 +321,6 @@ namespace MobileSolutions.UILayer
             txtAdmin2User.ShortcutsEnabled = true;
             txtAdmin2User.Size = new Size(420, 48);
             txtAdmin2User.TabIndex = 11;
-            txtAdmin2User.TabStop = true;
             txtAdmin2User.TextAlign = HorizontalAlignment.Left;
             txtAdmin2User.TrailingIcon = null;
             txtAdmin2User.UseSystemPasswordChar = false;
@@ -353,7 +350,6 @@ namespace MobileSolutions.UILayer
             txtAdmin2Password.ShortcutsEnabled = true;
             txtAdmin2Password.Size = new Size(420, 48);
             txtAdmin2Password.TabIndex = 12;
-            txtAdmin2Password.TabStop = true;
             txtAdmin2Password.TextAlign = HorizontalAlignment.Left;
             txtAdmin2Password.TrailingIcon = null;
             txtAdmin2Password.UseSystemPasswordChar = true;
@@ -364,7 +360,7 @@ namespace MobileSolutions.UILayer
             btnGenerarBackup.Enabled = false;
             btnGenerarBackup.FlatAppearance.BorderSize = 0;
             btnGenerarBackup.FlatStyle = FlatStyle.Flat;
-            btnGenerarBackup.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            btnGenerarBackup.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             btnGenerarBackup.ForeColor = Color.FromArgb(160, 160, 160);
             btnGenerarBackup.Location = new Point(20, 490);
             btnGenerarBackup.Name = "btnGenerarBackup";
@@ -421,7 +417,7 @@ namespace MobileSolutions.UILayer
             btnBrowseBak.Enabled = false;
             btnBrowseBak.FlatAppearance.BorderSize = 0;
             btnBrowseBak.FlatStyle = FlatStyle.Flat;
-            btnBrowseBak.Font = new Font("Roboto", 16F, FontStyle.Bold, GraphicsUnit.Pixel);
+            btnBrowseBak.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold, GraphicsUnit.Pixel);
             btnBrowseBak.ForeColor = Color.FromArgb(160, 160, 160);
             btnBrowseBak.Location = new Point(370, 1);
             btnBrowseBak.Name = "btnBrowseBak";
@@ -460,7 +456,6 @@ namespace MobileSolutions.UILayer
             // 
             picBackupTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             picBackupTitle.BackColor = Color.Transparent;
-            picBackupTitle.ForeColor = Color.White;
             picBackupTitle.IconChar = FontAwesome.Sharp.IconChar.Database;
             picBackupTitle.IconColor = Color.White;
             picBackupTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -483,7 +478,7 @@ namespace MobileSolutions.UILayer
             lblTitulo.Margin = new Padding(2, 0, 2, 0);
             lblTitulo.MouseState = MaterialSkin.MouseState.HOVER;
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(185, 58);
+            lblTitulo.Size = new Size(159, 58);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Backup";
             // 
