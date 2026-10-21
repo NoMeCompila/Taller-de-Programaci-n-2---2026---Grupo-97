@@ -33,21 +33,10 @@ namespace MobileSolutions.UILayer
             pnlDualAuthCard = new Panel();
             btnTabBackup = new Button();
             btnTabRestore = new Button();
-            lblStep1Title = new Label();
-            txtAdmin1User = new MaterialSkin.Controls.MaterialTextBox2();
-            picStep1UserCheck = new FontAwesome.Sharp.IconPictureBox();
-            txtAdmin1Password = new MaterialSkin.Controls.MaterialTextBox2();
-            picStep1PassCheck = new FontAwesome.Sharp.IconPictureBox();
-            btnConfirmStep1 = new Button();
-            picStep1ConfirmCheck = new FontAwesome.Sharp.IconPictureBox();
-            lblStep1Completed = new Label();
-            lblStep2Title = new Label();
-            txtAdmin2User = new MaterialSkin.Controls.MaterialTextBox2();
-            txtAdmin2Password = new MaterialSkin.Controls.MaterialTextBox2();
+            pnlBackupSelector = new Panel();
+            txtBackupDestinationPath = new MaterialSkin.Controls.MaterialTextBox2();
+            btnBrowseBackupPath = new Button();
             btnGenerarBackup = new Button();
-            pnlRestoreSelector = new Panel();
-            txtBackupFilePath = new MaterialSkin.Controls.MaterialTextBox2();
-            btnBrowseBak = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             picBackupTitle = new FontAwesome.Sharp.IconPictureBox();
@@ -55,17 +44,32 @@ namespace MobileSolutions.UILayer
             panel2 = new Panel();
             lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
             btnLogout = new MaterialSkin.Controls.MaterialButton();
+            btnBrowseBak = new Button();
+            pnlRestoreSelector = new Panel();
+            txtBackupFilePath = new MaterialSkin.Controls.MaterialTextBox2();
+            txtAdmin2Password = new MaterialSkin.Controls.MaterialTextBox2();
+            txtAdmin2User = new MaterialSkin.Controls.MaterialTextBox2();
+            lblStep2Title = new Label();
+            lblStep1Completed = new Label();
+            picStep1ConfirmCheck = new FontAwesome.Sharp.IconPictureBox();
+            btnConfirmStep1 = new Button();
+            picStep1PassCheck = new FontAwesome.Sharp.IconPictureBox();
+            txtAdmin1Password = new MaterialSkin.Controls.MaterialTextBox2();
+            picStep1UserCheck = new FontAwesome.Sharp.IconPictureBox();
+            txtAdmin1User = new MaterialSkin.Controls.MaterialTextBox2();
+            lblStep1Title = new Label();
             pnlContainer.SuspendLayout();
             pnlBackupContent.SuspendLayout();
             pnlDualAuthCard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picStep1UserCheck).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStep1PassCheck).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStep1ConfirmCheck).BeginInit();
-            pnlRestoreSelector.SuspendLayout();
+            pnlBackupSelector.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBackupTitle).BeginInit();
             panel2.SuspendLayout();
+            pnlRestoreSelector.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picStep1ConfirmCheck).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picStep1PassCheck).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picStep1UserCheck).BeginInit();
             SuspendLayout();
             // 
             // pnlContainer
@@ -106,6 +110,7 @@ namespace MobileSolutions.UILayer
             pnlDualAuthCard.Controls.Add(lblStep2Title);
             pnlDualAuthCard.Controls.Add(txtAdmin2User);
             pnlDualAuthCard.Controls.Add(txtAdmin2Password);
+            pnlDualAuthCard.Controls.Add(pnlBackupSelector);
             pnlDualAuthCard.Controls.Add(btnGenerarBackup);
             pnlDualAuthCard.Controls.Add(pnlRestoreSelector);
             pnlDualAuthCard.Location = new Point(610, 137);
@@ -143,288 +148,74 @@ namespace MobileSolutions.UILayer
             btnTabRestore.Text = "Restore";
             btnTabRestore.UseVisualStyleBackColor = false;
             // 
-            // lblStep1Title
+            // pnlBackupSelector
             // 
-            lblStep1Title.AutoSize = true;
-            lblStep1Title.BackColor = Color.Transparent;
-            lblStep1Title.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblStep1Title.ForeColor = Color.White;
-            lblStep1Title.Location = new Point(20, 80);
-            lblStep1Title.Name = "lblStep1Title";
-            lblStep1Title.Size = new Size(267, 18);
-            lblStep1Title.TabIndex = 2;
-            lblStep1Title.Text = "Paso 1: Credenciales del Administrador";
+            pnlBackupSelector.BackColor = Color.Transparent;
+            pnlBackupSelector.Controls.Add(txtBackupDestinationPath);
+            pnlBackupSelector.Controls.Add(btnBrowseBackupPath);
+            pnlBackupSelector.Location = new Point(20, 225);
+            pnlBackupSelector.Name = "pnlBackupSelector";
+            pnlBackupSelector.Size = new Size(420, 50);
+            pnlBackupSelector.TabIndex = 13;
             // 
-            // txtAdmin1User
+            // txtBackupDestinationPath
             // 
-            txtAdmin1User.AnimateReadOnly = false;
-            txtAdmin1User.BackgroundImageLayout = ImageLayout.None;
-            txtAdmin1User.CharacterCasing = CharacterCasing.Normal;
-            txtAdmin1User.Depth = 0;
-            txtAdmin1User.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtAdmin1User.HideSelection = true;
-            txtAdmin1User.Hint = "Usuario";
-            txtAdmin1User.LeadingIcon = null;
-            txtAdmin1User.Location = new Point(20, 112);
-            txtAdmin1User.MaxLength = 50;
-            txtAdmin1User.MouseState = MaterialSkin.MouseState.OUT;
-            txtAdmin1User.Name = "txtAdmin1User";
-            txtAdmin1User.PasswordChar = '\0';
-            txtAdmin1User.PrefixSuffixText = null;
-            txtAdmin1User.ReadOnly = false;
-            txtAdmin1User.RightToLeft = RightToLeft.No;
-            txtAdmin1User.SelectedText = "";
-            txtAdmin1User.SelectionLength = 0;
-            txtAdmin1User.SelectionStart = 0;
-            txtAdmin1User.ShortcutsEnabled = true;
-            txtAdmin1User.Size = new Size(390, 48);
-            txtAdmin1User.TabIndex = 3;
-            txtAdmin1User.TextAlign = HorizontalAlignment.Left;
-            txtAdmin1User.TrailingIcon = null;
-            txtAdmin1User.UseSystemPasswordChar = false;
+            txtBackupDestinationPath.AnimateReadOnly = false;
+            txtBackupDestinationPath.BackgroundImageLayout = ImageLayout.None;
+            txtBackupDestinationPath.CharacterCasing = CharacterCasing.Normal;
+            txtBackupDestinationPath.Depth = 0;
+            txtBackupDestinationPath.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtBackupDestinationPath.HideSelection = true;
+            txtBackupDestinationPath.Hint = "Seleccionar ruta destino...";
+            txtBackupDestinationPath.LeadingIcon = null;
+            txtBackupDestinationPath.Location = new Point(0, 1);
+            txtBackupDestinationPath.MaxLength = 500;
+            txtBackupDestinationPath.MouseState = MaterialSkin.MouseState.OUT;
+            txtBackupDestinationPath.Name = "txtBackupDestinationPath";
+            txtBackupDestinationPath.PasswordChar = '\0';
+            txtBackupDestinationPath.PrefixSuffixText = null;
+            txtBackupDestinationPath.ReadOnly = true;
+            txtBackupDestinationPath.RightToLeft = RightToLeft.No;
+            txtBackupDestinationPath.SelectedText = "";
+            txtBackupDestinationPath.SelectionLength = 0;
+            txtBackupDestinationPath.SelectionStart = 0;
+            txtBackupDestinationPath.ShortcutsEnabled = true;
+            txtBackupDestinationPath.Size = new Size(362, 48);
+            txtBackupDestinationPath.TabIndex = 0;
+            txtBackupDestinationPath.TabStop = false;
+            txtBackupDestinationPath.TextAlign = HorizontalAlignment.Left;
+            txtBackupDestinationPath.TrailingIcon = null;
+            txtBackupDestinationPath.UseSystemPasswordChar = false;
             // 
-            // picStep1UserCheck
+            // btnBrowseBackupPath
             // 
-            picStep1UserCheck.BackColor = Color.Transparent;
-            picStep1UserCheck.ForeColor = Color.FromArgb(76, 175, 80);
-            picStep1UserCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
-            picStep1UserCheck.IconColor = Color.FromArgb(76, 175, 80);
-            picStep1UserCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picStep1UserCheck.IconSize = 22;
-            picStep1UserCheck.Location = new Point(418, 126);
-            picStep1UserCheck.Name = "picStep1UserCheck";
-            picStep1UserCheck.Size = new Size(22, 22);
-            picStep1UserCheck.TabIndex = 4;
-            picStep1UserCheck.TabStop = false;
-            picStep1UserCheck.Visible = false;
-            // 
-            // txtAdmin1Password
-            // 
-            txtAdmin1Password.AnimateReadOnly = false;
-            txtAdmin1Password.BackgroundImageLayout = ImageLayout.None;
-            txtAdmin1Password.CharacterCasing = CharacterCasing.Normal;
-            txtAdmin1Password.Depth = 0;
-            txtAdmin1Password.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtAdmin1Password.HideSelection = true;
-            txtAdmin1Password.Hint = "Contraseña";
-            txtAdmin1Password.LeadingIcon = null;
-            txtAdmin1Password.Location = new Point(20, 174);
-            txtAdmin1Password.MaxLength = 50;
-            txtAdmin1Password.MouseState = MaterialSkin.MouseState.OUT;
-            txtAdmin1Password.Name = "txtAdmin1Password";
-            txtAdmin1Password.PasswordChar = '●';
-            txtAdmin1Password.PrefixSuffixText = null;
-            txtAdmin1Password.ReadOnly = false;
-            txtAdmin1Password.RightToLeft = RightToLeft.No;
-            txtAdmin1Password.SelectedText = "";
-            txtAdmin1Password.SelectionLength = 0;
-            txtAdmin1Password.SelectionStart = 0;
-            txtAdmin1Password.ShortcutsEnabled = true;
-            txtAdmin1Password.Size = new Size(390, 48);
-            txtAdmin1Password.TabIndex = 5;
-            txtAdmin1Password.TextAlign = HorizontalAlignment.Left;
-            txtAdmin1Password.TrailingIcon = null;
-            txtAdmin1Password.UseSystemPasswordChar = true;
-            // 
-            // picStep1PassCheck
-            // 
-            picStep1PassCheck.BackColor = Color.Transparent;
-            picStep1PassCheck.ForeColor = Color.FromArgb(76, 175, 80);
-            picStep1PassCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
-            picStep1PassCheck.IconColor = Color.FromArgb(76, 175, 80);
-            picStep1PassCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picStep1PassCheck.IconSize = 22;
-            picStep1PassCheck.Location = new Point(418, 188);
-            picStep1PassCheck.Name = "picStep1PassCheck";
-            picStep1PassCheck.Size = new Size(22, 22);
-            picStep1PassCheck.TabIndex = 6;
-            picStep1PassCheck.TabStop = false;
-            picStep1PassCheck.Visible = false;
-            // 
-            // btnConfirmStep1
-            // 
-            btnConfirmStep1.BackColor = Color.FromArgb(25, 118, 210);
-            btnConfirmStep1.Cursor = Cursors.Hand;
-            btnConfirmStep1.FlatAppearance.BorderSize = 0;
-            btnConfirmStep1.FlatStyle = FlatStyle.Flat;
-            btnConfirmStep1.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Pixel);
-            btnConfirmStep1.ForeColor = Color.White;
-            btnConfirmStep1.Location = new Point(310, 236);
-            btnConfirmStep1.Name = "btnConfirmStep1";
-            btnConfirmStep1.Size = new Size(100, 34);
-            btnConfirmStep1.TabIndex = 7;
-            btnConfirmStep1.Text = "Confirmar";
-            btnConfirmStep1.UseVisualStyleBackColor = false;
-            // 
-            // picStep1ConfirmCheck
-            // 
-            picStep1ConfirmCheck.BackColor = Color.Transparent;
-            picStep1ConfirmCheck.ForeColor = Color.FromArgb(76, 175, 80);
-            picStep1ConfirmCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
-            picStep1ConfirmCheck.IconColor = Color.FromArgb(76, 175, 80);
-            picStep1ConfirmCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picStep1ConfirmCheck.IconSize = 22;
-            picStep1ConfirmCheck.Location = new Point(418, 243);
-            picStep1ConfirmCheck.Name = "picStep1ConfirmCheck";
-            picStep1ConfirmCheck.Size = new Size(22, 22);
-            picStep1ConfirmCheck.TabIndex = 8;
-            picStep1ConfirmCheck.TabStop = false;
-            picStep1ConfirmCheck.Visible = false;
-            // 
-            // lblStep1Completed
-            // 
-            lblStep1Completed.AutoSize = true;
-            lblStep1Completed.BackColor = Color.Transparent;
-            lblStep1Completed.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblStep1Completed.ForeColor = Color.FromArgb(76, 175, 80);
-            lblStep1Completed.Location = new Point(368, 274);
-            lblStep1Completed.Name = "lblStep1Completed";
-            lblStep1Completed.Size = new Size(63, 13);
-            lblStep1Completed.TabIndex = 9;
-            lblStep1Completed.Text = "Completado";
-            lblStep1Completed.Visible = false;
-            // 
-            // lblStep2Title
-            // 
-            lblStep2Title.AutoSize = true;
-            lblStep2Title.BackColor = Color.Transparent;
-            lblStep2Title.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblStep2Title.ForeColor = Color.White;
-            lblStep2Title.Location = new Point(20, 310);
-            lblStep2Title.Name = "lblStep2Title";
-            lblStep2Title.Size = new Size(229, 18);
-            lblStep2Title.TabIndex = 10;
-            lblStep2Title.Text = "Paso 2: Credenciales del Gerente";
-            // 
-            // txtAdmin2User
-            // 
-            txtAdmin2User.AnimateReadOnly = false;
-            txtAdmin2User.BackgroundImageLayout = ImageLayout.None;
-            txtAdmin2User.CharacterCasing = CharacterCasing.Normal;
-            txtAdmin2User.Depth = 0;
-            txtAdmin2User.Enabled = false;
-            txtAdmin2User.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtAdmin2User.HideSelection = true;
-            txtAdmin2User.Hint = "Usuario";
-            txtAdmin2User.LeadingIcon = null;
-            txtAdmin2User.Location = new Point(20, 342);
-            txtAdmin2User.MaxLength = 50;
-            txtAdmin2User.MouseState = MaterialSkin.MouseState.OUT;
-            txtAdmin2User.Name = "txtAdmin2User";
-            txtAdmin2User.PasswordChar = '\0';
-            txtAdmin2User.PrefixSuffixText = null;
-            txtAdmin2User.ReadOnly = false;
-            txtAdmin2User.RightToLeft = RightToLeft.No;
-            txtAdmin2User.SelectedText = "";
-            txtAdmin2User.SelectionLength = 0;
-            txtAdmin2User.SelectionStart = 0;
-            txtAdmin2User.ShortcutsEnabled = true;
-            txtAdmin2User.Size = new Size(420, 48);
-            txtAdmin2User.TabIndex = 11;
-            txtAdmin2User.TextAlign = HorizontalAlignment.Left;
-            txtAdmin2User.TrailingIcon = null;
-            txtAdmin2User.UseSystemPasswordChar = false;
-            // 
-            // txtAdmin2Password
-            // 
-            txtAdmin2Password.AnimateReadOnly = false;
-            txtAdmin2Password.BackgroundImageLayout = ImageLayout.None;
-            txtAdmin2Password.CharacterCasing = CharacterCasing.Normal;
-            txtAdmin2Password.Depth = 0;
-            txtAdmin2Password.Enabled = false;
-            txtAdmin2Password.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtAdmin2Password.HideSelection = true;
-            txtAdmin2Password.Hint = "Contraseña";
-            txtAdmin2Password.LeadingIcon = null;
-            txtAdmin2Password.Location = new Point(20, 404);
-            txtAdmin2Password.MaxLength = 50;
-            txtAdmin2Password.MouseState = MaterialSkin.MouseState.OUT;
-            txtAdmin2Password.Name = "txtAdmin2Password";
-            txtAdmin2Password.PasswordChar = '●';
-            txtAdmin2Password.PrefixSuffixText = null;
-            txtAdmin2Password.ReadOnly = false;
-            txtAdmin2Password.RightToLeft = RightToLeft.No;
-            txtAdmin2Password.SelectedText = "";
-            txtAdmin2Password.SelectionLength = 0;
-            txtAdmin2Password.SelectionStart = 0;
-            txtAdmin2Password.ShortcutsEnabled = true;
-            txtAdmin2Password.Size = new Size(420, 48);
-            txtAdmin2Password.TabIndex = 12;
-            txtAdmin2Password.TextAlign = HorizontalAlignment.Left;
-            txtAdmin2Password.TrailingIcon = null;
-            txtAdmin2Password.UseSystemPasswordChar = true;
+            btnBrowseBackupPath.BackColor = Color.FromArgb(25, 118, 210);
+            btnBrowseBackupPath.Cursor = Cursors.Hand;
+            btnBrowseBackupPath.FlatAppearance.BorderSize = 0;
+            btnBrowseBackupPath.FlatStyle = FlatStyle.Flat;
+            btnBrowseBackupPath.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold, GraphicsUnit.Pixel);
+            btnBrowseBackupPath.ForeColor = Color.White;
+            btnBrowseBackupPath.Location = new Point(370, 1);
+            btnBrowseBackupPath.Name = "btnBrowseBackupPath";
+            btnBrowseBackupPath.Size = new Size(50, 48);
+            btnBrowseBackupPath.TabIndex = 1;
+            btnBrowseBackupPath.Text = "...";
+            btnBrowseBackupPath.UseVisualStyleBackColor = false;
             // 
             // btnGenerarBackup
             // 
-            btnGenerarBackup.BackColor = Color.FromArgb(75, 75, 75);
-            btnGenerarBackup.Enabled = false;
+            btnGenerarBackup.BackColor = Color.FromArgb(25, 118, 210);
+            btnGenerarBackup.Cursor = Cursors.Hand;
             btnGenerarBackup.FlatAppearance.BorderSize = 0;
             btnGenerarBackup.FlatStyle = FlatStyle.Flat;
             btnGenerarBackup.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            btnGenerarBackup.ForeColor = Color.FromArgb(160, 160, 160);
-            btnGenerarBackup.Location = new Point(20, 490);
+            btnGenerarBackup.ForeColor = Color.White;
+            btnGenerarBackup.Location = new Point(20, 299);
             btnGenerarBackup.Name = "btnGenerarBackup";
             btnGenerarBackup.Size = new Size(420, 40);
-            btnGenerarBackup.TabIndex = 13;
+            btnGenerarBackup.TabIndex = 14;
             btnGenerarBackup.Text = "Generar Backup";
             btnGenerarBackup.UseVisualStyleBackColor = false;
-            // 
-            // pnlRestoreSelector
-            // 
-            pnlRestoreSelector.BackColor = Color.Transparent;
-            pnlRestoreSelector.Controls.Add(txtBackupFilePath);
-            pnlRestoreSelector.Controls.Add(btnBrowseBak);
-            pnlRestoreSelector.Enabled = false;
-            pnlRestoreSelector.Location = new Point(20, 484);
-            pnlRestoreSelector.Name = "pnlRestoreSelector";
-            pnlRestoreSelector.Size = new Size(420, 50);
-            pnlRestoreSelector.TabIndex = 14;
-            pnlRestoreSelector.Visible = false;
-            // 
-            // txtBackupFilePath
-            // 
-            txtBackupFilePath.AnimateReadOnly = false;
-            txtBackupFilePath.BackgroundImageLayout = ImageLayout.None;
-            txtBackupFilePath.CharacterCasing = CharacterCasing.Normal;
-            txtBackupFilePath.Depth = 0;
-            txtBackupFilePath.Enabled = false;
-            txtBackupFilePath.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtBackupFilePath.HideSelection = true;
-            txtBackupFilePath.Hint = "Seleccionar archivo .bak...";
-            txtBackupFilePath.LeadingIcon = null;
-            txtBackupFilePath.Location = new Point(0, 1);
-            txtBackupFilePath.MaxLength = 500;
-            txtBackupFilePath.MouseState = MaterialSkin.MouseState.OUT;
-            txtBackupFilePath.Name = "txtBackupFilePath";
-            txtBackupFilePath.PasswordChar = '\0';
-            txtBackupFilePath.PrefixSuffixText = null;
-            txtBackupFilePath.ReadOnly = true;
-            txtBackupFilePath.RightToLeft = RightToLeft.No;
-            txtBackupFilePath.SelectedText = "";
-            txtBackupFilePath.SelectionLength = 0;
-            txtBackupFilePath.SelectionStart = 0;
-            txtBackupFilePath.ShortcutsEnabled = true;
-            txtBackupFilePath.Size = new Size(362, 48);
-            txtBackupFilePath.TabIndex = 0;
-            txtBackupFilePath.TabStop = false;
-            txtBackupFilePath.TextAlign = HorizontalAlignment.Left;
-            txtBackupFilePath.TrailingIcon = null;
-            txtBackupFilePath.UseSystemPasswordChar = false;
-            // 
-            // btnBrowseBak
-            // 
-            btnBrowseBak.BackColor = Color.FromArgb(75, 75, 75);
-            btnBrowseBak.Enabled = false;
-            btnBrowseBak.FlatAppearance.BorderSize = 0;
-            btnBrowseBak.FlatStyle = FlatStyle.Flat;
-            btnBrowseBak.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold, GraphicsUnit.Pixel);
-            btnBrowseBak.ForeColor = Color.FromArgb(160, 160, 160);
-            btnBrowseBak.Location = new Point(370, 1);
-            btnBrowseBak.Name = "btnBrowseBak";
-            btnBrowseBak.Size = new Size(50, 48);
-            btnBrowseBak.TabIndex = 1;
-            btnBrowseBak.Text = "...";
-            btnBrowseBak.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -527,6 +318,278 @@ namespace MobileSolutions.UILayer
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = false;
             // 
+            // btnBrowseBak
+            // 
+            btnBrowseBak.BackColor = Color.FromArgb(75, 75, 75);
+            btnBrowseBak.Enabled = false;
+            btnBrowseBak.FlatAppearance.BorderSize = 0;
+            btnBrowseBak.FlatStyle = FlatStyle.Flat;
+            btnBrowseBak.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold, GraphicsUnit.Pixel);
+            btnBrowseBak.ForeColor = Color.FromArgb(160, 160, 160);
+            btnBrowseBak.Location = new Point(370, 1);
+            btnBrowseBak.Name = "btnBrowseBak";
+            btnBrowseBak.Size = new Size(50, 48);
+            btnBrowseBak.TabIndex = 1;
+            btnBrowseBak.Text = "...";
+            btnBrowseBak.UseVisualStyleBackColor = false;
+            // 
+            // pnlRestoreSelector
+            // 
+            pnlRestoreSelector.BackColor = Color.Transparent;
+            pnlRestoreSelector.Controls.Add(txtBackupFilePath);
+            pnlRestoreSelector.Controls.Add(btnBrowseBak);
+            pnlRestoreSelector.Enabled = false;
+            pnlRestoreSelector.Location = new Point(20, 484);
+            pnlRestoreSelector.Name = "pnlRestoreSelector";
+            pnlRestoreSelector.Size = new Size(420, 50);
+            pnlRestoreSelector.TabIndex = 15;
+            pnlRestoreSelector.Visible = false;
+            // 
+            // txtBackupFilePath
+            // 
+            txtBackupFilePath.AnimateReadOnly = false;
+            txtBackupFilePath.BackgroundImageLayout = ImageLayout.None;
+            txtBackupFilePath.CharacterCasing = CharacterCasing.Normal;
+            txtBackupFilePath.Depth = 0;
+            txtBackupFilePath.Enabled = false;
+            txtBackupFilePath.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtBackupFilePath.HideSelection = true;
+            txtBackupFilePath.Hint = "Seleccionar archivo .bak...";
+            txtBackupFilePath.LeadingIcon = null;
+            txtBackupFilePath.Location = new Point(0, 1);
+            txtBackupFilePath.MaxLength = 500;
+            txtBackupFilePath.MouseState = MaterialSkin.MouseState.OUT;
+            txtBackupFilePath.Name = "txtBackupFilePath";
+            txtBackupFilePath.PasswordChar = '\0';
+            txtBackupFilePath.PrefixSuffixText = null;
+            txtBackupFilePath.ReadOnly = true;
+            txtBackupFilePath.RightToLeft = RightToLeft.No;
+            txtBackupFilePath.SelectedText = "";
+            txtBackupFilePath.SelectionLength = 0;
+            txtBackupFilePath.SelectionStart = 0;
+            txtBackupFilePath.ShortcutsEnabled = true;
+            txtBackupFilePath.Size = new Size(362, 48);
+            txtBackupFilePath.TabIndex = 0;
+            txtBackupFilePath.TabStop = false;
+            txtBackupFilePath.TextAlign = HorizontalAlignment.Left;
+            txtBackupFilePath.TrailingIcon = null;
+            txtBackupFilePath.UseSystemPasswordChar = false;
+            // 
+            // txtAdmin2Password
+            // 
+            txtAdmin2Password.AnimateReadOnly = false;
+            txtAdmin2Password.BackgroundImageLayout = ImageLayout.None;
+            txtAdmin2Password.CharacterCasing = CharacterCasing.Normal;
+            txtAdmin2Password.Depth = 0;
+            txtAdmin2Password.Enabled = false;
+            txtAdmin2Password.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtAdmin2Password.HideSelection = true;
+            txtAdmin2Password.Hint = "Contraseña";
+            txtAdmin2Password.LeadingIcon = null;
+            txtAdmin2Password.Location = new Point(20, 404);
+            txtAdmin2Password.MaxLength = 50;
+            txtAdmin2Password.MouseState = MaterialSkin.MouseState.OUT;
+            txtAdmin2Password.Name = "txtAdmin2Password";
+            txtAdmin2Password.PasswordChar = '●';
+            txtAdmin2Password.PrefixSuffixText = null;
+            txtAdmin2Password.ReadOnly = false;
+            txtAdmin2Password.RightToLeft = RightToLeft.No;
+            txtAdmin2Password.SelectedText = "";
+            txtAdmin2Password.SelectionLength = 0;
+            txtAdmin2Password.SelectionStart = 0;
+            txtAdmin2Password.ShortcutsEnabled = true;
+            txtAdmin2Password.Size = new Size(420, 48);
+            txtAdmin2Password.TabIndex = 12;
+            txtAdmin2Password.TabStop = false;
+            txtAdmin2Password.TextAlign = HorizontalAlignment.Left;
+            txtAdmin2Password.TrailingIcon = null;
+            txtAdmin2Password.UseSystemPasswordChar = true;
+            // 
+            // txtAdmin2User
+            // 
+            txtAdmin2User.AnimateReadOnly = false;
+            txtAdmin2User.BackgroundImageLayout = ImageLayout.None;
+            txtAdmin2User.CharacterCasing = CharacterCasing.Normal;
+            txtAdmin2User.Depth = 0;
+            txtAdmin2User.Enabled = false;
+            txtAdmin2User.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtAdmin2User.HideSelection = true;
+            txtAdmin2User.Hint = "Usuario";
+            txtAdmin2User.LeadingIcon = null;
+            txtAdmin2User.Location = new Point(20, 342);
+            txtAdmin2User.MaxLength = 50;
+            txtAdmin2User.MouseState = MaterialSkin.MouseState.OUT;
+            txtAdmin2User.Name = "txtAdmin2User";
+            txtAdmin2User.PasswordChar = '\0';
+            txtAdmin2User.PrefixSuffixText = null;
+            txtAdmin2User.ReadOnly = false;
+            txtAdmin2User.RightToLeft = RightToLeft.No;
+            txtAdmin2User.SelectedText = "";
+            txtAdmin2User.SelectionLength = 0;
+            txtAdmin2User.SelectionStart = 0;
+            txtAdmin2User.ShortcutsEnabled = true;
+            txtAdmin2User.Size = new Size(420, 48);
+            txtAdmin2User.TabIndex = 11;
+            txtAdmin2User.TabStop = false;
+            txtAdmin2User.TextAlign = HorizontalAlignment.Left;
+            txtAdmin2User.TrailingIcon = null;
+            txtAdmin2User.UseSystemPasswordChar = false;
+            // 
+            // lblStep2Title
+            // 
+            lblStep2Title.AutoSize = true;
+            lblStep2Title.BackColor = Color.Transparent;
+            lblStep2Title.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStep2Title.ForeColor = Color.White;
+            lblStep2Title.Location = new Point(20, 310);
+            lblStep2Title.Name = "lblStep2Title";
+            lblStep2Title.Size = new Size(229, 18);
+            lblStep2Title.TabIndex = 10;
+            lblStep2Title.Text = "Paso 2: Credenciales del Gerente";
+            // 
+            // lblStep1Completed
+            // 
+            lblStep1Completed.AutoSize = true;
+            lblStep1Completed.BackColor = Color.Transparent;
+            lblStep1Completed.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStep1Completed.ForeColor = Color.FromArgb(76, 175, 80);
+            lblStep1Completed.Location = new Point(368, 274);
+            lblStep1Completed.Name = "lblStep1Completed";
+            lblStep1Completed.Size = new Size(63, 13);
+            lblStep1Completed.TabIndex = 9;
+            lblStep1Completed.Text = "Completado";
+            lblStep1Completed.Visible = false;
+            // 
+            // picStep1ConfirmCheck
+            // 
+            picStep1ConfirmCheck.BackColor = Color.Transparent;
+            picStep1ConfirmCheck.ForeColor = Color.FromArgb(76, 175, 80);
+            picStep1ConfirmCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
+            picStep1ConfirmCheck.IconColor = Color.FromArgb(76, 175, 80);
+            picStep1ConfirmCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            picStep1ConfirmCheck.IconSize = 22;
+            picStep1ConfirmCheck.Location = new Point(418, 243);
+            picStep1ConfirmCheck.Name = "picStep1ConfirmCheck";
+            picStep1ConfirmCheck.Size = new Size(22, 22);
+            picStep1ConfirmCheck.TabIndex = 8;
+            picStep1ConfirmCheck.TabStop = false;
+            picStep1ConfirmCheck.Visible = false;
+            // 
+            // btnConfirmStep1
+            // 
+            btnConfirmStep1.BackColor = Color.FromArgb(25, 118, 210);
+            btnConfirmStep1.Cursor = Cursors.Hand;
+            btnConfirmStep1.FlatAppearance.BorderSize = 0;
+            btnConfirmStep1.FlatStyle = FlatStyle.Flat;
+            btnConfirmStep1.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Pixel);
+            btnConfirmStep1.ForeColor = Color.White;
+            btnConfirmStep1.Location = new Point(310, 236);
+            btnConfirmStep1.Name = "btnConfirmStep1";
+            btnConfirmStep1.Size = new Size(100, 34);
+            btnConfirmStep1.TabIndex = 7;
+            btnConfirmStep1.Text = "Confirmar";
+            btnConfirmStep1.UseVisualStyleBackColor = false;
+            // 
+            // picStep1PassCheck
+            // 
+            picStep1PassCheck.BackColor = Color.Transparent;
+            picStep1PassCheck.ForeColor = Color.FromArgb(76, 175, 80);
+            picStep1PassCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
+            picStep1PassCheck.IconColor = Color.FromArgb(76, 175, 80);
+            picStep1PassCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            picStep1PassCheck.IconSize = 22;
+            picStep1PassCheck.Location = new Point(418, 188);
+            picStep1PassCheck.Name = "picStep1PassCheck";
+            picStep1PassCheck.Size = new Size(22, 22);
+            picStep1PassCheck.TabIndex = 6;
+            picStep1PassCheck.TabStop = false;
+            picStep1PassCheck.Visible = false;
+            // 
+            // txtAdmin1Password
+            // 
+            txtAdmin1Password.AnimateReadOnly = false;
+            txtAdmin1Password.BackgroundImageLayout = ImageLayout.None;
+            txtAdmin1Password.CharacterCasing = CharacterCasing.Normal;
+            txtAdmin1Password.Depth = 0;
+            txtAdmin1Password.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtAdmin1Password.HideSelection = true;
+            txtAdmin1Password.Hint = "Contraseña";
+            txtAdmin1Password.LeadingIcon = null;
+            txtAdmin1Password.Location = new Point(20, 174);
+            txtAdmin1Password.MaxLength = 50;
+            txtAdmin1Password.MouseState = MaterialSkin.MouseState.OUT;
+            txtAdmin1Password.Name = "txtAdmin1Password";
+            txtAdmin1Password.PasswordChar = '●';
+            txtAdmin1Password.PrefixSuffixText = null;
+            txtAdmin1Password.ReadOnly = false;
+            txtAdmin1Password.RightToLeft = RightToLeft.No;
+            txtAdmin1Password.SelectedText = "";
+            txtAdmin1Password.SelectionLength = 0;
+            txtAdmin1Password.SelectionStart = 0;
+            txtAdmin1Password.ShortcutsEnabled = true;
+            txtAdmin1Password.Size = new Size(390, 48);
+            txtAdmin1Password.TabIndex = 5;
+            txtAdmin1Password.TabStop = false;
+            txtAdmin1Password.TextAlign = HorizontalAlignment.Left;
+            txtAdmin1Password.TrailingIcon = null;
+            txtAdmin1Password.UseSystemPasswordChar = true;
+            // 
+            // picStep1UserCheck
+            // 
+            picStep1UserCheck.BackColor = Color.Transparent;
+            picStep1UserCheck.ForeColor = Color.FromArgb(76, 175, 80);
+            picStep1UserCheck.IconChar = FontAwesome.Sharp.IconChar.Check;
+            picStep1UserCheck.IconColor = Color.FromArgb(76, 175, 80);
+            picStep1UserCheck.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            picStep1UserCheck.IconSize = 22;
+            picStep1UserCheck.Location = new Point(418, 126);
+            picStep1UserCheck.Name = "picStep1UserCheck";
+            picStep1UserCheck.Size = new Size(22, 22);
+            picStep1UserCheck.TabIndex = 4;
+            picStep1UserCheck.TabStop = false;
+            picStep1UserCheck.Visible = false;
+            // 
+            // txtAdmin1User
+            // 
+            txtAdmin1User.AnimateReadOnly = false;
+            txtAdmin1User.BackgroundImageLayout = ImageLayout.None;
+            txtAdmin1User.CharacterCasing = CharacterCasing.Normal;
+            txtAdmin1User.Depth = 0;
+            txtAdmin1User.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtAdmin1User.HideSelection = true;
+            txtAdmin1User.Hint = "Usuario";
+            txtAdmin1User.LeadingIcon = null;
+            txtAdmin1User.Location = new Point(20, 112);
+            txtAdmin1User.MaxLength = 50;
+            txtAdmin1User.MouseState = MaterialSkin.MouseState.OUT;
+            txtAdmin1User.Name = "txtAdmin1User";
+            txtAdmin1User.PasswordChar = '\0';
+            txtAdmin1User.PrefixSuffixText = null;
+            txtAdmin1User.ReadOnly = false;
+            txtAdmin1User.RightToLeft = RightToLeft.No;
+            txtAdmin1User.SelectedText = "";
+            txtAdmin1User.SelectionLength = 0;
+            txtAdmin1User.SelectionStart = 0;
+            txtAdmin1User.ShortcutsEnabled = true;
+            txtAdmin1User.Size = new Size(390, 48);
+            txtAdmin1User.TabIndex = 3;
+            txtAdmin1User.TabStop = false;
+            txtAdmin1User.TextAlign = HorizontalAlignment.Left;
+            txtAdmin1User.TrailingIcon = null;
+            txtAdmin1User.UseSystemPasswordChar = false;
+            // 
+            // lblStep1Title
+            // 
+            lblStep1Title.AutoSize = true;
+            lblStep1Title.BackColor = Color.Transparent;
+            lblStep1Title.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblStep1Title.ForeColor = Color.White;
+            lblStep1Title.Location = new Point(20, 80);
+            lblStep1Title.Name = "lblStep1Title";
+            lblStep1Title.Size = new Size(267, 18);
+            lblStep1Title.TabIndex = 2;
+            lblStep1Title.Text = "Paso 1: Credenciales del Administrador";
+            // 
             // BackupView
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -538,16 +601,17 @@ namespace MobileSolutions.UILayer
             pnlBackupContent.ResumeLayout(false);
             pnlDualAuthCard.ResumeLayout(false);
             pnlDualAuthCard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picStep1UserCheck).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStep1PassCheck).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStep1ConfirmCheck).EndInit();
-            pnlRestoreSelector.ResumeLayout(false);
+            pnlBackupSelector.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBackupTitle).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            pnlRestoreSelector.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picStep1ConfirmCheck).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picStep1PassCheck).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picStep1UserCheck).EndInit();
             ResumeLayout(false);
         }
 
@@ -558,6 +622,17 @@ namespace MobileSolutions.UILayer
         private Panel pnlDualAuthCard;
         private Button btnTabBackup;
         private Button btnTabRestore;
+        private Panel pnlBackupSelector;
+        private MaterialSkin.Controls.MaterialTextBox2 txtBackupDestinationPath;
+        private Button btnBrowseBackupPath;
+        private Button btnGenerarBackup;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private FontAwesome.Sharp.IconPictureBox picBackupTitle;
+        private MaterialSkin.Controls.MaterialLabel lblTitulo;
+        private Panel panel2;
+        private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
+        private MaterialSkin.Controls.MaterialButton btnLogout;
         private Label lblStep1Title;
         private MaterialSkin.Controls.MaterialTextBox2 txtAdmin1User;
         private FontAwesome.Sharp.IconPictureBox picStep1UserCheck;
@@ -569,16 +644,8 @@ namespace MobileSolutions.UILayer
         private Label lblStep2Title;
         private MaterialSkin.Controls.MaterialTextBox2 txtAdmin2User;
         private MaterialSkin.Controls.MaterialTextBox2 txtAdmin2Password;
-        private Button btnGenerarBackup;
         private Panel pnlRestoreSelector;
         private MaterialSkin.Controls.MaterialTextBox2 txtBackupFilePath;
         private Button btnBrowseBak;
-        private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
-        private FontAwesome.Sharp.IconPictureBox picBackupTitle;
-        private MaterialSkin.Controls.MaterialLabel lblTitulo;
-        private Panel panel2;
-        private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
-        private MaterialSkin.Controls.MaterialButton btnLogout;
     }
 }

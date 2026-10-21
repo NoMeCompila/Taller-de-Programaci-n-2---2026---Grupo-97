@@ -1,6 +1,9 @@
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using MaterialSkin.Controls;
@@ -24,12 +27,22 @@ namespace MobileSolutions.UILayer
         public event EventHandler? LogoutRequested;
         public event EventHandler? Step1Confirmed;
         public event EventHandler? BackupActionRequested;
+        public event EventHandler<string>? BackupDestinationSelected;
         public event EventHandler<string>? RestoreFileSelected;
+
+        /// <summary>
+        /// Punto de extensión para conectar en el futuro la lógica real de Backup contra la base de datos
+        /// (recibe el directorio destino y el nombre de archivo generado).
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Action<string, string>? BackupDatabaseAction { get; set; }
 
         public bool IsRestoreMode { get; private set; }
         public bool IsStep1Confirmed { get; private set; }
         public string Admin1Username => txtAdmin1User.Text.Trim();
         public string Admin2Username => txtAdmin2User.Text.Trim();
+        public string SelectedBackupDestinationPath => txtBackupDestinationPath.Text.Trim();
         public string SelectedBackupFilePath => txtBackupFilePath.Text.Trim();
 
         public BackupView()
@@ -51,17 +64,22 @@ namespace MobileSolutions.UILayer
             pnlBackupContent.Resize += (s, e) => CenterDualAuthCard();
             this.Load += (s, e) => CenterDualAuthCard();
 
+            btnTabBackup.UseVisualStyleBackColor = false;
+            btnTabRestore.UseVisualStyleBackColor = false;
+
             pnlDualAuthCard.Paint += PnlDualAuthCard_Paint;
             btnTabBackup.Paint += TabButton_Paint;
             btnTabRestore.Paint += TabButton_Paint;
             btnConfirmStep1.Paint += FlatActionButton_Paint;
+            btnBrowseBackupPath.Paint += FlatActionButton_Paint;
             btnGenerarBackup.Paint += FlatActionButton_Paint;
             btnBrowseBak.Paint += FlatActionButton_Paint;
 
             btnTabBackup.Click += (s, e) => SwitchToBackupTab();
             btnTabRestore.Click += (s, e) => SwitchToRestoreTab();
             btnConfirmStep1.Click += (s, e) => ConfirmStep1();
-            btnGenerarBackup.Click += (s, e) => BackupActionRequested?.Invoke(this, EventArgs.Empty);
+            btnBrowseBackupPath.Click += (s, e) => BrowseBackupDestinationFolder();
+            btnGenerarBackup.Click += (s, e) => ExecuteBackup();
             btnBrowseBak.Click += (s, e) => BrowseBackupFile();
 
             CenterDualAuthCard();
@@ -83,18 +101,59 @@ namespace MobileSolutions.UILayer
         {
             IsRestoreMode = false;
             UpdateTabVisuals();
-            btnGenerarBackup.Visible = true;
+
+            SetDualAuthCredentialsVisible(false);
             pnlRestoreSelector.Visible = false;
-            ResetDualAuthState();
+
+            pnlBackupSelector.Visible = true;
+            pnlBackupSelector.Enabled = true;
+            txtBackupDestinationPath.Enabled = true;
+            txtBackupDestinationPath.Text = string.Empty;
+
+            btnBrowseBackupPath.Enabled = true;
+            btnBrowseBackupPath.BackColor = ActiveBlueColor;
+            btnBrowseBackupPath.ForeColor = Color.White;
+            btnBrowseBackupPath.Cursor = Cursors.Hand;
+            btnBrowseBackupPath.Invalidate();
+
+            btnGenerarBackup.Visible = true;
+            btnGenerarBackup.Enabled = true;
+            btnGenerarBackup.BackColor = ActiveBlueColor;
+            btnGenerarBackup.ForeColor = Color.White;
+            btnGenerarBackup.Cursor = Cursors.Hand;
+            btnGenerarBackup.Invalidate();
         }
 
         public void SwitchToRestoreTab()
         {
             IsRestoreMode = true;
             UpdateTabVisuals();
+
+            pnlBackupSelector.Visible = false;
             btnGenerarBackup.Visible = false;
+
+            SetDualAuthCredentialsVisible(true);
             pnlRestoreSelector.Visible = true;
             ResetDualAuthState();
+        }
+
+        private void SetDualAuthCredentialsVisible(bool visible)
+        {
+            lblStep1Title.Visible = visible;
+            txtAdmin1User.Visible = visible;
+            txtAdmin1Password.Visible = visible;
+            btnConfirmStep1.Visible = visible;
+            lblStep2Title.Visible = visible;
+            txtAdmin2User.Visible = visible;
+            txtAdmin2Password.Visible = visible;
+
+            if (!visible)
+            {
+                picStep1UserCheck.Visible = false;
+                picStep1PassCheck.Visible = false;
+                picStep1ConfirmCheck.Visible = false;
+                lblStep1Completed.Visible = false;
+            }
         }
 
         public void ResetDualAuthState()
@@ -121,12 +180,6 @@ namespace MobileSolutions.UILayer
             txtAdmin2Password.Text = string.Empty;
             txtAdmin2User.Enabled = false;
             txtAdmin2Password.Enabled = false;
-
-            btnGenerarBackup.Enabled = false;
-            btnGenerarBackup.BackColor = DisabledActionBgColor;
-            btnGenerarBackup.ForeColor = DisabledActionFgColor;
-            btnGenerarBackup.Cursor = Cursors.Default;
-            btnGenerarBackup.Invalidate();
 
             txtBackupFilePath.Text = string.Empty;
             txtBackupFilePath.Enabled = false;
@@ -171,12 +224,6 @@ namespace MobileSolutions.UILayer
             txtAdmin2Password.Enabled = true;
             txtAdmin2User.Focus();
 
-            btnGenerarBackup.Enabled = true;
-            btnGenerarBackup.BackColor = ActiveBlueColor;
-            btnGenerarBackup.ForeColor = Color.White;
-            btnGenerarBackup.Cursor = Cursors.Hand;
-            btnGenerarBackup.Invalidate();
-
             pnlRestoreSelector.Enabled = true;
             txtBackupFilePath.Enabled = true;
             btnBrowseBak.Enabled = true;
@@ -186,6 +233,85 @@ namespace MobileSolutions.UILayer
             btnBrowseBak.Invalidate();
 
             Step1Confirmed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void BrowseBackupDestinationFolder()
+        {
+            using var dialog = new FolderBrowserDialog
+            {
+                Description = "Seleccionar carpeta destino para el archivo de Backup (.bak)",
+                UseDescriptionForTitle = true,
+                ShowNewFolderButton = true
+            };
+
+            if (dialog.ShowDialog(this) == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
+            {
+                txtBackupDestinationPath.Text = dialog.SelectedPath;
+                BackupDestinationSelected?.Invoke(this, dialog.SelectedPath);
+            }
+        }
+
+        /// <summary>
+        /// Construye el nombre del archivo de backup con el formato:
+        /// "MobileSolution-dd/mm/yyyy-HH/MM/SS.ss.bak"
+        /// </summary>
+        public static string BuildBackupFileName(DateTime? timestamp = null)
+        {
+            DateTime now = timestamp ?? DateTime.Now;
+            return $"MobileSolution-{now.ToString("dd/MM/yyyy-HH/mm/ss.ff", CultureInfo.InvariantCulture)}.bak";
+        }
+
+        /// <summary>
+        /// Construye el mensaje de confirmación de backup con el formato:
+        /// "\"MobileSolution-dd/mm/yyyy-HH/MM/SS.ss.bak\" generado correctamente"
+        /// </summary>
+        public static string BuildBackupSuccessMessage(DateTime? timestamp = null)
+        {
+            string backupFileName = BuildBackupFileName(timestamp);
+            return $"\"{backupFileName}\" generado correctamente";
+        }
+
+        public void ExecuteBackup()
+        {
+            if (string.IsNullOrWhiteSpace(SelectedBackupDestinationPath))
+            {
+                MaterialMessageBox.Show(
+                    "Por favor seleccione una ruta destino antes de generar el backup.",
+                    "Ruta Requerida",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                string backupFileName = BuildBackupFileName();
+
+                ExecuteDatabaseBackup(SelectedBackupDestinationPath, backupFileName);
+                BackupActionRequested?.Invoke(this, EventArgs.Empty);
+
+                MaterialMessageBox.Show(
+                    $"\"{backupFileName}\" generado correctamente",
+                    "Backup Generado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(
+                    $"Error al generar el backup: {ex.Message}",
+                    "Error de Backup",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método preparado para la futura integración con la capa de negocio / base de datos.
+        /// </summary>
+        protected virtual void ExecuteDatabaseBackup(string destinationDirectory, string backupFileName)
+        {
+            BackupDatabaseAction?.Invoke(destinationDirectory, backupFileName);
         }
 
         private void BrowseBackupFile()
@@ -303,4 +429,3 @@ namespace MobileSolutions.UILayer
         }
     }
 }
-
