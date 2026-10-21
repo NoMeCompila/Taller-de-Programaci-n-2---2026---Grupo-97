@@ -41,6 +41,7 @@ namespace MobileSolutions.UILayer
         private int _lastCreatedSaleId = 0;
         private string _lastCreatedSaleNumber = string.Empty;
         private SaleTicketData? _lastCompletedSaleTicket = null;
+        private bool _isSaleFinalized = false;
 
         public SaleView()
         {
@@ -675,6 +676,7 @@ namespace MobileSolutions.UILayer
 
                     // Habilitar impresión de ticket/factura
                     ActualizarEstadoBotonImprimir(habilitado: true);
+                    ConfigurarBotonesAccionVentaFinalizada(finalizada: true);
 
                     MaterialMessageBox.Show(
                         $"¡Venta registrada con éxito!\nComprobante: {saleNumber}\nTotal: {TicketReportService.FormatCurrency(total)}",
@@ -708,6 +710,13 @@ namespace MobileSolutions.UILayer
 
         private void btnCancel_Click(object? sender, EventArgs e)
         {
+            if (_isSaleFinalized)
+            {
+                // Modo "Nueva Venta" tras finalizar la venta previa
+                LimpiarVentaCompleta();
+                return;
+            }
+
             if (_cartItems.Count > 0 || _selectedCustomerId > 0 || _selectedProduct != null)
             {
                 DialogResult dialog = MaterialMessageBox.Show(
@@ -939,6 +948,39 @@ namespace MobileSolutions.UILayer
             _lastCompletedSaleTicket = null;
             ActualizarEstadoBotonImprimir(habilitado: false);
             ActualizarEstadoSeccionProductos(habilitado: false);
+            ConfigurarBotonesAccionVentaFinalizada(finalizada: false);
+        }
+
+        private void ConfigurarBotonesAccionVentaFinalizada(bool finalizada)
+        {
+            _isSaleFinalized = finalizada;
+
+            if (finalizada)
+            {
+                btnSell.Enabled = false;
+                icoBtnSell.Enabled = false;
+                icoBtnSell.BackColor = Color.FromArgb(70, 90, 130);
+
+                btnCancel.Text = "Nueva Venta";
+                icoBtnCancel.Text = "NUEVA VENTA";
+                icoBtnCancel.IconChar = IconChar.PlusCircle;
+                icoBtnCancel.BackColor = Color.ForestGreen;
+                btnCancel.Enabled = true;
+                icoBtnCancel.Enabled = true;
+            }
+            else
+            {
+                btnSell.Enabled = true;
+                icoBtnSell.Enabled = true;
+                icoBtnSell.BackColor = Color.RoyalBlue;
+
+                btnCancel.Text = "Cancelar Venta";
+                icoBtnCancel.Text = "CANCELAR";
+                icoBtnCancel.IconChar = IconChar.CreativeCommonsNc;
+                icoBtnCancel.BackColor = Color.RoyalBlue;
+                btnCancel.Enabled = true;
+                icoBtnCancel.Enabled = true;
+            }
         }
 
         #endregion
