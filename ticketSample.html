@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket de Venta - Mobile Solutions</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F0F4F8;
+            color: #1E293B;
+            padding: 24px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* Contenedor tipo Tarjeta / Recibo similar a TutorApp */
+        .receipt-card {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px 36px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 20px rgba(11, 19, 43, 0.06);
+        }
+
+        /* Encabezado */
+        .receipt-header {
+            text-align: center;
+            border-bottom: 2px solid #F1F5F9;
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #0B132B;
+        }
+
+        .brand-name span {
+            color: #00B4D8;
+        }
+
+        .brand-subtitle {
+            font-size: 9.5px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            margin-top: 2px;
+            margin-bottom: 12px;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            background-color: #EBF8FF;
+            color: #0284C7;
+            border: 1px solid #BAE6FD;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+        }
+
+        .receipt-number {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0B132B;
+        }
+
+        .receipt-date {
+            font-size: 12px;
+            color: #64748B;
+            margin-top: 2px;
+        }
+
+        /* Secciones y Encabezados */
+        .section-title {
+            font-size: 10.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2A69AC;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #E2E8F0;
+            margin-left: 10px;
+        }
+
+        /* Cuadro de doble entrada del Vendedor (Estilo limpio / ASCII modernizado) */
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #CBD5E1;
+        }
+
+        .meta-table td {
+            padding: 6px 12px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .meta-table td.field-name {
+            background-color: #F8FAFC;
+            font-weight: 600;
+            color: #475569;
+            width: 35%;
+        }
+
+        .meta-table td.field-value {
+            color: #0B132B;
+            font-weight: 500;
+            width: 65%;
+        }
+
+        /* Estilo de bloques con barra vertical izquierda (como en el PDF de referencia) */
+        .info-pill {
+            background-color: #F8FAFC;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #F1F5F9;
+        }
+
+        .pipe-item {
+            display: flex;
+            margin-top: 4px;
+            margin-bottom: 6px;
+        }
+
+        .pipe-indicator {
+            color: #00B4D8;
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        .pipe-text {
+            color: #0F172A;
+            font-weight: 500;
+        }
+
+        /* Tabla de Productos / Carrito */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cart-table th {
+            background-color: #0B132B;
+            color: #FFFFFF;
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 9px 12px;
+        }
+
+        .cart-table th:first-child {
+            border-top-left-radius: 6px;
+        }
+
+        .cart-table th:last-child {
+            border-top-right-radius: 6px;
+        }
+
+        .cart-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 12px;
+            color: #1E293B;
+        }
+
+        .cart-table tbody tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+
+        /* Tarjeta de Monto Destacado (Igual a MONTO ABONADO del PDF) */
+        .amount-card {
+            background: linear-gradient(135deg, #0B132B 0%, #1C2541 100%);
+            border-radius: 12px;
+            padding: 18px 24px;
+            color: #ffffff;
+            margin-top: 20px;
+            border: 1px solid #2A69AC;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .amount-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #94A3B8;
+        }
+
+        .amount-payment-method {
+            font-size: 12px;
+            color: #00B4D8;
+            margin-top: 4px;
+        }
+
+        .amount-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: #00B4D8;
+            letter-spacing: -0.5px;
+            text-align: right;
+        }
+
+        /* Footer */
+        .receipt-footer {
+            margin-top: 28px;
+            text-align: center;
+            border-top: 1px dashed #CBD5E1;
+            padding-top: 18px;
+        }
+
+        .thanks-msg {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0B132B;
+            margin-bottom: 4px;
+        }
+
+        .legal-notice {
+            font-size: 10px;
+            color: #64748B;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="receipt-card">
+        <!-- Encabezado Mobile Solutions -->
+        <div class="receipt-header">
+            <div class="brand-name">MOBILE <span>SOLUTIONS</span></div>
+            <div class="brand-subtitle">PUNTO DE VENTA | SISTEMA COMERCIAL</div>
+            <div>
+                <span class="doc-badge">Comprobante de Venta</span>
+            </div>
+            <div class="receipt-number">#VENTA_NUMERO#</div>
+            <div class="receipt-date">Fecha de emisión: 14/10/2026</div>
+        </div>
+
+        <!-- Sección Vendedor y Transacción (Cuadro de doble entrada solicitado) -->
+        <div class="section-title">Datos del Vendedor y Transacción</div>
+        <table class="meta-table">
+            <tr>
+                <td class="field-name">N° Venta</td>
+                <td class="field-value">#VENTA_NUMERO#</td>
+            </tr>
+            <tr>
+                <td class="field-name">Fecha</td>
+                <td class="field-value">14/10/2026</td>
+            </tr>
+            <tr>
+                <td class="field-name">Vendedor</td>
+                <td class="field-value">Julian Benitez</td>
+            </tr>
+            <tr>
+                <td class="field-name">Usuario</td>
+                <td class="field-value">jbenitez05</td>
+            </tr>
+            <tr>
+                <td class="field-name">DNI</td>
+                <td class="field-value">38556605</td>
+            </tr>
+        </table>
+
+        <!-- Datos del Cliente (Estilo píldora / detalles TutorApp) -->
+        <div class="section-title">Datos del Cliente</div>
+        <div class="info-pill">
+            <div style="font-weight: 700; color: #0B132B; font-size: 13px;">#CLIENTE_NOMBRE#</div>
+            <div class="pipe-item">
+                <span class="pipe-indicator">|</span>
+                <span class="pipe-text">DNI / CUIT: #CLIENTE_DNI#</span>
+            </div>
+            <div class="pipe-item">
+                <span class="pipe-indicator">|</span>
+                <span class="pipe-text">Condición IVA: Consumidor Final</span>
+            </div>
+        </div>
+
+        <!-- Detalle de Productos -->
+        <div class="section-title">Detalle de la Compra</div>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Producto / Concepto</th>
+                    <th class="text-center" style="width: 15%;">Cant.</th>
+                    <th class="text-right" style="width: 15%;">Unitario</th>
+                    <th class="text-right" style="width: 20%;">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                #FILAS_PRODUCTOS#
+            </tbody>
+        </table>
+
+        <!-- Bloque Destacado de Monto Final (Estilo Recibo_Roque) -->
+        <div class="amount-card">
+            <div>
+                <div class="amount-label">Monto Total Abonado</div>
+                <div class="amount-payment-method">Método de Pago: #METODO_PAGO#</div>
+            </div>
+            <div class="amount-value">
+                #TOTAL#
+            </div>
+        </div>
+
+        <!-- Pie de página -->
+        <div class="receipt-footer">
+            <div class="thanks-msg">¡Muchas gracias por su compra!</div>
+            <div class="legal-notice">Comprobante digital no fiscal generado con Mobile Solutions POS.</div>
+        </div>
+    </div>
+
+</body>
+</html>
