@@ -60,6 +60,7 @@ namespace MobileSolutions.UILayer
             lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
             radEfectivo.Checked = true;
             ActualizarEstadoBotonImprimir(habilitado: false);
+            ActualizarEstadoSeccionProductos(habilitado: false);
 
             CargarDatosUsuarioActual();
             CargarClientesActivos();
@@ -214,6 +215,11 @@ namespace MobileSolutions.UILayer
             txtQtty.TextChanged += txtQtty_TextChanged;
 
             // Acciones principales
+            // Interceptores y avisos para interacción en sección producto sin cliente confirmado (AC11)
+            pnlHeader.Click += SeccionProducto_Click;
+            tlpInputsVenta.Click += SeccionProducto_Click;
+            txtProducto.Click += SeccionProducto_Click;
+
             btnAddUser.Click += (s, e) => NavigateToCustomerRequested?.Invoke(this, EventArgs.Empty);
             btnProduct.Click += (s, e) => NavigateToProductRequested?.Invoke(this, EventArgs.Empty);
             btnCheckCustomer.Click += btnCheckCustomer_Click;
@@ -400,11 +406,14 @@ namespace MobileSolutions.UILayer
             dtgCustomers.DataSource = null;
             dtgCustomers.DataSource = new List<Customer> { _selectedCustomer };
             dtgCustomers.ClearSelection();
+
+            ActualizarEstadoSeccionProductos(habilitado: true);
         }
 
         private void DesbloquearSeleccionCliente()
         {
             _isCustomerLocked = false;
+            ActualizarEstadoSeccionProductos(habilitado: false);
             btnCheckCustomer.BackColor = Color.FromArgb(13, 71, 161);
             txtSearchClient.Enabled = true;
             btnAddUser.Enabled = true;
@@ -422,6 +431,12 @@ namespace MobileSolutions.UILayer
 
         private void dtgProducts_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
+            if (!_isCustomerLocked)
+            {
+                MaterialMessageBox.Show("Debe seleccionar y confirmar primero un cliente antes de interactuar con los productos.", "Cliente Requerido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             if (e.RowIndex < 0 || e.RowIndex >= dtgProducts.Rows.Count) return;
 
             var fila = dtgProducts.Rows[e.RowIndex];
@@ -462,6 +477,12 @@ namespace MobileSolutions.UILayer
 
         private void btnAddProd_Click(object? sender, EventArgs e)
         {
+            if (!_isCustomerLocked)
+            {
+                MaterialMessageBox.Show("Debe seleccionar y confirmar primero un cliente antes de interactuar con los productos.", "Cliente Requerido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             if (_selectedProduct == null)
             {
                 MaterialMessageBox.Show("Debe seleccionar un producto de la grilla de productos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -869,6 +890,28 @@ namespace MobileSolutions.UILayer
             icoBtnPrint.BackColor = habilitado ? Color.RoyalBlue : Color.FromArgb(70, 90, 130);
         }
 
+        private void ActualizarEstadoSeccionProductos(bool habilitado)
+        {
+            dtgProducts.Enabled = habilitado;
+            txtProducto.Enabled = habilitado;
+            txtQtty.Enabled = habilitado;
+            btnAddProd.Enabled = habilitado;
+
+            if (!habilitado)
+            {
+                dtgProducts.ClearSelection();
+                LimpiarInputsProducto();
+            }
+        }
+
+        private void SeccionProducto_Click(object? sender, EventArgs e)
+        {
+            if (!_isCustomerLocked)
+            {
+                MaterialMessageBox.Show("Debe seleccionar y confirmar primero un cliente antes de interactuar con los productos.", "Cliente Requerido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void LimpiarSeleccionCliente()
         {
             _selectedCustomer = null;
@@ -895,6 +938,7 @@ namespace MobileSolutions.UILayer
             _lastCreatedSaleNumber = string.Empty;
             _lastCompletedSaleTicket = null;
             ActualizarEstadoBotonImprimir(habilitado: false);
+            ActualizarEstadoSeccionProductos(habilitado: false);
         }
 
         #endregion
