@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
@@ -23,6 +26,7 @@ namespace MobileSolutions.UILayer
         private readonly CustomerService _customerService;
         private readonly ProductService _productService;
         private readonly UserService _userService;
+        private readonly TicketReportService _ticketReportService;
 
         // Timers para búsqueda con debounce (350 ms)
         private System.Windows.Forms.Timer? _customerSearchDebounceTimer;
@@ -36,6 +40,7 @@ namespace MobileSolutions.UILayer
         private readonly List<SaleDetail> _cartItems = new();
         private int _lastCreatedSaleId = 0;
         private string _lastCreatedSaleNumber = string.Empty;
+        private SaleTicketData? _lastCompletedSaleTicket = null;
 
         public SaleView()
         {
@@ -45,6 +50,7 @@ namespace MobileSolutions.UILayer
             _customerService = new CustomerService();
             _productService = new ProductService();
             _userService = new UserService();
+            _ticketReportService = new TicketReportService();
 
             ConfigurarIconos();
             ConfigurarGrillas();
@@ -546,7 +552,7 @@ namespace MobileSolutions.UILayer
         private void ActualizarTotalVenta()
         {
             decimal total = _cartItems.Sum(i => i.Subtotal);
-            lblTotalAmount.Text = $"$ {total:N2}";
+            lblTotalAmount.Text = TicketReportService.FormatCurrency(total);
         }
 
         private void LimpiarInputsProducto()
@@ -563,7 +569,7 @@ namespace MobileSolutions.UILayer
 
         #endregion
 
-        #region Proceso de Venta (Check-out) y Cancelación
+        #region Proceso de Venta (Check-out), Impresión de Ticket y Cancelación
 
         private void btnSell_Click(object? sender, EventArgs e)
         {
@@ -589,7 +595,7 @@ namespace MobileSolutions.UILayer
             string metodoPago = radTrans.Checked ? "Transferencia" : "Efectivo";
 
             DialogResult confirmacion = MaterialMessageBox.Show(
-                $"¿Confirmar venta por un total de $ {totalCalculado:N2}?\nMétodo de pago: {metodoPago}",
+                $"¿Confirmar venta por un total de {TicketReportService.FormatCurrency(totalCalculado)}?\nMétodo de pago: {metodoPago}",
                 "Confirmar Venta",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -615,6 +621,34 @@ namespace MobileSolutions.UILayer
                     _lastCreatedSaleId = saleId;
                     _lastCreatedSaleNumber = saleNumber;
 
+                    string nombreCliente = _selectedCustomer != null
+                        ? $"{_selectedCustomer.Name} {_selectedCustomer.Lastname}".Trim()
+                        : $"{txtName.Text} {txtLastname.Text}".Trim();
+                    string dniCliente = _selectedCustomer?.Dni ?? txtDni.Text.Trim();
+
+                    _lastCompletedSaleTicket = new SaleTicketData
+                    {
+                        SaleNumber = saleNumber,
+                        SaleDate = DateTime.Now,
+                        SellerName = lblNomyApeValue.Text,
+                        SellerUsername = lblUserValue.Text,
+                        SellerDni = lblDniValue.Text,
+                        CustomerName = nombreCliente,
+                        CustomerDni = dniCliente,
+                        CustomerVatCondition = "Consumidor Final",
+                        PaymentMethod = metodoPago,
+                        Total = total,
+                        Items = _cartItems.Select(i => new SaleDetail
+                        {
+                            ProductId = i.ProductId,
+                            ProductCode = i.ProductCode,
+                            BrandName = i.BrandName,
+                            ProductName = i.ProductName,
+                            Quantity = i.Quantity,
+                            UnitPrice = i.UnitPrice
+                        }).ToList()
+                    };
+
                     // Mostrar número de venta en el panel de resumen
                     lblSaleNumberValue.Text = saleNumber;
 
@@ -622,7 +656,7 @@ namespace MobileSolutions.UILayer
                     ActualizarEstadoBotonImprimir(habilitado: true);
 
                     MaterialMessageBox.Show(
-                        $"¡Venta registrada con éxito!\nComprobante: {saleNumber}\nTotal: $ {total:N2}",
+                        $"¡Venta registrada con éxito!\nComprobante: {saleNumber}\nTotal: {TicketReportService.FormatCurrency(total)}",
                         "Venta Confirmada",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -669,27 +703,170 @@ namespace MobileSolutions.UILayer
 
         private void btnPrint_Click(object? sender, EventArgs e)
         {
-            if (_lastCreatedSaleId <= 0 || string.IsNullOrWhiteSpace(_lastCreatedSaleNumber))
+            // Si hay un ID de venta registrado pero no está en memoria el objeto, intentar recuperarlo de la capa de negocio
+            if (_lastCompletedSaleTicket == null && _lastCreatedSaleId > 0)
+            {
+                try
+                {
+                    var saleFromDb = _saleService.GetSaleById(_lastCreatedSaleId);
+                    if (saleFromDb != null && saleFromDb.Details != null && saleFromDb.Details.Count > 0)
+                    {
+                        _lastCompletedSaleTicket = new SaleTicketData
+                        {
+                            SaleNumber = saleFromDb.SaleNumber,
+                            SaleDate = saleFromDb.SaleDate != DateTime.MinValue ? saleFromDb.SaleDate : DateTime.Now,
+                            SellerName = !string.IsNullOrWhiteSpace(saleFromDb.SellerFullName) ? saleFromDb.SellerFullName : lblNomyApeValue.Text,
+                            SellerUsername = !string.IsNullOrWhiteSpace(saleFromDb.UserUsername) ? saleFromDb.UserUsername : lblUserValue.Text,
+                            SellerDni = lblDniValue.Text,
+                            CustomerName = saleFromDb.CustomerFullName,
+                            CustomerDni = saleFromDb.CustomerDni,
+                            CustomerVatCondition = "Consumidor Final",
+                            PaymentMethod = saleFromDb.PaymentTypeName,
+                            Total = saleFromDb.TotalSale,
+                            Items = saleFromDb.Details
+                        };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _ticketReportService.LogError(ex);
+                }
+            }
+
+            // Escenario 3: Intento de impresión sin venta válida o sin productos
+            if (_lastCompletedSaleTicket == null ||
+                string.IsNullOrWhiteSpace(_lastCompletedSaleTicket.SaleNumber) ||
+                _lastCompletedSaleTicket.Items == null ||
+                _lastCompletedSaleTicket.Items.Count == 0)
             {
                 MaterialMessageBox.Show(
-                    "No hay ninguna venta confirmada recientemente para imprimir.",
-                    "Imprimir Factura",
+                    "Debe registrar o seleccionar una venta válida con al menos un producto antes de imprimir el ticket.",
+                    "Venta Incompleta",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
 
-            MaterialMessageBox.Show(
-                $"Comprobante: {_lastCreatedSaleNumber}\nLa generación de factura/ticket en PDF estará disponible en el módulo de facturación.",
-                "Imprimir Factura",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            // Escenario 1 y 2: Generación de ticket PDF desde ticketSample.html y manejo de errores de plantilla
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                var result = _ticketReportService.GenerateSaleTicketPdf(_lastCompletedSaleTicket);
+                AbrirVistaPreviaOImpresionPdf(result.PdfFilePath, _lastCompletedSaleTicket);
+            }
+            catch (FileNotFoundException fnfEx)
+            {
+                _ticketReportService.LogError(fnfEx);
+                MaterialMessageBox.Show(
+                    "No se encontró la plantilla de ticket 'ticketSample.html' en la ruta base del sistema.",
+                    "Plantilla No Encontrada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                _ticketReportService.LogError(ex);
+                MaterialMessageBox.Show(
+                    $"Ocurrió un error al generar o imprimir el ticket: {ex.Message}",
+                    "Error de Impresión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        private void AbrirVistaPreviaOImpresionPdf(string pdfFilePath, SaleTicketData ticketData)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = pdfFilePath,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                _ticketReportService.LogError(ex);
+                MostrarDialogoVistaPreviaImpresion(ticketData);
+            }
+        }
+
+        private void MostrarDialogoVistaPreviaImpresion(SaleTicketData ticketData)
+        {
+            using var printDocument = new PrintDocument();
+            printDocument.DocumentName = $"Ticket_{ticketData.SaleNumber}";
+            printDocument.PrintPage += (s, ev) =>
+            {
+                if (ev.Graphics == null) return;
+
+                using var titleFont = new Font("Segoe UI", 14F, FontStyle.Bold);
+                using var sectionFont = new Font("Segoe UI", 10F, FontStyle.Bold);
+                using var regularFont = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+
+                float x = 40f;
+                float y = 40f;
+
+                ev.Graphics.DrawString("MOBILE SOLUTIONS - PUNTO DE VENTA", titleFont, Brushes.Black, x, y);
+                y += 28f;
+                ev.Graphics.DrawString($"Comprobante de Venta: {ticketData.SaleNumber}", sectionFont, Brushes.Black, x, y);
+                y += 20f;
+                ev.Graphics.DrawString($"Fecha de emisión: {ticketData.SaleDate:dd/MM/yyyy}", regularFont, Brushes.Black, x, y);
+                y += 26f;
+
+                ev.Graphics.DrawString("DATOS DEL VENDEDOR Y TRANSACCIÓN", sectionFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"N° Venta: {ticketData.SaleNumber}  |  Fecha: {ticketData.SaleDate:dd/MM/yyyy}", regularFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"Vendedor: {ticketData.SellerName} ({ticketData.SellerUsername}) - DNI: {ticketData.SellerDni}", regularFont, Brushes.Black, x, y);
+                y += 26f;
+
+                ev.Graphics.DrawString("DATOS DEL CLIENTE", sectionFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"Cliente: {ticketData.CustomerName}", regularFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"DNI / CUIT: {ticketData.CustomerDni}  |  Condición IVA: {ticketData.CustomerVatCondition}", regularFont, Brushes.Black, x, y);
+                y += 26f;
+
+                ev.Graphics.DrawString("DETALLE DE LA COMPRA", sectionFont, Brushes.Black, x, y);
+                y += 20f;
+
+                foreach (var item in ticketData.Items)
+                {
+                    string prod = !string.IsNullOrWhiteSpace(item.ProductName) ? item.ProductName : item.BrandName;
+                    string line = $"{prod}  |  Cant: {item.Quantity}  |  Unit: {TicketReportService.FormatCurrency(item.UnitPrice)}  |  Subtotal: {TicketReportService.FormatCurrency(item.Subtotal)}";
+                    ev.Graphics.DrawString(line, regularFont, Brushes.Black, x, y);
+                    y += 18f;
+                }
+
+                y += 14f;
+                ev.Graphics.DrawString($"Método de Pago: {ticketData.PaymentMethod}", sectionFont, Brushes.Black, x, y);
+                y += 22f;
+                ev.Graphics.DrawString($"MONTO TOTAL ABONADO: {TicketReportService.FormatCurrency(ticketData.Total)}", titleFont, Brushes.Black, x, y);
+                ev.HasMorePages = false;
+            };
+
+            using var previewDialog = new PrintPreviewDialog
+            {
+                Document = printDocument,
+                Width = 900,
+                Height = 700,
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            previewDialog.ShowDialog(this);
         }
 
         private void ActualizarEstadoBotonImprimir(bool habilitado)
         {
-            btnPrint.Enabled = habilitado;
-            icoBtnPrint.Enabled = habilitado;
+            // Se mantiene habilitado el clic para que el operador reciba la alerta de validación (Escenario 3) si intenta imprimir sin venta válida
+            btnPrint.Enabled = true;
+            icoBtnPrint.Enabled = true;
+            icoBtnPrint.BackColor = habilitado ? Color.RoyalBlue : Color.FromArgb(70, 90, 130);
         }
 
         private void LimpiarSeleccionCliente()
@@ -716,6 +893,7 @@ namespace MobileSolutions.UILayer
             lblSaleNumberValue.Text = "-";
             _lastCreatedSaleId = 0;
             _lastCreatedSaleNumber = string.Empty;
+            _lastCompletedSaleTicket = null;
             ActualizarEstadoBotonImprimir(habilitado: false);
         }
 
@@ -756,10 +934,5 @@ namespace MobileSolutions.UILayer
         }
 
         #endregion
-
-        private void btnPrint_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

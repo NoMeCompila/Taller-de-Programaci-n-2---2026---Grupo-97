@@ -1175,7 +1175,6 @@ namespace MobileSolutions.UILayer
             btnPrint.Type = MaterialButton.MaterialButtonType.Contained;
             btnPrint.UseAccentColor = false;
             btnPrint.UseVisualStyleBackColor = true;
-            btnPrint.Click += btnPrint_Click_1;
             // 
             // icoBtnPrint
             // 
