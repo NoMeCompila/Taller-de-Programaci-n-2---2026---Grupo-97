@@ -386,7 +386,17 @@ namespace MobileSolutions.UILayer
         {
             if (_isCustomerLocked)
             {
-                // Si ya está bloqueado, al hacer clic se desbloquea para permitir cambiar de cliente
+                if (_cartItems.Count > 0)
+                {
+                    MaterialMessageBox.Show(
+                        "No se puede modificar el cliente mientras haya productos en el carrito.\nElimine los productos del carrito si desea cambiar de cliente.",
+                        "Carrito con Productos",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Si ya está bloqueado y no hay productos en el carrito, se desbloquea para permitir cambiar de cliente
                 DesbloquearSeleccionCliente();
                 return;
             }
@@ -595,9 +605,9 @@ namespace MobileSolutions.UILayer
 
         private void btnSell_Click(object? sender, EventArgs e)
         {
-            if (_selectedCustomerId <= 0)
+            if (!_isCustomerLocked || _selectedCustomerId <= 0)
             {
-                MaterialMessageBox.Show("Debe seleccionar un cliente para realizar la venta.", "Cliente Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MaterialMessageBox.Show("Debe seleccionar y confirmar primero un cliente antes de realizar la venta.", "Cliente Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
