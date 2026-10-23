@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using MobileSolutions.UILayer.Contracts;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace MobileSolutions.UILayer
 {
@@ -40,31 +39,45 @@ namespace MobileSolutions.UILayer
             {
                 LoadReportByProfile();
             }
-            else if (this.Visible && pnlContainer.Controls.Count > 0 && pnlContainer.Controls[0] is SellerReportControl sellerReport)
+            else if (this.Visible && pnlContainer.Controls.Count > 0)
             {
-                sellerReport.RefreshReportData();
+                if (pnlContainer.Controls[0] is SellerReportControl sellerReport)
+                {
+                    sellerReport.RefreshReportData();
+                }
+                else if (pnlContainer.Controls[0] is ManagerReportControl managerReport)
+                {
+                    managerReport.RefreshReportData();
+                }
             }
         }
 
         private void LoadReportByProfile()
         {
             int currentProfile = MobileSolutions.BusinessLayer.CurrentSession.ProfileId;
+            string profileName = MobileSolutions.BusinessLayer.CurrentSession.ProfileName.Trim().ToLowerInvariant();
             UserControl? authorizedReport = null;
 
-            switch (currentProfile)
+            bool isManager = profileName.Contains("gerente") || profileName.Contains("manager") || currentProfile == 3;
+            bool isSeller = profileName.Contains("vendedor") || profileName.Contains("seller") || currentProfile == 2;
+            bool isAdmin = profileName.Contains("admin") || currentProfile == 1;
+
+            if (isAdmin)
             {
-                case 1:
-                    authorizedReport = new AdminReportControl();
-                    break;
-                case 2:
-                    authorizedReport = new ManagerReportControl();
-                    break;
-                case 3:
-                    authorizedReport = new SellerReportControl();
-                    break;
-                default:
-                    // Perfil no reconocido: se deja el diseño original del panel (ícono + texto "Perfil No Autorizado")
-                    return;
+                authorizedReport = new AdminReportControl();
+            }
+            else if (isManager)
+            {
+                authorizedReport = new ManagerReportControl();
+            }
+            else if (isSeller)
+            {
+                authorizedReport = new SellerReportControl();
+            }
+            else
+            {
+                // Perfil no reconocido: se deja el diseño original del panel (ícono + texto "Perfil No Autorizado")
+                return;
             }
 
             if (authorizedReport != null)
