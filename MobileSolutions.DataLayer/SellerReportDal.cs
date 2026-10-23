@@ -33,7 +33,7 @@ namespace MobileSolutions.DataLayer
             return -1;
         }
 
-        private static void AddSellerPeriodParameters(SqlCommand command, int userId, int? year, int? month)
+        private static void AddSellerPeriodParameters(SqlCommand command, int userId, int? year, int? month, DateTime? startDate = null, DateTime? endDate = null)
         {
             command.Parameters.Add(new SqlParameter("@user_id", SqlDbType.Int) { Value = userId });
             command.Parameters.Add(new SqlParameter("@year", SqlDbType.Int)
@@ -43,6 +43,14 @@ namespace MobileSolutions.DataLayer
             command.Parameters.Add(new SqlParameter("@month", SqlDbType.Int)
             {
                 Value = month.HasValue ? (object)month.Value : DBNull.Value
+            });
+            command.Parameters.Add(new SqlParameter("@start_date", SqlDbType.DateTime)
+            {
+                Value = startDate.HasValue ? (object)startDate.Value : DBNull.Value
+            });
+            command.Parameters.Add(new SqlParameter("@end_date", SqlDbType.DateTime)
+            {
+                Value = endDate.HasValue ? (object)endDate.Value : DBNull.Value
             });
         }
 
@@ -80,7 +88,7 @@ namespace MobileSolutions.DataLayer
 
         #region Métodos de Lectura por Stored Procedure (Single Responsibility)
 
-        public SellerKpiSummary GetSellerKpiSummary(int userId, int? year = null, int? month = null)
+        public SellerKpiSummary GetSellerKpiSummary(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
             var summary = new SellerKpiSummary();
 
@@ -91,7 +99,7 @@ namespace MobileSolutions.DataLayer
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandTimeout = 30;
-                    AddSellerPeriodParameters(command, userId, year, month);
+                    AddSellerPeriodParameters(command, userId, year, month, startDate, endDate);
 
                     connection.Open();
 
@@ -144,37 +152,37 @@ namespace MobileSolutions.DataLayer
             return summary;
         }
 
-        public List<ProductRankingItem> GetSellerMostSoldProducts(int userId, int? year = null, int? month = null)
+        public List<ProductRankingItem> GetSellerMostSoldProducts(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            return ExecuteProductRankingProcedure("sp_GetSellerMostSoldProducts", userId, year, month);
+            return ExecuteProductRankingProcedure("sp_GetSellerMostSoldProducts", userId, year, month, startDate, endDate);
         }
 
-        public List<ProductRankingItem> GetSellerLeastSoldProducts(int userId, int? year = null, int? month = null)
+        public List<ProductRankingItem> GetSellerLeastSoldProducts(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            return ExecuteProductRankingProcedure("sp_GetSellerLeastSoldProducts", userId, year, month);
+            return ExecuteProductRankingProcedure("sp_GetSellerLeastSoldProducts", userId, year, month, startDate, endDate);
         }
 
-        public List<ProductRankingItem> GetSellerTop5Products(int userId, int? year = null, int? month = null)
+        public List<ProductRankingItem> GetSellerTop5Products(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            return ExecuteProductRankingProcedure("sp_GetSellerTop5Products", userId, year, month);
+            return ExecuteProductRankingProcedure("sp_GetSellerTop5Products", userId, year, month, startDate, endDate);
         }
 
-        public List<BrandRankingItem> GetSellerMostSoldBrands(int userId, int? year = null, int? month = null)
+        public List<BrandRankingItem> GetSellerMostSoldBrands(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            return ExecuteBrandRankingProcedure("sp_GetSellerMostSoldBrands", userId, year, month);
+            return ExecuteBrandRankingProcedure("sp_GetSellerMostSoldBrands", userId, year, month, startDate, endDate);
         }
 
-        public List<BrandRankingItem> GetSellerLeastSoldBrands(int userId, int? year = null, int? month = null)
+        public List<BrandRankingItem> GetSellerLeastSoldBrands(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            return ExecuteBrandRankingProcedure("sp_GetSellerLeastSoldBrands", userId, year, month);
+            return ExecuteBrandRankingProcedure("sp_GetSellerLeastSoldBrands", userId, year, month, startDate, endDate);
         }
 
-        public List<BrandRankingItem> GetSellerBrandDistribution(int userId, int? year = null, int? month = null)
+        public List<BrandRankingItem> GetSellerBrandDistribution(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            return ExecuteBrandRankingProcedure("sp_GetSellerBrandDistribution", userId, year, month);
+            return ExecuteBrandRankingProcedure("sp_GetSellerBrandDistribution", userId, year, month, startDate, endDate);
         }
 
-        public List<DailySalesPoint> GetSellerDailyEvolution(int userId, int? year = null, int? month = null)
+        public List<DailySalesPoint> GetSellerDailyEvolution(int userId, int? year = null, int? month = null, DateTime? startDate = null, DateTime? endDate = null)
         {
             var points = new List<DailySalesPoint>();
 
@@ -185,7 +193,7 @@ namespace MobileSolutions.DataLayer
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandTimeout = 30;
-                    AddSellerPeriodParameters(command, userId, year, month);
+                    AddSellerPeriodParameters(command, userId, year, month, startDate, endDate);
 
                     connection.Open();
 
@@ -217,7 +225,7 @@ namespace MobileSolutions.DataLayer
             return points;
         }
 
-        private List<ProductRankingItem> ExecuteProductRankingProcedure(string procedureName, int userId, int? year, int? month)
+        private List<ProductRankingItem> ExecuteProductRankingProcedure(string procedureName, int userId, int? year, int? month, DateTime? startDate = null, DateTime? endDate = null)
         {
             var items = new List<ProductRankingItem>();
 
@@ -228,7 +236,7 @@ namespace MobileSolutions.DataLayer
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandTimeout = 30;
-                    AddSellerPeriodParameters(command, userId, year, month);
+                    AddSellerPeriodParameters(command, userId, year, month, startDate, endDate);
 
                     connection.Open();
 
@@ -263,7 +271,7 @@ namespace MobileSolutions.DataLayer
             return items;
         }
 
-        private List<BrandRankingItem> ExecuteBrandRankingProcedure(string procedureName, int userId, int? year, int? month)
+        private List<BrandRankingItem> ExecuteBrandRankingProcedure(string procedureName, int userId, int? year, int? month, DateTime? startDate = null, DateTime? endDate = null)
         {
             var items = new List<BrandRankingItem>();
 
@@ -274,7 +282,7 @@ namespace MobileSolutions.DataLayer
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandTimeout = 30;
-                    AddSellerPeriodParameters(command, userId, year, month);
+                    AddSellerPeriodParameters(command, userId, year, month, startDate, endDate);
 
                     connection.Open();
 

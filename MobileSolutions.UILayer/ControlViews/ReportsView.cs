@@ -58,9 +58,9 @@ namespace MobileSolutions.UILayer
             string profileName = MobileSolutions.BusinessLayer.CurrentSession.ProfileName.Trim().ToLowerInvariant();
             UserControl? authorizedReport = null;
 
-            bool isManager = profileName.Contains("gerente") || profileName.Contains("manager") || currentProfile == 3;
-            bool isSeller = profileName.Contains("vendedor") || profileName.Contains("seller") || currentProfile == 2;
-            bool isAdmin = profileName.Contains("admin") || currentProfile == 1;
+            bool isAdmin = profileName.Contains("admin") || profileName.Contains("administrador") || currentProfile == 1;
+            bool isManager = profileName.Contains("gerente") || profileName.Contains("manager") || currentProfile == 2;
+            bool isSeller = profileName.Contains("vendedor") || profileName.Contains("seller") || currentProfile == 3;
 
             if (isAdmin)
             {

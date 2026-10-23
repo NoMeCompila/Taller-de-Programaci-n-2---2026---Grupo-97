@@ -42,9 +42,28 @@ namespace MobileSolutions.UILayer
         {
             InitializeComponent();
             _sellerReportService = new SellerReportService();
+
             btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
+
+            btnFilter.Click += (s, e) => RefreshReportData();
+            btnClearFilter.Click += BtnClearFilter_Click;
+
+            InitializeDatePickers();
             ConfigureLayout();
+        }
+
+        private void InitializeDatePickers()
+        {
+            DateTime now = DateTime.Now;
+            dtpDateFrom.Value = new DateTime(now.Year, now.Month, 1);
+            dtpDateTo.Value = new DateTime(now.Year, now.Month, DateTime.DaysInMonth(now.Year, now.Month));
+        }
+
+        private void BtnClearFilter_Click(object? sender, EventArgs e)
+        {
+            InitializeDatePickers();
+            RefreshReportData();
         }
 
         private void ConfigureLayout()
@@ -55,11 +74,25 @@ namespace MobileSolutions.UILayer
 
         public void RefreshReportData()
         {
+            DateTime startDate = dtpDateFrom.Value.Date;
+            DateTime endDate = dtpDateTo.Value.Date;
+
+            if (startDate > endDate)
+            {
+                MessageBox.Show(
+                    "La fecha 'Desde' no puede ser posterior a la fecha 'Hasta'.",
+                    "Rango de Fechas Inválido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             SellerReport report;
 
             try
             {
-                report = _sellerReportService.GetSellerPerformanceReport();
+                Cursor = Cursors.WaitCursor;
+                report = _sellerReportService.GetSellerPerformanceReportByRange(startDate, endDate);
             }
             catch (Exception ex)
             {
@@ -70,6 +103,10 @@ namespace MobileSolutions.UILayer
                     MessageBoxIcon.Warning);
 
                 report = new SellerReport();
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
 
             RenderKpiCards(report);
@@ -97,13 +134,13 @@ namespace MobileSolutions.UILayer
                 : "Sin ventas registradas";
 
             string maxSaleSubtitle = kpi.TotalSalesCount > 0
-                ? "Mayor ticket del mes"
+                ? "Mayor ticket del período"
                 : "Sin ventas registradas";
 
             bool hasMostSoldProducts = report.MostSoldProducts != null && report.MostSoldProducts.Count > 0;
             var mostSoldProductItems = hasMostSoldProducts
                 ? report.MostSoldProducts!.Select(p => p.DisplayText).ToList()
-                : new List<string> { "Sin ventas en el mes" };
+                : new List<string> { "Sin ventas en el período" };
             string mostSoldProductHeader = hasMostSoldProducts
                 ? $"▲ Más ({report.MostSoldProducts!.Count}) — {report.MostSoldProducts[0].UnitsSold} u.:"
                 : "▲ Más (0):";
@@ -119,7 +156,7 @@ namespace MobileSolutions.UILayer
             bool hasMostSoldBrands = report.MostSoldBrands != null && report.MostSoldBrands.Count > 0;
             var mostSoldBrandItems = hasMostSoldBrands
                 ? report.MostSoldBrands!.Select(b => b.DisplayText).ToList()
-                : new List<string> { "Sin ventas en el mes" };
+                : new List<string> { "Sin ventas en el período" };
             string mostSoldBrandHeader = hasMostSoldBrands
                 ? $"▲ Más ({report.MostSoldBrands!.Count}) — {report.MostSoldBrands[0].UnitsSold} u.:"
                 : "▲ Más (0):";
@@ -550,7 +587,7 @@ namespace MobileSolutions.UILayer
             {
                 new LiveCharts.Wpf.Axis
                 {
-                    Title = "Días del mes",
+                    Title = "Días",
                     Labels = dayLabels,
                     Foreground = WpfBrushes.White,
                     ShowLabels = true,

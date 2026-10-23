@@ -24,14 +24,15 @@ namespace MobileSolutions.BusinessLayer
                 throw new UnauthorizedAccessException("Debe iniciar sesión para consultar los reportes gerenciales.");
             }
 
-            // En la base de datos: Profile 1 = Administrador, Profile 2 = Vendedor, Profile 3 = Gerente
-            // Se autoriza a Gerente y Administrador
+            // En la base de datos: Profile 1 = Administrador, Profile 2 = Gerente, Profile 3 = Vendedor
+            // Se autoriza únicamente a Gerente y Administrador
             string profile = CurrentSession.ProfileName.Trim().ToLowerInvariant();
             bool isAuthorized = profile.Contains("gerente") ||
                                 profile.Contains("manager") ||
                                 profile.Contains("admin") ||
+                                profile.Contains("administrador") ||
                                 CurrentSession.ProfileId == 1 ||
-                                CurrentSession.ProfileId == 3;
+                                CurrentSession.ProfileId == 2;
 
             if (!isAuthorized)
             {
