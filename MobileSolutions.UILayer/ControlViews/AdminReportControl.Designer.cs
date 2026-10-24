@@ -1,16 +1,12 @@
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace MobileSolutions.UILayer
 {
     partial class AdminReportControl
     {
-        /// <summary> 
-        /// Variable del diseÒador necesaria.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Limpiar los recursos que se estÈn usando.
-        /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,97 +16,132 @@ namespace MobileSolutions.UILayer
             base.Dispose(disposing);
         }
 
-        #region CÛdigo generado por el DiseÒador de componentes
+        #region C√≥digo generado por el Dise√±ador de componentes
 
-        /// <summary> 
-        /// MÈtodo necesario para admitir el DiseÒador. No se puede modificar
-        /// el contenido de este mÈtodo con el editor de cÛdigo.
-        /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
-            panel1 = new Panel();
-            picSellerTitle = new FontAwesome.Sharp.IconPictureBox();
-            lblSellerTitle = new MaterialSkin.Controls.MaterialLabel();
-            panel2 = new Panel();
+            tlpHeader = new TableLayoutPanel();
+            pnlHeaderTitle = new Panel();
+            picTitle = new FontAwesome.Sharp.IconPictureBox();
+            lblTitle = new MaterialSkin.Controls.MaterialLabel();
+            pnlHeaderActions = new Panel();
+            btnRefresh = new MaterialSkin.Controls.MaterialButton();
             btnLogout = new MaterialSkin.Controls.MaterialButton();
             lblCurrentUser = new MaterialSkin.Controls.MaterialLabel();
-            picProximamente = new FontAwesome.Sharp.IconPictureBox();
-            lblProximamente = new MaterialSkin.Controls.MaterialLabel();
-            tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picSellerTitle).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picProximamente).BeginInit();
+
+            pnlTabsBar = new Panel();
+            btnTabGovernance = new Button();
+            btnTabPriceAudit = new Button();
+
+            pnlBodyContainer = new Panel();
+
+            // Vista 1: Gobierno y DRP
+            pnlGovernanceView = new Panel();
+            tlpKpis = new TableLayoutPanel();
+            pnlAuditGridSection = new Panel();
+            lblAuditGridTitle = new Label();
+            dgvCriticalEvents = new DataGridView();
+
+            // Vista 2: Auditor√≠a de Precios
+            pnlPriceAuditView = new Panel();
+            pnlPriceAuditHeader = new Panel();
+            lblPriceAuditTitle = new Label();
+            lblPriceAuditDescription = new Label();
+            dgvPriceAudit = new DataGridView();
+
+            tlpHeader.SuspendLayout();
+            pnlHeaderTitle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picTitle).BeginInit();
+            pnlHeaderActions.SuspendLayout();
+            pnlTabsBar.SuspendLayout();
+            pnlBodyContainer.SuspendLayout();
+            pnlGovernanceView.SuspendLayout();
+            pnlAuditGridSection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCriticalEvents).BeginInit();
+            pnlPriceAuditView.SuspendLayout();
+            pnlPriceAuditHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvPriceAudit).BeginInit();
             SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.3928566F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.86905F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.6785717F));
-            tableLayoutPanel1.Controls.Add(panel1, 1, 0);
-            tableLayoutPanel1.Controls.Add(panel2, 2, 0);
-            tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1680, 73);
-            tableLayoutPanel1.TabIndex = 39;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(picSellerTitle);
-            panel1.Controls.Add(lblSellerTitle);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(396, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(815, 67);
-            panel1.TabIndex = 0;
-            // 
-            // picSellerTitle
-            // 
-            picSellerTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            picSellerTitle.BackColor = Color.FromArgb(50, 50, 50);
-            picSellerTitle.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
-            picSellerTitle.IconColor = Color.White;
-            picSellerTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picSellerTitle.IconSize = 28;
-            picSellerTitle.Location = new Point(115, 20);
-            picSellerTitle.Name = "picSellerTitle";
-            picSellerTitle.Size = new Size(34, 28);
-            picSellerTitle.TabIndex = 0;
-            picSellerTitle.TabStop = false;
-            // 
-            // lblSellerTitle
-            // 
-            lblSellerTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            lblSellerTitle.AutoSize = true;
-            lblSellerTitle.Depth = 0;
-            lblSellerTitle.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblSellerTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            lblSellerTitle.ForeColor = Color.White;
-            lblSellerTitle.Location = new Point(155, 5);
-            lblSellerTitle.MouseState = MaterialSkin.MouseState.HOVER;
-            lblSellerTitle.Name = "lblSellerTitle";
-            lblSellerTitle.Size = new Size(571, 58);
-            lblSellerTitle.TabIndex = 36;
-            lblSellerTitle.Text = "Reportes de Administrador";
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(btnLogout);
-            panel2.Controls.Add(lblCurrentUser);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(1217, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(460, 67);
-            panel2.TabIndex = 1;
-            // 
+
+            // ==========================================
+            // tlpHeader
+            // ==========================================
+            tlpHeader.ColumnCount = 2;
+            tlpHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpHeader.Controls.Add(pnlHeaderTitle, 0, 0);
+            tlpHeader.Controls.Add(pnlHeaderActions, 1, 0);
+            tlpHeader.Dock = DockStyle.Top;
+            tlpHeader.Location = new Point(0, 0);
+            tlpHeader.Name = "tlpHeader";
+            tlpHeader.RowCount = 1;
+            tlpHeader.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpHeader.Size = new Size(1680, 70);
+            tlpHeader.TabIndex = 0;
+
+            // pnlHeaderTitle
+            pnlHeaderTitle.Controls.Add(picTitle);
+            pnlHeaderTitle.Controls.Add(lblTitle);
+            pnlHeaderTitle.Dock = DockStyle.Fill;
+            pnlHeaderTitle.Location = new Point(3, 3);
+            pnlHeaderTitle.Name = "pnlHeaderTitle";
+            pnlHeaderTitle.Size = new Size(1005, 64);
+            pnlHeaderTitle.TabIndex = 0;
+
+            // picTitle
+            picTitle.BackColor = Color.FromArgb(50, 50, 50);
+            picTitle.IconChar = FontAwesome.Sharp.IconChar.ShieldHalved;
+            picTitle.IconColor = Color.White;
+            picTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            picTitle.IconSize = 36;
+            picTitle.Location = new Point(15, 16);
+            picTitle.Name = "picTitle";
+            picTitle.Size = new Size(40, 36);
+            picTitle.TabIndex = 0;
+            picTitle.TabStop = false;
+
+            // lblTitle
+            lblTitle.AutoSize = true;
+            lblTitle.Depth = 0;
+            lblTitle.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblTitle.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(65, 14);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(580, 41);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Gobernanza, Auditor√≠a y Mantenimiento";
+
+            // pnlHeaderActions
+            pnlHeaderActions.Controls.Add(btnRefresh);
+            pnlHeaderActions.Controls.Add(btnLogout);
+            pnlHeaderActions.Controls.Add(lblCurrentUser);
+            pnlHeaderActions.Dock = DockStyle.Fill;
+            pnlHeaderActions.Location = new Point(1014, 3);
+            pnlHeaderActions.Name = "pnlHeaderActions";
+            pnlHeaderActions.Size = new Size(663, 64);
+            pnlHeaderActions.TabIndex = 1;
+
+            // btnRefresh
+            btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnRefresh.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnRefresh.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnRefresh.Depth = 0;
+            btnRefresh.HighEmphasis = true;
+            btnRefresh.Icon = null;
+            btnRefresh.Location = new Point(370, 16);
+            btnRefresh.Margin = new Padding(4, 6, 4, 6);
+            btnRefresh.MouseState = MaterialSkin.MouseState.HOVER;
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.NoAccentTextColor = Color.Empty;
+            btnRefresh.Size = new Size(110, 36);
+            btnRefresh.TabIndex = 0;
+            btnRefresh.Text = "Actualizar";
+            btnRefresh.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnRefresh.UseAccentColor = false;
+            btnRefresh.UseVisualStyleBackColor = true;
+
             // btnLogout
-            // 
             btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnLogout.BackColor = Color.Firebrick;
@@ -118,89 +149,263 @@ namespace MobileSolutions.UILayer
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
             btnLogout.Icon = null;
-            btnLogout.Location = new Point(329, 31);
-            btnLogout.Margin = new Padding(10);
+            btnLogout.Location = new Point(495, 16);
+            btnLogout.Margin = new Padding(4, 6, 4, 6);
             btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogout.Name = "btnLogout";
             btnLogout.NoAccentTextColor = Color.Empty;
-            btnLogout.Size = new Size(131, 36);
-            btnLogout.TabIndex = 3;
-            btnLogout.Text = "Cerrar Sesion";
+            btnLogout.Size = new Size(150, 36);
+            btnLogout.TabIndex = 1;
+            btnLogout.Text = "Cerrar Sesi√≥n";
             btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = false;
-            // 
+
             // lblCurrentUser
-            // 
             lblCurrentUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblCurrentUser.AutoSize = true;
             lblCurrentUser.Depth = 0;
-            lblCurrentUser.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            lblCurrentUser.Location = new Point(329, 5);
-            lblCurrentUser.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCurrentUser.Font = new Font("Roboto Medium", 16F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblCurrentUser.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1;
+            lblCurrentUser.Location = new Point(220, 24);
             lblCurrentUser.Name = "lblCurrentUser";
-            lblCurrentUser.Size = new Size(79, 24);
+            lblCurrentUser.Size = new Size(65, 19);
             lblCurrentUser.TabIndex = 2;
             lblCurrentUser.Text = "[Usuario]";
-            // 
-            // picProximamente
-            // 
-            picProximamente.BackColor = Color.Yellow;
-            picProximamente.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            picProximamente.IconChar = FontAwesome.Sharp.IconChar.None;
-            picProximamente.IconColor = Color.FromArgb(222, 0, 0, 0);
-            picProximamente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            picProximamente.IconSize = 75;
-            picProximamente.Location = new Point(333, 276);
-            picProximamente.Name = "picProximamente";
-            picProximamente.Size = new Size(85, 75);
-            picProximamente.TabIndex = 49;
-            picProximamente.TabStop = false;
-            // 
-            // lblProximamente
-            // 
-            lblProximamente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblProximamente.AutoSize = true;
-            lblProximamente.Depth = 0;
-            lblProximamente.Font = new Font("Roboto Light", 96F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblProximamente.FontType = MaterialSkin.MaterialSkinManager.fontType.H1;
-            lblProximamente.Location = new Point(445, 255);
-            lblProximamente.MouseState = MaterialSkin.MouseState.HOVER;
-            lblProximamente.Name = "lblProximamente";
-            lblProximamente.Size = new Size(770, 115);
-            lblProximamente.TabIndex = 50;
-            lblProximamente.Text = "En Mantenimiento";
-            // 
+
+            // ==========================================
+            // pnlTabsBar
+            // ==========================================
+            pnlTabsBar.BackColor = Color.FromArgb(42, 42, 42);
+            pnlTabsBar.Controls.Add(btnTabGovernance);
+            pnlTabsBar.Controls.Add(btnTabPriceAudit);
+            pnlTabsBar.Dock = DockStyle.Top;
+            pnlTabsBar.Location = new Point(0, 70);
+            pnlTabsBar.Name = "pnlTabsBar";
+            pnlTabsBar.Size = new Size(1680, 44);
+            pnlTabsBar.TabIndex = 1;
+
+            // btnTabGovernance
+            btnTabGovernance.BackColor = Color.FromArgb(25, 118, 210);
+            btnTabGovernance.Cursor = Cursors.Hand;
+            btnTabGovernance.FlatAppearance.BorderSize = 0;
+            btnTabGovernance.FlatStyle = FlatStyle.Flat;
+            btnTabGovernance.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTabGovernance.ForeColor = Color.White;
+            btnTabGovernance.Location = new Point(15, 4);
+            btnTabGovernance.Name = "btnTabGovernance";
+            btnTabGovernance.Size = new Size(320, 36);
+            btnTabGovernance.TabIndex = 0;
+            btnTabGovernance.Text = "Gobierno & Infraestructura DRP";
+            btnTabGovernance.UseVisualStyleBackColor = false;
+
+            // btnTabPriceAudit
+            btnTabPriceAudit.BackColor = Color.FromArgb(46, 46, 46);
+            btnTabPriceAudit.Cursor = Cursors.Hand;
+            btnTabPriceAudit.FlatAppearance.BorderSize = 0;
+            btnTabPriceAudit.FlatStyle = FlatStyle.Flat;
+            btnTabPriceAudit.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            btnTabPriceAudit.ForeColor = Color.FromArgb(210, 210, 210);
+            btnTabPriceAudit.Location = new Point(345, 4);
+            btnTabPriceAudit.Name = "btnTabPriceAudit";
+            btnTabPriceAudit.Size = new Size(340, 36);
+            btnTabPriceAudit.TabIndex = 1;
+            btnTabPriceAudit.Text = "Auditor√≠a de Precios de Productos (Trigger)";
+            btnTabPriceAudit.UseVisualStyleBackColor = false;
+
+            // ==========================================
+            // pnlBodyContainer
+            // ==========================================
+            pnlBodyContainer.Controls.Add(pnlGovernanceView);
+            pnlBodyContainer.Controls.Add(pnlPriceAuditView);
+            pnlBodyContainer.Dock = DockStyle.Fill;
+            pnlBodyContainer.Location = new Point(0, 114);
+            pnlBodyContainer.Name = "pnlBodyContainer";
+            pnlBodyContainer.Size = new Size(1680, 816);
+            pnlBodyContainer.TabIndex = 2;
+
+            // ==========================================
+            // pnlGovernanceView
+            // ==========================================
+            pnlGovernanceView.Controls.Add(pnlAuditGridSection);
+            pnlGovernanceView.Controls.Add(tlpKpis);
+            pnlGovernanceView.Dock = DockStyle.Fill;
+            pnlGovernanceView.Location = new Point(0, 0);
+            pnlGovernanceView.Name = "pnlGovernanceView";
+            pnlGovernanceView.Padding = new Padding(15);
+            pnlGovernanceView.Size = new Size(1680, 816);
+            pnlGovernanceView.TabIndex = 0;
+
+            // tlpKpis (2 filas x 4 columnas)
+            tlpKpis.ColumnCount = 4;
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpKpis.Dock = DockStyle.Top;
+            tlpKpis.Location = new Point(15, 15);
+            tlpKpis.Name = "tlpKpis";
+            tlpKpis.RowCount = 2;
+            tlpKpis.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpKpis.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpKpis.Size = new Size(1650, 310);
+            tlpKpis.TabIndex = 0;
+
+            // pnlAuditGridSection
+            pnlAuditGridSection.Controls.Add(dgvCriticalEvents);
+            pnlAuditGridSection.Controls.Add(lblAuditGridTitle);
+            pnlAuditGridSection.Dock = DockStyle.Fill;
+            pnlAuditGridSection.Location = new Point(15, 325);
+            pnlAuditGridSection.Name = "pnlAuditGridSection";
+            pnlAuditGridSection.Padding = new Padding(0, 10, 0, 0);
+            pnlAuditGridSection.Size = new Size(1650, 476);
+            pnlAuditGridSection.TabIndex = 1;
+
+            // lblAuditGridTitle
+            lblAuditGridTitle.AutoSize = true;
+            lblAuditGridTitle.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblAuditGridTitle.ForeColor = Color.White;
+            lblAuditGridTitle.Location = new Point(2, 12);
+            lblAuditGridTitle.Name = "lblAuditGridTitle";
+            lblAuditGridTitle.Size = new Size(480, 21);
+            lblAuditGridTitle.TabIndex = 0;
+            lblAuditGridTitle.Text = "Registro de Actividad Operativa Cr√≠tica (√öltimos 15 eventos - AC2)";
+
+            // dgvCriticalEvents
+            dgvCriticalEvents.AllowUserToAddRows = false;
+            dgvCriticalEvents.AllowUserToDeleteRows = false;
+            dgvCriticalEvents.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCriticalEvents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCriticalEvents.BackgroundColor = Color.FromArgb(42, 42, 42);
+            dgvCriticalEvents.BorderStyle = BorderStyle.None;
+            dgvCriticalEvents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCriticalEvents.Location = new Point(2, 40);
+            dgvCriticalEvents.MultiSelect = false;
+            dgvCriticalEvents.Name = "dgvCriticalEvents";
+            dgvCriticalEvents.ReadOnly = true;
+            dgvCriticalEvents.RowHeadersVisible = false;
+            dgvCriticalEvents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCriticalEvents.Size = new Size(1646, 425);
+            dgvCriticalEvents.TabIndex = 1;
+
+            // ==========================================
+            // pnlPriceAuditView
+            // ==========================================
+            pnlPriceAuditView.Controls.Add(dgvPriceAudit);
+            pnlPriceAuditView.Controls.Add(pnlPriceAuditHeader);
+            pnlPriceAuditView.Dock = DockStyle.Fill;
+            pnlPriceAuditView.Location = new Point(0, 0);
+            pnlPriceAuditView.Name = "pnlPriceAuditView";
+            pnlPriceAuditView.Padding = new Padding(15);
+            pnlPriceAuditView.Size = new Size(1680, 816);
+            pnlPriceAuditView.TabIndex = 1;
+            pnlPriceAuditView.Visible = false;
+
+            // pnlPriceAuditHeader
+            pnlPriceAuditHeader.Controls.Add(lblPriceAuditDescription);
+            pnlPriceAuditHeader.Controls.Add(lblPriceAuditTitle);
+            pnlPriceAuditHeader.Dock = DockStyle.Top;
+            pnlPriceAuditHeader.Location = new Point(15, 15);
+            pnlPriceAuditHeader.Name = "pnlPriceAuditHeader";
+            pnlPriceAuditHeader.Size = new Size(1650, 60);
+            pnlPriceAuditHeader.TabIndex = 0;
+
+            // lblPriceAuditTitle
+            lblPriceAuditTitle.AutoSize = true;
+            lblPriceAuditTitle.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPriceAuditTitle.ForeColor = Color.White;
+            lblPriceAuditTitle.Location = new Point(2, 5);
+            lblPriceAuditTitle.Name = "lblPriceAuditTitle";
+            lblPriceAuditTitle.Size = new Size(430, 25);
+            lblPriceAuditTitle.TabIndex = 0;
+            lblPriceAuditTitle.Text = "Historial de Cambios de Precios (Trigger SQL Server)";
+
+            // lblPriceAuditDescription
+            lblPriceAuditDescription.AutoSize = true;
+            lblPriceAuditDescription.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPriceAuditDescription.ForeColor = Color.FromArgb(180, 180, 180);
+            lblPriceAuditDescription.Location = new Point(2, 33);
+            lblPriceAuditDescription.Name = "lblPriceAuditDescription";
+            lblPriceAuditDescription.Size = new Size(720, 17);
+            lblPriceAuditDescription.TabIndex = 1;
+            lblPriceAuditDescription.Text = "Auditor√≠a en tiempo real disparada por el trigger trg_Product_PriceAudit ante modificaciones en precios de compra o venta.";
+
+            // dgvPriceAudit
+            dgvPriceAudit.AllowUserToAddRows = false;
+            dgvPriceAudit.AllowUserToDeleteRows = false;
+            dgvPriceAudit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvPriceAudit.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPriceAudit.BackgroundColor = Color.FromArgb(42, 42, 42);
+            dgvPriceAudit.BorderStyle = BorderStyle.None;
+            dgvPriceAudit.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPriceAudit.Location = new Point(15, 80);
+            dgvPriceAudit.MultiSelect = false;
+            dgvPriceAudit.Name = "dgvPriceAudit";
+            dgvPriceAudit.ReadOnly = true;
+            dgvPriceAudit.RowHeadersVisible = false;
+            dgvPriceAudit.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPriceAudit.Size = new Size(1650, 720);
+            dgvPriceAudit.TabIndex = 1;
+
+            // ==========================================
             // AdminReportControl
-            // 
+            // ==========================================
             AutoScaleMode = AutoScaleMode.None;
-            Controls.Add(lblProximamente);
-            Controls.Add(picProximamente);
-            Controls.Add(tableLayoutPanel1);
+            BackColor = Color.FromArgb(50, 50, 50);
+            Controls.Add(pnlBodyContainer);
+            Controls.Add(pnlTabsBar);
+            Controls.Add(tlpHeader);
             Name = "AdminReportControl";
             Size = new Size(1680, 930);
-            tableLayoutPanel1.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picSellerTitle).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picProximamente).EndInit();
+
+            tlpHeader.ResumeLayout(false);
+            pnlHeaderTitle.ResumeLayout(false);
+            pnlHeaderTitle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picTitle).EndInit();
+            pnlHeaderActions.ResumeLayout(false);
+            pnlHeaderActions.PerformLayout();
+            pnlTabsBar.ResumeLayout(false);
+            pnlBodyContainer.ResumeLayout(false);
+            pnlGovernanceView.ResumeLayout(false);
+            pnlAuditGridSection.ResumeLayout(false);
+            pnlAuditGridSection.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCriticalEvents).EndInit();
+            pnlPriceAuditView.ResumeLayout(false);
+            pnlPriceAuditHeader.ResumeLayout(false);
+            pnlPriceAuditHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvPriceAudit).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
-        private FontAwesome.Sharp.IconPictureBox picSellerTitle;
-        private MaterialSkin.Controls.MaterialLabel lblSellerTitle;
-        private Panel panel2;
-        private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
+        private TableLayoutPanel tlpHeader;
+        private Panel pnlHeaderTitle;
+        private FontAwesome.Sharp.IconPictureBox picTitle;
+        private MaterialSkin.Controls.MaterialLabel lblTitle;
+        private Panel pnlHeaderActions;
+        private MaterialSkin.Controls.MaterialButton btnRefresh;
         private MaterialSkin.Controls.MaterialButton btnLogout;
-        private FontAwesome.Sharp.IconPictureBox picProximamente;
-        private MaterialSkin.Controls.MaterialLabel lblProximamente;
+        private MaterialSkin.Controls.MaterialLabel lblCurrentUser;
+
+        private Panel pnlTabsBar;
+        private Button btnTabGovernance;
+        private Button btnTabPriceAudit;
+
+        private Panel pnlBodyContainer;
+
+        // Vista 1: Gobierno
+        private Panel pnlGovernanceView;
+        private TableLayoutPanel tlpKpis;
+        private Panel pnlAuditGridSection;
+        private Label lblAuditGridTitle;
+        private DataGridView dgvCriticalEvents;
+
+        // Vista 2: Precios
+        private Panel pnlPriceAuditView;
+        private Panel pnlPriceAuditHeader;
+        private Label lblPriceAuditTitle;
+        private Label lblPriceAuditDescription;
+        private DataGridView dgvPriceAudit;
     }
 }

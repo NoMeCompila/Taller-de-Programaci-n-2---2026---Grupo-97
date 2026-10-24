@@ -49,6 +49,10 @@ namespace MobileSolutions.UILayer
                 {
                     managerReport.RefreshReportData();
                 }
+                else if (pnlContainer.Controls[0] is AdminReportControl adminReport)
+                {
+                    adminReport.RefreshDashboardData();
+                }
             }
         }
 
