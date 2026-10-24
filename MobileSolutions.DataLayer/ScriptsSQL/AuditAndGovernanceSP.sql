@@ -220,7 +220,7 @@ GO
 -- 6. SP: OBTENER LOS ÚLTIMOS EVENTOS CRÍTICOS (sp_GetLastCriticalAuditEvents)
 -- ============================================================================
 CREATE OR ALTER PROCEDURE dbo.sp_GetLastCriticalAuditEvents
-    @TopCount INT = 15
+    @TopCount INT = 100
 AS
 BEGIN
     SET NOCOUNT ON;
