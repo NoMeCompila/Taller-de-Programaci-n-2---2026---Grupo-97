@@ -290,6 +290,18 @@ namespace MobileSolutions.UILayer
                 ExecuteDatabaseBackup(SelectedBackupDestinationPath, backupFileName);
                 BackupActionRequested?.Invoke(this, EventArgs.Empty);
 
+                string actor = !string.IsNullOrWhiteSpace(Admin1Username)
+                    ? Admin1Username
+                    : (!string.IsNullOrWhiteSpace(MobileSolutions.BusinessLayer.CurrentSession.Username)
+                        ? MobileSolutions.BusinessLayer.CurrentSession.Username
+                        : "Administrador");
+
+                new MobileSolutions.BusinessLayer.AuditService().RecordEvent(
+                    "Backup Created",
+                    actor,
+                    "Success",
+                    $"Archivo generado: {backupFileName}");
+
                 MaterialMessageBox.Show(
                     $"\"{backupFileName}\" generado correctamente",
                     "Backup Generado",

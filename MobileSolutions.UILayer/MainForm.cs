@@ -238,6 +238,14 @@ namespace MobileSolutions.UILayer
                 return;
             }
 
+            string actor = !string.IsNullOrWhiteSpace(_currentUser)
+                ? _currentUser
+                : (!string.IsNullOrWhiteSpace(MobileSolutions.BusinessLayer.CurrentSession.Username)
+                    ? MobileSolutions.BusinessLayer.CurrentSession.Username
+                    : "Usuario");
+
+            new MobileSolutions.BusinessLayer.AuditService().RecordEvent("Logout", actor, "Success", "Cierre de sesión manual");
+
             // 1. Limpiar estado de sesión
             MobileSolutions.BusinessLayer.CurrentSession.ClearSession();
 
