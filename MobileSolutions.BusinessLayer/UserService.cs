@@ -19,11 +19,13 @@ namespace MobileSolutions.BusinessLayer
     {
         private readonly UserDal _userDal;
         private readonly DatabaseConnection _dbConnection;
+        private readonly AuditDal _auditDal;
 
         public UserService()
         {
             _userDal = new UserDal();
             _dbConnection = new DatabaseConnection();
+            _auditDal = new AuditDal();
         }
 
         public List<User> GetActiveUsers()
@@ -85,6 +87,8 @@ namespace MobileSolutions.BusinessLayer
                 int newId = _userDal.CreateUser(user);
                 if (newId > 0)
                 {
+                    string actor = !string.IsNullOrWhiteSpace(CurrentSession.Username) ? CurrentSession.Username : "Sistema";
+                    _auditDal.RecordAuditEvent("User Created", actor, "Success", $"Usuario creado: {user.Username} (ID: {newId})");
                     return (true, "Usuario agregado correctamente.");
                 }
 
@@ -152,6 +156,8 @@ namespace MobileSolutions.BusinessLayer
                 bool updated = _userDal.UpdateUser(user);
                 if (updated)
                 {
+                    string actor = !string.IsNullOrWhiteSpace(CurrentSession.Username) ? CurrentSession.Username : "Sistema";
+                    _auditDal.RecordAuditEvent("User Modified", actor, "Success", $"Usuario modificado: {user.Username} (ID: {user.UserId})");
                     return (true, "Usuario actualizado correctamente.");
                 }
 
@@ -194,6 +200,8 @@ namespace MobileSolutions.BusinessLayer
                 bool deleted = _userDal.SoftDeleteUser(userId);
                 if (deleted)
                 {
+                    string actor = !string.IsNullOrWhiteSpace(CurrentSession.Username) ? CurrentSession.Username : "Sistema";
+                    _auditDal.RecordAuditEvent("User Modified", actor, "Success", $"Baja lógica de usuario ID: {userId}");
                     return (true, "Usuario dado de baja correctamente.");
                 }
 
@@ -221,6 +229,8 @@ namespace MobileSolutions.BusinessLayer
                 bool reactivated = _userDal.ReactivateUser(userId);
                 if (reactivated)
                 {
+                    string actor = !string.IsNullOrWhiteSpace(CurrentSession.Username) ? CurrentSession.Username : "Sistema";
+                    _auditDal.RecordAuditEvent("User Modified", actor, "Success", $"Reactivación de usuario ID: {userId}");
                     return (true, "Usuario reactivado correctamente.");
                 }
 
@@ -297,6 +307,7 @@ namespace MobileSolutions.BusinessLayer
         {
             if (string.IsNullOrWhiteSpace(usernameOrEmail) || string.IsNullOrWhiteSpace(password))
             {
+                _auditDal.RecordAuditEvent("Login", string.IsNullOrWhiteSpace(usernameOrEmail) ? "Desconocido" : usernameOrEmail.Trim(), "Failure", "Campos de usuario o contraseña vacíos");
                 return (false, "Por favor ingrese usuario y contraseña.", null);
             }
 
@@ -306,9 +317,11 @@ namespace MobileSolutions.BusinessLayer
                 User? user = _userDal.ValidateLogin(usernameOrEmail.Trim(), hashedPassword);
                 if (user == null)
                 {
+                    _auditDal.RecordAuditEvent("Login", usernameOrEmail.Trim(), "Failure", "Usuario o contraseña inválidos o cuenta inactiva");
                     return (false, "Usuario o contraseña no válidos, o la cuenta está inactiva.", null);
                 }
 
+                _auditDal.RecordAuditEvent("Login", user.Username, "Success", "Inicio de sesión correcto");
                 return (true, "Inicio de sesión correcto.", user);
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
