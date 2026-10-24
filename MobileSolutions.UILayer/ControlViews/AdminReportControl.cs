@@ -217,7 +217,7 @@ namespace MobileSolutions.UILayer
                 ? "Intentos rechazados en las últimas 24h"
                 : "Sin rechazos en las últimas 24h";
             tlpKpis.Controls.Add(CreateKpiCard(
-                IconChar.ShieldAlert,
+                IconChar.UserShield,
                 "Intentos Fallidos (24h)",
                 metrics.FailedLoginsLast24Hours.ToString(),
                 failedSubtitle,
