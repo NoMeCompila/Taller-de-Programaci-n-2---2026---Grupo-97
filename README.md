@@ -50,17 +50,9 @@ Interfaz de usuario de escritorio construida en Windows Forms con MaterialSkin.2
   * 🛡️ [`UserView.cs`](MobileSolutions.UILayer/ControlViews/UserView.cs): Gestión de usuarios, credenciales y perfiles de acceso.
   * 📊 [`ReportsView.cs`](MobileSolutions.UILayer/ControlViews/ReportsView.cs) | [`ManagerReportControl.cs`](MobileSolutions.UILayer/ControlViews/ManagerReportControl.cs) | [`SellerReportControl.cs`](MobileSolutions.UILayer/ControlViews/SellerReportControl.cs) | [`AdminReportControl.cs`](MobileSolutions.UILayer/ControlViews/AdminReportControl.cs): Reportes estadísticos y gráficos analíticos.
   * 💾 [`BackupView.cs`](MobileSolutions.UILayer/ControlViews/BackupView.cs): Copias de seguridad y restauración del sistema.
-* 📂 [`MobileSolutions.UILayer/Contracts/`](MobileSolutions.UILayer/Contracts/): **Contratos e Interfaces**
-  * 🔌 [`ILogoutSupport.cs`](MobileSolutions.UILayer/Contracts/ILogoutSupport.cs): Contrato de soporte para cierre de sesión y reinicio de contexto.
-* 📄 [`MobileSolutions.UILayer/LoginForm.cs`](MobileSolutions.UILayer/LoginForm.cs): Formulario de autenticación y validación de credenciales.
-* 📄 [`MobileSolutions.UILayer/MainForm.cs`](MobileSolutions.UILayer/MainForm.cs): Ventana contenedora principal con barra de navegación y control de roles.
-* 📄 [`MobileSolutions.UILayer/Program.cs`](MobileSolutions.UILayer/Program.cs): Punto de entrada y ciclo de vida de la aplicación.
-* ⚙️ [`MobileSolutions.UILayer/MobileSolutions.UILayer.csproj`](MobileSolutions.UILayer/MobileSolutions.UILayer.csproj): Archivo de configuración del proyecto de UI.
 
 ### 📁 [`MobileSolutions.BusinessLayer/`](MobileSolutions.BusinessLayer/) — Capa de Lógica de Negocio (BLL)
 Reglas de validación, lógica de dominio, hashing de contraseñas y procesamiento comercial.
-* 📂 [`MobileSolutions.BusinessLayer/Models/`](MobileSolutions.BusinessLayer/Models/): **Modelos de Dominio y DTOs**
-  * 📊 [`ManagerReport.cs`](MobileSolutions.BusinessLayer/Models/ManagerReport.cs): Modelo de consolidación analítica gerencial.
 * ⚙️ **Servicios de Negocio:**
   * 🔐 [`UserService.cs`](MobileSolutions.BusinessLayer/UserService.cs) | [`PasswordResetService.cs`](MobileSolutions.BusinessLayer/PasswordResetService.cs): Control de usuarios, restablecimiento y hashing SHA-256.
   * 🛒 [`SaleService.cs`](MobileSolutions.BusinessLayer/SaleService.cs) | [`TicketReportService.cs`](MobileSolutions.BusinessLayer/TicketReportService.cs): Procesamiento transaccional de ventas y emisión de tickets.
@@ -69,7 +61,6 @@ Reglas de validación, lógica de dominio, hashing de contraseñas y procesamien
   * 📈 [`ManagerReportService.cs`](MobileSolutions.BusinessLayer/ManagerReportService.cs) | [`SellerReportService.cs`](MobileSolutions.BusinessLayer/SellerReportService.cs): Lógica de cálculo de reportes y métricas operativas.
   * 🛡️ [`AuditService.cs`](MobileSolutions.BusinessLayer/AuditService.cs): Auditoría de eventos y trazabilidad del sistema.
   * 👤 [`CurrentSession.cs`](MobileSolutions.BusinessLayer/CurrentSession.cs): Gestión de sesión del usuario en memoria.
-* ⚙️ [`MobileSolutions.BusinessLayer/MobileSolutions.BusinessLayer.csproj`](MobileSolutions.BusinessLayer/MobileSolutions.BusinessLayer.csproj): Archivo de configuración del proyecto de lógica de negocio.
 
 ### 📁 [`MobileSolutions.DataLayer/`](MobileSolutions.DataLayer/) — Capa de Acceso a Datos (DAL) y Persistencia
 Conexión a base de datos, procedimientos almacenados y mapeo objeto-relacional mediante ADO.NET.
@@ -81,21 +72,6 @@ Conexión a base de datos, procedimientos almacenados y mapeo objeto-relacional 
     * 📦 [`ProductSP.sql`](MobileSolutions.DataLayer/ScriptsSQL/ProductSP.sql): SPs de productos, marcas y stock.
     * 🛒 [`SaleSP.sql`](MobileSolutions.DataLayer/ScriptsSQL/SaleSP.sql): SPs de registro transaccional de ventas.
     * 📊 [`ManagerReportSP.sql`](MobileSolutions.DataLayer/ScriptsSQL/ManagerReportSP.sql) | [`SellerReportSP.sql`](MobileSolutions.DataLayer/ScriptsSQL/SellerReportSP.sql): SPs de reportes analíticos y estadísticos.
-  * 📥 **Carga de Datos Iniciales y de Prueba (DML):**
-    * 👥 [`usersData.sql`](MobileSolutions.DataLayer/ScriptsSQL/usersData.sql) | [`customersData.sql`](MobileSolutions.DataLayer/ScriptsSQL/customersData.sql) | [`productData.sql`](MobileSolutions.DataLayer/ScriptsSQL/productData.sql) | [`SalesData.sql`](MobileSolutions.DataLayer/ScriptsSQL/SalesData.sql)
-* 📂 [`MobileSolutions.DataLayer/Models/`](MobileSolutions.DataLayer/Models/): **Entidades y Modelos de Persistencia**
-  * 👤 [`User.cs`](MobileSolutions.DataLayer/Models/User.cs) | 👥 [`Customer.cs`](MobileSolutions.DataLayer/Models/Customer.cs) | 📦 [`Product.cs`](MobileSolutions.DataLayer/Models/Product.cs) | 🏷️ [`Brand.cs`](MobileSolutions.DataLayer/Models/Brand.cs)
-  * 💳 [`PaymentType.cs`](MobileSolutions.DataLayer/Models/PaymentType.cs) | 🧾 [`SaleHeader.cs`](MobileSolutions.DataLayer/Models/SaleHeader.cs) | 📋 [`SaleDetail.cs`](MobileSolutions.DataLayer/Models/SaleDetail.cs)
-  * 🛡️ [`AuditEvent.cs`](MobileSolutions.DataLayer/Models/AuditEvent.cs) | 📈 [`ManagerReport.cs`](MobileSolutions.DataLayer/Models/ManagerReport.cs) | 📊 [`SellerReport.cs`](MobileSolutions.DataLayer/Models/SellerReport.cs) | 📊 [`AdminDashboardMetrics.cs`](MobileSolutions.DataLayer/Models/AdminDashboardMetrics.cs)
-* 🔌 [`DatabaseConnection.cs`](MobileSolutions.DataLayer/DatabaseConnection.cs): Conexión centralizada ADO.NET a Microsoft SQL Server.
-* 🗄️ **Componentes DAL:**
-  * [`UserDal.cs`](MobileSolutions.DataLayer/UserDal.cs), [`CustomerDal.cs`](MobileSolutions.DataLayer/CustomerDal.cs), [`ProductDal.cs`](MobileSolutions.DataLayer/ProductDal.cs), [`SaleDal.cs`](MobileSolutions.DataLayer/SaleDal.cs), [`ManagerReportDal.cs`](MobileSolutions.DataLayer/ManagerReportDal.cs), [`SellerReportDal.cs`](MobileSolutions.DataLayer/SellerReportDal.cs), [`AuditDal.cs`](MobileSolutions.DataLayer/AuditDal.cs).
-* ⚙️ [`MobileSolutions.DataLayer/MobileSolutions.DataLayer.csproj`](MobileSolutions.DataLayer/MobileSolutions.DataLayer.csproj): Archivo de configuración del proyecto de datos.
-
-### ⚙️ Archivos de Solución y Configuración Raíz
-* 📄 [`MobileSolutions.slnx`](MobileSolutions.slnx): Archivo de solución XML (.slnx) de Visual Studio.
-* 📄 [`.gitignore`](.gitignore): Configuración de exclusiones de Git para artefactos de compilación (`bin/`, `obj/`, `.vs/`).
-* 📄 [`ticketSample.html`](ticketSample.html): Plantilla base de ticket de venta.
 
 ---
 
