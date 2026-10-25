@@ -71,6 +71,13 @@ namespace MobileSolutions.UILayer
             {
                 SetCurrentUserInLabels(tab, _currentUser);
             }
+
+            // 7. Wire decoupled backup database generation action (Opción A)
+            backupView1.BackupDatabaseAction = (destinationDir, fileName) =>
+            {
+                var backupService = new MobileSolutions.BusinessLayer.BackupService();
+                backupService.CreateBackup(destinationDir, fileName);
+            };
         }
 
         private void InitializeTabCacheAndIcons()

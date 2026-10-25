@@ -253,17 +253,17 @@ namespace MobileSolutions.UILayer
 
         /// <summary>
         /// Construye el nombre del archivo de backup con el formato:
-        /// "MobileSolution-dd/mm/yyyy-HH/MM/SS.ss.bak"
+        /// "MobileSolution-dd-MM-yyyy-HH-mm-ss.ff.bak"
         /// </summary>
         public static string BuildBackupFileName(DateTime? timestamp = null)
         {
             DateTime now = timestamp ?? DateTime.Now;
-            return $"MobileSolution-{now.ToString("dd/MM/yyyy-HH/mm/ss.ff", CultureInfo.InvariantCulture)}.bak";
+            return $"MobileSolution-{now.ToString("dd-MM-yyyy-HH-mm-ss.ff", CultureInfo.InvariantCulture)}.bak";
         }
 
         /// <summary>
         /// Construye el mensaje de confirmación de backup con el formato:
-        /// "\"MobileSolution-dd/mm/yyyy-HH/MM/SS.ss.bak\" generado correctamente"
+        /// "\"MobileSolution-dd-MM-yyyy-HH-mm-ss.ff.bak\" generado correctamente"
         /// </summary>
         public static string BuildBackupSuccessMessage(DateTime? timestamp = null)
         {
