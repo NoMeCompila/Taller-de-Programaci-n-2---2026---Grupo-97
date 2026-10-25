@@ -39,5 +39,65 @@ namespace MobileSolutions.DataLayer
             connection.Open();
             command.ExecuteNonQuery();
         }
+
+        /// <summary>
+        /// Ejecuta la restauración de MobileSolutionsDB conectándose a la base de datos master,
+        /// forzando SINGLE_USER para terminar conexiones existentes, restaurando con REPLACE y RECOVERY,
+        /// y reestableciendo MULTI_USER para dejar la base disponible inmediatamente.
+        /// </summary>
+        /// <param name="fullBackupPath">Ruta absoluta del archivo .bak seleccionado.</param>
+        public void ExecuteDatabaseRestore(string fullBackupPath)
+        {
+            if (string.IsNullOrWhiteSpace(fullBackupPath))
+            {
+                throw new ArgumentException("La ruta del archivo de backup (.bak) no puede estar vacía.", nameof(fullBackupPath));
+            }
+
+            // 1. Limpiar pools de conexión antes del restore para evitar bloqueos de clientes inactivos
+            SqlConnection.ClearAllPools();
+
+            const string restoreSql = @"
+                RESTORE VERIFYONLY FROM DISK = @BackupPath;
+
+                ALTER DATABASE [MobileSolutionsDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+                BEGIN TRY
+                    RESTORE DATABASE [MobileSolutionsDB]
+                    FROM DISK = @BackupPath
+                    WITH REPLACE, RECOVERY;
+
+                    ALTER DATABASE [MobileSolutionsDB] SET MULTI_USER;
+                END TRY
+                BEGIN CATCH
+                    IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'MobileSolutionsDB' AND user_access_desc = 'SINGLE_USER')
+                    BEGIN
+                        ALTER DATABASE [MobileSolutionsDB] SET MULTI_USER;
+                    END;
+                    THROW;
+                END CATCH";
+
+            try
+            {
+                using SqlConnection masterConnection = _dbConnection.GetMasterConnection();
+                using SqlCommand command = new SqlCommand(restoreSql, masterConnection)
+                {
+                    CommandType = CommandType.Text,
+                    CommandTimeout = 300 // Timeout extendido de 5 minutos
+                };
+
+                command.Parameters.Add(new SqlParameter("@BackupPath", SqlDbType.NVarChar, 500)
+                {
+                    Value = fullBackupPath
+                });
+
+                masterConnection.Open();
+                command.ExecuteNonQuery();
+            }
+            finally
+            {
+                // 2. Limpiar pools nuevamente para que la aplicación reabra conexiones sobre la base restaurada
+                SqlConnection.ClearAllPools();
+            }
+        }
     }
 }

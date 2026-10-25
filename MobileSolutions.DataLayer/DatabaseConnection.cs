@@ -5,8 +5,7 @@ namespace MobileSolutions.DataLayer
 {
     public class DatabaseConnection
     {
-        
-        private string dbName ;
+        private string dbName;
         private string dbServer;
         private string tConnection;
         private string tServerCert;
@@ -18,7 +17,6 @@ namespace MobileSolutions.DataLayer
             this.tConnection = "True";
             this.tServerCert = "True";
         }
-
 
         public SqlConnection GetConnection()
         {
@@ -40,6 +38,25 @@ namespace MobileSolutions.DataLayer
             return ConnString;
         }
 
+        public SqlConnection GetMasterConnection()
+        {
+            SqlConnection ConnString = new SqlConnection();
+
+            try
+            {
+                ConnString.ConnectionString = $"Server={dbServer};" +
+                    $"Database=master;" +
+                    $"Trusted_Connection={tConnection};" +
+                    $"TrustServerCertificate={tServerCert};";
+            }
+            catch (Exception ex)
+            {
+                ConnString = null;
+                throw ex;
+            }
+
+            return ConnString;
+        }
 
         public (bool IsConnected, string? ErrorMessage) TestConnection()
         {
@@ -56,4 +73,3 @@ namespace MobileSolutions.DataLayer
         }
     }
 }
-

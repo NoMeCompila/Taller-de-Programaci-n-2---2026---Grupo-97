@@ -1,316 +1,329 @@
-using System.Diagnostics;
-using System.IO;
-using FontAwesome.Sharp;
-using MaterialSkin;
-using MaterialSkin.Controls;
-using MobileSolutions.UILayer.Contracts;
-
-namespace MobileSolutions.UILayer
-{
-    public partial class MainForm : MaterialForm
-    {
-        private readonly List<TabPage> _originalTabPages = new();
-        private readonly string _currentUser = "admin";
-
-        public bool IsLoggingOut { get; private set; } = false;
-
-        public MainForm() : this("admin")
-        {
-        }
-
-        public MainForm(string username)
-        {
-            //********************************************** Design ************************************************
-            InitializeComponent();
-            this.FormClosed += MainForm_FormClosed;
-            _currentUser = string.IsNullOrWhiteSpace(username) ? "admin" : username.Trim();
-
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-
-            SkinManager.ColorScheme = new ColorScheme(
-               Primary.Blue800,
-               Primary.Blue900,
-               Primary.Blue500,
-               Accent.LightBlue200,
-               TextShade.WHITE);
-
-            // 1. Configure icons and cache all original tabs
-            InitializeTabCacheAndIcons();
-
-            // 2. Apply Role-Based Access Control (RBAC) to drawer navigation
-            ApplyRoleBasedAccess(_currentUser);
-
-            // 3. Display personalized welcome banner in HomeView
-            homeView1.SetCurrentUser(_currentUser);
-
-            // 4. Set current seller on the Sale view and wire navigation
-            saleView1.SetVendedor(_currentUser);
-            saleView1.NavigateToCustomerRequested += (s, e) =>
-            {
-                if (materialTabControl1.TabPages.Contains(tabPage3))
-                {
-                    materialTabControl1.SelectedTab = tabPage3;
-                }
-            };
-            saleView1.NavigateToProductRequested += (s, e) =>
-            {
-                if (materialTabControl1.TabPages.Contains(tabPage4))
-                {
-                    materialTabControl1.SelectedTab = tabPage4;
-                }
-            };
-
-            // 5. Wire decoupled logout events from child views
-            WireLogoutEvents(this);
-
-            // 6. Set current user dynamically in all lblCurrentUser labels across all views
-            SetCurrentUserInLabels(this, _currentUser);
-            foreach (var tab in _originalTabPages)
-            {
-                SetCurrentUserInLabels(tab, _currentUser);
-            }
-
-            // 7. Wire decoupled backup database generation action (Opción A)
-            backupView1.BackupDatabaseAction = (destinationDir, fileName) =>
-            {
-                var backupService = new MobileSolutions.BusinessLayer.BackupService();
-                backupService.CreateBackup(destinationDir, fileName);
-            };
-        }
-
-        private void InitializeTabCacheAndIcons()
-        {
-            // 1. Setup ImageList resolution and size
-            imageList1.ImageSize = new Size(24, 24);
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.Images.Clear();
-
-            Color iconColor = Color.White;
-
-            imageList1.Images.Add("home", IconChar.Home.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("usuarios", IconChar.UserGear.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("clientes", IconChar.Users.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("productos", IconChar.MobileAlt.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("marcas", IconChar.Tags.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("venta", IconChar.CashRegister.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("historial", IconChar.History.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("reportes", IconChar.ChartBar.ToBitmap(iconColor, 24));
-            imageList1.Images.Add("backup", IconChar.Database.ToBitmap(iconColor, 24));
-
-            materialTabControl1.ImageList = imageList1;
-
-            // 2. Assign keys directly to TabPage instances (independent of tab collection order)
-            tabPage1.ImageKey = "home";
-            tabPage2.ImageKey = "usuarios";
-            tabPage3.ImageKey = "clientes";
-            tabPage4.ImageKey = "productos";
-            tabPage6.ImageKey = "venta";
-            tabPage7.ImageKey = "historial";
-            tabPage8.ImageKey = "reportes";
-            tabPage9.ImageKey = "backup";
-
-            // 3. Cache original tab list in memory in exact canonical order
-            _originalTabPages.Clear();
-            _originalTabPages.Add(tabPage1); // Home
-            _originalTabPages.Add(tabPage2); // Usuarios
-            _originalTabPages.Add(tabPage3); // Clientes
-            _originalTabPages.Add(tabPage4); // Productos
-            _originalTabPages.Add(tabPage6); // Venta
-            _originalTabPages.Add(tabPage7); // Historial De Ventas
-            _originalTabPages.Add(tabPage8); // Reportes
-            _originalTabPages.Add(tabPage9); // Backup
-
-            this.DrawerShowIconsWhenHidden = true;
-        }
-
-
-        //********************************************** Functionality ************************************************
-        private void ApplyRoleBasedAccess(string username)
-        {
-            materialTabControl1.SuspendLayout();
-            materialTabControl1.TabPages.Clear();
-
-            string normalizedUser = username.Trim().ToLowerInvariant();
-            int profileId = MobileSolutions.BusinessLayer.CurrentSession.ProfileId;
-            string profileName = MobileSolutions.BusinessLayer.CurrentSession.ProfileName.Trim().ToLowerInvariant();
-
-            List<TabPage> allowedTabs;
-
-            bool isSeller = profileName == "vendedor" || profileName == "seller" ||
-                            normalizedUser == "vendedor" || normalizedUser == "nico" ||
-                            (profileId == 2 && profileName != "gerente" && profileName != "manager") ||
-                            (profileId == 3 && profileName == "vendedor");
-
-            bool isManager = profileName == "gerente" || profileName == "manager" ||
-                             normalizedUser == "gerente" || normalizedUser == "fer" || normalizedUser == "fcaballe" ||
-                             (profileId == 3 && profileName != "vendedor" && profileName != "seller") ||
-                             (profileId == 2 && profileName == "gerente");
-
-            bool isAdmin = profileName == "administrador" || profileName == "administrator" ||
-                           profileName == "admin" || normalizedUser == "admin" ||
-                           (profileId == 1 && !isSeller && !isManager);
-
-            // Role-based access control based on DB profile (with fallback to username)
-            if (isAdmin)
-            {
-                // Administrator
-                allowedTabs = _originalTabPages
-                    .Where(tab => tab != tabPage3 && tab != tabPage4 && tab != tabPage6)
-                    .ToList();
-            }
-            else if (isManager)
-            {
-                // Gerente
-                allowedTabs = _originalTabPages
-                    .Where(tab => tab != tabPage2 && tab != tabPage4 && tab != tabPage9)
-                    .ToList();
-            }
-            else if (isSeller)
-            {
-                // Vendedor: Access to Sales (tabPage6), Customers (tabPage3), Sales History (tabPage7), and Reports (tabPage8)
-                allowedTabs = _originalTabPages
-                   .Where(tab => tab != tabPage2 && tab != tabPage9)
-                   .ToList();
-            }
-            else
-            {
-                // Fallback: Home tab only
-                allowedTabs = new List<TabPage> { tabPage1 };
-            }
-
-            foreach (var tab in allowedTabs)
-            {
-                materialTabControl1.TabPages.Add(tab);
-            }
-
-            if (materialTabControl1.TabPages.Count > 0)
-            {
-                materialTabControl1.SelectedIndex = 0;
-            }
-
-            // Bind filtered tabs to MaterialSkin drawer
-            this.DrawerTabControl = materialTabControl1;
-            materialTabControl1.ResumeLayout(true);
-        }
-
-        private void WireLogoutEvents(Control parent)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                if (control is ILogoutSupport logoutControl)
-                {
-                    logoutControl.LogoutRequested += HandleLogoutRequested;
-                }
-
-                if (control.HasChildren)
-                {
-                    WireLogoutEvents(control);
-                }
-            }
-        }
-
-        public static void SetCurrentUserInLabels(Control parent, string username)
-        {
-            if (parent == null || string.IsNullOrWhiteSpace(username))
-            {
-                return;
-            }
-
-            foreach (Control control in parent.Controls)
-            {
-                if (control.Name == "lblCurrentUser")
-                {
-                    control.Text = username;
-                }
-
-                if (control.HasChildren)
-                {
-                    SetCurrentUserInLabels(control, username);
-                }
-            }
-        }
-
-        private void HandleLogoutRequested(object? sender, EventArgs e)
-        {
-            DialogResult result = MaterialMessageBox.Show(
-                "¿Seguro que quiere cerrar sesión?",
-                "Cerrar Sesión",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (result != DialogResult.Yes)
-            {
-                return;
-            }
-
-            string actor = !string.IsNullOrWhiteSpace(_currentUser)
-                ? _currentUser
-                : (!string.IsNullOrWhiteSpace(MobileSolutions.BusinessLayer.CurrentSession.Username)
-                    ? MobileSolutions.BusinessLayer.CurrentSession.Username
-                    : "Usuario");
-
-            new MobileSolutions.BusinessLayer.AuditService().RecordEvent("Logout", actor, "Success", "Cierre de sesión manual");
-
-            // 1. Limpiar estado de sesión
-            MobileSolutions.BusinessLayer.CurrentSession.ClearSession();
-
-            // 2. Marcar estado de logout
-            IsLoggingOut = true;
-
-            // 3. Ejecutar el ejecutable para reiniciar la aplicación mostrando el Login
-            ExecuteApplicationRestart();
-
-            // 4. Terminar de forma inmediata el proceso actual para evitar residuos en memoria
-            Environment.Exit(0);
-        }
-
-        private void ExecuteApplicationRestart()
-        {
-            try
-            {
-                string targetDir = @"C:\Users\FeR\Desktop\Taller 2\Taller-de-Programaci-n-2---2026---Grupo-97\MobileSolutions.UILayer\bin\Debug\net10.0-windows";
-                string exePath = Path.Combine(targetDir, "MobileSolutions.UILayer.exe");
-
-                if (!File.Exists(exePath))
-                {
-                    exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MobileSolutions.UILayer.exe");
-                }
-
-                if (File.Exists(exePath))
-                {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = exePath,
-                        WorkingDirectory = Path.GetDirectoryName(exePath)!,
-                        UseShellExecute = true
-                    });
-                }
-                else
-                {
-                    string batPath = Path.Combine(targetDir, "restart_app.bat");
-                    if (File.Exists(batPath))
-                    {
-                        Process.Start(new ProcessStartInfo
-                        {
-                            FileName = batPath,
-                            WorkingDirectory = targetDir,
-                            UseShellExecute = true
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MaterialMessageBox.Show($"Error al reiniciar la aplicación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void MainForm_FormClosed(object? sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-    }
-}
-
+using System.Diagnostics;
+using System.IO;
+using FontAwesome.Sharp;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using MobileSolutions.UILayer.Contracts;
+
+namespace MobileSolutions.UILayer
+{
+    public partial class MainForm : MaterialForm
+    {
+        private readonly List<TabPage> _originalTabPages = new();
+        private readonly string _currentUser = "admin";
+
+        public bool IsLoggingOut { get; private set; } = false;
+
+        public MainForm() : this("admin")
+        {
+        }
+
+        public MainForm(string username)
+        {
+            //********************************************** Design ************************************************
+            InitializeComponent();
+            this.FormClosed += MainForm_FormClosed;
+            _currentUser = string.IsNullOrWhiteSpace(username) ? "admin" : username.Trim();
+
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+
+            SkinManager.ColorScheme = new ColorScheme(
+               Primary.Blue800,
+               Primary.Blue900,
+               Primary.Blue500,
+               Accent.LightBlue200,
+               TextShade.WHITE);
+
+            // 1. Configure icons and cache all original tabs
+            InitializeTabCacheAndIcons();
+
+            // 2. Apply Role-Based Access Control (RBAC) to drawer navigation
+            ApplyRoleBasedAccess(_currentUser);
+
+            // 3. Display personalized welcome banner in HomeView
+            homeView1.SetCurrentUser(_currentUser);
+
+            // 4. Set current seller on the Sale view and wire navigation
+            saleView1.SetVendedor(_currentUser);
+            saleView1.NavigateToCustomerRequested += (s, e) =>
+            {
+                if (materialTabControl1.TabPages.Contains(tabPage3))
+                {
+                    materialTabControl1.SelectedTab = tabPage3;
+                }
+            };
+            saleView1.NavigateToProductRequested += (s, e) =>
+            {
+                if (materialTabControl1.TabPages.Contains(tabPage4))
+                {
+                    materialTabControl1.SelectedTab = tabPage4;
+                }
+            };
+
+            // 5. Wire decoupled logout events from child views
+            WireLogoutEvents(this);
+
+            // 6. Set current user dynamically in all lblCurrentUser labels across all views
+            SetCurrentUserInLabels(this, _currentUser);
+            foreach (var tab in _originalTabPages)
+            {
+                SetCurrentUserInLabels(tab, _currentUser);
+            }
+
+            // 7. Wire decoupled backup & restore actions and audit status (Opción A)
+            var backupService = new MobileSolutions.BusinessLayer.BackupService();
+            backupView1.BackupDatabaseAction = (destinationDir, fileName) =>
+            {
+                backupService.CreateBackup(destinationDir, fileName);
+            };
+            backupView1.ValidateStep1CredentialsFunc = (user, pass) =>
+            {
+                var result = backupService.ValidateAdminStep1(user, pass);
+                return (result.IsValid, result.Message);
+            };
+            backupView1.RestoreDatabaseAction = (bakPath, a1User, a1Pass, a2User, a2Pass) =>
+            {
+                backupService.RestoreDatabase(bakPath, a1User, a1Pass, a2User, a2Pass);
+            };
+            backupView1.GetBackupRestoreStatusFunc = () =>
+            {
+                return backupService.GetLastBackupAndRestoreInfo();
+            };
+        }
+
+        private void InitializeTabCacheAndIcons()
+        {
+            // 1. Setup ImageList resolution and size
+            imageList1.ImageSize = new Size(24, 24);
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.Images.Clear();
+
+            Color iconColor = Color.White;
+
+            imageList1.Images.Add("home", IconChar.Home.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("usuarios", IconChar.UserGear.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("clientes", IconChar.Users.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("productos", IconChar.MobileAlt.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("marcas", IconChar.Tags.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("venta", IconChar.CashRegister.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("historial", IconChar.History.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("reportes", IconChar.ChartBar.ToBitmap(iconColor, 24));
+            imageList1.Images.Add("backup", IconChar.Database.ToBitmap(iconColor, 24));
+
+            materialTabControl1.ImageList = imageList1;
+
+            // 2. Assign keys directly to TabPage instances (independent of tab collection order)
+            tabPage1.ImageKey = "home";
+            tabPage2.ImageKey = "usuarios";
+            tabPage3.ImageKey = "clientes";
+            tabPage4.ImageKey = "productos";
+            tabPage6.ImageKey = "venta";
+            tabPage7.ImageKey = "historial";
+            tabPage8.ImageKey = "reportes";
+            tabPage9.ImageKey = "backup";
+
+            // 3. Cache original tab list in memory in exact canonical order
+            _originalTabPages.Clear();
+            _originalTabPages.Add(tabPage1); // Home
+            _originalTabPages.Add(tabPage2); // Usuarios
+            _originalTabPages.Add(tabPage3); // Clientes
+            _originalTabPages.Add(tabPage4); // Productos
+            _originalTabPages.Add(tabPage6); // Venta
+            _originalTabPages.Add(tabPage7); // Historial De Ventas
+            _originalTabPages.Add(tabPage8); // Reportes
+            _originalTabPages.Add(tabPage9); // Backup
+
+            this.DrawerShowIconsWhenHidden = true;
+        }
+
+
+        //********************************************** Functionality ************************************************
+        private void ApplyRoleBasedAccess(string username)
+        {
+            materialTabControl1.SuspendLayout();
+            materialTabControl1.TabPages.Clear();
+
+            string normalizedUser = username.Trim().ToLowerInvariant();
+            int profileId = MobileSolutions.BusinessLayer.CurrentSession.ProfileId;
+            string profileName = MobileSolutions.BusinessLayer.CurrentSession.ProfileName.Trim().ToLowerInvariant();
+
+            List<TabPage> allowedTabs;
+
+            bool isSeller = profileName == "vendedor" || profileName == "seller" ||
+                            normalizedUser == "vendedor" || normalizedUser == "nico" ||
+                            (profileId == 2 && profileName != "gerente" && profileName != "manager") ||
+                            (profileId == 3 && profileName == "vendedor");
+
+            bool isManager = profileName == "gerente" || profileName == "manager" ||
+                             normalizedUser == "gerente" || normalizedUser == "fer" || normalizedUser == "fcaballe" ||
+                             (profileId == 3 && profileName != "vendedor" && profileName != "seller") ||
+                             (profileId == 2 && profileName == "gerente");
+
+            bool isAdmin = profileName == "administrador" || profileName == "administrator" ||
+                           profileName == "admin" || normalizedUser == "admin" ||
+                           (profileId == 1 && !isSeller && !isManager);
+
+            // Role-based access control based on DB profile (with fallback to username)
+            if (isAdmin)
+            {
+                // Administrator
+                allowedTabs = _originalTabPages
+                    .Where(tab => tab != tabPage3 && tab != tabPage4 && tab != tabPage6)
+                    .ToList();
+            }
+            else if (isManager)
+            {
+                // Gerente
+                allowedTabs = _originalTabPages
+                    .Where(tab => tab != tabPage2 && tab != tabPage4 && tab != tabPage9)
+                    .ToList();
+            }
+            else if (isSeller)
+            {
+                // Vendedor: Access to Sales (tabPage6), Customers (tabPage3), Sales History (tabPage7), and Reports (tabPage8)
+                allowedTabs = _originalTabPages
+                   .Where(tab => tab != tabPage2 && tab != tabPage9)
+                   .ToList();
+            }
+            else
+            {
+                // Fallback: Home tab only
+                allowedTabs = new List<TabPage> { tabPage1 };
+            }
+
+            foreach (var tab in allowedTabs)
+            {
+                materialTabControl1.TabPages.Add(tab);
+            }
+
+            if (materialTabControl1.TabPages.Count > 0)
+            {
+                materialTabControl1.SelectedIndex = 0;
+            }
+
+            // Bind filtered tabs to MaterialSkin drawer
+            this.DrawerTabControl = materialTabControl1;
+            materialTabControl1.ResumeLayout(true);
+        }
+
+        private void WireLogoutEvents(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is ILogoutSupport logoutControl)
+                {
+                    logoutControl.LogoutRequested += HandleLogoutRequested;
+                }
+
+                if (control.HasChildren)
+                {
+                    WireLogoutEvents(control);
+                }
+            }
+        }
+
+        public static void SetCurrentUserInLabels(Control parent, string username)
+        {
+            if (parent == null || string.IsNullOrWhiteSpace(username))
+            {
+                return;
+            }
+
+            foreach (Control control in parent.Controls)
+            {
+                if (control.Name == "lblCurrentUser")
+                {
+                    control.Text = username;
+                }
+
+                if (control.HasChildren)
+                {
+                    SetCurrentUserInLabels(control, username);
+                }
+            }
+        }
+
+        private void HandleLogoutRequested(object? sender, EventArgs e)
+        {
+            DialogResult result = MaterialMessageBox.Show(
+                "¿Seguro que quiere cerrar sesión?",
+                "Cerrar Sesión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            string actor = !string.IsNullOrWhiteSpace(_currentUser)
+                ? _currentUser
+                : (!string.IsNullOrWhiteSpace(MobileSolutions.BusinessLayer.CurrentSession.Username)
+                    ? MobileSolutions.BusinessLayer.CurrentSession.Username
+                    : "Usuario");
+
+            new MobileSolutions.BusinessLayer.AuditService().RecordEvent("Logout", actor, "Success", "Cierre de sesión manual");
+
+            // 1. Limpiar estado de sesión
+            MobileSolutions.BusinessLayer.CurrentSession.ClearSession();
+
+            // 2. Marcar estado de logout
+            IsLoggingOut = true;
+
+            // 3. Ejecutar el ejecutable para reiniciar la aplicación mostrando el Login
+            ExecuteApplicationRestart();
+
+            // 4. Terminar de forma inmediata el proceso actual para evitar residuos en memoria
+            Environment.Exit(0);
+        }
+
+        private void ExecuteApplicationRestart()
+        {
+            try
+            {
+                string targetDir = @"C:\Users\FeR\Desktop\Taller 2\Taller-de-Programaci-n-2---2026---Grupo-97\MobileSolutions.UILayer\bin\Debug\net10.0-windows";
+                string exePath = Path.Combine(targetDir, "MobileSolutions.UILayer.exe");
+
+                if (!File.Exists(exePath))
+                {
+                    exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MobileSolutions.UILayer.exe");
+                }
+
+                if (File.Exists(exePath))
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = exePath,
+                        WorkingDirectory = Path.GetDirectoryName(exePath)!,
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    string batPath = Path.Combine(targetDir, "restart_app.bat");
+                    if (File.Exists(batPath))
+                    {
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = batPath,
+                            WorkingDirectory = targetDir,
+                            UseShellExecute = true
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show($"Error al reiniciar la aplicación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MainForm_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+    }
+}
+

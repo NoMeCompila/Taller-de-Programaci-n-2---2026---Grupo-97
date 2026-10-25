@@ -31,12 +31,34 @@ namespace MobileSolutions.UILayer
         public event EventHandler<string>? RestoreFileSelected;
 
         /// <summary>
-        /// Punto de extensión para conectar en el futuro la lógica real de Backup contra la base de datos
+        /// Punto de extensión para conectar la lógica real de Backup contra la base de datos
         /// (recibe el directorio destino y el nombre de archivo generado).
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<string, string>? BackupDatabaseAction { get; set; }
+
+        /// <summary>
+        /// Punto de extensión para validar las credenciales de Administrador en el Paso 1 contra la base de datos.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Func<string, string, (bool IsValid, string Message)>? ValidateStep1CredentialsFunc { get; set; }
+
+        /// <summary>
+        /// Punto de extensión para conectar la lógica real de Restore con Validación Cruzada (Cross-Auth).
+        /// Parámetros: backupFilePath, admin1Username, admin1Password, admin2Username, admin2Password.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Action<string, string, string, string, string>? RestoreDatabaseAction { get; set; }
+
+        /// <summary>
+        /// Punto de extensión para consultar las fechas de Último Backup y Último Restore.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Func<(DateTime? LastBackup, DateTime? LastRestore)>? GetBackupRestoreStatusFunc { get; set; }
 
         public bool IsRestoreMode { get; private set; }
         public bool IsStep1Confirmed { get; private set; }
@@ -62,7 +84,11 @@ namespace MobileSolutions.UILayer
         private void ConfigureDualAuthUi()
         {
             pnlBackupContent.Resize += (s, e) => CenterDualAuthCard();
-            this.Load += (s, e) => CenterDualAuthCard();
+            this.Load += (s, e) =>
+            {
+                CenterDualAuthCard();
+                RefreshAuditMetrics();
+            };
 
             btnTabBackup.UseVisualStyleBackColor = false;
             btnTabRestore.UseVisualStyleBackColor = false;
@@ -74,6 +100,7 @@ namespace MobileSolutions.UILayer
             btnBrowseBackupPath.Paint += FlatActionButton_Paint;
             btnGenerarBackup.Paint += FlatActionButton_Paint;
             btnBrowseBak.Paint += FlatActionButton_Paint;
+            btnEjecutarRestore.Paint += FlatActionButton_Paint;
 
             btnTabBackup.Click += (s, e) => SwitchToBackupTab();
             btnTabRestore.Click += (s, e) => SwitchToRestoreTab();
@@ -81,6 +108,7 @@ namespace MobileSolutions.UILayer
             btnBrowseBackupPath.Click += (s, e) => BrowseBackupDestinationFolder();
             btnGenerarBackup.Click += (s, e) => ExecuteBackup();
             btnBrowseBak.Click += (s, e) => BrowseBackupFile();
+            btnEjecutarRestore.Click += (s, e) => ExecuteRestore();
 
             CenterDualAuthCard();
         }
@@ -104,6 +132,9 @@ namespace MobileSolutions.UILayer
 
             SetDualAuthCredentialsVisible(false);
             pnlRestoreSelector.Visible = false;
+            btnEjecutarRestore.Visible = false;
+
+            pnlStatusInfo.Location = new Point(20, 360);
 
             pnlBackupSelector.Visible = true;
             pnlBackupSelector.Enabled = true;
@@ -134,6 +165,10 @@ namespace MobileSolutions.UILayer
 
             SetDualAuthCredentialsVisible(true);
             pnlRestoreSelector.Visible = true;
+            btnEjecutarRestore.Visible = true;
+
+            pnlStatusInfo.Location = new Point(20, 595);
+
             ResetDualAuthState();
         }
 
@@ -190,6 +225,12 @@ namespace MobileSolutions.UILayer
             btnBrowseBak.ForeColor = DisabledActionFgColor;
             btnBrowseBak.Cursor = Cursors.Default;
             btnBrowseBak.Invalidate();
+
+            btnEjecutarRestore.Enabled = false;
+            btnEjecutarRestore.BackColor = DisabledActionBgColor;
+            btnEjecutarRestore.ForeColor = DisabledActionFgColor;
+            btnEjecutarRestore.Cursor = Cursors.Default;
+            btnEjecutarRestore.Invalidate();
         }
 
         public void ConfirmStep1()
@@ -202,6 +243,21 @@ namespace MobileSolutions.UILayer
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
+            }
+
+            // Validación de credenciales de Administrador contra base de datos (Paso 1)
+            if (ValidateStep1CredentialsFunc != null)
+            {
+                var validation = ValidateStep1CredentialsFunc(txtAdmin1User.Text.Trim(), txtAdmin1Password.Text);
+                if (!validation.IsValid)
+                {
+                    MaterialMessageBox.Show(
+                        validation.Message,
+                        "Validación del Administrador Fallida",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
             }
 
             IsStep1Confirmed = true;
@@ -231,6 +287,12 @@ namespace MobileSolutions.UILayer
             btnBrowseBak.ForeColor = Color.White;
             btnBrowseBak.Cursor = Cursors.Hand;
             btnBrowseBak.Invalidate();
+
+            btnEjecutarRestore.Enabled = true;
+            btnEjecutarRestore.BackColor = ActiveBlueColor;
+            btnEjecutarRestore.ForeColor = Color.White;
+            btnEjecutarRestore.Cursor = Cursors.Hand;
+            btnEjecutarRestore.Invalidate();
 
             Step1Confirmed?.Invoke(this, EventArgs.Empty);
         }
@@ -302,6 +364,8 @@ namespace MobileSolutions.UILayer
                     "Success",
                     $"Archivo generado: {backupFileName}");
 
+                RefreshAuditMetrics();
+
                 MaterialMessageBox.Show(
                     $"\"{backupFileName}\" generado correctamente",
                     "Backup Generado",
@@ -319,7 +383,7 @@ namespace MobileSolutions.UILayer
         }
 
         /// <summary>
-        /// Método preparado para la futura integración con la capa de negocio / base de datos.
+        /// Método preparado para la integración con la capa de negocio / base de datos.
         /// </summary>
         protected virtual void ExecuteDatabaseBackup(string destinationDirectory, string backupFileName)
         {
@@ -345,6 +409,163 @@ namespace MobileSolutions.UILayer
             {
                 txtBackupFilePath.Text = dialog.FileName;
                 RestoreFileSelected?.Invoke(this, dialog.FileName);
+            }
+        }
+
+        /// <summary>
+        /// Ejecuta la restauración de la base de datos tras verificar la doble autorización cruzada (Cross-Auth).
+        /// </summary>
+        public void ExecuteRestore()
+        {
+            if (!IsStep1Confirmed)
+            {
+                MaterialMessageBox.Show(
+                    "Debe confirmar el Paso 1 (Credenciales del Administrador) antes de continuar.",
+                    "Paso Requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtAdmin2User.Text) || string.IsNullOrWhiteSpace(txtAdmin2Password.Text))
+            {
+                MaterialMessageBox.Show(
+                    "Por favor complete el usuario y contraseña del Segundo Autorizador (Gerente).",
+                    "Campos Requeridos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(SelectedBackupFilePath))
+            {
+                MaterialMessageBox.Show(
+                    "Por favor seleccione un archivo de backup (.bak) para restaurar.",
+                    "Archivo Requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirmResult = MaterialMessageBox.Show(
+                "ADVERTENCIA: ¿Está seguro que desea restaurar la base de datos?\n\n" +
+                $"Archivo origen: {Path.GetFileName(SelectedBackupFilePath)}\n\n" +
+                "Esta acción reemplazará la base de datos actual con el contenido del respaldo y no se puede deshacer.",
+                "Confirmación de Restauración",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                if (RestoreDatabaseAction != null)
+                {
+                    RestoreDatabaseAction.Invoke(
+                        SelectedBackupFilePath,
+                        Admin1Username,
+                        txtAdmin1Password.Text,
+                        Admin2Username,
+                        txtAdmin2Password.Text);
+                }
+                else
+                {
+                    var backupService = new MobileSolutions.BusinessLayer.BackupService();
+                    backupService.RestoreDatabase(
+                        SelectedBackupFilePath,
+                        Admin1Username,
+                        txtAdmin1Password.Text,
+                        Admin2Username,
+                        txtAdmin2Password.Text);
+                }
+
+                // Registrar auditoría post-restore para que persista en la base recién restaurada
+                try
+                {
+                    new MobileSolutions.BusinessLayer.AuditService().RecordEvent(
+                        "Database Restored",
+                        $"{Admin1Username} (Co-autorizó: {Admin2Username})",
+                        "Success",
+                        $"Restaurado desde: {Path.GetFileName(SelectedBackupFilePath)}");
+                }
+                catch
+                {
+                }
+
+                RefreshAuditMetrics();
+                ResetDualAuthState();
+
+                MaterialMessageBox.Show(
+                    "La base de datos ha sido restaurada correctamente y se encuentra disponible para su uso inmediato.",
+                    "Restauración Exitosa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    new MobileSolutions.BusinessLayer.AuditService().RecordEvent(
+                        "Database Restored",
+                        $"{Admin1Username} (Co-autorizó: {Admin2Username})",
+                        "Failure",
+                        $"Error: {ex.Message}");
+                }
+                catch
+                {
+                }
+
+                MaterialMessageBox.Show(
+                    $"Error al restaurar la base de datos: {ex.Message}",
+                    "Error de Restauración",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        /// <summary>
+        /// Consulta y actualiza en pantalla las fechas de Último Backup y Último Restore.
+        /// </summary>
+        public void RefreshAuditMetrics()
+        {
+            try
+            {
+                DateTime? lastBackup = null;
+                DateTime? lastRestore = null;
+
+                if (GetBackupRestoreStatusFunc != null)
+                {
+                    var status = GetBackupRestoreStatusFunc();
+                    lastBackup = status.LastBackup;
+                    lastRestore = status.LastRestore;
+                }
+                else
+                {
+                    var metrics = new MobileSolutions.BusinessLayer.AuditService().GetDashboardMetrics();
+                    lastBackup = metrics.LastBackupTimestamp;
+                    lastRestore = metrics.LastRestoreTimestamp;
+                }
+
+                lblLastBackupInfo.Text = lastBackup.HasValue
+                    ? $"Último Backup: {lastBackup.Value.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture)}"
+                    : "Último Backup: Sin registros";
+
+                lblLastRestoreInfo.Text = lastRestore.HasValue
+                    ? $"Último Restore: {lastRestore.Value.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture)}"
+                    : "Último Restore: Sin registros";
+            }
+            catch
+            {
+                lblLastBackupInfo.Text = "Último Backup: No disponible";
+                lblLastRestoreInfo.Text = "Último Restore: No disponible";
             }
         }
 
