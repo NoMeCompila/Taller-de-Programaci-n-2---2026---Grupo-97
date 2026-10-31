@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +19,7 @@ namespace MobileSolutions.BusinessLayer.Models
         public string SellerName { get; set; } = string.Empty;
         public string SellerLastname { get; set; } = string.Empty;
         public string SellerFullName => $"{SellerName} {SellerLastname}".Trim();
+        public string SellerDni { get; set; } = string.Empty;
         public string SaleNumber { get; set; } = string.Empty;
         public DateTime SaleDate { get; set; }
         public decimal TotalSale { get; set; }

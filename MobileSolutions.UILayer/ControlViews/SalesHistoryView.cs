@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -16,6 +16,7 @@ namespace MobileSolutions.UILayer
 
         private readonly SaleService _saleService;
         private readonly UserService _userService;
+        private readonly TicketReportService _ticketReportService;
         private readonly Bitmap _pdfIcon;
         private bool _isInitializingFilters = false;
 
@@ -32,6 +33,7 @@ namespace MobileSolutions.UILayer
             InitializeComponent();
             _saleService = new SaleService();
             _userService = new UserService();
+            _ticketReportService = new TicketReportService();
             _pdfIcon = IconChar.FilePdf.ToBitmap(Color.White, 20);
 
             ConfigureIcons();
@@ -59,6 +61,20 @@ namespace MobileSolutions.UILayer
 
             dgvSales.SelectionChanged += DgvSales_SelectionChanged;
             dgvSales.CellContentClick += DgvSales_CellContentClick;
+            dgvSales.CellMouseEnter += (s, e) =>
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvSales.Columns[e.ColumnIndex].Name == "colAcciones")
+                {
+                    dgvSales.Cursor = Cursors.Hand;
+                }
+            };
+            dgvSales.CellMouseLeave += (s, e) =>
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvSales.Columns[e.ColumnIndex].Name == "colAcciones")
+                {
+                    dgvSales.Cursor = Cursors.Default;
+                }
+            };
         }
 
         protected override void OnVisibleChanged(EventArgs e)
@@ -233,7 +249,7 @@ namespace MobileSolutions.UILayer
                     _pdfIcon
                 );
 
-                dgvSales.Rows[rowIndex].Tag = sale.SaleId;
+                dgvSales.Rows[rowIndex].Tag = sale;
             }
 
             if (dgvSales.Rows.Count > 0)
@@ -258,7 +274,17 @@ namespace MobileSolutions.UILayer
             }
 
             var selectedRow = dgvSales.SelectedRows[0];
-            if (selectedRow.Tag is int saleId && saleId > 0)
+            int saleId = 0;
+            if (selectedRow.Tag is SaleHeader sale)
+            {
+                saleId = sale.SaleId;
+            }
+            else if (selectedRow.Tag is int id)
+            {
+                saleId = id;
+            }
+
+            if (saleId > 0)
             {
                 try
                 {
@@ -297,13 +323,183 @@ namespace MobileSolutions.UILayer
 
             if (dgvSales.Columns[e.ColumnIndex].Name == "colAcciones")
             {
-                string saleNumber = dgvSales.Rows[e.RowIndex].Cells["colNumeroVenta"].Value?.ToString() ?? string.Empty;
-                MessageBox.Show(
-                    $"Comprobante de Venta: {saleNumber}\n\nLa descarga e impresión del comprobante en PDF estará disponible en el módulo de facturación y reportes.",
-                    "Comprobante de Venta",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                var selectedRow = dgvSales.Rows[e.RowIndex];
+                SaleHeader? sale = selectedRow.Tag as SaleHeader;
+
+                if (sale == null)
+                {
+                    string saleNumberStr = selectedRow.Cells["colNumeroVenta"].Value?.ToString() ?? string.Empty;
+                    MessageBox.Show(
+                        $"No se pudieron obtener los datos de la venta {saleNumberStr}.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                ImprimirTicketVenta(sale);
             }
+        }
+
+        private void ImprimirTicketVenta(SaleHeader sale)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                List<SaleDetail> details = _saleService.GetSaleDetailsBySaleId(sale.SaleId);
+                if (details == null || details.Count == 0)
+                {
+                    MessageBox.Show(
+                        "La venta seleccionada no contiene productos en el detalle.",
+                        "Venta Sin Detalle",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string sellerName = sale.SellerFullName;
+                string sellerUsername = sale.UserUsername;
+                string sellerDni = sale.SellerDni;
+
+                if (string.IsNullOrWhiteSpace(sellerDni) || string.IsNullOrWhiteSpace(sellerName))
+                {
+                    var user = _userService.GetUserByIdOrUsername(sale.UserId, sale.UserUsername);
+                    if (user != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(sellerDni)) sellerDni = user.Dni;
+                        if (string.IsNullOrWhiteSpace(sellerName)) sellerName = $"{user.Name} {user.Lastname}".Trim();
+                        if (string.IsNullOrWhiteSpace(sellerUsername)) sellerUsername = user.Username;
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(sellerDni))
+                {
+                    sellerDni = CurrentSession.Dni;
+                }
+
+                var ticketData = new SaleTicketData
+                {
+                    SaleNumber = sale.SaleNumber,
+                    SaleDate = sale.SaleDate != DateTime.MinValue ? sale.SaleDate : DateTime.Now,
+                    SellerName = !string.IsNullOrWhiteSpace(sellerName) ? sellerName : (!string.IsNullOrWhiteSpace(sellerUsername) ? sellerUsername : "-"),
+                    SellerUsername = !string.IsNullOrWhiteSpace(sellerUsername) ? sellerUsername : "-",
+                    SellerDni = !string.IsNullOrWhiteSpace(sellerDni) ? sellerDni : "-",
+                    CustomerName = sale.CustomerFullName,
+                    CustomerDni = sale.CustomerDni,
+                    CustomerVatCondition = "Consumidor Final",
+                    PaymentMethod = !string.IsNullOrWhiteSpace(sale.PaymentTypeName) ? sale.PaymentTypeName : "Efectivo",
+                    Total = sale.TotalSale > 0 ? sale.TotalSale : details.Sum(d => d.Subtotal),
+                    Items = details
+                };
+
+                var result = _ticketReportService.GenerateSaleTicketPdf(ticketData);
+                AbrirVistaPreviaOImpresionPdf(result.PdfFilePath, ticketData);
+            }
+            catch (System.IO.FileNotFoundException fnfEx)
+            {
+                _ticketReportService.LogError(fnfEx);
+                MessageBox.Show(
+                    "No se encontró la plantilla de ticket 'ticketSample.html' en la ruta base del sistema.",
+                    "Plantilla No Encontrada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                _ticketReportService.LogError(ex);
+                MessageBox.Show(
+                    $"Ocurrió un error al generar o abrir el ticket PDF: {ex.Message}",
+                    "Error de Impresión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void AbrirVistaPreviaOImpresionPdf(string pdfFilePath, SaleTicketData ticketData)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = pdfFilePath,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                _ticketReportService.LogError(ex);
+                MostrarDialogoVistaPreviaImpresion(ticketData);
+            }
+        }
+
+        private void MostrarDialogoVistaPreviaImpresion(SaleTicketData ticketData)
+        {
+            using var printDocument = new System.Drawing.Printing.PrintDocument();
+            printDocument.DocumentName = $"Ticket_{ticketData.SaleNumber}";
+            printDocument.PrintPage += (s, ev) =>
+            {
+                if (ev.Graphics == null) return;
+
+                using var titleFont = new Font("Segoe UI", 14F, FontStyle.Bold);
+                using var sectionFont = new Font("Segoe UI", 10F, FontStyle.Bold);
+                using var regularFont = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+
+                float x = 40f;
+                float y = 40f;
+
+                ev.Graphics.DrawString("MOBILE SOLUTIONS - PUNTO DE VENTA", titleFont, Brushes.Black, x, y);
+                y += 28f;
+                ev.Graphics.DrawString($"Comprobante de Venta: {ticketData.SaleNumber}", sectionFont, Brushes.Black, x, y);
+                y += 20f;
+                ev.Graphics.DrawString($"Fecha de emisión: {ticketData.SaleDate:dd/MM/yyyy}", regularFont, Brushes.Black, x, y);
+                y += 26f;
+
+                ev.Graphics.DrawString("DATOS DEL VENDEDOR Y TRANSACCIÓN", sectionFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"N° Venta: {ticketData.SaleNumber}  |  Fecha: {ticketData.SaleDate:dd/MM/yyyy}", regularFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"Vendedor: {ticketData.SellerName} ({ticketData.SellerUsername}) - DNI: {ticketData.SellerDni}", regularFont, Brushes.Black, x, y);
+                y += 26f;
+
+                ev.Graphics.DrawString("DATOS DEL CLIENTE", sectionFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"Cliente: {ticketData.CustomerName}", regularFont, Brushes.Black, x, y);
+                y += 18f;
+                ev.Graphics.DrawString($"DNI / CUIT: {ticketData.CustomerDni}  |  Condición IVA: {ticketData.CustomerVatCondition}", regularFont, Brushes.Black, x, y);
+                y += 26f;
+
+                ev.Graphics.DrawString("DETALLE DE LA COMPRA", sectionFont, Brushes.Black, x, y);
+                y += 20f;
+
+                foreach (var item in ticketData.Items)
+                {
+                    string prod = !string.IsNullOrWhiteSpace(item.ProductName) ? item.ProductName : item.BrandName;
+                    string line = $"{prod}  |  Cant: {item.Quantity}  |  Unit: {TicketReportService.FormatCurrency(item.UnitPrice)}  |  Subtotal: {TicketReportService.FormatCurrency(item.Subtotal)}";
+                    ev.Graphics.DrawString(line, regularFont, Brushes.Black, x, y);
+                    y += 18f;
+                }
+
+                y += 14f;
+                ev.Graphics.DrawString($"Método de Pago: {ticketData.PaymentMethod}", sectionFont, Brushes.Black, x, y);
+                y += 22f;
+                ev.Graphics.DrawString($"MONTO TOTAL ABONADO: {TicketReportService.FormatCurrency(ticketData.Total)}", titleFont, Brushes.Black, x, y);
+                ev.HasMorePages = false;
+            };
+
+            using var previewDialog = new PrintPreviewDialog
+            {
+                Document = printDocument,
+                Width = 900,
+                Height = 700,
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            previewDialog.ShowDialog(this);
         }
     }
 }

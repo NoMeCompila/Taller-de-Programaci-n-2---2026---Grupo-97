@@ -49,7 +49,8 @@ namespace MobileSolutions.DataLayer
             int ordUserId,
             int ordUserUsername,
             int ordSellerName,
-            int ordSellerLastname)
+            int ordSellerLastname,
+            int ordSellerDni = -1)
         {
             return new SaleHeader
             {
@@ -67,7 +68,8 @@ namespace MobileSolutions.DataLayer
                 UserId = ordUserId >= 0 && !reader.IsDBNull(ordUserId) ? reader.GetInt32(ordUserId) : 0,
                 UserUsername = ordUserUsername >= 0 && !reader.IsDBNull(ordUserUsername) ? reader.GetString(ordUserUsername) : string.Empty,
                 SellerName = ordSellerName >= 0 && !reader.IsDBNull(ordSellerName) ? reader.GetString(ordSellerName) : string.Empty,
-                SellerLastname = ordSellerLastname >= 0 && !reader.IsDBNull(ordSellerLastname) ? reader.GetString(ordSellerLastname) : string.Empty
+                SellerLastname = ordSellerLastname >= 0 && !reader.IsDBNull(ordSellerLastname) ? reader.GetString(ordSellerLastname) : string.Empty,
+                SellerDni = ordSellerDni >= 0 && !reader.IsDBNull(ordSellerDni) ? reader.GetString(ordSellerDni) : string.Empty
             };
         }
 
@@ -145,6 +147,7 @@ namespace MobileSolutions.DataLayer
                     int ordUserUsername = GetOrdinalSafe(reader, "user_username", "username");
                     int ordSellerName = GetOrdinalSafe(reader, "seller_name");
                     int ordSellerLastname = GetOrdinalSafe(reader, "seller_lastname");
+                    int ordSellerDni = GetOrdinalSafe(reader, "seller_dni", "SellerDni");
 
                     while (reader.Read())
                     {
@@ -164,7 +167,8 @@ namespace MobileSolutions.DataLayer
                             ordUserId,
                             ordUserUsername,
                             ordSellerName,
-                            ordSellerLastname));
+                            ordSellerLastname,
+                            ordSellerDni));
                     }
                 }
             }
@@ -200,6 +204,7 @@ namespace MobileSolutions.DataLayer
                     int ordUserUsername = GetOrdinalSafe(reader, "user_username", "username");
                     int ordSellerName = GetOrdinalSafe(reader, "seller_name");
                     int ordSellerLastname = GetOrdinalSafe(reader, "seller_lastname");
+                    int ordSellerDni = GetOrdinalSafe(reader, "seller_dni", "SellerDni");
 
                     while (reader.Read())
                     {
@@ -219,7 +224,8 @@ namespace MobileSolutions.DataLayer
                             ordUserId,
                             ordUserUsername,
                             ordSellerName,
-                            ordSellerLastname));
+                            ordSellerLastname,
+                            ordSellerDni));
                     }
                 }
             }
@@ -265,6 +271,7 @@ namespace MobileSolutions.DataLayer
                     int ordUserUsername = GetOrdinalSafe(reader, "user_username", "username");
                     int ordSellerName = GetOrdinalSafe(reader, "seller_name");
                     int ordSellerLastname = GetOrdinalSafe(reader, "seller_lastname");
+                    int ordSellerDni = GetOrdinalSafe(reader, "seller_dni", "SellerDni");
 
                     while (reader.Read())
                     {
@@ -284,7 +291,8 @@ namespace MobileSolutions.DataLayer
                             ordUserId,
                             ordUserUsername,
                             ordSellerName,
-                            ordSellerLastname));
+                            ordSellerLastname,
+                            ordSellerDni));
                     }
                 }
             }
@@ -330,6 +338,7 @@ namespace MobileSolutions.DataLayer
                     int ordUserUsername = GetOrdinalSafe(reader, "user_username", "username");
                     int ordSellerName = GetOrdinalSafe(reader, "seller_name");
                     int ordSellerLastname = GetOrdinalSafe(reader, "seller_lastname");
+                    int ordSellerDni = GetOrdinalSafe(reader, "seller_dni", "SellerDni");
 
                     while (reader.Read())
                     {
@@ -349,7 +358,8 @@ namespace MobileSolutions.DataLayer
                             ordUserId,
                             ordUserUsername,
                             ordSellerName,
-                            ordSellerLastname));
+                            ordSellerLastname,
+                            ordSellerDni));
                     }
                 }
             }
@@ -416,6 +426,7 @@ namespace MobileSolutions.DataLayer
                     int ordUserUsername = GetOrdinalSafe(reader, "user_username", "username");
                     int ordSellerName = GetOrdinalSafe(reader, "seller_name");
                     int ordSellerLastname = GetOrdinalSafe(reader, "seller_lastname");
+                    int ordSellerDni = GetOrdinalSafe(reader, "seller_dni", "SellerDni");
 
                     while (reader.Read())
                     {
@@ -435,7 +446,8 @@ namespace MobileSolutions.DataLayer
                             ordUserId,
                             ordUserUsername,
                             ordSellerName,
-                            ordSellerLastname));
+                            ordSellerLastname,
+                            ordSellerDni));
                     }
                 }
             }

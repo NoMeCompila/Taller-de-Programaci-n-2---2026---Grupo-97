@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -59,11 +59,11 @@ namespace MobileSolutions.BusinessLayer
         public (bool Success, string Message) CreateUser(User user)
         {
             if (user == null)
-                return (false, "Los campos del usuario no pueden estar vacíos.");
+                return (false, "Los campos del usuario no pueden estar vacÃ­os.");
             if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Lastname))
                 return (false, "El nombre y apellido son obligatorios.");
             if (string.IsNullOrWhiteSpace(user.Dni) || user.Dni.Length < 7 || user.Dni.Length > 8)
-                return (false, "El DNI debe contener entre 7 y 8 dígitos.");
+                return (false, "El DNI debe contener entre 7 y 8 dÃ­gitos.");
             if (string.IsNullOrWhiteSpace(user.Username))
                 return (false, "El nombre de usuario es obligatorio.");
             var passwordValidation = ValidatePasswordComplexity(user.Password, isRequired: true);
@@ -73,15 +73,15 @@ namespace MobileSolutions.BusinessLayer
             // Hash password with SHA-256 before persisting
             user.Password = ComputeSha256Hash(user.Password!);
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
-                return (false, "Debe ingresar un correo electrónico válido.");
+                return (false, "Debe ingresar un correo electrÃ³nico vÃ¡lido.");
             if (string.IsNullOrWhiteSpace(user.Nationality) || string.IsNullOrWhiteSpace(user.Locality))
                 return (false, "La nacionalidad y localidad son obligatorias.");
             if (string.IsNullOrWhiteSpace(user.Sex))
                 return (false, "Seleccionar un Sexo es Obligatorio.");
             if (user.ProfileId <= 0)
-                return (false, "Debe seleccionar un perfil válido para el usuario.");
+                return (false, "Debe seleccionar un perfil vÃ¡lido para el usuario.");
             if (user.Birth.Date > DateTime.Today.AddYears(-18))
-                return (false, "El usuario debe ser mayor de 18 años.");
+                return (false, "El usuario debe ser mayor de 18 aÃ±os.");
             try
             {
                 int newId = _userDal.CreateUser(user);
@@ -96,17 +96,17 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                // Manejo de errores por violación de restricciones UNIQUE (DNI, Username, Email)
+                // Manejo de errores por violaciÃ³n de restricciones UNIQUE (DNI, Username, Email)
                 if (ex.Number == 2627 || ex.Number == 2601)
                 {
                     if (ex.Message.Contains("UQ_User_DNI"))
-                        return (false, "Ya existe un usuario con ese número de DNI.");
+                        return (false, "Ya existe un usuario con ese nÃºmero de DNI.");
                     if (ex.Message.Contains("UQ_User_Username"))
                         return (false, "El nombre de usuario ya se encuentra en uso.");
                     if (ex.Message.Contains("UQ_User_Email"))
-                        return (false, "El correo electrónico ya está registrado en el sistema.");
+                        return (false, "El correo electrÃ³nico ya estÃ¡ registrado en el sistema.");
                     if (ex.Message.Contains("UQ_User_Phone"))
-                        return (false, "El teléfono ya ha sido agregado anteriormente.");
+                        return (false, "El telÃ©fono ya ha sido agregado anteriormente.");
 
                     return (false, "Ya existe un registro con datos duplicados.");
                 }
@@ -124,11 +124,11 @@ namespace MobileSolutions.BusinessLayer
             if (user == null)
                 return (false, "Los datos del usuario no pueden ser nulos.");
             if (user.UserId <= 0)
-                return (false, "Identificador de usuario no válido para la actualización.");
+                return (false, "Identificador de usuario no vÃ¡lido para la actualizaciÃ³n.");
             if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Lastname))
                 return (false, "El nombre y apellido son obligatorios.");
             if (string.IsNullOrWhiteSpace(user.Dni) || user.Dni.Length < 7 || user.Dni.Length > 8)
-                return (false, "El DNI debe contener entre 7 y 8 dígitos.");
+                return (false, "El DNI debe contener entre 7 y 8 dÃ­gitos.");
             if (string.IsNullOrWhiteSpace(user.Username))
                 return (false, "El nombre de usuario es obligatorio.");
             if (!string.IsNullOrWhiteSpace(user.Password))
@@ -141,15 +141,15 @@ namespace MobileSolutions.BusinessLayer
                 user.Password = ComputeSha256Hash(user.Password);
             }
             if (string.IsNullOrWhiteSpace(user.Email) || !user.Email.Contains("@"))
-                return (false, "Debe ingresar un correo electrónico válido.");
+                return (false, "Debe ingresar un correo electrÃ³nico vÃ¡lido.");
             if (string.IsNullOrWhiteSpace(user.Nationality) || string.IsNullOrWhiteSpace(user.Locality))
                 return (false, "La nacionalidad y localidad son obligatorias.");
             if (string.IsNullOrWhiteSpace(user.Sex))
                 return (false, "Seleccionar un Sexo es Obligatorio.");
             if (user.ProfileId <= 0)
-                return (false, "Debe seleccionar un perfil válido para el usuario.");
+                return (false, "Debe seleccionar un perfil vÃ¡lido para el usuario.");
             if (user.Birth.Date > DateTime.Today.AddYears(-18))
-                return (false, "El usuario debe ser mayor de 18 años.");
+                return (false, "El usuario debe ser mayor de 18 aÃ±os.");
 
             try
             {
@@ -165,17 +165,17 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                // Manejo de errores por violación de restricciones UNIQUE (DNI, Username, Email)
+                // Manejo de errores por violaciÃ³n de restricciones UNIQUE (DNI, Username, Email)
                 if (ex.Number == 2627 || ex.Number == 2601)
                 {
                     if (ex.Message.Contains("UQ_User_DNI"))
-                        return (false, "Ya existe un usuario con ese número de DNI.");
+                        return (false, "Ya existe un usuario con ese nÃºmero de DNI.");
                     if (ex.Message.Contains("UQ_User_Username"))
                         return (false, "El nombre de usuario ya se encuentra en uso.");
                     if (ex.Message.Contains("UQ_User_Email"))
-                        return (false, "El correo electrónico ya está registrado en el sistema.");
+                        return (false, "El correo electrÃ³nico ya estÃ¡ registrado en el sistema.");
                     if (ex.Message.Contains("UQ_User_Phone"))
-                        return (false, "El teléfono ya ha sido agregado anteriormente.");
+                        return (false, "El telÃ©fono ya ha sido agregado anteriormente.");
 
                     return (false, "Ya existe un registro con datos duplicados.");
                 }
@@ -192,7 +192,7 @@ namespace MobileSolutions.BusinessLayer
         {
             if (userId <= 0)
             {
-                return (false, "Identificador de usuario no válido para la baja lógica.");
+                return (false, "Identificador de usuario no vÃ¡lido para la baja lÃ³gica.");
             }
 
             try
@@ -201,7 +201,7 @@ namespace MobileSolutions.BusinessLayer
                 if (deleted)
                 {
                     string actor = !string.IsNullOrWhiteSpace(CurrentSession.Username) ? CurrentSession.Username : "Sistema";
-                    _auditDal.RecordAuditEvent("User Modified", actor, "Success", $"Baja lógica de usuario ID: {userId}");
+                    _auditDal.RecordAuditEvent("User Modified", actor, "Success", $"Baja lÃ³gica de usuario ID: {userId}");
                     return (true, "Usuario dado de baja correctamente.");
                 }
 
@@ -221,7 +221,7 @@ namespace MobileSolutions.BusinessLayer
         {
             if (userId <= 0)
             {
-                return (false, "Identificador de usuario no válido para la reactivación.");
+                return (false, "Identificador de usuario no vÃ¡lido para la reactivaciÃ³n.");
             }
 
             try
@@ -230,7 +230,7 @@ namespace MobileSolutions.BusinessLayer
                 if (reactivated)
                 {
                     string actor = !string.IsNullOrWhiteSpace(CurrentSession.Username) ? CurrentSession.Username : "Sistema";
-                    _auditDal.RecordAuditEvent("User Modified", actor, "Success", $"Reactivación de usuario ID: {userId}");
+                    _auditDal.RecordAuditEvent("User Modified", actor, "Success", $"ReactivaciÃ³n de usuario ID: {userId}");
                     return (true, "Usuario reactivado correctamente.");
                 }
 
@@ -252,40 +252,40 @@ namespace MobileSolutions.BusinessLayer
         }
 
         /// <summary>
-        /// Valida las reglas de complejidad de contraseña:
-        /// - Mínimo 8 caracteres
-        /// - Al menos 1 letra mayúscula
-        /// - Al menos 1 símbolo especial
+        /// Valida las reglas de complejidad de contraseÃ±a:
+        /// - MÃ­nimo 8 caracteres
+        /// - Al menos 1 letra mayÃºscula
+        /// - Al menos 1 sÃ­mbolo especial
         /// </summary>
         public (bool IsValid, string Message) ValidatePasswordComplexity(string? password, bool isRequired = true)
         {
             if (string.IsNullOrWhiteSpace(password))
             {
                 return isRequired
-                    ? (false, "La contraseña es obligatoria.")
+                    ? (false, "La contraseÃ±a es obligatoria.")
                     : (true, string.Empty);
             }
 
             if (password.Length < 8)
             {
-                return (false, "La contraseña debe contener al menos 8 caracteres.");
+                return (false, "La contraseÃ±a debe contener al menos 8 caracteres.");
             }
 
             if (!password.Any(char.IsUpper))
             {
-                return (false, "La contraseña debe contener al menos una letra mayúscula.");
+                return (false, "La contraseÃ±a debe contener al menos una letra mayÃºscula.");
             }
 
             if (!password.Any(c => !char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c)))
             {
-                return (false, "La contraseña debe contener al menos un carácter especial (ej. !@#$%^&*).");
+                return (false, "La contraseÃ±a debe contener al menos un carÃ¡cter especial (ej. !@#$%^&*).");
             }
 
             return (true, string.Empty);
         }
 
         /// <summary>
-        /// Genera el resumen criptográfico SHA-256 en formato hexadecimal en minúsculas (64 caracteres).
+        /// Genera el resumen criptogrÃ¡fico SHA-256 en formato hexadecimal en minÃºsculas (64 caracteres).
         /// </summary>
         public static string ComputeSha256Hash(string rawData)
         {
@@ -307,8 +307,8 @@ namespace MobileSolutions.BusinessLayer
         {
             if (string.IsNullOrWhiteSpace(usernameOrEmail) || string.IsNullOrWhiteSpace(password))
             {
-                _auditDal.RecordAuditEvent("Login", string.IsNullOrWhiteSpace(usernameOrEmail) ? "Desconocido" : usernameOrEmail.Trim(), "Failure", "Campos de usuario o contraseña vacíos");
-                return (false, "Por favor ingrese usuario y contraseña.", null);
+                _auditDal.RecordAuditEvent("Login", string.IsNullOrWhiteSpace(usernameOrEmail) ? "Desconocido" : usernameOrEmail.Trim(), "Failure", "Campos de usuario o contraseÃ±a vacÃ­os");
+                return (false, "Por favor ingrese usuario y contraseÃ±a.", null);
             }
 
             try
@@ -317,12 +317,12 @@ namespace MobileSolutions.BusinessLayer
                 User? user = _userDal.ValidateLogin(usernameOrEmail.Trim(), hashedPassword);
                 if (user == null)
                 {
-                    _auditDal.RecordAuditEvent("Login", usernameOrEmail.Trim(), "Failure", "Usuario o contraseña inválidos o cuenta inactiva");
-                    return (false, "Usuario o contraseña no válidos, o la cuenta está inactiva.", null);
+                    _auditDal.RecordAuditEvent("Login", usernameOrEmail.Trim(), "Failure", "Usuario o contraseÃ±a invÃ¡lidos o cuenta inactiva");
+                    return (false, "Usuario o contraseÃ±a no vÃ¡lidos, o la cuenta estÃ¡ inactiva.", null);
                 }
 
-                _auditDal.RecordAuditEvent("Login", user.Username, "Success", "Inicio de sesión correcto");
-                return (true, "Inicio de sesión correcto.", user);
+                _auditDal.RecordAuditEvent("Login", user.Username, "Success", "Inicio de sesiÃ³n correcto");
+                return (true, "Inicio de sesiÃ³n correcto.", user);
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
@@ -330,7 +330,7 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado durante la autenticación: {ex.Message}", null);
+                return (false, $"Error inesperado durante la autenticaciÃ³n: {ex.Message}", null);
             }
         }
 
@@ -365,29 +365,29 @@ namespace MobileSolutions.BusinessLayer
         {
             if (string.IsNullOrWhiteSpace(emailOrUsername))
             {
-                return (false, "Por favor ingrese su correo electrónico o nombre de usuario.");
+                return (false, "Por favor ingrese su correo electrÃ³nico o nombre de usuario.");
             }
 
             try
             {
-                // 1. Generar código numérico OTP de 6 dígitos seguro
+                // 1. Generar cÃ³digo numÃ©rico OTP de 6 dÃ­gitos seguro
                 string otp = PasswordResetService.GenerateNumericOtp();
 
-                // 2. Persistir en base de datos con expiración de 15 minutos
+                // 2. Persistir en base de datos con expiraciÃ³n de 15 minutos
                 var (saved, destinationEmail) = _userDal.SavePasswordResetOtp(emailOrUsername.Trim(), otp);
                 if (!saved || string.IsNullOrWhiteSpace(destinationEmail))
                 {
-                    return (false, "No se encontró ningún usuario activo con el correo o usuario indicado.");
+                    return (false, "No se encontrÃ³ ningÃºn usuario activo con el correo o usuario indicado.");
                 }
 
-                // 3. Enviar correo vía MailKit / MimeKit
+                // 3. Enviar correo vÃ­a MailKit / MimeKit
                 var (sent, errorMessage) = PasswordResetService.SendResetOtpEmail(destinationEmail, otp);
                 if (!sent)
                 {
-                    return (false, $"Código generado pero ocurrió un error al enviar el correo: {errorMessage}");
+                    return (false, $"CÃ³digo generado pero ocurriÃ³ un error al enviar el correo: {errorMessage}");
                 }
 
-                return (true, "Código de verificación enviado exitosamente a tu correo registrado.");
+                return (true, "CÃ³digo de verificaciÃ³n enviado exitosamente a tu correo registrado.");
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
@@ -408,15 +408,15 @@ namespace MobileSolutions.BusinessLayer
 
             if (string.IsNullOrWhiteSpace(otpCode))
             {
-                return (false, "Debe ingresar el código de verificación de 6 dígitos.");
+                return (false, "Debe ingresar el cÃ³digo de verificaciÃ³n de 6 dÃ­gitos.");
             }
 
             if (string.IsNullOrWhiteSpace(newPassword))
             {
-                return (false, "Debe ingresar la nueva contraseña.");
+                return (false, "Debe ingresar la nueva contraseÃ±a.");
             }
 
-            // 1. Validar reglas de complejidad de la nueva contraseña
+            // 1. Validar reglas de complejidad de la nueva contraseÃ±a
             var (isValid, complexityMessage) = ValidatePasswordComplexity(newPassword, isRequired: true);
             if (!isValid)
             {
@@ -425,17 +425,17 @@ namespace MobileSolutions.BusinessLayer
 
             try
             {
-                // 2. Hashear la nueva contraseña con SHA-256
+                // 2. Hashear la nueva contraseÃ±a con SHA-256
                 string hashedNewPassword = ComputeSha256Hash(newPassword);
 
                 // 3. Validar token no expirado y actualizar en base de datos
                 bool updated = _userDal.ResetPasswordWithOtp(emailOrUsername.Trim(), otpCode.Trim(), hashedNewPassword);
                 if (!updated)
                 {
-                    return (false, "El código de verificación es incorrecto, no coincide o ha expirado (15 minutos).");
+                    return (false, "El cÃ³digo de verificaciÃ³n es incorrecto, no coincide o ha expirado (15 minutos).");
                 }
 
-                return (true, "Contraseña actualizada correctamente. Ya puede iniciar sesión con sus nuevas credenciales.");
+                return (true, "ContraseÃ±a actualizada correctamente. Ya puede iniciar sesiÃ³n con sus nuevas credenciales.");
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
@@ -443,9 +443,39 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al actualizar la contraseña: {ex.Message}");
+                return (false, $"Error inesperado al actualizar la contraseÃ±a: {ex.Message}");
             }
+        }
+    
+        public User? GetUserByIdOrUsername(int userId, string? username = null)
+        {
+            var activeUsers = _userDal.GetActiveUsers();
+            if (userId > 0)
+            {
+                var match = activeUsers.FirstOrDefault(u => u.UserId == userId);
+                if (match != null) return match;
+            }
+
+            if (!string.IsNullOrWhiteSpace(username))
+            {
+                var match = activeUsers.FirstOrDefault(u => string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase));
+                if (match != null) return match;
+            }
+
+            var inactiveUsers = _userDal.GetInactiveUsers();
+            if (userId > 0)
+            {
+                var match = inactiveUsers.FirstOrDefault(u => u.UserId == userId);
+                if (match != null) return match;
+            }
+
+            if (!string.IsNullOrWhiteSpace(username))
+            {
+                var match = inactiveUsers.FirstOrDefault(u => string.Equals(u.Username, username.Trim(), StringComparison.OrdinalIgnoreCase));
+                if (match != null) return match;
+            }
+
+            return null;
         }
     }
 }
-
