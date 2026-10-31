@@ -28,7 +28,7 @@ Año Lectivo: 2026
 | Documento | Descripción | Enlace |
 |-----------|-------------|--------|
 | 📋 ERS | Especificación de Requisitos de Software (IEEE 830) | [Ver PDF](Documentacion/Especificación_de_Requerimientos_de_Software_%28ERS%29.pdf) |
-| 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | [Proximamente...]|
+| 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | [Ver Manual](https://docs.google.com/document/d/1gMv7HCl5TO2FgIHZoueDL4V_0zivxB1sFEEXmL62ta4/edit?usp=sharing)|
 | ⚙️ Guía de Instalación | Instrucciones para configurar el entorno local | [Proximamente...] |
 
 ---
