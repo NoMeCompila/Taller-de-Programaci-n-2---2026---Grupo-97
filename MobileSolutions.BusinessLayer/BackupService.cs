@@ -185,6 +185,14 @@ namespace MobileSolutions.BusinessLayer
             }
         }
 
+        /// <summary>
+        /// Verifica y aprovisiona automáticamente la base de datos local si no existe en la PC del cliente.
+        /// </summary>
+        public static void EnsureDatabaseReady()
+        {
+            DatabaseInitializer.EnsureDatabaseReady();
+        }
+
         private static void ValidateAdminAccess()
         {
             if (!CurrentSession.IsAuthenticated)

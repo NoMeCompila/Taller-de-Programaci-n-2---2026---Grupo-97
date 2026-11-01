@@ -285,7 +285,7 @@ namespace MobileSolutions.UILayer
         {
             try
             {
-                string targetDir = @"C:\Users\FeR\Desktop\Taller 2\Taller-de-Programaci-n-2---2026---Grupo-97\MobileSolutions.UILayer\bin\Debug\net10.0-windows";
+                string targetDir = AppDomain.CurrentDomain.BaseDirectory;
                 string exePath = Path.Combine(targetDir, "MobileSolutions.UILayer.exe");
 
                 if (!File.Exists(exePath))

@@ -10,4 +10,8 @@ obj/
 *.suo
 
 .opencode/
+publish/
+InstallerOutput/
+Installer/Prerequisites/*.msi
+
 
