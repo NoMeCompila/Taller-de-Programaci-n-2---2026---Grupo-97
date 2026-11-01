@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.IO;
 using FontAwesome.Sharp;
 using MaterialSkin;
@@ -249,7 +249,7 @@ namespace MobileSolutions.UILayer
 
         private void HandleLogoutRequested(object? sender, EventArgs e)
         {
-            DialogResult result = MaterialMessageBox.Show(
+            DialogResult result = MessageBox.Show(
                 "¿Seguro que quiere cerrar sesión?",
                 "Cerrar Sesión",
                 MessageBoxButtons.YesNo,
@@ -318,7 +318,7 @@ namespace MobileSolutions.UILayer
             }
             catch (Exception ex)
             {
-                MaterialMessageBox.Show($"Error al reiniciar la aplicación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al reiniciar la aplicación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
