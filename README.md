@@ -146,7 +146,17 @@ El sistema está desarrollado bajo el estándar de especificación **IEEE 830-19
 * **Dependencias:** Conexión a Internet activa (para consumo de API REST de imágenes multimedia).
 
 ---
-
-## 🏛️ Arquitectura del Sistema
-
-El software implementa un patrón en **3 Capas**:
+---
+<div align="center">
+  <img src="MobileSolutions.UILayer/Resources/logo_mobile_solutions_dark.png" alt="Mobile Solutions Logo" width="260" />
+  <h3>¡Muchas gracias por visitar y explorar Mobile Solutions! 🚀📱</h3>
+  <p>
+    Este proyecto fue desarrollado con dedicación, buenas prácticas de ingeniería de software y pasión por el desarrollo.<br>
+    Esperamos que te resulte útil e inspirador. Si tienes sugerencias, comentarios o deseas contribuir, ¡serán siempre bienvenidos!
+  </p>
+  <p>
+    ⭐ <i>Si el proyecto te gustó, no dudes en dejar tu estrella en GitHub.</i> ⭐
+  </p>
+  <br>
+  <sub><b>Mobile Solutions</b> • Taller de Programación II • 2026</sub>
+</div>
