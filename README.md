@@ -34,7 +34,7 @@ Año Lectivo: 2026
 | 📋 Trello | Tablero del proyecto en formato SCRUM con historias de Usuario | <a href="https://trello.com/b/IpIYZi7e/%F0%9F%96%A5%EF%B8%8F-mobile-solutions" target="_blank">Ver Trello</a> |
 | 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | <a href="https://docs.google.com/document/d/1gMv7HCl5TO2FgIHZoueDL4V_0zivxB1sFEEXmL62ta4/edit?usp=sharing" target="_blank">Ver Manual</a> |
 | 📖 Documentación Técnica | Documentación para Devs | <a href="https://docs.google.com/document/d/1ruEoIVVfTFhDXZRdqf16DIo-IoCUYLJTjG5yUbkBl9A/edit?usp=sharing" target="_blank">Ver Documentación</a> |
-| ⚙️ Guía de Instalación | Instrucciones para configurar el entorno local | [Proximamente...] |
+| ⚙️ Guía de Instalación | Instrucciones para el Usuario Final |<a href="https://docs.google.com/document/d/1fjoNUZiVWfsCgXLFiN6v5X17Gk1FBvZad0ekbCi2krQ/edit?usp=sharing" target="_blank">Ver Instalación</a> |
 
 ---
 
