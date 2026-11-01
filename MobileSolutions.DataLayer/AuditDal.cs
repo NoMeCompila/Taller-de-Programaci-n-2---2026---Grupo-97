@@ -9,6 +9,7 @@ namespace MobileSolutions.DataLayer
     public class AuditDal
     {
         private readonly DatabaseConnection _dbConnection;
+        private static bool _mojibakeRepaired;
 
         public AuditDal()
         {
@@ -32,24 +33,72 @@ namespace MobileSolutions.DataLayer
         }
 
         /// <summary>
+        /// Repara de forma transparente y por única vez registros históricos de dbo.AuditLog
+        /// que hayan sido persistidos con doble codificación UTF-8/Windows-1252 (ej. "sesiÃ³n", "contraseÃ±a").
+        /// </summary>
+        private static void EnsureAuditLogMojibakeRepaired(SqlConnection connection)
+        {
+            if (_mojibakeRepaired)
+            {
+                return;
+            }
+
+            try
+            {
+                const string repairSql = @"
+                    IF OBJECT_ID('dbo.AuditLog', 'U') IS NOT NULL
+                    BEGIN
+                        UPDATE dbo.AuditLog
+                        SET details = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(details,
+                            'Ã¡', 'á'),
+                            'Ã©', 'é'),
+                            'Ã­', 'í'),
+                            'Ã³', 'ó'),
+                            'Ãº', 'ú'),
+                            'Ã±', 'ñ'),
+                            'Â¿', '¿'),
+                            'Â¡', '¡')
+                        WHERE details LIKE '%Ã%' OR details LIKE '%Â%';
+                    END;";
+
+                using SqlCommand cmd = new SqlCommand(repairSql, connection)
+                {
+                    CommandType = CommandType.Text,
+                    CommandTimeout = 10
+                };
+                cmd.ExecuteNonQuery();
+                _mojibakeRepaired = true;
+            }
+            catch
+            {
+                // No interrumpir lecturas si el usuario de BD no tuviera permisos de escritura
+            }
+        }
+
+        /// <summary>
         /// Registra un evento de auditoría en dbo.AuditLog mediante sp_RecordAuditEvent.
         /// </summary>
         public bool RecordAuditEvent(string eventType, string actor, string outcome, string? details = null)
         {
             try
             {
+                string cleanEventType = Utf8TextNormalizer.Normalize(eventType);
+                string cleanActor = Utf8TextNormalizer.Normalize(actor);
+                string cleanOutcome = Utf8TextNormalizer.Normalize(outcome);
+                string? cleanDetails = Utf8TextNormalizer.NormalizeNullable(details);
+
                 using SqlConnection connection = _dbConnection.GetConnection();
                 using SqlCommand command = new SqlCommand("dbo.sp_RecordAuditEvent", connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
 
-                command.Parameters.Add(new SqlParameter("@event_type", SqlDbType.VarChar, 50) { Value = eventType });
-                command.Parameters.Add(new SqlParameter("@actor", SqlDbType.VarChar, 100) { Value = actor });
-                command.Parameters.Add(new SqlParameter("@outcome", SqlDbType.VarChar, 20) { Value = outcome });
+                command.Parameters.Add(new SqlParameter("@event_type", SqlDbType.VarChar, 50) { Value = cleanEventType });
+                command.Parameters.Add(new SqlParameter("@actor", SqlDbType.VarChar, 100) { Value = cleanActor });
+                command.Parameters.Add(new SqlParameter("@outcome", SqlDbType.VarChar, 20) { Value = cleanOutcome });
                 command.Parameters.Add(new SqlParameter("@details", SqlDbType.VarChar, 255)
                 {
-                    Value = string.IsNullOrWhiteSpace(details) ? (object)DBNull.Value : details
+                    Value = string.IsNullOrWhiteSpace(cleanDetails) ? (object)DBNull.Value : cleanDetails
                 });
 
                 connection.Open();
@@ -79,6 +128,8 @@ namespace MobileSolutions.DataLayer
                 };
 
                 connection.Open();
+                EnsureAuditLogMojibakeRepaired(connection);
+
                 using SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.Read())
@@ -97,7 +148,7 @@ namespace MobileSolutions.DataLayer
                     int ordLastBackupTime = GetOrdinalSafe(reader, "LastBackupTimestamp");
 
                     if (ordMostActiveUser >= 0 && !reader.IsDBNull(ordMostActiveUser))
-                        metrics.MostActiveUser = reader.GetString(ordMostActiveUser);
+                        metrics.MostActiveUser = Utf8TextNormalizer.Normalize(reader.GetString(ordMostActiveUser));
 
                     if (ordMostActiveCount >= 0 && !reader.IsDBNull(ordMostActiveCount))
                         metrics.MostActiveUserLoginCount = Convert.ToInt32(reader.GetValue(ordMostActiveCount));
@@ -106,7 +157,7 @@ namespace MobileSolutions.DataLayer
                         metrics.OrphanAccountsCount = Convert.ToInt32(reader.GetValue(ordOrphanAccounts));
 
                     if (ordLastLoginUser >= 0 && !reader.IsDBNull(ordLastLoginUser))
-                        metrics.LastLoginUser = reader.GetString(ordLastLoginUser);
+                        metrics.LastLoginUser = Utf8TextNormalizer.Normalize(reader.GetString(ordLastLoginUser));
 
                     if (ordLastLoginTime >= 0 && !reader.IsDBNull(ordLastLoginTime))
                         metrics.LastLoginTimestamp = reader.GetDateTime(ordLastLoginTime);
@@ -159,6 +210,8 @@ namespace MobileSolutions.DataLayer
                 command.Parameters.Add(new SqlParameter("@TopCount", SqlDbType.Int) { Value = topCount });
 
                 connection.Open();
+                EnsureAuditLogMojibakeRepaired(connection);
+
                 using SqlDataReader reader = command.ExecuteReader();
 
                 int ordAuditId = GetOrdinalSafe(reader, "audit_id");
@@ -174,10 +227,10 @@ namespace MobileSolutions.DataLayer
                     {
                         AuditId = ordAuditId >= 0 && !reader.IsDBNull(ordAuditId) ? Convert.ToInt32(reader.GetValue(ordAuditId)) : 0,
                         Timestamp = ordTimestamp >= 0 && !reader.IsDBNull(ordTimestamp) ? reader.GetDateTime(ordTimestamp) : DateTime.MinValue,
-                        EventType = ordEventType >= 0 && !reader.IsDBNull(ordEventType) ? reader.GetString(ordEventType) : string.Empty,
-                        Actor = ordActor >= 0 && !reader.IsDBNull(ordActor) ? reader.GetString(ordActor) : string.Empty,
-                        Outcome = ordOutcome >= 0 && !reader.IsDBNull(ordOutcome) ? reader.GetString(ordOutcome) : string.Empty,
-                        Details = ordDetails >= 0 && !reader.IsDBNull(ordDetails) ? reader.GetString(ordDetails) : null
+                        EventType = ordEventType >= 0 && !reader.IsDBNull(ordEventType) ? Utf8TextNormalizer.Normalize(reader.GetString(ordEventType)) : string.Empty,
+                        Actor = ordActor >= 0 && !reader.IsDBNull(ordActor) ? Utf8TextNormalizer.Normalize(reader.GetString(ordActor)) : string.Empty,
+                        Outcome = ordOutcome >= 0 && !reader.IsDBNull(ordOutcome) ? Utf8TextNormalizer.Normalize(reader.GetString(ordOutcome)) : string.Empty,
+                        Details = ordDetails >= 0 && !reader.IsDBNull(ordDetails) ? Utf8TextNormalizer.NormalizeNullable(reader.GetString(ordDetails)) : null
                     });
                 }
             }
@@ -227,8 +280,8 @@ namespace MobileSolutions.DataLayer
                     {
                         AuditId = ordAuditId >= 0 && !reader.IsDBNull(ordAuditId) ? Convert.ToInt32(reader.GetValue(ordAuditId)) : 0,
                         ProductId = ordProductId >= 0 && !reader.IsDBNull(ordProductId) ? Convert.ToInt32(reader.GetValue(ordProductId)) : 0,
-                        ProductCode = ordProductCode >= 0 && !reader.IsDBNull(ordProductCode) ? reader.GetString(ordProductCode) : string.Empty,
-                        ProductName = ordProductName >= 0 && !reader.IsDBNull(ordProductName) ? reader.GetString(ordProductName) : string.Empty,
+                        ProductCode = ordProductCode >= 0 && !reader.IsDBNull(ordProductCode) ? Utf8TextNormalizer.Normalize(reader.GetString(ordProductCode)) : string.Empty,
+                        ProductName = ordProductName >= 0 && !reader.IsDBNull(ordProductName) ? Utf8TextNormalizer.Normalize(reader.GetString(ordProductName)) : string.Empty,
                         OldPurchasePrice = ordOldPurchase >= 0 && !reader.IsDBNull(ordOldPurchase) ? Convert.ToDecimal(reader.GetValue(ordOldPurchase)) : 0m,
                         NewPurchasePrice = ordNewPurchase >= 0 && !reader.IsDBNull(ordNewPurchase) ? Convert.ToDecimal(reader.GetValue(ordNewPurchase)) : 0m,
                         OldSalePrice = ordOldSale >= 0 && !reader.IsDBNull(ordOldSale) ? Convert.ToDecimal(reader.GetValue(ordOldSale)) : 0m,
