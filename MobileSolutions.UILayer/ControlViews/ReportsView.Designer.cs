@@ -1,14 +1,14 @@
-namespace MobileSolutions.UILayer
+ï»¿namespace MobileSolutions.UILayer
 {
     partial class ReportsView
     {
         /// <summary> 
-        /// Variable del diseñador necesaria.
+        /// Variable del diseÃ±ador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Limpiar los recursos que se estén usando.
+        /// Limpiar los recursos que se estÃ©n usando.
         /// </summary>
         /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
@@ -20,11 +20,11 @@ namespace MobileSolutions.UILayer
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de componentes
+        #region CÃ³digo generado por el DiseÃ±ador de componentes
 
         /// <summary> 
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
+        /// MÃ©todo necesario para admitir el DiseÃ±ador. No se puede modificar
+        /// el contenido de este mÃ©todo con el editor de cÃ³digo.
         /// </summary>
         private void InitializeComponent()
         {

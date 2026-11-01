@@ -1,4 +1,4 @@
-namespace MobileSolutions.BusinessLayer.Models
+﻿namespace MobileSolutions.BusinessLayer.Models
 {
     public class Brand
     {

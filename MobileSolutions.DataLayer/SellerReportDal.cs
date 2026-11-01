@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using MobileSolutions.BusinessLayer.Models;
 using System;
 using System.Collections.Generic;

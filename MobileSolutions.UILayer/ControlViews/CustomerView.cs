@@ -1,4 +1,4 @@
-using FontAwesome.Sharp;
+﻿using FontAwesome.Sharp;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using MobileSolutions.BusinessLayer;

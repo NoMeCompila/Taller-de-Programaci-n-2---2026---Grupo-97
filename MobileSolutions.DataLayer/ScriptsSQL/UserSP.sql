@@ -1,4 +1,4 @@
-USE MobileSolutionsDB;
+﻿USE MobileSolutionsDB;
 GO
 
 -- User Table Store Procedures
@@ -206,7 +206,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Normaliza el t�rmino de b�squeda: elimina espacios en blanco y convierte cadena vac�a a NULL
+    -- Normaliza el término de búsqueda: elimina espacios en blanco y convierte cadena vacía a NULL
     SET @SearchTerm = NULLIF(LTRIM(RTRIM(@SearchTerm)), '');
 
     SELECT 

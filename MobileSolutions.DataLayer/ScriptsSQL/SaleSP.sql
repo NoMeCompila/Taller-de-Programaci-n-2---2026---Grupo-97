@@ -8,7 +8,7 @@ GO
 -- - Al CONFIRMAR venta: se descuenta stock (sp_CreateSale)
 -- - Al CANCELAR venta: se devuelve stock (sp_CancelSale)
 -- - Al REACTIVAR venta: se valida stock y se vuelve a descontar (sp_ReactivateSale)
--- - "Reservar" stock NO se hace al agregar al carrito. Solo validaciÃ³n en UI.
+-- - "Reservar" stock NO se hace al agregar al carrito. Solo validación en UI.
 -- ============================================================================
 GO
 
@@ -102,7 +102,7 @@ BEGIN
 
     IF @sale_id IS NULL
     BEGIN
-        RAISERROR('El parÃ¡metro @sale_id no puede ser nulo.', 16, 1);
+        RAISERROR('El parámetro @sale_id no puede ser nulo.', 16, 1);
         RETURN;
     END
 
@@ -131,7 +131,7 @@ END;
 GO
 
 -- ============================================================================
--- 5. BUSCAR VENTAS ACTIVAS CON FILTRO DINÃMICO (sp_SearchActiveSales)
+-- 5. BUSCAR VENTAS ACTIVAS CON FILTRO DINÁMICO (sp_SearchActiveSales)
 -- ============================================================================
 CREATE OR ALTER PROCEDURE dbo.sp_SearchActiveSales
     @SearchTerm NVARCHAR(100) = NULL
@@ -175,7 +175,7 @@ END;
 GO
 
 -- ============================================================================
--- 6. BUSCAR VENTAS INACTIVAS CON FILTRO DINÃMICO (sp_SearchInactiveSales)
+-- 6. BUSCAR VENTAS INACTIVAS CON FILTRO DINÁMICO (sp_SearchInactiveSales)
 -- ============================================================================
 CREATE OR ALTER PROCEDURE dbo.sp_SearchInactiveSales
     @SearchTerm NVARCHAR(100) = NULL
@@ -296,7 +296,7 @@ BEGIN
     DECLARE @userCode4 VARCHAR(4);
     DECLARE @total_sale DECIMAL(18,2);
 
-    -- Validaciones bÃ¡sicas
+    -- Validaciones básicas
     IF @payment_type_id IS NULL OR @customer_id IS NULL OR @user_id IS NULL
     BEGIN
         RAISERROR('payment_type_id, customer_id y user_id son obligatorios.', 16, 1);
@@ -305,23 +305,23 @@ BEGIN
 
     IF NOT EXISTS (SELECT 1 FROM PaymentType WHERE payment_type_id = @payment_type_id AND status = 1)
     BEGIN
-        RAISERROR('El tipo de pago indicado no existe o no estÃ¡ activo.', 16, 1);
+        RAISERROR('El tipo de pago indicado no existe o no está activo.', 16, 1);
         RETURN;
     END
 
     IF NOT EXISTS (SELECT 1 FROM Customer WHERE customer_id = @customer_id AND status = 1)
     BEGIN
-        RAISERROR('El cliente indicado no existe o no estÃ¡ activo.', 16, 1);
+        RAISERROR('El cliente indicado no existe o no está activo.', 16, 1);
         RETURN;
     END
 
     IF NOT EXISTS (SELECT 1 FROM [User] WHERE user_id = @user_id AND status = 1)
     BEGIN
-        RAISERROR('El vendedor indicado no existe o no estÃ¡ activo.', 16, 1);
+        RAISERROR('El vendedor indicado no existe o no está activo.', 16, 1);
         RETURN;
     END
 
-    -- Validar que el TVP tenga al menos un Ã­tem
+    -- Validar que el TVP tenga al menos un ítem
     IF NOT EXISTS (SELECT 1 FROM @details)
     BEGIN
         RAISERROR('La venta debe tener al menos un producto en el detalle.', 16, 1);
@@ -331,7 +331,7 @@ BEGIN
     -- Validar cantidad > 0 y precio >= 0
     IF EXISTS (SELECT 1 FROM @details WHERE quantity <= 0 OR price < 0)
     BEGIN
-        RAISERROR('Cantidad debe ser mayor a 0 y precio >= 0 para todos los Ã­tems.', 16, 1);
+        RAISERROR('Cantidad debe ser mayor a 0 y precio >= 0 para todos los ítems.', 16, 1);
         RETURN;
     END
 
@@ -343,7 +343,7 @@ BEGIN
         WHERE p.product_id IS NULL OR p.status = 0
     )
     BEGIN
-        RAISERROR('Existe al menos un producto invÃ¡lido o inactivo en el detalle.', 16, 1);
+        RAISERROR('Existe al menos un producto inválido o inactivo en el detalle.', 16, 1);
         RETURN;
     END
 
@@ -354,7 +354,7 @@ BEGIN
         WHERE d.quantity > p.stock
     )
     BEGIN
-        RAISERROR('Stock insuficiente para al menos uno de los productos. VerificÃ¡ disponibilidad antes de confirmar.', 16, 1);
+        RAISERROR('Stock insuficiente para al menos uno de los productos. Verificá disponibilidad antes de confirmar.', 16, 1);
         RETURN;
     END
 
@@ -416,7 +416,7 @@ BEGIN
         SET p.stock = p.stock - d.quantity
         FROM Product p
         INNER JOIN @details d ON d.product_id = p.product_id
-        WHERE p.stock >= d.quantity; -- doble validaciÃ³n por seguridad
+        WHERE p.stock >= d.quantity; -- doble validación por seguridad
 
         COMMIT TRANSACTION;
 
@@ -450,7 +450,7 @@ BEGIN
 
     IF @sale_id IS NULL
     BEGIN
-        RAISERROR('El parÃ¡metro @sale_id no puede ser nulo.', 16, 1);
+        RAISERROR('El parámetro @sale_id no puede ser nulo.', 16, 1);
         RETURN;
     END
 
@@ -498,7 +498,7 @@ GO
 
 -- ============================================================================
 -- 10. REACTIVAR VENTA (status = 1 + VOLVER A DESCONTAR STOCK)
---    Valida que haya stock suficiente para TODOS los Ã­tems antes de reactivar
+--    Valida que haya stock suficiente para TODOS los ítems antes de reactivar
 -- ============================================================================
 CREATE OR ALTER PROCEDURE dbo.sp_ReactivateSale
     @sale_id INT
@@ -509,7 +509,7 @@ BEGIN
 
     IF @sale_id IS NULL
     BEGIN
-        RAISERROR('El parÃ¡metro @sale_id no puede ser nulo.', 16, 1);
+        RAISERROR('El parámetro @sale_id no puede ser nulo.', 16, 1);
         RETURN;
     END
 
@@ -534,7 +534,7 @@ BEGIN
           AND sd.quantity > p.stock
     )
     BEGIN
-        RAISERROR('No hay stock suficiente para reactivar esta venta. Algunos productos quedaron sin stock desde su cancelaciÃ³n.', 16, 1);
+        RAISERROR('No hay stock suficiente para reactivar esta venta. Algunos productos quedaron sin stock desde su cancelación.', 16, 1);
         RETURN;
     END
 
@@ -583,7 +583,7 @@ END;
 GO
 
 -- ============================================================================
--- VERIFICACIÃ“N RÃPIDA
+-- VERIFICACIÓN RÁPIDA
 -- ============================================================================
 SELECT 
     SCHEMA_NAME(schema_id) AS Esquema,

@@ -1,4 +1,4 @@
-USE MobileSolutionsDB;
+﻿USE MobileSolutionsDB;
 GO
 
 -- 1. Tabla de Perfiles / Roles

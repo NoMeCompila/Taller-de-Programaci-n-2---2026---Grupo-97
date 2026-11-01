@@ -1,4 +1,4 @@
-namespace MobileSolutions.UILayer
+﻿namespace MobileSolutions.UILayer
 {
     internal static class Program
     {

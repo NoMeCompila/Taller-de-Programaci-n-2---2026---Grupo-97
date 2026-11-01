@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using FontAwesome.Sharp;
 using MaterialSkin;
