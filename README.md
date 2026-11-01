@@ -35,6 +35,7 @@ Año Lectivo: 2026
 | 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | <a href="https://docs.google.com/document/d/1gMv7HCl5TO2FgIHZoueDL4V_0zivxB1sFEEXmL62ta4/edit?usp=sharing" target="_blank">Ver Manual</a> |
 | 📖 Documentación Técnica | Documentación para Devs | <a href="https://docs.google.com/document/d/1ruEoIVVfTFhDXZRdqf16DIo-IoCUYLJTjG5yUbkBl9A/edit?usp=sharing" target="_blank">Ver Documentación</a> |
 | ⚙️ Guía de Instalación | Instrucciones para el Usuario Final |<a href="https://docs.google.com/document/d/1fjoNUZiVWfsCgXLFiN6v5X17Gk1FBvZad0ekbCi2krQ/edit?usp=sharing" target="_blank">Ver Instalación</a> |
+|Instalador Directo| MobileSolutions_Setup.exe|<a href="https://drive.google.com/file/d/1OV-645-w63hBUZMsG9Db5mw3DcU_VgCJ/view?usp=sharing" target="_blank">Descargar</a>  |
 
 ---
 
