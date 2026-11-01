@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+using FontAwesome.Sharp;
 using MaterialSkin.Controls;
 using MobileSolutions.BusinessLayer;
 using MobileSolutions.BusinessLayer.Models;
@@ -37,6 +37,7 @@ namespace MobileSolutions.UILayer
 
             ConfigureHeaderAndTabs();
             ConfigureDataGrids();
+            RefreshDashboardData();
 
             this.Load += (s, e) => RefreshDashboardData();
         }

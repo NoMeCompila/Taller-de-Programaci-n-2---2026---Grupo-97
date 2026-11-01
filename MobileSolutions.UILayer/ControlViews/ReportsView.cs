@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -101,6 +101,10 @@ namespace MobileSolutions.UILayer
                 pnlContainer.Controls.Clear();
                 pnlContainer.Controls.Add(authorizedReport);
                 _reportInjected = true;
+                if (authorizedReport is AdminReportControl adminReport)
+                {
+                    adminReport.RefreshDashboardData();
+                }
             }
         }
     }
