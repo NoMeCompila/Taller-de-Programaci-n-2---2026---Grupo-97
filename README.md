@@ -33,6 +33,7 @@ Año Lectivo: 2026
 | 📋 Notion | Documentación más detallada sobre el proyecto | <a href="https://app.notion.com/p/3ca29f1da19b807aa1fbf49ea7b57e76?v=3ca29f1da19b8041b625000ca7394d52&source=copy_link" target="_blank">Ver Notion</a> |
 | 📋 Trello | Tablero del proyecto en formato SCRUM con historias de Usuario | <a href="https://trello.com/b/IpIYZi7e/%F0%9F%96%A5%EF%B8%8F-mobile-solutions" target="_blank">Ver Trello</a> |
 | 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | <a href="https://docs.google.com/document/d/1gMv7HCl5TO2FgIHZoueDL4V_0zivxB1sFEEXmL62ta4/edit?usp=sharing" target="_blank">Ver Manual</a> |
+| 📖 Documentación Técnica | Documentación para Devs | <a href="https://docs.google.com/document/d/1ruEoIVVfTFhDXZRdqf16DIo-IoCUYLJTjG5yUbkBl9A/edit?usp=sharing" target="_blank">Ver Documentación</a> |
 | ⚙️ Guía de Instalación | Instrucciones para configurar el entorno local | [Proximamente...] |
 
 ---
