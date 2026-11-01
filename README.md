@@ -28,11 +28,11 @@ Año Lectivo: 2026
 #### * Para visualizar la documentacion en NOTION deben crearse una cuenta. Y para ver el tablero de TRELLO deben ademas de crearse una cuenta esperar que aceptemos la invitacion para habilitar la vista al tablero. *
 
 | Documento | Descripción | Enlace |
-|-----------|-------------|--------|
-| 📋 ERS | Especificación de Requisitos de Software (IEEE 830) | [Ver PDF](Documentacion/Especificación_de_Requerimientos_de_Software_%28ERS%29.pdf) |
-| 📋 Notion | Documentacion mas detallada sobre el proyecto | [Ver Notion](https://app.notion.com/p/3ca29f1da19b807aa1fbf49ea7b57e76?v=3ca29f1da19b8041b625000ca7394d52&source=copy_link) |
-| 📋 Trello | Tablero del proyecto en formato SCRUM con historias de Usuario | [Ver Trello](https://trello.com/b/IpIYZi7e/%F0%9F%96%A5%EF%B8%8F-mobile-solutions) |
-| 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | [Ver Manual](https://docs.google.com/document/d/1gMv7HCl5TO2FgIHZoueDL4V_0zivxB1sFEEXmL62ta4/edit?usp=sharing)|
+| :--- | :--- | :--- |
+| 📋 ERS | Especificación de Requisitos de Software (IEEE 830) | <a href="Documentacion/Especificación_de_Requerimientos_de_Software_%28ERS%29.pdf" target="_blank">Ver PDF</a> |
+| 📋 Notion | Documentación más detallada sobre el proyecto | <a href="https://app.notion.com/p/3ca29f1da19b807aa1fbf49ea7b57e76?v=3ca29f1da19b8041b625000ca7394d52&source=copy_link" target="_blank">Ver Notion</a> |
+| 📋 Trello | Tablero del proyecto en formato SCRUM con historias de Usuario | <a href="https://trello.com/b/IpIYZi7e/%F0%9F%96%A5%EF%B8%8F-mobile-solutions" target="_blank">Ver Trello</a> |
+| 📖 Manual de Usuario | Guía completa de uso para clientes y administradores | <a href="https://docs.google.com/document/d/1gMv7HCl5TO2FgIHZoueDL4V_0zivxB1sFEEXmL62ta4/edit?usp=sharing" target="_blank">Ver Manual</a> |
 | ⚙️ Guía de Instalación | Instrucciones para configurar el entorno local | [Proximamente...] |
 
 ---
