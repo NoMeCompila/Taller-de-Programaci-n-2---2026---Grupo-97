@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <CodePage>65001</CodePage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,6 +48,7 @@
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<CodePage>65001</CodePage>
 
 		<!-- Configuración para la aplicación en ejecución -->
 		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
@@ -56,4 +58,3 @@
 	</PropertyGroup>
 
 </Project>
-

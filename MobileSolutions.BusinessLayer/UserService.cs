@@ -111,11 +111,11 @@ namespace MobileSolutions.BusinessLayer
                     return (false, "Ya existe un registro con datos duplicados.");
                 }
 
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al guardar el usuario: {ex.Message}");
+                return (false, $"Error inesperado al guardar el usuario: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -180,11 +180,11 @@ namespace MobileSolutions.BusinessLayer
                     return (false, "Ya existe un registro con datos duplicados.");
                 }
 
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al intentar actualizar el usuario: {ex.Message}");
+                return (false, $"Error inesperado al intentar actualizar el usuario: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -209,11 +209,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al dar de baja al usuario: {ex.Message}");
+                return (false, $"Error inesperado al dar de baja al usuario: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -238,11 +238,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al reactivar el usuario: {ex.Message}");
+                return (false, $"Error inesperado al reactivar el usuario: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -326,11 +326,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                return (false, $"Error al conectar con la base de datos: {ex.Message}", null);
+                return (false, $"Error al conectar con la base de datos: {Utf8TextNormalizer.Normalize(ex.Message)}", null);
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado durante la autenticación: {ex.Message}", null);
+                return (false, $"Error inesperado durante la autenticación: {Utf8TextNormalizer.Normalize(ex.Message)}", null);
             }
         }
 
@@ -391,11 +391,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                return (false, $"Error al conectar con la base de datos: {ex.Message}");
+                return (false, $"Error al conectar con la base de datos: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al solicitar restablecimiento: {ex.Message}");
+                return (false, $"Error inesperado al solicitar restablecimiento: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -439,11 +439,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                return (false, $"Error al conectar con la base de datos: {ex.Message}");
+                return (false, $"Error al conectar con la base de datos: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al actualizar la contraseña: {ex.Message}");
+                return (false, $"Error inesperado al actualizar la contraseña: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
     

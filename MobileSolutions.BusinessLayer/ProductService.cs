@@ -91,11 +91,11 @@ namespace MobileSolutions.BusinessLayer
                     return (false, "La marca indicada no existe o no está activa.");
                 }
 
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al guardar el producto: {ex.Message}");
+                return (false, $"Error inesperado al guardar el producto: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -143,11 +143,11 @@ namespace MobileSolutions.BusinessLayer
                     return (false, "La marca indicada no existe o no está activa.");
                 }
 
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al intentar actualizar el producto: {ex.Message}");
+                return (false, $"Error inesperado al intentar actualizar el producto: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -170,11 +170,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al dar de baja al producto: {ex.Message}");
+                return (false, $"Error inesperado al dar de baja al producto: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -197,11 +197,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                return (false, $"Error de base de datos ({ex.Number}): {ex.Message}");
+                return (false, $"Error de base de datos ({ex.Number}): {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al reactivar el producto: {ex.Message}");
+                return (false, $"Error inesperado al reactivar el producto: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 

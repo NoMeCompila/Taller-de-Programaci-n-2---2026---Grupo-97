@@ -151,11 +151,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (SqlException ex)
             {
-                return (false, ex.Message, 0, string.Empty, 0m);
+                return (false, Utf8TextNormalizer.Normalize(ex.Message), 0, string.Empty, 0m);
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al procesar la venta: {ex.Message}", 0, string.Empty, 0m);
+                return (false, $"Error inesperado al procesar la venta: {Utf8TextNormalizer.Normalize(ex.Message)}", 0, string.Empty, 0m);
             }
         }
 
@@ -179,11 +179,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (SqlException ex)
             {
-                return (false, ex.Message);
+                return (false, Utf8TextNormalizer.Normalize(ex.Message));
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al cancelar la venta: {ex.Message}");
+                return (false, $"Error inesperado al cancelar la venta: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
@@ -207,11 +207,11 @@ namespace MobileSolutions.BusinessLayer
             }
             catch (SqlException ex)
             {
-                return (false, ex.Message);
+                return (false, Utf8TextNormalizer.Normalize(ex.Message));
             }
             catch (Exception ex)
             {
-                return (false, $"Error inesperado al reactivar la venta: {ex.Message}");
+                return (false, $"Error inesperado al reactivar la venta: {Utf8TextNormalizer.Normalize(ex.Message)}");
             }
         }
 
