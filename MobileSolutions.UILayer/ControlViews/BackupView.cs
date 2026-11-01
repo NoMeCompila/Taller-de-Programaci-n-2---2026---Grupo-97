@@ -76,6 +76,9 @@ namespace MobileSolutions.UILayer
             this.picBackupTitle.BackColor = Color.Transparent;
             this.btnLogout.Icon = IconChar.RightFromBracket.ToBitmap(Color.White);
             this.btnLogout.Click += (s, e) => LogoutRequested?.Invoke(this, EventArgs.Empty);
+            this.btnPathBk.Icon = IconChar.Folder.ToBitmap(Color.White);
+            this.btnPathRes.Icon = IconChar.Folder.ToBitmap(Color.White);
+
 
             ConfigureDualAuthUi();
             SwitchToBackupTab();
@@ -90,25 +93,16 @@ namespace MobileSolutions.UILayer
                 RefreshAuditMetrics();
             };
 
-            btnTabBackup.UseVisualStyleBackColor = false;
-            btnTabRestore.UseVisualStyleBackColor = false;
-
             pnlDualAuthCard.Paint += PnlDualAuthCard_Paint;
-            btnTabBackup.Paint += TabButton_Paint;
-            btnTabRestore.Paint += TabButton_Paint;
             btnConfirmStep1.Paint += FlatActionButton_Paint;
-            btnBrowseBackupPath.Paint += FlatActionButton_Paint;
-            btnGenerarBackup.Paint += FlatActionButton_Paint;
-            btnBrowseBak.Paint += FlatActionButton_Paint;
-            btnEjecutarRestore.Paint += FlatActionButton_Paint;
 
-            btnTabBackup.Click += (s, e) => SwitchToBackupTab();
-            btnTabRestore.Click += (s, e) => SwitchToRestoreTab();
+            btnBackup.Click += (s, e) => SwitchToBackupTab();
+            btnRestore.Click += (s, e) => SwitchToRestoreTab();
             btnConfirmStep1.Click += (s, e) => ConfirmStep1();
-            btnBrowseBackupPath.Click += (s, e) => BrowseBackupDestinationFolder();
-            btnGenerarBackup.Click += (s, e) => ExecuteBackup();
-            btnBrowseBak.Click += (s, e) => BrowseBackupFile();
-            btnEjecutarRestore.Click += (s, e) => ExecuteRestore();
+            btnPathBk.Click += (s, e) => BrowseBackupDestinationFolder();
+            btnGenerateBackup.Click += (s, e) => ExecuteBackup();
+            btnPathRes.Click += (s, e) => BrowseBackupFile();
+            btnApplyRestore.Click += (s, e) => ExecuteRestore();
 
             CenterDualAuthCard();
         }
@@ -132,7 +126,7 @@ namespace MobileSolutions.UILayer
 
             SetDualAuthCredentialsVisible(false);
             pnlRestoreSelector.Visible = false;
-            btnEjecutarRestore.Visible = false;
+            btnApplyRestore.Visible = false;
 
             pnlStatusInfo.Location = new Point(20, 360);
 
@@ -141,18 +135,14 @@ namespace MobileSolutions.UILayer
             txtBackupDestinationPath.Enabled = true;
             txtBackupDestinationPath.Text = string.Empty;
 
-            btnBrowseBackupPath.Enabled = true;
-            btnBrowseBackupPath.BackColor = ActiveBlueColor;
-            btnBrowseBackupPath.ForeColor = Color.White;
-            btnBrowseBackupPath.Cursor = Cursors.Hand;
-            btnBrowseBackupPath.Invalidate();
+            btnPathBk.Enabled = true;
+            btnPathBk.Cursor = Cursors.Hand;
+            btnPathBk.Invalidate();
 
-            btnGenerarBackup.Visible = true;
-            btnGenerarBackup.Enabled = true;
-            btnGenerarBackup.BackColor = ActiveBlueColor;
-            btnGenerarBackup.ForeColor = Color.White;
-            btnGenerarBackup.Cursor = Cursors.Hand;
-            btnGenerarBackup.Invalidate();
+            btnGenerateBackup.Visible = true;
+            btnGenerateBackup.Enabled = true;
+            btnGenerateBackup.Cursor = Cursors.Hand;
+            btnGenerateBackup.Invalidate();
         }
 
         public void SwitchToRestoreTab()
@@ -161,11 +151,11 @@ namespace MobileSolutions.UILayer
             UpdateTabVisuals();
 
             pnlBackupSelector.Visible = false;
-            btnGenerarBackup.Visible = false;
+            btnGenerateBackup.Visible = false;
 
             SetDualAuthCredentialsVisible(true);
             pnlRestoreSelector.Visible = true;
-            btnEjecutarRestore.Visible = true;
+            btnApplyRestore.Visible = true;
 
             pnlStatusInfo.Location = new Point(20, 595);
 
@@ -220,17 +210,13 @@ namespace MobileSolutions.UILayer
             txtBackupFilePath.Enabled = false;
             pnlRestoreSelector.Enabled = false;
 
-            btnBrowseBak.Enabled = false;
-            btnBrowseBak.BackColor = DisabledActionBgColor;
-            btnBrowseBak.ForeColor = DisabledActionFgColor;
-            btnBrowseBak.Cursor = Cursors.Default;
-            btnBrowseBak.Invalidate();
+            btnPathRes.Enabled = false;
+            btnPathRes.Cursor = Cursors.Default;
+            btnPathRes.Invalidate();
 
-            btnEjecutarRestore.Enabled = false;
-            btnEjecutarRestore.BackColor = DisabledActionBgColor;
-            btnEjecutarRestore.ForeColor = DisabledActionFgColor;
-            btnEjecutarRestore.Cursor = Cursors.Default;
-            btnEjecutarRestore.Invalidate();
+            btnApplyRestore.Enabled = false;
+            btnApplyRestore.Cursor = Cursors.Default;
+            btnApplyRestore.Invalidate();
         }
 
         public void ConfirmStep1()
@@ -282,17 +268,13 @@ namespace MobileSolutions.UILayer
 
             pnlRestoreSelector.Enabled = true;
             txtBackupFilePath.Enabled = true;
-            btnBrowseBak.Enabled = true;
-            btnBrowseBak.BackColor = ActiveBlueColor;
-            btnBrowseBak.ForeColor = Color.White;
-            btnBrowseBak.Cursor = Cursors.Hand;
-            btnBrowseBak.Invalidate();
+            btnPathRes.Enabled = true;
+            btnPathRes.Cursor = Cursors.Hand;
+            btnPathRes.Invalidate();
 
-            btnEjecutarRestore.Enabled = true;
-            btnEjecutarRestore.BackColor = ActiveBlueColor;
-            btnEjecutarRestore.ForeColor = Color.White;
-            btnEjecutarRestore.Cursor = Cursors.Hand;
-            btnEjecutarRestore.Invalidate();
+            btnApplyRestore.Enabled = true;
+            btnApplyRestore.Cursor = Cursors.Hand;
+            btnApplyRestore.Invalidate();
 
             Step1Confirmed?.Invoke(this, EventArgs.Empty);
         }
@@ -571,23 +553,28 @@ namespace MobileSolutions.UILayer
 
         private void UpdateTabVisuals()
         {
+            btnBackup.Enabled = true;
+            btnRestore.Enabled = true;
+
             if (!IsRestoreMode)
             {
-                btnTabBackup.BackColor = ActiveBlueColor;
-                btnTabBackup.ForeColor = Color.White;
-                btnTabRestore.BackColor = CardBgColor;
-                btnTabRestore.ForeColor = InactiveTabTextColor;
+                lblTitulo.Text = "BACKUP";
+                btnBackup.Type = MaterialButton.MaterialButtonType.Contained;
+                btnBackup.HighEmphasis = true;
+                btnRestore.Type = MaterialButton.MaterialButtonType.Outlined;
+                btnRestore.HighEmphasis = false;
             }
             else
             {
-                btnTabBackup.BackColor = CardBgColor;
-                btnTabBackup.ForeColor = InactiveTabTextColor;
-                btnTabRestore.BackColor = ActiveBlueColor;
-                btnTabRestore.ForeColor = Color.White;
+                lblTitulo.Text = "RESTORE";
+                btnBackup.Type = MaterialButton.MaterialButtonType.Outlined;
+                btnBackup.HighEmphasis = false;
+                btnRestore.Type = MaterialButton.MaterialButtonType.Contained;
+                btnRestore.HighEmphasis = true;
             }
 
-            btnTabBackup.Invalidate();
-            btnTabRestore.Invalidate();
+            btnBackup.Invalidate();
+            btnRestore.Invalidate();
         }
 
         private void PnlDualAuthCard_Paint(object? sender, PaintEventArgs e)
@@ -597,26 +584,6 @@ namespace MobileSolutions.UILayer
             using GraphicsPath path = CreateRoundedRectanglePath(rect, 10);
             using Pen borderPen = new Pen(CardBorderColor, 1f);
             e.Graphics.DrawPath(borderPen, path);
-        }
-
-        private void TabButton_Paint(object? sender, PaintEventArgs e)
-        {
-            if (sender is not Button btn)
-            {
-                return;
-            }
-
-            bool isActive = (btn == btnTabBackup && !IsRestoreMode) || (btn == btnTabRestore && IsRestoreMode);
-            if (isActive)
-            {
-                using SolidBrush accentBrush = new SolidBrush(ActiveTabAccentColor);
-                e.Graphics.FillRectangle(accentBrush, 0, btn.Height - 3, btn.Width, 3);
-            }
-            else
-            {
-                using Pen linePen = new Pen(InactiveTabLineColor, 1f);
-                e.Graphics.DrawLine(linePen, 0, btn.Height - 1, btn.Width, btn.Height - 1);
-            }
         }
 
         private void FlatActionButton_Paint(object? sender, PaintEventArgs e)
